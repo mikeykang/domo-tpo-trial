@@ -99,7 +99,7 @@
 
   <section>
     <div class="secno">02</div>
-    <h2>어떻게 하는 방식인가 · 6단계</h2>
+    <h2>어떻게 하는 방식인가 · 5단계</h2>
     <div class="flow">
       <div class="step"><div class="n">STEP 1</div><div class="t">토너패드 리스트업</div><div class="d">어디까지가 토너패드인지 정하고 전부 찾아낸다</div><span class="who">자동</span></div>
       <div class="donebox">
@@ -107,14 +107,13 @@
         <div class="inner">
           <div class="step"><div class="n">STEP 2</div><div class="t">모으기</div><div class="d">후기·게시물·광고를 남김없이 모은다</div><span class="who">자동</span></div>
           <div class="step"><div class="n">STEP 3</div><div class="t">읽기</div><div class="d">AI가 제품을 통째로 읽고 한 문장·들어갈 칸·근거를 같이 뽑는다</div><span class="who a">AI</span></div>
-          <div class="step"><div class="n">STEP 4</div><div class="t">확인</div><div class="d">근거로 쓴 문장이 실제로 있는지 대조하고 사람이 본다</div><span class="who h">코드 + 사람</span></div>
+          <div class="step"><div class="n">STEP 4</div><div class="t">확인</div><div class="d">근거로 쓴 문장이 원문에 실제로 있는지 대조한다</div><span class="who">코드</span></div>
           <div class="step"><div class="n">STEP 5</div><div class="t">지도</div><div class="d">칸마다 숫자를 채운다. 이번엔 제품 한 개만</div><span class="who">자동</span></div>
         </div>
       </div>
-      <div class="step"><div class="n">STEP 6</div><div class="t">빈칸 고르기</div><div class="d">들어갈 자리를 사람이 정한다</div><span class="who h">사람</span></div>
     </div>
-    <p class="note">이번에 돌려본 건 <b>2~5단계</b>입니다. 1단계(토너패드 리스트업)와 6단계(빈칸 확정)는 제품 100개를 다 모아야 할 수 있는 일입니다.</p>
-    <p class="note"><b>AI가 판단은 하되, 근거 없는 판단은 아예 나올 수 없게 만들었습니다.</b> 제품을 어느 칸에 넣든 반드시 후기 원문을 같이 붙여야 하고, 그 문장이 실제로 있는지 코드가 대조합니다. 지어낸 근거는 지도에 못 올라가고, 마지막 결정은 사람이 합니다.</p>
+    <p class="note">이번에 돌려본 건 <b>2~5단계</b>입니다. 1단계(토너패드 리스트업)는 제품 100개를 다 모아야 할 수 있는 일이고, 그다음 빈칸을 고르는 것도 카테고리가 다 채워져야 가능합니다.</p>
+    <p class="note"><b>AI가 판단은 하되, 근거 없는 판단은 아예 나올 수 없게 만들었습니다.</b> 제품을 어느 칸에 넣든 반드시 후기 원문을 같이 붙여야 하고, 그 문장이 실제로 있는지 코드가 대조합니다. 지어낸 근거는 지도에 못 올라갑니다.</p>
   </section>
 
   <section>
@@ -167,7 +166,7 @@
       <div class="note" id="cpMeta" style="margin-bottom:10px"></div>
       <div id="cpList"></div>
     </div>
-    <p class="note">숫자가 있는 칸을 누르면 그 칸에 들어간 <b>실제 후기 문장</b>이 아래에 펼쳐집니다. 문장마다 어떤 단어 때문에 그 칸으로 갔는지 함께 표시됩니다.</p>
+    <p class="note">숫자가 있는 칸을 누르면 그 칸에 들어간 <b>실제 후기 문장</b>이 원문과 번역으로 아래에 펼쳐집니다. 문장마다 어떤 단어 때문에 그 칸으로 갔는지도 함께 표시됩니다.</p>
     <p class="note">색이 진할수록 많이 언급된 칸입니다. 전체 후기의 10.3%인 2,051건이 두 가지를 같이 말했습니다.</p>
     <ul>
       <li><b>「수분·건조 × 화장 전」이 1,431건으로 압도적입니다.</b> 2위인 「붉은기·진정 × 화장 전」(361건)의 네 배입니다. 이 제품의 자리는 사실상 이 한 칸입니다.</li>
@@ -292,7 +291,7 @@
       M.textContent=list.length? ('후기 문장 '+list.length+'개 · 전부 원문 대조 완료') : '이 칸에 해당하는 문장이 없습니다';
       L.innerHTML=list.map(function(o){
         var why=[].concat(o.c||[],o.m||[]).map(function(w){return '<span style="display:inline-block;font-family:\'Noto Sans KR\',sans-serif;font-size:10.5px;padding:0 5px;border:1px solid var(--line);color:var(--sub);margin-right:4px">'+esc(w)+'</span>'}).join('');
-        return '<div style="padding:9px 0;border-bottom:1px solid var(--line)"><div style="font-size:14px;line-height:1.7">'+esc(o.t)+'</div><div style="margin-top:5px">'+why+'<span class="note" style="font-size:11px">'+esc(o.d||'')+' · '+(o.s==='qoo10'?'큐텐':'앳코스메')+'</span></div></div>';
+        return '<div style="padding:11px 0;border-bottom:1px solid var(--line)"><div style="font-size:14px;line-height:1.7">'+esc(o.t)+'</div><div class="note" style="font-size:13.5px;margin-top:3px">'+esc(o.ko||'')+'</div><div style="margin-top:6px">'+why+'<span class="note" style="font-size:11px">'+esc(o.d||'')+' · '+(o.s==='qoo10'?'큐텐':'앳코스메')+'</span></div></div>';
       }).join('');
       P.style.display='block';
       P.scrollIntoView({behavior:'smooth',block:'nearest'});
