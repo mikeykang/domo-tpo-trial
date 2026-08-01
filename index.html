@@ -38,6 +38,10 @@
   .who{display:inline-block;margin-top:7px;font-size:10.5px;font-weight:700;padding:1px 6px;border:1px solid var(--line);color:var(--sub);}
   .who.h{color:var(--red);border-color:var(--red);}
   .who.a{color:var(--blue);border-color:var(--blue);}
+  .donebox{flex:4 1 480px;border:2px solid var(--gold);background:rgba(138,109,47,.06);padding:14px 9px 9px;position:relative;}
+  .donebox .lab{position:absolute;top:-9px;left:12px;background:var(--bg);padding:0 7px;font-family:"Noto Sans KR",sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--gold);font-weight:700;}
+  .donebox .inner{display:flex;gap:7px;flex-wrap:wrap;}
+  .donebox .step{flex:1 1 105px;}
   .tag{display:inline-block;font-family:"Noto Sans KR",sans-serif;font-size:11px;font-weight:700;padding:1px 8px;border:1px solid var(--line);color:var(--sub);margin-left:6px;}
   .tag.s{color:var(--green);border-color:var(--green);}
   .tag.m{color:var(--gold);border-color:var(--gold);}
@@ -98,12 +102,18 @@
     <h2>파이프라인 · 6단계</h2>
     <div class="flow">
       <div class="step"><div class="n">STEP 1</div><div class="t">목록</div><div class="d">경계를 정하고 대상 제품을 전수로 찾는다</div><span class="who">자동</span></div>
-      <div class="step"><div class="n">STEP 2</div><div class="t">수집</div><div class="d">리뷰·게시물·광고를 전량 모은다</div><span class="who">자동</span></div>
-      <div class="step"><div class="n">STEP 3</div><div class="t">판독</div><div class="d">AI가 제품 전체를 읽고 한 문장 + 칸 + 근거 인용을 함께 낸다</div><span class="who a">AI</span></div>
-      <div class="step"><div class="n">STEP 4</div><div class="t">검수</div><div class="d">인용이 원문에 실존하는지 대조하고 사람이 배치를 확인한다</div><span class="who h">코드 + 사람</span></div>
-      <div class="step"><div class="n">STEP 5</div><div class="t">지도</div><div class="d">칸마다 공급·수요 두 숫자, 계절 칸은 월별 그래프</div><span class="who">자동</span></div>
+      <div class="donebox">
+        <span class="lab">이번 시운전에서 실행</span>
+        <div class="inner">
+          <div class="step"><div class="n">STEP 2</div><div class="t">수집</div><div class="d">리뷰·게시물·광고를 전량 모은다</div><span class="who">자동</span></div>
+          <div class="step"><div class="n">STEP 3</div><div class="t">판독</div><div class="d">AI가 제품 전체를 읽고 한 문장 + 칸 + 근거 인용을 함께 낸다</div><span class="who a">AI</span></div>
+          <div class="step"><div class="n">STEP 4</div><div class="t">검수</div><div class="d">인용이 원문에 실존하는지 대조하고 사람이 배치를 확인한다</div><span class="who h">코드 + 사람</span></div>
+          <div class="step"><div class="n">STEP 5</div><div class="t">지도</div><div class="d">칸마다 숫자를 채운다. 이번엔 제품 1개 범위</div><span class="who">자동</span></div>
+        </div>
+      </div>
       <div class="step"><div class="n">STEP 6</div><div class="t">판정</div><div class="d">빈칸 후보를 사람이 확정한다</div><span class="who h">사람</span></div>
     </div>
+    <p class="note">이번 시운전은 <b>2~5단계</b>를 실제 데이터로 돌린 것입니다. 1단계(카테고리 전수 발견)와 6단계(빈칸 판정)는 카테고리 100개를 모아야 성립합니다.</p>
     <p class="note"><b>AI가 판단하되, 근거 없는 판단은 존재할 수 없는 구조입니다.</b> 모든 칸 배치는 리뷰 원문 인용을 달고 나와야 하고, 그 인용이 저장된 원문에 문자 그대로 있는지 코드가 대조합니다. 지어낸 근거는 지도에 오를 수 없고, 최종 확정은 사람이 합니다.</p>
   </section>
 
