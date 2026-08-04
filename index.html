@@ -137,6 +137,22 @@
   .xl{display:flex;justify-content:space-between;font-size:9.5px;color:var(--faint);margin-top:5px;
       font-family:"Geist Mono",ui-monospace,monospace}
 
+  /* tooltip */
+  [data-tip]{position:relative}
+  .tile[data-tip]::after,.q[data-tip]::after{content:"";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    border:1px solid var(--line-strong);border-radius:50%;opacity:.75}
+  .tile.hero[data-tip]::after{border-color:#4a4a4a}
+  .tile[data-tip]::before{content:"i";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    font-size:8px;line-height:11px;text-align:center;color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace;z-index:1}
+  .tile.hero[data-tip]::before{color:#7a7a7a}
+  .tip{position:fixed;z-index:99;max-width:330px;background:var(--panel);color:#e8e8e8;font-size:11.5px;line-height:1.6;
+       padding:9px 12px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.22);pointer-events:none;opacity:0;
+       transition:opacity .1s;white-space:normal}
+  .tip.on{opacity:1}
+  .tip b{color:#fff}
+  .tip i{color:#a8a8a8;display:block;margin-top:4px;font-style:normal}
+  .u{border-bottom:1px dotted var(--line-strong);cursor:help}
+
   /* ads */
   .afilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .ab{font:inherit;font-size:11px;padding:4px 10px;border:1px solid var(--line);background:var(--card);
@@ -186,56 +202,52 @@
   <div class="band">
     <div class="bhead"><h2>큐텐</h2><span class="bs">후기 전량 · 2022.08 – 2026.08 · 월별 추이</span></div>
     <div class="row">
-      <div class="tile hero">
+      <div class="tile hero" data-tip="큐텐 후기는 실구매자만 쓴다. 다만 <b>후기 1건에 5Q포인트, 사진 첨부에 +5</b>가 걸려 있어 5점이 88.2%, 중앙 24자다. <b>평점은 쓰지 않고 사용 맥락만 쓴다.</b>">
         <div class="k">Reviews</div>
         <div><div class="v">19,809</div><div class="s">49개월 · 실구매자만</div></div>
         <svg width="150" height="34" viewBox="0 0 150 34" fill="none"><path d="M0.0,30.8 L3.1,30.7 L6.2,30.9 L9.4,30.8 L12.5,30.9 L15.6,30.9 L18.8,30.9 L21.9,30.8 L25.0,31.0 L28.1,30.9 L31.2,30.8 L34.4,30.9 L37.5,30.9 L40.6,30.7 L43.8,30.9 L46.9,30.9 L50.0,30.7 L53.1,31.0 L56.2,30.9 L59.4,30.6 L62.5,30.8 L65.6,30.9 L68.8,30.5 L71.9,30.7 L75.0,30.4 L78.1,29.5 L81.2,30.6 L84.4,28.6 L87.5,29.5 L90.6,29.6 L93.8,29.4 L96.9,24.6 L100.0,29.6 L103.1,29.9 L106.2,25.3 L109.4,29.6 L112.5,29.4 L115.6,24.6 L118.8,28.9 L121.9,25.2 L125.0,18.7 L128.1,26.3 L131.2,24.2 L134.4,3.2 L137.5,26.0 L140.6,27.0 L143.8,3.0 L146.9,24.1 L150.0,30.5" stroke="#6b7cff" stroke-width="1.4" stroke-linejoin="round"/></svg>
       </div>
-      <div class="tile"><div class="k">화장이 잘 먹는다</div><div><div class="v">98.9<small>%</small></div><div class="s">큐텐 자체 만족도 · 3항목 중 1위</div></div></div>
-      <div class="tile"><div class="k">1위 피부 고민</div><div><div class="v">79.3<small>%</small></div><div class="s">여드름·트러블 · 12,828건 기재</div></div></div>
-      <div class="tile"><div class="k">검색 순위</div><div><div class="v">#4</div><div class="s">광고 제외 · 후기 수로는 13위</div></div></div>
-      <div class="tile"><div class="k">5점 비율</div><div><div class="v">88.2<small>%</small></div><div class="s">중앙 24자 · 후기 포인트 5P</div></div></div>
+      <div class="tile" data-tip="큐텐이 후기마다 집계하는 세 항목 중 하나. 19,808건 기준이고, 트러블 케어 96.0% · 각질 케어 94.1%보다 높다. 문장을 세지 않아도 같은 답이 나온다."><div class="k">화장이 잘 먹는다</div><div><div class="v">98.9<small>%</small></div><div class="s">큐텐 자체 만족도 · 3항목 중 1위</div></div></div>
+      <div class="tile" data-tip="구매자가 후기 작성 때 직접 고른 값(복수 선택). 19,809건 중 12,828건(65%)에 기재. 모공 58.1% · 건조 35.1%가 뒤를 잇는다."><div class="k">1위 피부 고민</div><div><div class="v">79.3<small>%</small></div><div class="s">여드름·트러블 · 12,828건 기재</div></div></div>
+      <div class="tile" data-tip="큐텐 검색은 <b>상단 16칸이 광고 표시 없는 유료 슬롯</b>(プラス展示)이고, 자연 순위에도 하루 100엔짜리 광고 자리가 1·5·6·9번에 고정돼 있다. 판매량 정렬은 아예 없다. 광고를 걷어낸 값이다."><div class="k">검색 순위</div><div><div class="v">#4</div><div class="s">광고 제외 · 후기 수로는 13위</div></div></div>
+      <div class="tile" data-tip="12자 이하 5점이 14.6%(2,891건). 「いいいいいいいいいいいい」 같은 글자수 채우기가 나온다. 포인트가 만든 편향이라 평점은 못 쓴다."><div class="k">5점 비율</div><div><div class="v">88.2<small>%</small></div><div class="s">중앙 24자 · 후기 포인트 5P</div></div></div>
     </div>
-    <div class="cap">큐텐은 후기 1건에 5Q포인트, 사진 첨부에 +5를 준다. 그래서 5점이 88.2%이고 12자 이하 5점이 14.6%다. <b>평점은 쓰지 않고 사용 맥락만 쓴다.</b> 검색 순위는 상단 16칸이 광고 표시 없는 유료 슬롯이라 그것을 걷어낸 값이다.</div>
   </div>
 
   <!-- BAND: 지도 -->
   <div class="band">
     <div class="bhead"><h2>TPO 지도</h2><span class="bs">피부 고민 × 쓰는 때 · 문장 단위 · 전부 원문 대조</span></div>
     <div class="row">
-      <div class="tile hero"><div class="k">Sentences</div><div><div class="v">1,404</div><div class="s">18 / 20칸 · 큐텐+앳코스메+LIPS</div></div></div>
+      <div class="tile hero" data-tip="칸의 숫자 = 그 칸에 실린 문장 수. 패널 목록과 같은 단위다. 생성기가 브랜드 카피·중복·타 브랜드·미사용 문장을 걸러내고, <b>모든 문장을 원문과 문자열 대조</b>한다."><div class="k">Sentences</div><div><div class="v">1,404</div><div class="s">18 / 20칸 · 큐텐+앳코스메+LIPS</div></div></div>
       <div class="tile"><div class="k">화장 전</div><div><div class="v">714</div><div class="s">전체의 51% · 5개 순간 중 1위</div></div></div>
       <div class="tile"><div class="k">최다 칸</div><div><div class="v">546</div><div class="s">수분·건조 × 화장 전</div></div></div>
       <div class="tile"><div class="k">2위 칸</div><div><div class="v">143</div><div class="s">수분·건조 × 계절·컨디션</div></div></div>
-      <div class="tile"><div class="k">불만 문장</div><div><div class="v">9</div><div class="s">4건이 「액이 새서 못 들고 다닌다」</div></div></div>
+      <div class="tile" data-tip="4건이 「액이 새서 여행에 못 가져간다」「집에서만 쓴다」. 오탐으로 지우지 않고 표시한다 — 휴대성이 이 제품의 반복 지적 약점이다."><div class="k">불만 문장</div><div><div class="v">9</div><div class="s">4건이 「액이 새서 못 들고 다닌다」</div></div></div>
     </div>
-    <div class="cap">칸의 숫자는 그 칸에 실린 문장 수이고, 칸을 누르면 나오는 목록과 같은 것을 센다. 생성기가 브랜드 카피·중복·타 브랜드·미사용 문장을 걸러낸다.</div>
   </div>
 
   <!-- BAND: 소셜·리뷰 -->
   <div class="band">
     <div class="bhead"><h2>소셜 · 리뷰</h2><span class="bs">협찬 판정 · 플랫폼 라벨 우선, 없으면 본문 공시</span></div>
     <div class="row">
-      <div class="tile hero"><div class="k">협찬 확실</div><div><div class="v">92<small>%</small></div><div class="s">앳코스메 · 사이트가 붙인 라벨</div></div></div>
+      <div class="tile hero" data-tip="@cosme가 사이트에서 붙이는 <b>モニター・プレゼント</b> 라벨. 103건 전량을 실물 확인했고 배지와 제목 두 신호가 전부 일치했다. 편향은 <b>평점에만</b> 나온다(협찬 6.15 vs 자비 5.25). 나이와 용도는 같다."><div class="k">협찬 확실</div><div><div class="v">92<small>%</small></div><div class="s">앳코스메 · 사이트가 붙인 라벨</div></div></div>
       <div class="tile"><div class="k">인스타그램</div><div><div class="v">67<small>%</small></div><div class="s">465건 중 분석대상 230</div></div></div>
       <div class="tile"><div class="k">X</div><div><div class="v">29<small>%</small></div><div class="s">24개월 338건</div></div></div>
       <div class="tile"><div class="k">LIPS</div><div><div class="v">23<small>%</small></div><div class="s">312건 전량 육안 확인</div></div></div>
-      <div class="tile"><div class="k">본문 검출률</div><div><div class="v">34<small>%</small></div><div class="s">정답지 기준 재현율 상한</div></div></div>
+      <div class="tile" data-tip="앳코스메 정답지로 잰 텍스트 규칙의 재현율 상한. <b>본문에 협찬을 밝히는 글은 3분의 1뿐</b>이라 나머지는 아무 표시가 없다. 그래서 표시 없는 글은 「협찬 아님」이 아니라 <b>확인 불가</b>다."><div class="k">본문 검출률</div><div><div class="v">34<small>%</small></div><div class="s">정답지 기준 재현율 상한</div></div></div>
     </div>
-    <div class="cap">앳코스메 정답지 103건으로 재보면 <b>본문에 협찬을 밝히는 글은 3분의 1뿐</b>이다. 나머지는 아무 표시가 없다. 그래서 표시 없는 글은 「협찬 아님」이 아니라 <b>확인 불가</b>로 둔다. 편향은 평점에 나타나고(협찬 6.15 vs 자비 5.25) 나이와 용도에는 나타나지 않는다.</div>
   </div>
 
   <!-- BAND: 광고 -->
   <div class="band">
     <div class="bhead"><h2>메타 광고</h2><span class="bs">일본 라이브러리 · 종료 광고는 보관되지 않음</span></div>
     <div class="row">
-      <div class="tile hero"><div class="k">최장 게재</div><div><div class="v">349<small>일</small></div><div class="s">APRILSKIN · 카테고리 최장은 457일</div></div></div>
+      <div class="tile hero" data-tip="문구: 「メイク前に肌の温度を下げてからベースを塗ると、メイクノリも良くなる」&lt;i&gt;화장 전에 피부 온도를 낮추고 베이스를 바르면 화장도 잘 먹는다 — 지도 1위 칸을 광고비가 그대로 증명한다&lt;/i&gt;"><div class="k">최장 게재</div><div><div class="v">349<small>일</small></div><div class="s">APRILSKIN · 카테고리 최장은 457일</div></div></div>
       <div class="tile"><div class="k">이 브랜드 광고</div><div><div class="v">67</div><div class="s">카테고리 전체는 160 · 중복 제거</div></div></div>
-      <div class="tile"><div class="k">장기 광고 계절 소구</div><div><div class="v">1</div><div class="s">100일 이상 61개 중</div></div></div>
-      <div class="tile"><div class="k">현재 활성</div><div><div class="v">149</div><div class="s">종료 11 · 일본은 종료분 미보관</div></div></div>
+      <div class="tile" data-tip="계절은 <b>단기 세일 광고에만</b> 나온다. 계절 문구 광고 34개 중 대부분이 메가와리 기간 하루짜리이고, 100일 넘게 도는 61개 중 계절을 앞세운 건 1개뿐이다."><div class="k">장기 광고 계절 소구</div><div><div class="v">1</div><div class="s">100일 이상 61개 중</div></div></div>
+      <div class="tile" data-tip="일본 광고 라이브러리는 <b>종료된 광고를 보관하지 않는다.</b> 이 스냅샷 이후는 소급 수집이 불가능해서 제품마다 그 시점에 떠야 한다. 미국은 보관돼서 대조군으로 쓸 수 있다."><div class="k">현재 활성</div><div><div class="v">149</div><div class="s">종료 11 · 일본은 종료분 미보관</div></div></div>
       <div class="tile"><div class="k">경쟁사 광고</div><div><div class="v">93</div><div class="s">메디큐브 21 · 큐텐 14 · SKIN1004 14</div></div></div>
     </div>
-    <div class="cap">APRILSKIN이 327일째 돌리는 광고 문구가 <b>「メイク前に肌の温度を下げてからベースを塗ると、メイクノリも良くなる」</b> <span class="mono">(화장 전에 피부 온도를 낮추고 베이스를 바르면 화장도 잘 먹는다)</span> — 지도 1위 칸을 광고비가 그대로 증명한다. 반대로 <b>계절은 단기 세일 광고에만 나온다.</b> 100일 넘게 도는 61개 중 계절을 앞세운 건 1개뿐이고, 나머지 계절 광고는 메가와리 기간에 하루짜리로 뜬다.</div>
   </div>
 
   <!-- PRODUCT -->
@@ -257,7 +269,7 @@
   <!-- MAP + REVIEWS -->
   <div class="cols s21">
     <div class="panel">
-      <div class="ph"><h3>TPO 지도 · 20칸</h3><span class="hint">칸을 누르면 오른쪽에 그 칸의 후기가 열립니다</span></div>
+      <div class="ph"><h3>TPO 지도 · 20칸</h3><span class="hint u" data-tip="칸의 숫자는 그 칸에 실린 문장 수이고, 오른쪽 목록과 같은 것을 센다. 오른쪽 위 작은 숫자는 그중 불만 문장 수.">칸을 누르면 오른쪽에 그 칸의 후기가 열립니다</span></div>
       <table class="grid" id="tpoGrid">
         <tr><th></th><th>아침 세안 후</th><th>밤 세안 후</th><th>화장 전</th><th>급할 때·밖에서</th><th>계절·컨디션</th></tr>
         <tr><th scope="row">각질·모공</th><td class="ck l1" data-k="각질·모공|아침 세안 후">24<sup>1</sup></td><td class="ck l1" data-k="각질·모공|밤 세안 후">9</td><td class="ck l1" data-k="각질·모공|화장 전">38<sup>1</sup></td><td class="z">0</td><td class="ck l1" data-k="각질·모공|계절·컨디션">20</td></tr>
@@ -284,13 +296,13 @@
   <!-- SEASON -->
   <div class="cols s21">
     <div class="panel">
-      <div class="ph"><h3>냉장고에 넣어 쓰는 습관</h3><span class="hint">그달 후기 수 대비 비율 · 6~9월 강조</span></div>
+      <div class="ph"><h3>냉장고에 넣어 쓰는 습관</h3><span class="hint u" data-tip="건수로 그리면 메가와리 때 후기가 몰려 왜곡된다. 그래서 그달 후기 수 대비 비율로 그렸다. 여름(6~9월)만 진한 색.">그달 후기 수 대비 비율 · 6~9월 강조</span></div>
       <div class="bars"><div class="bar" title="2025.01 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.02 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.03 · 0.1%"><i style="height:2px"></i></div><div class="bar" title="2025.04 · 0.5%"><i style="height:5px"></i></div><div class="bar" title="2025.05 · 0.6%"><i style="height:7px"></i></div><div class="bar hot" title="2025.06 · 2.0%"><i style="height:22px"></i></div><div class="bar hot" title="2025.07 · 0.5%"><i style="height:5px"></i></div><div class="bar hot" title="2025.08 · 3.6%"><i style="height:40px"></i></div><div class="bar hot" title="2025.09 · 3.3%"><i style="height:36px"></i></div><div class="bar" title="2025.10 · 2.7%"><i style="height:30px"></i></div><div class="bar" title="2025.11 · 1.2%"><i style="height:13px"></i></div><div class="bar" title="2025.12 · 0.6%"><i style="height:7px"></i></div><div class="bar" title="2026.01 · 0.9%"><i style="height:10px"></i></div><div class="bar" title="2026.02 · 0.5%"><i style="height:5px"></i></div><div class="bar" title="2026.03 · 0.7%"><i style="height:8px"></i></div><div class="bar" title="2026.04 · 1.7%"><i style="height:19px"></i></div><div class="bar" title="2026.05 · 2.7%"><i style="height:30px"></i></div><div class="bar hot" title="2026.06 · 3.0%"><i style="height:33px"></i></div><div class="bar hot" title="2026.07 · 5.1%"><i style="height:56px"></i></div></div>
       <div class="xl"><span>2025.01</span><span>2025.07</span><span>2026.01</span><span>2026.07</span></div>
-      <p>겨울 0.5% 안팎에서 여름 3~5%까지 올라가고, <b>2025년과 2026년 두 해 모두 같은 모양</b>입니다. 한 해 유행이 아니라 매년 돌아오는 수요입니다.</p>
+      <p><b>2025년과 2026년 두 해 모두 같은 모양</b>입니다. 한 해 유행이 아니라 매년 돌아오는 수요입니다.</p>
     </div>
     <div class="panel">
-      <div class="ph"><h3>계절 신호는 소스가 정한다</h3></div>
+      <div class="ph"><h3 class="u" data-tip="큐텐 후기는 배송과 가격을 25자로 쓰는 구매 평가, X는 잡담, 인스타는 협찬 콘텐츠가 다수다. 계절·컨디션 이야기는 「피부 일기」를 쓰는 곳에서만 나온다.">계절 신호는 소스가 정한다</h3></div>
       <table>
         <tr><th>소스</th><th>장마</th><th>꽃가루</th></tr>
         <tr><td>큐텐 19,809</td><td class="n">0</td><td class="n">13</td></tr>
@@ -298,14 +310,14 @@
         <tr><td>인스타 465</td><td class="n">2</td><td class="n">33</td></tr>
         <tr><td><b>LIPS 312</b></td><td class="n"><b>21</b></td><td class="n"><b>17</b></td></tr>
       </table>
-      <p>같은 제품, 같은 기간인데 <b>장마는 큐텐에서 0건, LIPS에서 7%</b>입니다. 계절·컨디션 이야기는 「피부 일기」를 쓰는 곳에서만 나옵니다. <b>LIPS를 빼면 이 축은 보이지 않습니다.</b></p>
+      <p>같은 제품, 같은 기간인데 <b>장마는 큐텐에서 0건, LIPS에서 7%</b>입니다. <b>LIPS를 빼면 이 축은 보이지 않습니다.</b></p>
     </div>
   </div>
 
   <!-- PERSONA -->
   <div class="cols s21">
     <div class="panel">
-      <div class="ph"><h3>누가 사는가</h3><span class="hint">큐텐 후기의 구조 필드 · 12,828건 기재</span></div>
+      <div class="ph"><h3>누가 사는가</h3><span class="hint u" data-tip="후기 작성 화면에서 구매자가 직접 고르는 항목이라 텍스트 해석이 필요 없다. 19,809건 중 12,828건(65%)에 기재. 피부 타입은 혼합성 44.9% · 건성 26.3% · 지성 17.9% · 민감성 10.9%, 톤은 웜 51.4% / 쿨 48.6%로 반반.">큐텐 후기의 구조 필드 · 12,828건 기재</span></div>
       <table>
         <tr><th>피부 고민 (복수)</th><th style="text-align:right">비율</th><th class="barcell"></th></tr>
         <tr><td><b>여드름·피부 트러블</b></td><td class="n">79.3%</td><td class="barcell"><i class="hi" style="width:100%"></i></td></tr>
@@ -315,17 +327,16 @@
         <tr><td>기미</td><td class="n">11.5%</td><td class="barcell"><i style="width:14%"></i></td></tr>
         <tr><td>주름·처짐</td><td class="n">7.5%</td><td class="barcell"><i style="width:9%"></i></td></tr>
       </table>
-      <p>혼합성 44.9% · 건성 26.3% · 지성 17.9% · 민감성 10.9%. 웜톤 51.4% / 쿨톤 48.6%로 반반.
-      <b>고민이 무엇이든 「화장 전」에 씁니다</b>(여드름 11.2% · 모공 11.9% · 건조 11.5%). 예외는 주름·처짐뿐으로, 이 고민만 밤 사용이 세 배입니다.</p>
+      <p><b>고민이 무엇이든 「화장 전」에 씁니다.</b> <span class="u" data-tip="여드름 11.2% · 모공 11.9% · 건조 11.5% · 칙칙함 11.9% — 고민별 차이가 없다.">고민별 차이가 없습니다.</span> 예외는 주름·처짐뿐으로, 이 고민만 밤 사용이 세 배입니다.</p>
     </div>
     <div class="panel">
-      <div class="ph"><h3>연령대</h3><span class="hint">소스마다 10살 어긋남</span></div>
+      <div class="ph"><h3>연령대</h3><span class="hint u" data-tip="앳코스메는 실제 나이가 적혀 있고 LIPS는 연령대만 표기한다. 협찬 여부로 나이는 갈리지 않는다(협찬 37.0세 vs 자비 37.1세). 큐텐·인스타그램·X에는 나이 정보가 없고, 일본 광고 라이브러리도 상업 광고의 인구통계는 비공개다.">소스마다 10살 어긋남</span></div>
       <table>
         <tr><th>소스</th><th>표본</th><th>중심</th></tr>
         <tr><td>앳코스메 <span class="src">실제 나이</span></td><td class="n">103</td><td><b>중앙 35세</b><br><span class="src">30대 전반 30% · 40대 22%</span></td></tr>
         <tr><td>LIPS <span class="src">연령대</span></td><td class="n">184</td><td><b>20대 후반</b><br><span class="src">28% · 30대 전반 22%</span></td></tr>
       </table>
-      <p>시장이 다른 게 아니라 <b>매체를 쓰는 사람의 나이가 다릅니다.</b> 하나로 말하지 않고 둘 다 적습니다. 큐텐·인스타·X에는 나이가 없습니다.</p>
+      <p>시장이 다른 게 아니라 <b>매체를 쓰는 사람의 나이가 다릅니다.</b> 하나로 말하지 않고 둘 다 적습니다.</p>
     </div>
   </div>
 
@@ -339,7 +350,7 @@
       <tr><td class="mono">3</td><td>히어로 립타투 틴트</td><td class="n">13,676</td><td class="barcell"><i style="width:58%"></i></td></tr>
       <tr><td class="mono">4</td><td>매직스노우 쿠션</td><td class="n">4,460</td><td class="barcell"><i style="width:19%"></i></td></tr>
     </table>
-    <p><b>유입 방향은 쿠션 → 패드입니다.</b> 「쿠션 파운데를 샀을 때 사은품으로 딸려온 토너패드가 좋아서 샀다」가 28건, 반대는 7건. 둘을 잇는 논리는 <b>「파운데 전에 피부 온도를 낮추면 화장이 안 무너진다」</b> — 패드가 <b>쿠션의 베이스 준비 단계</b>로 팔립니다. 기획으로 옮기면 <b>메이크업이 견인차, 스킨케어가 후속</b>.</p>
+    <p><b>유입 방향은 쿠션 → 패드입니다.</b> <span class="u" data-tip="「쿠션 파운데를 샀을 때 사은품으로 딸려온 토너패드가 좋아서 샀다」류 후기가 28건, 반대 방향은 7건, 「같이 쓴다」가 86건. 쿠션 리스팅이 「고르는 본품 사은품」으로 패드를 끼워 판다.">후기 28건 대 7건.</span> 둘을 잇는 논리는 <b>「파운데 전에 피부 온도를 낮추면 화장이 안 무너진다」</b> — 패드가 <b>쿠션의 베이스 준비 단계</b>로 팔립니다. 기획으로 옮기면 <b>메이크업이 견인차, 스킨케어가 후속</b>.</p>
   </div>
 
   <!-- ADS -->
@@ -351,10 +362,10 @@
       <button class="ab" data-f="long">장기 100일+ <b>61</b></button>
       <button class="ab" data-f="season">계절 문구 <b>34</b></button>
       <button class="ab" data-f="off">종료 <b>11</b></button>
-      <button class="ab" data-f="all">카테고리 전체 <b>160</b></button>
+      <button class="ab" data-f="all" data-tip="경쟁사 93개(메디큐브 21 · 큐텐 14 · SKIN1004 14 등)를 포함한다. 우리 제품 광고가 아니라 <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려고 같이 모은다 — 계절 소구가 장기 광고에서 비어 있다는 것도 이 대조로 나왔다.">카테고리 전체 <b>160</b></button>
     </div>
     <div id="adL"></div>
-    <p class="cap" style="margin-top:10px">경쟁사 광고(메디큐브·SKIN1004·큐텐 등 93개)는 <b>카테고리 전체</b>에서 볼 수 있습니다. 우리 제품 광고가 아니라 <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려고 같이 모읍니다 — 계절 소구가 장기 광고에서 비어 있다는 것도 이 대조로 나왔습니다.</p>
+    
   </div>
 
   <div class="foot">
@@ -387,6 +398,28 @@
     });
   });
   var f=document.querySelector('#tpoGrid td[data-k="수분·건조|화장 전"]'); if(f) f.click();
+
+  // ── tooltip
+  var tipEl=document.createElement('div'); tipEl.className='tip'; document.body.appendChild(tipEl);
+  function showTip(el){
+    tipEl.innerHTML=el.getAttribute('data-tip'); tipEl.classList.add('on');
+    var r=el.getBoundingClientRect(), t=tipEl.getBoundingClientRect();
+    var x=Math.min(Math.max(8,r.left), window.innerWidth-t.width-8);
+    var y=r.bottom+8; if(y+t.height>window.innerHeight-8) y=Math.max(8,r.top-t.height-8);
+    tipEl.style.left=x+'px'; tipEl.style.top=y+'px';
+  }
+  function hideTip(){ tipEl.classList.remove('on'); }
+  function bindTips(root){
+    (root||document).querySelectorAll('[data-tip]').forEach(function(el){
+      if(el.__tip) return; el.__tip=1;
+      el.addEventListener('mouseenter',function(){showTip(el)});
+      el.addEventListener('mouseleave',hideTip);
+      el.addEventListener('focus',function(){showTip(el)});
+      el.addEventListener('blur',hideTip);
+      el.addEventListener('click',function(){ if(matchMedia('(hover:none)').matches){ showTip(el); setTimeout(hideTip,3500);} });
+    });
+  }
+  bindTips(); window.addEventListener('scroll',hideTip,{passive:true});
 
   // ── ads
   var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
