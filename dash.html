@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TPO MAP · 토너패드</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* cobble radar dashboard — light tokens from src/styles/tokens.css */
+  :root{
+    --canvas:#fafafa; --card:#ffffff; --sunken:#f7f7f7; --panel:#0f0f0f;
+    --line:#e9e9e9; --line-strong:#d9d9d9;
+    --ink:#171717; --sub:#454545; --muted:#5c5c5c; --subtle:#757575; --faint:#bfbfbf;
+    --c1:#4f46e5; --up:#16a34a; --warn:#f59e0b; --bad:#ef4444; --info:#3b82f6;
+    --r:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--canvas);color:var(--ink);
+       font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,-apple-system,sans-serif;
+       font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 20px 80px}
+  b,strong{font-weight:600}
+  a{color:inherit}
+
+  /* top bar */
+  .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
+       padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .top h1{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+  .kick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+        font-family:"Geist Mono",ui-monospace,monospace}
+  .top .sub{font-size:12.5px;color:var(--subtle);margin-top:4px}
+  .topmeta{display:flex;gap:16px;font-size:11px;color:var(--subtle);flex-wrap:wrap;align-items:center}
+  .topmeta b{color:var(--ink);font-weight:500}
+
+  /* metric band */
+  .band{margin-top:22px}
+  .bhead{display:flex;align-items:baseline;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+  .bhead h2{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .bhead .bs{font-size:11.5px;color:var(--subtle)}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:10px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 13px;min-height:88px;
+        display:flex;flex-direction:column;justify-content:space-between}
+  .tile .k{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+           font-family:"Geist Mono",ui-monospace,monospace}
+  .tile .v{font-size:25px;font-weight:500;letter-spacing:-.02em;margin-top:7px;line-height:1.05;
+           font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .tile .v small{font-size:14px;font-weight:400;color:var(--subtle)}
+  .tile .s{font-size:10.5px;color:var(--subtle);margin-top:6px;line-height:1.4}
+  .tile.hero{background:var(--panel);border-color:var(--panel);color:#fff;position:relative;overflow:hidden}
+  .tile.hero .k,.tile.hero .s{color:#8f8f8f}
+  .tile.hero .v small{color:#8f8f8f}
+  .tile.hero svg{position:absolute;right:11px;bottom:11px;opacity:.9}
+  .cap{font-size:11px;color:var(--subtle);margin-top:7px;line-height:1.55}
+
+  /* product card */
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px;
+        display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start}
+  .prod img{width:76px;height:76px;object-fit:contain;border:1px solid var(--line);border-radius:8px;flex:none}
+  .prod img{grid-row:1/3}
+  .prod .pm{min-width:0}
+  .prod .pt{font-size:15px;font-weight:600;line-height:1.4}
+  .prod .pa{font-size:10.5px;color:var(--subtle);margin-top:5px;letter-spacing:.04em;
+            font-family:"Geist Mono",ui-monospace,monospace}
+  .pf{display:flex;gap:34px;flex-wrap:wrap;margin-top:12px;grid-column:2}
+  .pf>div{text-align:left}
+  .pf .k{font-size:10.5px;color:var(--subtle)}
+  .pf .v{font-size:16px;font-weight:500;margin-top:2px;font-family:"Geist Mono",ui-monospace,monospace;
+         font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* chip row */
+
+  /* panels */
+  .cols{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;align-items:start}
+  @media(min-width:940px){.cols.s21{grid-template-columns:1.85fr 1fr}}
+  .stack{display:grid;gap:14px;align-content:start;min-width:0}
+  .sum{margin-top:14px}
+  .sum .d1{font-size:16.5px;margin-bottom:8px}
+  .sum ul{margin:0 0 0 17px;columns:2;column-gap:34px}
+  @media(max-width:939px){.sum ul{columns:1}}
+  .sum li{font-size:13px;break-inside:avoid;margin:0 0 8px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px 17px}
+  .ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .ib{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;flex:0 0 13px;
+     border:1px solid var(--line2,#dcdcdc);border-radius:50%;font-size:8.5px;font-style:normal;font-weight:600;
+     color:var(--subtle);cursor:help;margin-left:6px;line-height:1;position:relative;top:-1px;transition:.12s}
+  .ib:hover{border-color:#a8a8a8;color:var(--ink);background:#f2f2f2}
+  .ph h3{font-size:13px;font-weight:600}
+  .ph .hint{font-size:10.5px;color:var(--subtle)}
+  .panel p{font-size:12.5px;color:var(--muted);margin:8px 0}
+  .panel ul{margin:8px 0 2px 16px} .panel li{font-size:12.5px;color:var(--muted);margin:6px 0}
+  .panel li::marker{color:var(--faint)}
+  .panel li b,.panel p b{color:var(--ink)}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);font-weight:500;text-align:left;
+     padding:0 10px 8px;font-family:"Geist Mono",ui-monospace,monospace}
+  td{padding:9px 10px;border-top:1px solid var(--line);color:var(--muted);vertical-align:top}
+  td b{color:var(--ink)}
+  td.n{text-align:right;font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .yes{color:var(--up);font-weight:500} .no{color:var(--bad);font-weight:500} .may{color:var(--warn);font-weight:500}
+  .barcell{width:38%;vertical-align:middle} .barcell i{display:block;height:5px;border-radius:3px;background:#d7d3f6}
+  .barcell i.hi{background:var(--c1)}
+
+  /* TPO grid */
+  .grid{border-collapse:separate;border-spacing:3px;margin:-3px}
+  .grid th{padding:0 0 6px;text-align:center;font-size:9.5px}
+  .grid th[scope=row]{text-align:left;padding:0 10px 0 2px;font-size:11px;color:var(--muted);
+     text-transform:none;letter-spacing:0;font-family:inherit;font-weight:500;white-space:nowrap;width:1%}
+  .grid td{border:0;padding:13px 6px;text-align:center;border-radius:7px;
+     font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink)}
+  .grid td sup{font-size:8.5px;color:var(--warn);margin-left:2px;font-weight:600}
+  .grid td.z{background:var(--sunken);color:var(--faint)}
+  .grid td.l1{background:#eceafb} .grid td.l2{background:#d7d3f6}
+  .grid td.l3{background:#a9a2ee;color:#0f0f0f} .grid td.l4{background:var(--c1);color:#fff}
+  .grid td.ck{cursor:pointer;transition:box-shadow .12s}
+  .grid td.ck:hover{box-shadow:0 0 0 2px var(--line-strong)}
+  .grid td.sel{box-shadow:0 0 0 2px var(--ink)!important}
+
+  /* sentence list */
+  
+  .def .d1{font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.6;margin:0 0 4px}
+  .rev{display:flex;flex-direction:column;min-height:0}
+  .rev .ph{margin-bottom:10px;align-items:baseline}
+  #cpL{flex:1;max-height:900px;overflow:auto;padding-right:6px}
+  #cpL::-webkit-scrollbar{width:8px}
+  #cpL::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+  .sent{padding:10px 0;border-bottom:1px solid var(--line)}
+  .sent:last-child{border-bottom:0}
+  .sj{font-size:12.5px;line-height:1.7}
+  .sk{font-size:11.5px;color:var(--subtle);margin-top:3px;line-height:1.6}
+  .sm{margin-top:6px;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  .w{font-size:9.5px;padding:1px 6px;border-radius:5px;background:var(--sunken);color:var(--subtle)}
+  .w.neg{background:#fef3c7;color:#92400e;font-weight:600}
+  .ages{display:flex;gap:26px;justify-content:center;text-align:center;margin:2px 0 14px}
+  .ages .dl{font-size:11.5px;font-weight:500;color:var(--ink);margin-top:6px}
+  .ages .dc{font-size:10.5px;color:var(--subtle);margin-top:1px}
+  .agt td:first-child{color:var(--ink)} .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:0}
+  .src{font-size:9.5px;color:var(--faint);font-family:"Geist Mono",ui-monospace,monospace}
+
+  /* seasonal bars */
+  .bars{display:flex;align-items:flex-end;gap:3px;height:62px;margin-top:4px}
+  .bar{flex:1;display:flex;align-items:flex-end}
+  .bar i{display:block;width:100%;background:#d7d3f6;border-radius:2px 2px 0 0}
+  .bar.hot i{background:var(--c1)}
+  .bar:hover i{opacity:.7}
+  .xl{display:flex;justify-content:space-between;font-size:9.5px;color:var(--faint);margin-top:5px;
+      font-family:"Geist Mono",ui-monospace,monospace}
+
+  /* tooltip */
+  [data-tip]{position:relative}
+  .tile[data-tip]::after,.q[data-tip]::after{content:"";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    border:1px solid var(--line-strong);border-radius:50%;opacity:.75}
+  .tile.hero[data-tip]::after{border-color:#4a4a4a}
+  .tile[data-tip]::before{content:"i";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    font-size:8px;line-height:11px;text-align:center;color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace;z-index:1}
+  .tile.hero[data-tip]::before{color:#7a7a7a}
+  .tip{position:fixed;z-index:99;max-width:330px;background:var(--panel);color:#e8e8e8;font-size:11.5px;line-height:1.6;
+       padding:9px 12px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.22);pointer-events:none;opacity:0;
+       transition:opacity .1s;white-space:normal}
+  .tip.on{opacity:1}
+  .tip b{color:#fff}
+  .tip i{color:#a8a8a8;display:block;margin-top:4px;font-style:normal}
+  .u{border-bottom:1px dotted var(--line-strong);cursor:help}
+
+  /* ads */
+  .land{color:var(--subtle)}
+  .clm{display:inline-block;margin:5px 0 1px;font-size:10.5px;font-weight:500;color:var(--c1);
+       background:#eeecfd;border-radius:4px;padding:2px 7px}
+  .clm.g{color:var(--subtle);background:var(--sunken)}
+  .afilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .ab{font:inherit;font-size:11px;padding:4px 10px;border:1px solid var(--line);background:var(--card);
+      border-radius:6px;color:var(--subtle);cursor:pointer}
+  .ab b{color:var(--ink);font-family:"Geist Mono",ui-monospace,monospace;margin-left:3px}
+  .ab.on{background:var(--panel);border-color:var(--panel);color:#fff} .ab.on b{color:#fff}
+  #adL{max-height:600px;overflow:auto;padding-right:6px}
+  #adL::-webkit-scrollbar{width:8px} #adL::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+  .ad{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:start;
+      padding:11px 0;border-top:1px solid var(--line)}
+  .ad:first-child{border-top:0}
+  .adthumb{width:52px;height:52px;border-radius:7px;background:var(--sunken);border:1px solid var(--line);
+           display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--faint);overflow:hidden}
+  .adthumb img{width:100%;height:100%;object-fit:cover}
+  .adm{min-width:0}
+  .adpg{font-size:11.5px;font-weight:600}
+  .adpg .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--up);margin-right:5px;vertical-align:middle}
+  .adpg .dot.off{background:var(--faint)}
+  .adtx{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.55;white-space:pre-wrap;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .ad.open .adtx{-webkit-line-clamp:unset;overflow:visible}
+  .adko{font-size:11px;color:var(--subtle);margin-top:3px;line-height:1.6;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ad.open .adko{-webkit-line-clamp:unset;overflow:visible}
+  .admeta{font-size:9.5px;color:var(--faint);margin-top:5px;font-family:"Geist Mono",ui-monospace,monospace}
+  .adrun{text-align:right;white-space:nowrap}
+  .adrun b{font-size:15px;font-weight:500;font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .adrun span{display:block;font-size:9.5px;color:var(--subtle)}
+  .foot{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:10.5px;color:var(--subtle);line-height:1.7}
+  @media(max-width:640px){.wrap{padding:18px 13px 60px}.tile .v{font-size:21px}}
+
+  /* hub */
+  .hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+  .hubc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px;
+        text-decoration:none;color:inherit;display:block;transition:.12s}
+  .hubc:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+  .hubc .rk{font-size:10px;letter-spacing:.12em;color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace}
+  .hubc .bn{font-size:14.5px;font-weight:600;margin-top:5px;line-height:1.35}
+  .hubc .mt{font-size:11px;color:var(--subtle);margin-top:7px}
+  .hubc .cellline{font-size:11.5px;color:var(--c1);font-weight:500;margin-top:8px}
+  .hubc.me{border-color:var(--ink)}
+  .navp{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .navp a{font-size:11.5px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;
+          text-decoration:none;color:var(--muted);background:var(--card)}
+  .navp a.on{background:var(--panel);color:#fff;border-color:var(--panel)}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap"></div>
+<script>
+// per-product data, chosen by ?p=<slug>
+(function(){
+  var p=(location.search.match(/[?&]p=([\w-]+)/)||[])[1]||'aprilskin';
+  document.write('<script src="p/'+p+'.js?v=1"><\/script>');
+})();
+</script>
+<script>
+(function(){ var t=window.D&&window.D.title; if(t) document.title='TPO MAP · '+t; })();
+</script>
+<script>
+(function(){
+  var D=window.D; if(!D) return;
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var E=function(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e};
+  var ib=function(tip){return tip?('<i class="ib" data-tip="'+esc(tip).replace(/&quot;/g,'&#34;')+'">i</i>'):''};
+  var W=document.getElementById('wrap');
+
+  // ---- top
+  var top=E('div','top');
+  top.innerHTML='<div><div class="kick">'+esc(D.kick)+'</div><h1>'+esc(D.title)+'</h1>'+
+    '<div class="sub">'+esc(D.sub)+ib(D.subTip)+'</div></div>'+
+    '<div class="topmeta"><span>수집 <b class="mono">'+esc(D.collected)+'</b></span>'+
+    '<span>작성 <b>'+esc(D.author)+'</b></span>'+
+    (D.links||[]).map(function(l){return '<a href="'+esc(l.href)+'" style="font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:6px;text-decoration:none">'+esc(l.t)+'</a>'}).join('')+'</div>';
+  W.appendChild(top);
+
+  if(D.nav){ var nv=E('div','navp'); nv.innerHTML=D.nav.map(function(n){
+      return '<a href="'+esc(n.href)+'"'+(n.on?' class="on"':'')+'>'+esc(n.t)+'</a>'}).join(''); W.appendChild(nv); }
+
+  // ---- metric bands
+  (D.bands||[]).forEach(function(b){
+    var band=E('div','band');
+    band.innerHTML='<div class="bhead"><h2>'+esc(b.h)+'</h2>'+ib(b.tip)+'</div>'+
+      '<div class="row">'+b.tiles.map(function(t){
+        return '<div class="tile'+(t.hero?' hero':'')+'"'+(t.tip?(' data-tip="'+esc(t.tip).replace(/&quot;/g,'&#34;')+'"'):'')+'>'+
+          '<div class="k">'+esc(t.k)+'</div><div><div class="v">'+esc(t.v)+
+          (t.u?('<small>'+esc(t.u)+'</small>'):'')+'</div>'+
+          (t.s?('<div class="s">'+esc(t.s)+'</div>'):'')+'</div>'+(t.svg||'')+'</div>';
+      }).join('')+'</div>';
+    W.appendChild(band);
+  });
+
+  // ---- product card
+  if(D.prod){ var p=E('div','prod');
+    p.innerHTML=(D.prod.img?('<img src="'+esc(D.prod.img)+'" alt="">'):'<div></div>')+
+      '<div class="pm"><div class="pt">'+esc(D.prod.name)+'</div><div class="pa">'+esc(D.prod.attrs)+'</div></div>'+
+      '<div class="pf">'+(D.prod.facts||[]).map(function(f){
+        return '<div><div class="k">'+esc(f.k)+'</div><div class="v">'+esc(f.v)+'</div></div>'}).join('')+'</div>';
+    W.appendChild(p); }
+
+  // ---- summary
+  if(D.summary){ var s=E('div','panel sum');
+    s.innerHTML='<p class="d1">'+D.summary.lead+'</p><ul>'+
+      D.summary.bullets.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';
+    W.appendChild(s); }
+
+  // ---- map + who-buys | reviews
+  var cols=E('div','cols s21'); var stack=E('div','stack');
+  var mp=E('div','panel');
+  var G=D.grid;
+  var lv=function(n,mx){ if(!n) return 'z'; var r=n/mx;
+     return r>.55?'l4':r>.28?'l3':r>.10?'l2':'l1'; };
+  var mx=Math.max.apply(null,Object.keys(G.cells).map(function(k){return G.cells[k].n})||[1]);
+  mp.innerHTML='<div class="ph"><h3>TPO 지도 · 20칸</h3>'+ib(G.tip)+'</div>'+
+    '<table class="grid" id="tpoGrid"><tr><th></th>'+G.cols.map(function(c){return '<th>'+esc(c)+'</th>'}).join('')+'</tr>'+
+    G.rows.map(function(r){ return '<tr><th scope="row">'+esc(r)+'</th>'+G.cols.map(function(c){
+        var k=r+'|'+c, o=G.cells[k]||{n:0,neg:0};
+        if(!o.n) return '<td class="z">0</td>';
+        return '<td class="ck '+lv(o.n,mx)+'" data-k="'+esc(k)+'">'+o.n+(o.neg?('<sup>'+o.neg+'</sup>'):'')+'</td>';
+      }).join('')+'</tr>' }).join('')+'</table>';
+  stack.appendChild(mp);
+  if(D.persona){ var pe=E('div','panel');
+    pe.innerHTML='<div class="ph"><h3>'+esc(D.persona.h)+'</h3>'+ib(D.persona.tip)+'</div>'+
+      '<table><tr><th>'+esc(D.persona.col)+'</th><th style="text-align:right">비율</th><th class="barcell"></th></tr>'+
+      D.persona.rows.map(function(r,i){ return '<tr><td>'+(i===0?'<b>'+esc(r[0])+'</b>':esc(r[0]))+'</td>'+
+        '<td class="n">'+esc(r[1])+'</td><td class="barcell"><i'+(i===0?' class="hi"':'')+
+        ' style="width:'+r[2]+'%"></i></td></tr>' }).join('')+'</table>'+
+      (D.persona.note?('<p>'+D.persona.note+'</p>'):'');
+    stack.appendChild(pe); }
+  cols.appendChild(stack);
+  var rev=E('div','panel rev');
+  rev.innerHTML='<div class="ph"><h3 id="cpT">후기 문장</h3>'+ib(D.revTip)+'<span class="hint" id="cpM"></span></div><div id="cpL"></div>';
+  cols.appendChild(rev); W.appendChild(cols);
+
+  // ---- season | source table
+  if(D.season){ var c2=E('div','cols s21');
+    var sp=E('div','panel');
+    var bars=D.season.bars, bmx=Math.max.apply(null,bars.map(function(b){return b.v}));
+    sp.innerHTML='<div class="ph"><h3>'+esc(D.season.h)+'</h3>'+ib(D.season.tip)+'</div>'+
+      '<div class="bars">'+bars.map(function(b){
+        return '<div class="bar'+(b.hot?' hot':'')+'" title="'+esc(b.m+' · '+b.v+'%')+'"><i style="height:'+
+          Math.max(2,Math.round(b.v/bmx*56))+'px"></i></div>'}).join('')+'</div>'+
+      '<div class="xl">'+(D.season.xl||[]).map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>'+
+      (D.season.note?('<p>'+D.season.note+'</p>'):'');
+    c2.appendChild(sp);
+    if(D.srcTable){ var st=E('div','panel');
+      st.innerHTML='<div class="ph"><h3>'+esc(D.srcTable.h)+'</h3>'+ib(D.srcTable.tip)+'</div>'+
+        '<table><tr>'+D.srcTable.head.map(function(x){return '<th'+(x!==D.srcTable.head[0]?' style="text-align:right"':'')+'>'+esc(x)+'</th>'}).join('')+'</tr>'+
+        D.srcTable.rows.map(function(r){return '<tr>'+r.map(function(c,i){
+          return i?('<td class="n">'+esc(c)+'</td>'):('<td>'+esc(c)+'</td>')}).join('')+'</tr>'}).join('')+'</table>'+
+        (D.srcTable.note?('<p>'+D.srcTable.note+'</p>'):'');
+      c2.appendChild(st); }
+    W.appendChild(c2); }
+
+  // ---- lineup | ages
+  if(D.lineup||D.ages){ var c3=E('div','cols s21');
+    if(D.lineup){ var lp=E('div','panel');
+      lp.innerHTML='<div class="ph"><h3>'+esc(D.lineup.h)+'</h3>'+ib(D.lineup.tip)+'</div>'+
+        (D.lineup.stats?('<div class="pf" style="margin-top:0">'+D.lineup.stats.map(function(s){
+          return '<div><div class="k">'+esc(s.k)+'</div><div class="v">'+esc(s.v)+'</div></div>'}).join('')+'</div>'):'')+
+        (D.lineup.note?('<p style="margin-top:12px">'+D.lineup.note+'</p>'):'')+
+        (D.lineup.rows?('<div class="ph" style="margin:18px 0 0"><h3 style="font-weight:500;color:var(--muted)">'+
+          esc(D.lineup.sub||'브랜드 큐텐 라인업')+'</h3>'+ib(D.lineup.subTip)+'</div>'+
+          '<table><tr><th></th><th>제품</th><th style="text-align:right">누적 후기</th><th class="barcell"></th></tr>'+
+          D.lineup.rows.map(function(r,i){ var w=Math.round(r[1]/D.lineup.rows[0][1]*100);
+            return '<tr><td class="mono">'+(i+1)+'</td><td>'+(r[2]?'<b>'+esc(r[0])+'</b> <span class="src">이 제품</span>':esc(r[0]))+
+            '</td><td class="n">'+r[1].toLocaleString()+'</td><td class="barcell"><i'+(r[2]?' class="hi"':'')+
+            ' style="width:'+w+'%"></i></td></tr>'}).join('')+'</table>'):'');
+      c3.appendChild(lp); }
+    if(D.ages){ var ap=E('div','panel');
+      var COL=['#b9abee','#8f7ce4','#6250cd','#3d2ca0','#1f1760'], LAB=['18-24','25-34','35-44','45-54','55+'];
+      var donut=function(v){ var tot=v.reduce(function(a,b){return a+b},0); if(!tot) return '';
+        var C=2*Math.PI*26, off=0, o='';
+        v.forEach(function(n,i){ if(!n) return; var L=C*n/tot;
+          o+='<circle cx="38" cy="38" r="26" fill="none" stroke="'+COL[i]+'" stroke-width="11" stroke-dasharray="'+
+             (L-1.6).toFixed(2)+' '+(C-L+1.6).toFixed(2)+'" stroke-dashoffset="'+(-off).toFixed(2)+'">'+
+             '<title>'+LAB[i]+' · '+n+'건 · '+Math.round(n/tot*100)+'%</title></circle>'; off+=L; });
+        return '<svg viewBox="0 0 76 76" width="76" height="76" style="transform:rotate(-90deg)">'+o+'</svg>'; };
+      var S=D.ages.sources.filter(function(s){return s.buckets.reduce(function(a,b){return a+b},0)>0});
+      ap.innerHTML='<div class="ph"><h3>연령대</h3>'+ib(D.ages.tip)+'</div>'+
+        (S.length?('<div class="ages">'+S.map(function(s){
+          return '<div><div class="dn">'+donut(s.buckets)+'</div><div class="dl">'+esc(s.name)+
+            ' <span class="src">'+s.n+'</span></div><div class="dc">'+esc(s.center)+'</div></div>'}).join('')+'</div>'+
+          '<table class="agt"><tr><th>연령</th>'+S.map(function(s){return '<th style="text-align:right">'+esc(s.name)+'</th>'}).join('')+'</tr>'+
+          LAB.map(function(l,i){ return '<tr><td><i class="sw" style="background:'+COL[i]+'"></i>'+l+'</td>'+
+            S.map(function(s){ var t=s.buckets.reduce(function(a,b){return a+b},0);
+              return '<td class="n">'+Math.round(s.buckets[i]/t*100)+'%</td>'}).join('')+'</tr>'}).join('')+'</table>')
+          :'<p>이 제품은 나이가 적힌 소스가 없습니다.</p>')+
+        (D.ages.note?('<p>'+D.ages.note+'</p>'):'');
+      c3.appendChild(ap); }
+    W.appendChild(c3); }
+
+  // ---- ads
+  if(D.ads){ var ad=E('div','panel'); ad.style.marginTop='14px';
+    ad.innerHTML='<div class="ph"><h3>메타 광고</h3>'+ib(D.ads.tip)+'</div>'+
+      '<div class="afilt" id="afilt"></div>'+(D.ads.note?('<p style="margin:0 0 12px">'+D.ads.note+'</p>'):'')+
+      '<div id="adL"></div>';
+    W.appendChild(ad); }
+
+  var ft=E('div','ft'); ft.innerHTML=D.footer||''; W.appendChild(ft);
+})();
+</script>
+<script>
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var T=document.getElementById('cpT'),M=document.getElementById('cpM'),L=document.getElementById('cpL');
+  var SRC={qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'};
+  document.querySelectorAll('#tpoGrid td.ck').forEach(function(td){
+    td.addEventListener('click',function(){
+      var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[], G=(window.GRID||{})[k]||{};
+      document.querySelectorAll('#tpoGrid td.ck').forEach(function(x){x.classList.remove('sel')});
+      td.classList.add('sel');
+      T.textContent=k.replace('|',' × ');
+      M.textContent=list.length?(list.length+'문장'+(G.neg?(' · 불만 '+G.neg):'')+' · 한국어 '+(G.ko||0)):'';
+      L.innerHTML=list.map(function(o){
+        var w=[].concat(o.c||[],o.m||[]).map(function(x){return '<span class="w">'+esc(x)+'</span>'}).join('');
+        return '<div class="sent">'+(o.neg?'<span class="w neg">불만</span> ':'')+
+          '<span class="sj">'+esc(o.t)+'</span><div class="sk">'+esc(o.ko||'')+'</div>'+
+          '<div class="sm">'+w+'<span class="src">'+esc(o.d||'')+' · '+(SRC[o.s]||o.s)+'</span></div></div>';
+      }).join('');
+    });
+  });
+  var f=document.querySelector('#tpoGrid td[data-k="수분·건조|화장 전"]'); if(f) f.click();
+
+  // ── tooltip
+  var tipEl=document.createElement('div'); tipEl.className='tip'; document.body.appendChild(tipEl);
+  function showTip(el){
+    tipEl.innerHTML=el.getAttribute('data-tip'); tipEl.classList.add('on');
+    var r=el.getBoundingClientRect(), t=tipEl.getBoundingClientRect();
+    var x=Math.min(Math.max(8,r.left), window.innerWidth-t.width-8);
+    var y=r.bottom+8; if(y+t.height>window.innerHeight-8) y=Math.max(8,r.top-t.height-8);
+    tipEl.style.left=x+'px'; tipEl.style.top=y+'px';
+  }
+  function hideTip(){ tipEl.classList.remove('on'); }
+  function bindTips(root){
+    (root||document).querySelectorAll('[data-tip]').forEach(function(el){
+      if(el.__tip) return; el.__tip=1;
+      el.addEventListener('mouseenter',function(){showTip(el)});
+      el.addEventListener('mouseleave',hideTip);
+      el.addEventListener('focus',function(){showTip(el)});
+      el.addEventListener('blur',hideTip);
+      el.addEventListener('click',function(){ if(matchMedia('(hover:none)').matches){ showTip(el); setTimeout(hideTip,3500);} });
+    });
+  }
+  bindTips(); window.addEventListener('scroll',hideTip,{passive:true});
+
+  // ── ads
+  var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
+  var AL=document.getElementById('adL');
+  var MINE=function(a){return /Aprilskin/i.test(a.pg||'')};
+  var GD=function(a){return ((a.url||'').split('/g/')[1]||'').split(/[^0-9]/)[0]};
+  var LAND={'979030998':'히어로 쿠션','1147259677':'립타투 틴트','1138527320':'쑥 시카 앰플',
+            '999332513':'이 제품','1208033186':'히어로 뿌른'};
+  var PADTXT=/パッド|パック|カロテン/;
+  var CLAIM=function(a){return a.cl&&a.cl!=='사은품 구성'};
+  var PRED={pad:function(a){return !!a.pad},
+            claim:CLAIM,
+            tagonly:function(a){return a.pad&&!a.cl},
+            aprilskin:function(){return true},
+            long:function(a){return (a.run||0)>=100},
+            off:function(a){return !a.act}};
+  // every chip stays inside this brand; only 카테고리 전체 widens the scope
+  function pick(mode){
+    var A=window.ADS||[];
+    var L=mode==='all'?A.slice():A.filter(MINE).filter(PRED[mode]||PRED.aprilskin);
+    return L.sort(function(x,y){return (y.run||0)-(x.run||0)});
+  }
+  function drawAds(mode){
+    var L=pick(mode);
+    AL.innerHTML=L.map(function(a){
+      var th=a.img?('<img src="'+esc(a.img)+'" alt="" loading="lazy">'):(a.vid?'VIDEO':'—');
+      return '<div class="ad"><div class="adthumb">'+th+'</div><div class="adm">'+
+        '<div class="adpg"><span class="dot'+(a.act?'':' off')+'"></span>'+esc(a.pg)+'</div>'+
+        '<div class="adtx">'+esc(a.msg||'(문구 없음)')+'</div>'+
+        (a.ko?('<div class="adko">'+esc(a.ko)+'</div>'):'')+
+        (a.cl?('<div><span class="clm'+(a.cl==='사은품 구성'?' g':'')+'">'+esc(a.cl)+'</span></div>'):'')+
+        '<div class="admeta">'+esc(a.s||'')+' · '+esc(a.fmt||'')+(a.cta?(' · '+esc(a.cta)):'')+
+        (LAND[GD(a)]?(' · <span class="land">→ '+LAND[GD(a)]+'</span>'):'')+
+        (a.url?(' · <a href="'+esc(a.url)+'" target="_blank" rel="noreferrer" style="color:var(--c1)">링크 ↗</a>'):'')+'</div>'+
+        '</div><div class="adrun"><b>'+(a.run||0)+'</b><span>일</span></div></div>';
+    }).join('') || '<p style="font-size:12px;color:var(--subtle)">해당 광고 없음</p>';
+    AL.querySelectorAll('.adtx,.adko').forEach(function(t){t.addEventListener('click',function(){t.closest('.ad').classList.toggle('open')})});
+  }
+  var CHIPS=[['pad','이 제품이 나오는 광고'],
+             ['claim','제품을 설명하는 광고'],
+             ['tagonly','해시태그만'],
+             ['aprilskin','브랜드 전체'],
+             ['long','장기 100일+'],
+             ['all','카테고리 전체','이 브랜드 광고에 같은 카테고리 경쟁사 광고를 더한 것. <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려면 대조군이 있어야 해서 같이 모은다.']];
+  var FB=document.getElementById('afilt');
+  FB.innerHTML=CHIPS.map(function(c){
+    var n=pick(c[0]).length;
+    return n?('<button class="ab'+(c[0]==='pad'?' on':'')+'" data-f="'+c[0]+'"'+
+              (c[2]?(' data-tip="'+c[2]+'"'):'')+'>'+c[1]+' <b>'+n+'</b></button>'):'';
+  }).join('');
+  FB.querySelectorAll('.ab').forEach(function(b){
+    b.addEventListener('click',function(){
+      FB.querySelectorAll('.ab').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on'); drawAds(b.getAttribute('data-f'));
+    });
+  });
+  bindTips(FB);
+  drawAds('pad');
+})();
+</script>
+<script>
+// review rail: same unit as the grid (sentences), driven by window.CELLS
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var T=document.getElementById('cpT'),M=document.getElementById('cpM'),L=document.getElementById('cpL');
+  if(!T) return;
+  var SRC={qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'};
+  document.querySelectorAll('#tpoGrid td.ck').forEach(function(td){
+    td.addEventListener('click',function(){
+      var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[];
+      document.querySelectorAll('#tpoGrid td.ck').forEach(function(x){x.classList.remove('sel')});
+      td.classList.add('sel');
+      T.textContent=k.replace('|',' × ');
+      var neg=list.filter(function(o){return o.neg}).length;
+      var ko=list.filter(function(o){return o.ko}).length;
+      var full=((window.D&&window.D.grid.cells[k])||{}).n||list.length;
+      var shown=list.length;
+      M.textContent=full?(full+'문장'+(shown<full?(' 중 '+shown+' 표시'):'')+(neg?(' · 불만 '+neg):'')):'';
+      L.innerHTML=list.map(function(o){
+        var w=[].concat(o.c||[],o.m||[]).map(function(x){return '<span class="w">'+esc(x)+'</span>'}).join('');
+        return '<div class="sent">'+(o.neg?'<span class="w neg">불만</span> ':'')+
+          '<span class="sj">'+esc(o.t)+'</span>'+(o.ko?'<div class="sk">'+esc(o.ko)+'</div>':'')+
+          '<div class="sm">'+w+'<span class="src">'+esc(o.d||'')+' · '+(SRC[o.s]||o.s)+'</span></div></div>';
+      }).join('');
+      L.scrollTop=0;
+    });
+  });
+  var f=document.querySelector('#tpoGrid td.ck'); if(f) f.click();
+})();
+</script>
+</body>
+</html>
