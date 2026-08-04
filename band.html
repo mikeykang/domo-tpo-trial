@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>상단 지표 재설계 제안 · TPO MAP</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#fafafa; --card:#ffffff; --sunken:#f7f7f7; --panel:#0f0f0f;
+    --line:#e9e9e9; --line-strong:#d9d9d9;
+    --ink:#171717; --sub:#454545; --muted:#5c5c5c; --subtle:#757575; --faint:#bfbfbf;
+    --c1:#4f46e5; --c2:#c2410c; --r:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--canvas);color:var(--ink);
+       font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,-apple-system,sans-serif;
+       font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 20px 90px}
+  b,strong{font-weight:600}
+
+  /* page scaffolding (this page is a proposal doc, not the product) */
+  .doc{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:26px}
+  .doc .kick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+             font-family:"Geist Mono",ui-monospace,monospace}
+  .doc h1{font-size:20px;font-weight:600;letter-spacing:-.01em;margin-top:6px}
+  .doc p{font-size:13px;color:var(--muted);margin-top:6px;max-width:74ch}
+  .sec{margin-top:34px}
+  .sec>h2{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--subtle);font-weight:600;
+          font-family:"Geist Mono",ui-monospace,monospace;margin-bottom:12px}
+  .frame{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px 24px}
+  .frame.dim{opacity:.62}
+
+  /* ⓘ */
+  .ib{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;flex:0 0 13px;
+     border:1px solid #dcdcdc;border-radius:50%;font-size:8.5px;font-style:normal;font-weight:600;
+     color:var(--subtle);cursor:help;margin-left:6px;line-height:1;position:relative;top:-1px;transition:.12s}
+  .ib:hover{border-color:#a8a8a8;color:var(--ink);background:#f2f2f2}
+  [data-tip]{position:relative}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 7px);z-index:40;
+    width:max-content;max-width:340px;background:var(--panel);color:#f2f2f2;font-size:11.5px;line-height:1.6;
+    font-weight:400;padding:9px 11px;border-radius:8px;white-space:normal;text-align:left;
+    box-shadow:0 6px 20px rgba(0,0,0,.22);pointer-events:none}
+
+  /* ---- PROPOSAL: product header ---- */
+  .kick2{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+         font-family:"Geist Mono",ui-monospace,monospace}
+  .ptitle{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35;margin-top:5px}
+  .prod{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start;margin-top:18px;
+        padding-top:18px;border-top:1px solid var(--line)}
+  .prod img{width:76px;height:76px;object-fit:contain;border:1px solid var(--line);border-radius:8px;grid-row:1/3}
+  .prod .pt{font-size:15px;font-weight:600;line-height:1.4}
+  .prod .pa{font-size:10.5px;color:var(--subtle);margin-top:5px;letter-spacing:.04em;
+            font-family:"Geist Mono",ui-monospace,monospace}
+  .pf{display:flex;gap:30px;flex-wrap:wrap;margin-top:13px;grid-column:2}
+  .pf .k{font-size:10.5px;color:var(--subtle);display:flex;align-items:center}
+  .pf .v{font-size:16px;font-weight:500;margin-top:2px;font-family:"Geist Mono",ui-monospace,monospace;
+         font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* answer line */
+  .answer{font-size:17px;font-weight:500;line-height:1.55;letter-spacing:-.01em;margin-top:22px;
+          padding-top:18px;border-top:1px solid var(--line)}
+
+  /* ---- the gap chart ---- */
+  .gap{margin-top:24px}
+  .ghead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:3px}
+  .ghead h3{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .legend{display:flex;gap:16px;margin:12px 0 16px;font-size:11.5px;color:var(--sub);flex-wrap:wrap}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:9px;height:9px;border-radius:2px;flex:none}
+  .axl{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:500;
+       font-family:"Geist Mono",ui-monospace,monospace;margin:14px 0 7px}
+  .axl:first-of-type{margin-top:0}
+  .grow{display:grid;grid-template-columns:88px 1fr 74px;gap:12px;align-items:center;padding:5px 0}
+  .grow .lab{font-size:12px;text-align:right;color:var(--sub);line-height:1.3}
+  .track{display:grid;gap:3px}
+  .bar{height:9px;border-radius:0 4px 4px 0;position:relative;min-width:2px}
+  .bar.none{width:0;background:none}
+  .bv.zero{color:var(--c2)}
+  .bv{position:absolute;left:calc(100% + 7px);top:50%;transform:translateY(-50%);font-size:10.5px;
+      color:var(--muted);font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .chip{font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:5px;border:1px solid var(--line-strong);
+        color:var(--muted);justify-self:start;white-space:nowrap}
+  .chip.hole{border-color:#c9c3f5;color:var(--c1);background:#f4f3ff}
+  .chip.over{border-color:#eccfbe;color:var(--c2);background:#fdf5f0}
+  .gnote{font-size:12.5px;color:var(--sub);line-height:1.65;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+
+  /* provenance strip */
+  .prov{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+        font-size:11.5px;color:var(--subtle)}
+  .prov span{display:inline-flex;align-items:center}
+  .prov b{color:var(--ink);font-weight:500;font-family:"Geist Mono",ui-monospace,monospace;
+          font-variant-numeric:tabular-nums;margin-left:5px}
+
+  /* ---- audit table ---- */
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th{text-align:left;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);font-weight:600;
+     font-family:"Geist Mono",ui-monospace,monospace;padding:0 10px 7px 0;border-bottom:1px solid var(--line)}
+  td{padding:8px 10px 8px 0;border-bottom:1px solid #f2f2f2;vertical-align:top;line-height:1.5}
+  td.n{font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr.cut td:first-child{color:var(--subtle);text-decoration:line-through;text-decoration-color:#d0d0d0}
+  .v{font-size:10.5px;font-weight:500;padding:1px 6px;border-radius:4px;white-space:nowrap;display:inline-block}
+  .v.keep{background:#f4f3ff;color:var(--c1);border:1px solid #c9c3f5}
+  .v.move{background:#f5f5f5;color:var(--muted);border:1px solid var(--line-strong)}
+  .v.kill{background:#fbfbfb;color:var(--faint);border:1px solid var(--line)}
+
+  /* ---- current bands (rendered for contrast) ---- */
+  .band{margin-top:18px}
+  .band:first-child{margin-top:0}
+  .bhead{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
+  .bhead h4{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 13px;min-height:86px;
+        display:flex;flex-direction:column;justify-content:space-between}
+  .tile .k{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+           font-family:"Geist Mono",ui-monospace,monospace}
+  .tile .tv{font-size:24px;font-weight:500;letter-spacing:-.02em;margin-top:7px;line-height:1.05;
+            font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .tile .tv small{font-size:13px;font-weight:400;color:var(--subtle)}
+  .tile .s{font-size:10.5px;color:var(--subtle);margin-top:6px;line-height:1.4}
+  .tile.hero{background:var(--panel);border-color:var(--panel);color:#fff}
+  .tile.hero .k,.tile.hero .s,.tile.hero .tv small{color:#8f8f8f}
+  .tile.dup{outline:2px solid #c2410c;outline-offset:-1px}
+  .duptag{position:absolute}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="doc">
+    <div class="kick">DOMO · 상단 지표 재설계</div>
+    <h1>상단 15개 숫자를 5개로</h1>
+    <p>판매랭킹 1위 SKIN1004 페이지 기준. 숫자는 전부 실데이터이고, 잘라낸 근거는 5개 제품 전체를 대조해서 세웠습니다.</p>
+  </div>
+
+  <!-- ======================= 제안 ======================= -->
+  <div class="sec">
+    <h2>제안</h2>
+    <div class="frame">
+
+      <div class="kick2">DOMO · TPO MAP · 판매랭킹 1위</div>
+      <div class="ptitle">SKIN1004 센텔라 퀵 카밍 패드 (테카리OFF 모공 쿨링 케어 세트)</div>
+
+      <div class="prod">
+        <img src="p/img/skin1004.jpg" alt="">
+        <div>
+          <div class="pt">【公式】テカリOFF！毛穴クーリングケアセット</div>
+          <div class="pa">SKIN1004 · GD 1204421959 · 세트 리스팅</div>
+        </div>
+        <div class="pf">
+          <div><div class="k">가격</div><div class="v">¥4,899</div></div>
+          <div><div class="k">후기</div><div class="v">1,754</div></div>
+          <div><div class="k">검색 순위<i class="ib" data-tip="큐텐 검색은 상단 16칸이 광고 표시 없는 유료 슬롯(プラス展示)이고, 자연 순위 안에도 하루 100엔짜리 광고 자리가 고정돼 섞인다. 판매량 정렬은 아예 없다. 광고 슬롯을 걷어내고 센 자리다.">i</i></div><div class="v">#1</div></div>
+          <div><div class="k">1위 고민</div><div class="v">毛穴</div></div>
+          <div><div class="k">1위 순간</div><div class="v">계절·컨디션</div></div>
+        </div>
+      </div>
+
+      <div class="answer">각질과 모공을 정돈하려고, 계절이 피부를 흔들 때 쓰는 3층 구조 대판 패드.</div>
+
+      <!-- the one thing no panel below shows -->
+      <div class="gap">
+        <div class="ghead">
+          <h3>사는 이유와 파는 말이 어긋난 자리</h3>
+          <i class="ib" data-tip="후기 = 큐텐 후기에서 뽑은 문장 566개를 TPO 20칸에 실은 뒤 축별로 합산. 광고 = 메타 광고 라이브러리 일본, 게재 중, 패드를 언급한 23개의 카피에 붙인 라벨(복수). 라벨은 랜딩 URL이 아니라 문구에 붙였다. 이 리스팅은 4종 세트라 후기 문장이 어느 품목의 것인지 리스팅만으로는 갈리지 않는다.">i</i>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:#4f46e5"></i>후기가 말하는 것 <b class="mono" style="color:var(--subtle);font-weight:400">문장 566</b></span>
+          <span><i class="sw" style="background:#c2410c"></i>광고가 말하는 것 <b class="mono" style="color:var(--subtle);font-weight:400">패드 광고 23</b></span>
+        </div>
+
+        <div class="axl">고민 축</div>
+        <div id="gA"></div>
+        <div class="axl">순간 축</div>
+        <div id="gB"></div>
+
+        <div class="gnote">1위 고민인 <b>각질·모공</b>과 3위 순간인 <b>화장 전</b>이 광고에서 비어 있습니다. 브랜드는 <b>진정·수분</b>을 말하는데 후기에서 진정은 12%입니다. 판매랭킹 3위 APRILSKIN이 <b>화장 전 냉감</b>을 통째로 가져간 자리를, 1위는 건드리지 않습니다.</div>
+
+        <div class="prov">
+          <span>수집<b>2026.08.05</b></span>
+          <span>큐텐 후기<b>1,754</b></span>
+          <span>지도 문장<b>566</b></span>
+          <span>메타 광고<b>390</b></span>
+          <span>패드 광고<b>23</b></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================= 왜 잘랐나 ======================= -->
+  <div class="sec">
+    <h2>15개 중 남긴 5개</h2>
+    <div class="frame">
+      <table>
+        <thead><tr><th style="width:150px">지금 타일</th><th style="width:78px">판정</th><th>근거 (5개 제품 대조)</th></tr></thead>
+        <tbody>
+          <tr><td>Reviews 1,754</td><td><span class="v move">작게</span></td><td>제품 카드에 이미 <b>같은 숫자</b>가 있습니다. 25px 히어로 타일과 카드에 두 번 나옵니다.</td></tr>
+          <tr class="cut"><td>화장이 잘 먹는다 99.0%</td><td><span class="v kill">삭제</span></td><td>5개 제품이 <span class="mono">98.2 · 98.6 · 98.8 · 98.9 · 99.0</span>입니다. <b>폭이 0.8%p</b>라 아무것도 가르지 못합니다. 항상 초록인 점등입니다.</td></tr>
+          <tr><td>1위 피부 고민 73.1%</td><td><span class="v keep">차트로</span></td><td>남는 값이지만 <b>분포의 1등만</b> 보여주고 나머지를 버립니다. 막대로 옮기면 2·3위와 꼬리까지 같은 자리에서 읽힙니다.</td></tr>
+          <tr><td>검색 순위 #1</td><td><span class="v move">작게</span></td><td>이 제품이 이 페이지에 있는 이유입니다. 남기되 제품 카드로.</td></tr>
+          <tr class="cut"><td>5점 비율 83.0%</td><td><span class="v kill">삭제</span></td><td>이 타일의 툴팁이 <b>「포인트가 만든 편향이라 평점은 지표로 쓰지 않았다」</b>고 적혀 있습니다. 쓰지 않는 지표를 25px로 띄우고 있습니다.</td></tr>
+          <tr><td>Sentences 566</td><td><span class="v move">작게</span></td><td>표본 크기입니다. 남기되 작게.</td></tr>
+          <tr class="cut"><td>1위 순간 184</td><td><span class="v kill">삭제</span></td><td><b>오른쪽 두 칸 중 하나와 글자까지 똑같습니다.</b> 5개 제품 중 4개에서 중복입니다 (<span class="mono">184=184 · 714=714 · 514=514 · 35=35</span>).</td></tr>
+          <tr class="cut"><td>최다 칸 107</td><td><span class="v kill">삭제</span></td><td>바로 아래 TPO 지도에서 <b>가장 진한 칸</b>이 그 칸입니다. 지도를 보면 알 수 있는 값입니다.</td></tr>
+          <tr><td>화장 전 150 · 계절 184</td><td><span class="v keep">차트로</span></td><td>건수가 아니라 <b>비중</b>으로 읽어야 하는 값입니다. 광고와 나란히 놓을 때 처음 뜻이 생깁니다.</td></tr>
+          <tr><td>이 브랜드 광고 390</td><td><span class="v move">작게</span></td><td>단독으로는 이 제품과 무관합니다. 다만 <b>390개 중 패드를 말하는 것이 23개(6%)</b>라는 비율은 뜻이 있어서, 패드 광고 23 옆에 모수로 남깁니다.</td></tr>
+          <tr><td>이 제품 광고 23</td><td><span class="v keep">차트로</span></td><td>광고 크롤링의 목적 그 자체입니다. 개수가 아니라 <b>무슨 문구인지</b>가 답이므로 차트로.</td></tr>
+          <tr class="cut"><td>연령 소스 0</td><td><span class="v kill">삭제</span></td><td><b>0입니다.</b> 없다는 사실을 상단에 25px로 띄웁니다. 5개 중 2개가 0입니다.</td></tr>
+          <tr class="cut"><td>구조 필드 618</td><td><span class="v kill">삭제</span></td><td>바로 위 <b>「1위 피부 고민」의 분모</b>와 같은 숫자입니다. 방법 배관이지 결과가 아닙니다.</td></tr>
+          <tr class="cut"><td>불만 문장 1</td><td><span class="v kill">삭제</span></td><td>지도에 이미 표시돼 있습니다. 1건을 상단 5칸 중 하나로 씁니다.</td></tr>
+        </tbody>
+      </table>
+      <div class="gnote" style="margin-top:18px">
+        구조 문제 하나 더. <b>「메타 광고」 밴드의 5칸 중 3칸이 메타 광고가 아닙니다.</b>
+        연령 소스는 앳코스메, 구조 필드는 큐텐, 불만 문장은 TPO 지도에서 온 값입니다.
+        칸을 다섯 개씩 채우려다 남는 숫자를 밀어 넣은 자리입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= 5개 제품에서 ======================= -->
+  <div class="sec">
+    <h2>이 설계가 5개 제품에서</h2>
+    <div class="frame">
+      <table>
+        <thead><tr><th>제품</th><th class="n">후기</th><th class="n">문장</th><th class="n">패드 광고</th><th>차트가 보여주는 것</th></tr></thead>
+        <tbody>
+          <tr><td>1. SKIN1004</td><td class="n">1,754</td><td class="n">566</td><td class="n">23</td><td>각질·모공 46% vs 광고 9% · 화장 전 27% vs <b>0%</b></td></tr>
+          <tr><td>2. SKINFOOD</td><td class="n">83,031</td><td class="n">4,637</td><td class="n">0</td><td>후기 막대만. <b>일본 메타 광고 0건</b>이 그대로 결과입니다</td></tr>
+          <tr><td>3. APRILSKIN</td><td class="n">19,809</td><td class="n">1,404</td><td class="n">33<span style="color:var(--subtle)"> · 설명 10</span></td><td>화장 전 51% vs 광고 <b>70%</b>(설명 10개 중 7) · <b>수요와 카피가 맞은 유일한 제품</b></td></tr>
+          <tr><td>4. CellFusionC</td><td class="n">12,499</td><td class="n">1,433</td><td class="n">0</td><td>후기 막대만</td></tr>
+          <tr><td>5. DEWYTREE</td><td class="n">642</td><td class="n">111</td><td class="n">0</td><td>후기 막대만</td></tr>
+        </tbody>
+      </table>
+      <div class="gnote" style="margin-top:18px">
+        광고가 0건인 세 제품에서 지금 설계는 <b>0을 세 칸</b> 띄웁니다 (이 제품 광고 0 · 연령 소스 0 · 브랜드 광고 0).
+        새 설계는 광고 막대가 사라지고 후기 막대만 남습니다. <b>없다는 사실이 빈 자리로 보입니다.</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================= 지금 ======================= -->
+  <div class="sec">
+    <h2>지금 (대조용)</h2>
+    <div class="frame dim"><div id="cur"></div></div>
+  </div>
+
+</div>
+
+<script src="p/skin1004.js?v=9"></script>
+<script>
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')};
+
+  // ---- gap chart data. review % = share of the 566 mapped sentences on that axis.
+  //      ad % = share of the 23 pad-mentioning ads carrying that claim (multi-label).
+  var A=[ // 고민 축
+    {t:'각질·모공',   r:46, rn:258, a:9,  an:2},
+    {t:'수분·건조',   r:37, rn:207, a:91, an:21},
+    {t:'붉은기·진정', r:12, rn:66,  a:91, an:21},
+    {t:'톤·결',      r:6,  rn:35,  a:0,  an:0}
+  ];
+  var B=[ // 순간 축
+    {t:'계절·컨디션', r:33, rn:184, a:52, an:12},
+    {t:'아침 세안 후',r:29, rn:166, a:null},
+    {t:'화장 전',    r:27, rn:150, a:0,  an:0},
+    {t:'밤 세안 후',  r:10, rn:57,  a:null},
+    {t:'급할 때',    r:2,  rn:9,   a:null}
+  ];
+
+  function draw(el,rows){
+    el.innerHTML=rows.map(function(d){
+      var gap=(d.a==null)?null:(d.r-d.a);
+      var chip='';
+      if(gap!=null&&gap>=25)  chip='<span class="chip hole">빈자리 '+gap+'%p</span>';
+      if(gap!=null&&gap<=-25) chip='<span class="chip over">과잉 '+Math.abs(gap)+'%p</span>';
+      var adbar = d.a==null
+        ? '<div class="bar none"><span class="bv">&mdash;</span></div>'
+        : '<div class="bar" style="width:'+Math.max(d.a,0.6)+'%;background:#c2410c"><span class="bv'+(d.a===0?' zero':'')+'">'+d.a+'% · '+d.an+'개</span></div>';
+      return '<div class="grow">'+
+        '<div class="lab">'+esc(d.t)+'</div>'+
+        '<div class="track">'+
+          '<div class="bar" style="width:'+Math.max(d.r,1)+'%;background:#4f46e5"><span class="bv">'+d.r+'% · '+d.rn+'문장</span></div>'+
+          adbar+
+        '</div>'+chip+'</div>';
+    }).join('');
+  }
+  draw(document.getElementById('gA'),A);
+  draw(document.getElementById('gB'),B);
+
+  // ---- render the CURRENT bands verbatim from the live product data
+  var D=window.D||{}, cur=document.getElementById('cur');
+  // tiles whose value is byte-identical to another tile in the same band
+  cur.innerHTML=(D.bands||[]).map(function(b){
+    var seen={};
+    b.tiles.forEach(function(t){ seen[t.v]=(seen[t.v]||0)+1 });
+    return '<div class="band"><div class="bhead"><h4>'+esc(b.h)+'</h4></div><div class="row">'+
+      b.tiles.map(function(t){
+        return '<div class="tile'+(t.hero?' hero':'')+(seen[t.v]>1?' dup':'')+'">'+
+          '<div class="k">'+esc(t.k)+'</div><div><div class="tv">'+esc(t.v)+
+          (t.u?('<small>'+esc(t.u)+'</small>'):'')+'</div>'+
+          (t.s?('<div class="s">'+esc(t.s)+'</div>'):'')+'</div></div>';
+      }).join('')+'</div></div>';
+  }).join('')+
+  '<div class="gnote">주황 테두리 = 같은 밴드 안에서 값이 글자까지 같은 타일.</div>';
+})();
+</script>
+</body>
+</html>
