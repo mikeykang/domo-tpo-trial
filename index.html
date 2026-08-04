@@ -93,7 +93,7 @@
            font-family:"Geist Mono",ui-monospace,monospace;margin-right:4px;align-self:center}
 
   /* panels */
-  .cols{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+  .cols{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;align-items:start}
   @media(min-width:940px){.cols.s21{grid-template-columns:1.85fr 1fr}}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px 17px}
   .ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
@@ -131,10 +131,11 @@
   .grid td.sel{box-shadow:0 0 0 2px var(--ink)!important}
 
   /* sentence list */
-  #cp{margin-top:12px;border-top:1px solid var(--line);padding-top:12px;display:none}
-  #cpT{font-size:12.5px;font-weight:600}
-  #cpM{font-size:10.5px;color:var(--subtle);margin-top:2px}
-  #cpL{max-height:560px;overflow:auto;margin-top:10px;padding-right:6px}
+  .def{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .def .d1{font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.6;margin:0 0 4px}
+  .rev{display:flex;flex-direction:column;min-height:0}
+  .rev .ph{margin-bottom:10px;align-items:baseline}
+  #cpL{flex:1;max-height:640px;overflow:auto;padding-right:6px}
   #cpL::-webkit-scrollbar{width:8px}
   #cpL::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
   .sent{padding:10px 0;border-bottom:1px solid var(--line)}
@@ -281,10 +282,10 @@
     <div class="si"><b>11</b><span>급할 때·밖에서</span><i style="width:2%"></i></div>
   </div>
 
-  <!-- MAP + PANEL -->
+  <!-- MAP + REVIEWS -->
   <div class="cols s21">
     <div class="panel">
-      <div class="ph"><h3>TPO 지도 · 20칸</h3><span class="hint">칸을 누르면 그 칸의 후기 문장이 열립니다</span></div>
+      <div class="ph"><h3>TPO 지도 · 20칸</h3><span class="hint">칸을 누르면 오른쪽에 그 칸의 후기가 열립니다</span></div>
       <table class="grid" id="tpoGrid">
         <tr><th></th><th>아침 세안 후</th><th>밤 세안 후</th><th>화장 전</th><th>급할 때·밖에서</th><th>계절·컨디션</th></tr>
         <tr><th scope="row">각질·모공</th><td class="ck l1" data-k="각질·모공|아침 세안 후">24<sup>1</sup></td><td class="ck l1" data-k="각질·모공|밤 세안 후">9</td><td class="ck l1" data-k="각질·모공|화장 전">38<sup>1</sup></td><td class="z">0</td><td class="ck l1" data-k="각질·모공|계절·컨디션">20</td></tr>
@@ -292,17 +293,19 @@
         <tr><th scope="row">수분·건조</th><td class="ck l3" data-k="수분·건조|아침 세안 후">219</td><td class="ck l2" data-k="수분·건조|밤 세안 후">80</td><td class="ck l4" data-k="수분·건조|화장 전">546<sup>1</sup></td><td class="ck l1" data-k="수분·건조|급할 때·밖에서">9<sup>4</sup></td><td class="ck l3" data-k="수분·건조|계절·컨디션">143</td></tr>
         <tr><th scope="row">톤·결</th><td class="ck l1" data-k="톤·결|아침 세안 후">16</td><td class="ck l1" data-k="톤·결|밤 세안 후">9</td><td class="ck l1" data-k="톤·결|화장 전">27</td><td class="z">0</td><td class="ck l1" data-k="톤·결|계절·컨디션">11</td></tr>
       </table>
-      <div id="cp"><div id="cpT"></div><div id="cpM"></div><div id="cpL"></div></div>
+      <div class="def">
+        <p class="d1">아침에 화장하기 전, 5분 붙여서 열을 식히고 화장이 잘 먹게 만들어주는 대용량 패드.</p>
+        <ul>
+          <li>성격이 완전히 다른 <b>네 군데에서 똑같이</b> 확인됐습니다. 문장 1,404개의 51%, 큐텐 자체 만족도 1위, 앳코스메 질문 15개 중 5개, <b>327일 도는 광고</b>.</li>
+          <li>빈칸은 <b>계절·컨디션</b>입니다. 사람들은 이야기하는데, <b>100일 넘게 도는 광고 61개 중 계절을 앞세운 건 1개</b>뿐입니다.</li>
+          <li>약점은 <b>휴대성</b>입니다. 「밖에서」 11문장 중 4건이 액이 샌다는 불만입니다.</li>
+          <li><b>「톤·결」 줄 전체가 63문장</b>뿐입니다. 브랜드가 내세우는 칙칙함 케어를 아무도 말하지 않습니다.</li>
+        </ul>
+      </div>
     </div>
-    <div class="panel">
-      <div class="ph"><h3>한 문장 정의</h3></div>
-      <p style="font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.6">아침에 화장하기 전, 5분 붙여서 열을 식히고 화장이 잘 먹게 만들어주는 대용량 패드.</p>
-      <ul>
-        <li>성격이 완전히 다른 <b>네 군데에서 똑같이</b> 확인됐습니다. 문장 1,404개의 51%, 큐텐 자체 만족도 1위, 앳코스메 질문 15개 중 5개, 347일 도는 광고.</li>
-        <li>빈칸은 <b>계절·컨디션</b>입니다. 사람들은 이야기하는데 카테고리 광고 89개 중 하나도 안 씁니다.</li>
-        <li>약점은 <b>휴대성</b>입니다. 「밖에서」 11문장 중 4건이 액이 샌다는 불만입니다.</li>
-        <li><b>「톤·결」 줄 전체가 63문장</b>뿐입니다. 브랜드가 내세우는 칙칙함 케어를 아무도 말하지 않습니다.</li>
-      </ul>
+    <div class="panel rev">
+      <div class="ph"><h3 id="cpT">후기 문장</h3><span class="hint" id="cpM">칸을 누르세요</span></div>
+      <div id="cpL"></div>
     </div>
   </div>
 
@@ -392,7 +395,7 @@
 <script>
 (function(){
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
-  var P=document.getElementById('cp'),T=document.getElementById('cpT'),M=document.getElementById('cpM'),L=document.getElementById('cpL');
+  var T=document.getElementById('cpT'),M=document.getElementById('cpM'),L=document.getElementById('cpL');
   var SRC={qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'};
   document.querySelectorAll('#tpoGrid td.ck').forEach(function(td){
     td.title='눌러서 후기 문장 보기';
@@ -408,7 +411,6 @@
           '<span class="sj">'+esc(o.t)+'</span><div class="sk">'+esc(o.ko||'')+'</div>'+
           '<div class="sm">'+w+'<span class="src">'+esc(o.d||'')+' · '+(SRC[o.s]||o.s)+'</span></div></div>';
       }).join('');
-      P.style.display='block';
     });
   });
   var f=document.querySelector('#tpoGrid td[data-k="수분·건조|화장 전"]'); if(f) f.click();
