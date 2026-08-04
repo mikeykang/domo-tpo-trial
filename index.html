@@ -72,25 +72,6 @@
          font-variant-numeric:tabular-nums;white-space:nowrap}
 
   /* chip row */
-  .strip{display:flex;align-items:flex-end;gap:0;flex-wrap:wrap;margin-top:20px;
-         background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px 13px}
-  .strip .sl{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--subtle);font-weight:500;
-             font-family:"Geist Mono",ui-monospace,monospace;margin-right:20px;padding-bottom:3px}
-  .si{padding:0 20px;border-left:1px solid var(--line);min-width:118px}
-  .si:first-of-type{border-left:0;padding-left:0}
-  .si b{display:block;font-size:19px;font-weight:500;letter-spacing:-.02em;line-height:1.1;
-        font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--faint)}
-  .si span{display:block;font-size:10.5px;color:var(--subtle);margin-top:2px}
-  .si i{display:block;height:3px;border-radius:2px;background:#e3e0f7;margin-top:6px}
-  .si.on b{color:var(--ink)} .si.on i{background:var(--c1)}
-  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
-  .chip{font-size:11.5px;padding:5px 11px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--muted);
-        white-space:nowrap}
-  .chip b{color:var(--ink)}
-  .chip.on{background:var(--panel);border-color:var(--panel);color:#fff}
-  .chip.up b{color:var(--up)}
-  .chiplab{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--subtle);font-weight:500;
-           font-family:"Geist Mono",ui-monospace,monospace;margin-right:4px;align-self:center}
 
   /* panels */
   .cols{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;align-items:start}
@@ -248,11 +229,11 @@
   <div class="band">
     <div class="bhead"><h2>메타 광고</h2><span class="bs">일본 라이브러리 · 종료 광고는 보관되지 않음</span></div>
     <div class="row">
-      <div class="tile hero"><div class="k">최장 게재</div><div><div class="v">457<small>일</small></div><div class="s">메디큐브 · 우리 브랜드는 349일</div></div></div>
-      <div class="tile"><div class="k">수집한 광고</div><div><div class="v">160</div><div class="s">키워드+브랜드+페이지 축 · 중복 제거</div></div></div>
+      <div class="tile hero"><div class="k">최장 게재</div><div><div class="v">349<small>일</small></div><div class="s">APRILSKIN · 카테고리 최장은 457일</div></div></div>
+      <div class="tile"><div class="k">이 브랜드 광고</div><div><div class="v">67</div><div class="s">카테고리 전체는 160 · 중복 제거</div></div></div>
       <div class="tile"><div class="k">장기 광고 계절 소구</div><div><div class="v">1</div><div class="s">100일 이상 61개 중</div></div></div>
       <div class="tile"><div class="k">현재 활성</div><div><div class="v">149</div><div class="s">종료 11 · 일본은 종료분 미보관</div></div></div>
-      <div class="tile"><div class="k">APRILSKIN</div><div><div class="v">67</div><div class="s">160개 중 · 2위 메디큐브 21</div></div></div>
+      <div class="tile"><div class="k">경쟁사 광고</div><div><div class="v">93</div><div class="s">메디큐브 21 · 큐텐 14 · SKIN1004 14</div></div></div>
     </div>
     <div class="cap">APRILSKIN이 327일째 돌리는 광고 문구가 <b>「メイク前に肌の温度を下げてからベースを塗ると、メイクノリも良くなる」</b> <span class="mono">(화장 전에 피부 온도를 낮추고 베이스를 바르면 화장도 잘 먹는다)</span> — 지도 1위 칸을 광고비가 그대로 증명한다. 반대로 <b>계절은 단기 세일 광고에만 나온다.</b> 100일 넘게 도는 61개 중 계절을 앞세운 건 1개뿐이고, 나머지 계절 광고는 메가와리 기간에 하루짜리로 뜬다.</div>
   </div>
@@ -271,15 +252,6 @@
       <div><div class="k">사는 사람</div><div class="v">30대 전반</div></div>
       <div><div class="k">같이 사는 것</div><div class="v">히어로 쿠션</div></div>
     </div>
-  </div>
-
-  <div class="strip">
-    <span class="sl">쓰는 때</span>
-    <div class="si on"><b>714</b><span>화장 전</span><i style="width:100%"></i></div>
-    <div class="si"><b>315</b><span>아침 세안 후</span><i style="width:44%"></i></div>
-    <div class="si"><b>237</b><span>계절·컨디션</span><i style="width:33%"></i></div>
-    <div class="si"><b>127</b><span>밤 세안 후</span><i style="width:18%"></i></div>
-    <div class="si"><b>11</b><span>급할 때·밖에서</span><i style="width:2%"></i></div>
   </div>
 
   <!-- MAP + REVIEWS -->
@@ -372,16 +344,17 @@
 
   <!-- ADS -->
   <div class="panel" style="margin-top:14px">
-    <div class="ph"><h3>메타 광고 <span class="mono" style="font-size:11px;color:var(--subtle);font-weight:400">160개</span></h3>
-      <span class="hint">게재일 순 · 클릭하면 전문</span></div>
+    <div class="ph"><h3>메타 광고</h3>
+      <span class="hint">게재일 순 · 문구를 누르면 전문</span></div>
     <div class="afilt" id="afilt">
-      <button class="ab on" data-f="all">전체 <b>160</b></button>
-      <button class="ab" data-f="aprilskin">APRILSKIN <b>67</b></button>
-      <button class="ab" data-f="long">100일 이상 <b>61</b></button>
+      <button class="ab on" data-f="aprilskin">이 브랜드 <b>67</b></button>
+      <button class="ab" data-f="long">장기 100일+ <b>61</b></button>
       <button class="ab" data-f="season">계절 문구 <b>34</b></button>
       <button class="ab" data-f="off">종료 <b>11</b></button>
+      <button class="ab" data-f="all">카테고리 전체 <b>160</b></button>
     </div>
     <div id="adL"></div>
+    <p class="cap" style="margin-top:10px">경쟁사 광고(메디큐브·SKIN1004·큐텐 등 93개)는 <b>카테고리 전체</b>에서 볼 수 있습니다. 우리 제품 광고가 아니라 <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려고 같이 모읍니다 — 계절 소구가 장기 광고에서 비어 있다는 것도 이 대조로 나왔습니다.</p>
   </div>
 
   <div class="foot">
@@ -443,7 +416,7 @@
       b.classList.add('on'); drawAds(b.getAttribute('data-f'));
     });
   });
-  drawAds('all');
+  drawAds('aprilskin');
 })();
 </script>
 </body>
