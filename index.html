@@ -5,64 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>TPO MAP #1 · 토너패드 테스트 리포트</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f6f1e7;--ink:#241d12;--sub:#6b5f4c;--line:#d9cfba;--card:#fdfaf3;--blue:#2456a6;--red:#b8352c;--gold:#8a6d2f;--green:#2c6b33;}
+  /* cobble workspace skin — Mercury dark. Tokens mirror src/app/globals.css .workspace-dark */
+  :root{
+    --canvas:#12141d; --card:#1b1e2b; --raised:#20242f; --sunken:#171a25;
+    --line:#262a3a; --line-strong:#323848;
+    --ink:#f0f2f8; --sub:#c8cdda; --muted:#a2a8bb; --subtle:#8a92a6;
+    --primary:#5b6cf0; --c1:#7c8df8;
+    --ok:#3cc97d; --warn:#e2a94c; --bad:#ee5a66; --info:#6ea8fe;
+    --r:10px; --r-lg:12px;
+    /* legacy aliases so section markup keeps working */
+    --bg:var(--canvas); --blue:var(--c1); --red:var(--bad); --gold:var(--c1); --green:var(--ok);
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:"Noto Serif KR","AppleMyungjo",serif;line-height:1.85;font-size:16px;}
-  .wrap{max-width:820px;margin:0 auto;padding:64px 24px 100px;}
-  .kicker{font-family:"Noto Sans KR",sans-serif;font-size:12px;letter-spacing:.22em;color:var(--gold);font-weight:700;}
-  h1{font-size:31px;line-height:1.4;font-weight:700;margin:12px 0 10px;}
-  .lede{font-size:17px;color:var(--sub);}
-  .meta{font-family:"Noto Sans KR",sans-serif;font-size:13px;color:var(--sub);margin-top:20px;padding-top:12px;border-top:1px solid var(--line);display:flex;gap:20px;flex-wrap:wrap;}
-  .meta b{color:var(--ink);font-weight:500;}
-  section{margin-top:64px;}
-  .secno{font-family:"Noto Sans KR",sans-serif;font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:700;}
-  h2{font-size:23px;font-weight:700;margin:6px 0 16px;}
-  h3{font-size:16.5px;font-weight:700;margin:26px 0 8px;}
-  p{margin:10px 0;}
-  ul{margin:10px 0 10px 20px;}
-  li{margin:7px 0;}
-  em{font-style:normal;box-shadow:inset 0 -8px 0 rgba(138,109,47,.18);}
-  .note{font-size:14px;color:var(--sub);}
-  table{width:100%;border-collapse:collapse;margin:16px 0;background:var(--card);font-size:14.5px;}
-  th{font-family:"Noto Sans KR",sans-serif;font-size:11.5px;letter-spacing:.08em;color:var(--sub);font-weight:700;text-align:left;padding:9px 11px;border-bottom:2px solid var(--ink);}
-  td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top;}
-  .card{background:var(--card);border:1px solid var(--line);padding:18px 20px;margin:16px 0;}
-  .onesent{font-size:19px;font-weight:700;line-height:1.65;padding:18px 22px;background:var(--card);border-left:3px solid var(--gold);margin:16px 0;}
-  .flow{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0;font-family:"Noto Sans KR",sans-serif;}
-  .step{flex:1 1 110px;background:var(--card);border:1px solid var(--line);padding:11px 12px;min-width:110px;}
-  .step .n{font-size:10.5px;letter-spacing:.1em;color:var(--gold);font-weight:700;}
-  .step .t{font-size:14px;font-weight:700;margin-top:3px;}
-  .step .d{font-size:12px;color:var(--sub);margin-top:3px;line-height:1.5;}
-  .who{display:inline-block;margin-top:7px;font-size:10.5px;font-weight:700;padding:1px 6px;border:1px solid var(--line);color:var(--sub);}
-  .who.h{color:var(--red);border-color:var(--red);}
-  .who.a{color:var(--blue);border-color:var(--blue);}
-  .donebox{flex:4 1 480px;border:2px solid var(--gold);background:rgba(138,109,47,.06);padding:14px 9px 9px;position:relative;}
-  .donebox .lab{position:absolute;top:-9px;left:12px;background:var(--bg);padding:0 7px;font-family:"Noto Sans KR",sans-serif;font-size:10.5px;letter-spacing:.1em;color:var(--gold);font-weight:700;}
-  .donebox .inner{display:flex;gap:7px;flex-wrap:wrap;}
-  .donebox .step{flex:1 1 105px;}
-  .tag{display:inline-block;font-family:"Noto Sans KR",sans-serif;font-size:11px;font-weight:700;padding:1px 8px;border:1px solid var(--line);color:var(--sub);margin-left:6px;}
-  .tag.s{color:var(--green);border-color:var(--green);}
-  .tag.m{color:var(--gold);border-color:var(--gold);}
-  .tag.x{color:var(--red);border-color:var(--red);}
-  .q{font-size:13.5px;color:var(--sub);}
-  .yes{color:var(--green);font-weight:700}
-  .no{color:var(--red);font-weight:700}
-  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:16px 0;font-family:"Noto Sans KR",sans-serif;}
-  .facts>div{background:var(--card);padding:10px 12px;}
-  .facts .k{font-size:11px;letter-spacing:.06em;color:var(--sub);font-weight:700;}
-  .facts .v{font-size:15px;font-weight:700;margin-top:2px;}
-  .grid td{text-align:center;font-family:"Noto Sans KR",sans-serif;font-size:13px;padding:11px 6px;border:1px solid #fff;}
-  .grid th{text-align:center;font-size:11px;}
-  .chart{background:var(--card);border:1px solid var(--line);padding:14px 14px 8px;margin:12px 0 4px;}
-  .bars{display:flex;align-items:flex-end;gap:2px;height:74px;}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--canvas);color:var(--ink);
+       font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,-apple-system,sans-serif;
+       line-height:1.7;font-size:15px;font-feature-settings:"cv02","cv03","cv04";
+       -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:940px;margin:0 auto;padding:48px 22px 96px;}
+  b,strong{font-weight:600;color:var(--ink)}
+  a{color:var(--c1);text-decoration:none} a:hover{text-decoration:underline}
+
+  /* header */
+  header{padding-bottom:26px;border-bottom:1px solid var(--line);margin-bottom:30px}
+  .kicker{font-size:10px;letter-spacing:.16em;color:var(--c1);font-weight:600;text-transform:uppercase;}
+  h1{font-size:30px;line-height:1.28;font-weight:600;letter-spacing:-.02em;margin:12px 0 12px;}
+  .lede{font-size:16px;color:var(--muted);line-height:1.65;max-width:66ch}
+  .meta{font-size:12px;color:var(--subtle);margin-top:22px;display:flex;gap:22px;flex-wrap:wrap;}
+  .meta b{color:var(--sub);font-weight:500;}
+
+  /* sections as cards */
+  section{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px 26px;}
+  .secno{font-size:10px;letter-spacing:.16em;color:var(--subtle);font-weight:600;font-family:"Geist Mono",ui-monospace,monospace;}
+  h2{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:5px 0 14px;}
+  h3{font-size:14px;font-weight:600;margin:24px 0 8px;color:var(--sub)}
+  p{margin:9px 0;color:var(--sub)}
+  ul{margin:10px 0 4px 17px;} li{margin:7px 0;color:var(--sub)}
+  li::marker{color:var(--subtle)}
+  em{font-style:normal;color:var(--ink);background:rgba(124,141,248,.14);padding:0 3px;border-radius:3px}
+  .note{font-size:12.5px;color:var(--subtle);line-height:1.65}
+
+  /* tables */
+  table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;font-size:13px;
+        border:1px solid var(--line);border-radius:var(--r);overflow:hidden;}
+  th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle);font-weight:600;
+     text-align:left;padding:9px 12px;background:var(--sunken);border-bottom:1px solid var(--line);}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--sub)}
+  tr:last-child td{border-bottom:0}
+  td b{color:var(--ink)}
+  .num,td[style*="text-align:right"]{font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+
+  /* stat tiles */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0;}
+  .facts>div{background:var(--sunken);border:1px solid var(--line);border-radius:var(--r);padding:11px 13px 12px;}
+  .facts .k{font-size:10px;letter-spacing:.05em;color:var(--subtle);font-weight:500;text-transform:uppercase}
+  .facts .v{font-size:15px;font-weight:600;margin-top:4px;color:var(--ink);line-height:1.4;
+            font-variant-numeric:tabular-nums;}
+
+  .card{background:var(--sunken);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;margin:14px 0;font-size:13px;color:var(--sub)}
+  .onesent{font-size:17px;font-weight:600;line-height:1.6;padding:16px 18px;background:var(--sunken);
+           border:1px solid var(--line);border-left:2px solid var(--primary);border-radius:var(--r);margin:14px 0;color:var(--ink)}
+
+  /* pipeline */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0;}
+  .step{flex:1 1 118px;background:var(--sunken);border:1px solid var(--line);border-radius:var(--r);padding:11px 12px;min-width:118px;}
+  .step .n{font-size:9.5px;letter-spacing:.1em;color:var(--subtle);font-weight:600;font-family:"Geist Mono",ui-monospace,monospace;}
+  .step .t{font-size:13px;font-weight:600;margin-top:4px;color:var(--ink)}
+  .step .d{font-size:11.5px;color:var(--subtle);margin-top:4px;line-height:1.5;}
+  .who{display:inline-block;margin-top:8px;font-size:9.5px;font-weight:600;padding:1px 6px;border-radius:4px;
+       background:var(--raised);color:var(--muted);}
+  .who.h{color:var(--bad);background:rgba(238,90,102,.13)}
+  .who.a{color:var(--c1);background:rgba(124,141,248,.15)}
+  .donebox{flex:4 1 500px;border:1px solid var(--primary);background:rgba(91,108,240,.06);border-radius:var(--r-lg);padding:16px 10px 10px;position:relative;}
+  .donebox .lab{position:absolute;top:-8px;left:14px;background:var(--card);padding:0 8px;font-size:9.5px;letter-spacing:.1em;color:var(--c1);font-weight:600;}
+  .donebox .inner{display:flex;gap:8px;flex-wrap:wrap;}
+  .donebox .step{flex:1 1 112px;}
+
+  .tag{display:inline-block;font-size:10px;font-weight:600;padding:1px 7px;border-radius:4px;background:var(--raised);color:var(--muted);margin-left:6px;}
+  .tag.s{color:var(--ok);background:rgba(60,201,125,.13)}
+  .tag.m{color:var(--warn);background:rgba(226,169,76,.13)}
+  .tag.x{color:var(--bad);background:rgba(238,90,102,.13)}
+  .q{font-size:12.5px;color:var(--subtle);}
+  .yes{color:var(--ok);font-weight:600} .no{color:var(--bad);font-weight:600}
+
+  /* TPO grid */
+  .grid{border:0}
+  .grid th{background:transparent;border:0;text-align:center;font-size:10px;padding:0 4px 8px}
+  .grid td{text-align:center;font-size:13px;padding:12px 6px;border:0;border-radius:6px;
+           font-variant-numeric:tabular-nums;font-weight:500;}
+  .grid tr td:first-child{text-align:left;color:var(--muted);font-weight:600;font-size:12px;padding-left:0;background:transparent!important}
+  .grid td.ck{cursor:pointer;transition:outline-color .12s}
+  .grid td.ck:hover{outline:1px solid var(--line-strong)}
+
+  /* charts */
+  .chart{background:var(--sunken);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px 9px;margin:12px 0 4px;}
+  .bars{display:flex;align-items:flex-end;gap:2px;height:76px;}
   .bar{flex:1;display:flex;align-items:flex-end;}
-  .bar i{display:block;width:100%;background:var(--blue);border-radius:2px 2px 0 0;}
-  .bar:hover i{opacity:.65}
-  .xlabs{display:flex;justify-content:space-between;font-family:"Noto Sans KR",sans-serif;font-size:10.5px;color:var(--sub);margin-top:4px;}
-  .footer{margin-top:80px;padding-top:16px;border-top:1px solid var(--line);font-family:"Noto Sans KR",sans-serif;font-size:12.5px;color:var(--sub);line-height:1.7;}
-  @media print{body{background:#fff}.wrap{padding:20px}}
+  .bar i{display:block;width:100%;background:var(--c1);border-radius:2px 2px 0 0;}
+  .bar:hover i{opacity:.7}
+  .xlabs{display:flex;justify-content:space-between;font-size:10px;color:var(--subtle);margin-top:5px;font-family:"Geist Mono",ui-monospace,monospace;}
+
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:8px;margin:16px 0 14px;}
+  .tiles>div{background:var(--sunken);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 13px;}
+  .tiles .k{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--subtle);font-weight:500}
+  .tiles .v{font-size:24px;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.15;
+            font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .tiles .v .u{font-size:14px;font-weight:500;color:var(--muted);margin-left:1px}
+  .tiles .s{font-size:10.5px;color:var(--subtle);margin-top:5px;line-height:1.45}
+
+  /* product card */
+  .prodcard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+            background:var(--sunken);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;margin:14px 0 4px;}
+  .prodcard img{width:76px;height:76px;object-fit:contain;border:1px solid var(--line);border-radius:var(--r);background:#fff;flex:none}
+  .prodcard .pmain{min-width:190px;flex:1 1 200px}
+  .prodcard .pname{font-size:15px;font-weight:600;color:var(--ink);line-height:1.4}
+  .prodcard .pbrand{font-size:11.5px;color:var(--subtle);margin-top:4px}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace;font-size:10.5px}
+  .prodcard .pfacts{display:flex;gap:26px;flex-wrap:wrap}
+  .prodcard .pfacts .k{font-size:10px;color:var(--subtle);text-transform:uppercase;letter-spacing:.05em}
+  .prodcard .pfacts .v{font-size:14px;font-weight:600;color:var(--ink);margin-top:3px;
+                       font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--subtle);line-height:1.7;}
+  ::selection{background:rgba(91,108,240,.35)}
+  @media (max-width:640px){.wrap{padding:32px 14px 70px}section{padding:18px 15px 20px}h1{font-size:24px}}
 </style>
 </head>
 <body>
@@ -82,19 +152,29 @@
   <section>
     <div class="secno">01</div>
     <h2>요약</h2>
-    <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:8px 0 18px">
-      <img src="product.jpg" alt="APRILSKIN 카로틴 IPMP 세럼팩 패드" style="width:190px;max-width:40%;border:1px solid var(--line)">
-      <div style="flex:1;min-width:260px">
-        <div class="facts" style="margin:0">
-          <div><div class="k">제품</div><div class="v">80매 / 220ml · ¥2,700~2,800</div></div>
-          <div><div class="k">큐텐 순위</div><div class="v">광고 제외 4위 · 후기 수 13위</div></div>
-          <div><div class="k">리뷰 수</div><div class="v">큐텐 19,809 · 앳코스메 103</div></div>
-          <div><div class="k">출시</div><div class="v">2022년 7월 22일</div></div>
-          <div><div class="k">사는 사람</div><div class="v">30대 전반 중심 · 여드름·트러블 고민 79%</div></div>
-          <div><div class="k">같이 사는 것</div><div class="v">히어로 쿠션 (브랜드 1위 제품)</div></div>
-        </div>
+    <div class="tiles">
+      <div><div class="k">큐텐 후기</div><div class="v">19,809</div><div class="s">2022.08 ~ 2026.08 전량</div></div>
+      <div><div class="k">지도에 오른 문장</div><div class="v">1,404</div><div class="s">전부 원문 대조</div></div>
+      <div><div class="k">화장 전 비중</div><div class="v">51<span class="u">%</span></div><div class="s">714 / 1,404문장</div></div>
+      <div><div class="k">큐텐 순위</div><div class="v">4<span class="u">위</span></div><div class="s">광고 제외 · 후기 수로는 13위</div></div>
+      <div><div class="k">협찬 비율</div><div class="v">92<span class="u">%</span></div><div class="s">앳코스메 기준 · 큐텐 0%</div></div>
+    </div>
+
+    <div class="prodcard">
+      <img src="product.jpg" alt="APRILSKIN 카로틴 IPMP 세럼팩 패드">
+      <div class="pmain">
+        <div class="pname">카로틴 IPMP 브레미쉬 세럼팩 패드</div>
+        <div class="pbrand">APRILSKIN · <span class="mono">gd_no 999332513</span> · 80매 / 220ml</div>
+      </div>
+      <div class="pfacts">
+        <div><div class="k">가격</div><div class="v">¥2,700</div></div>
+        <div><div class="k">출시</div><div class="v">2022.07.22</div></div>
+        <div><div class="k">사는 사람</div><div class="v">30대 전반</div></div>
+        <div><div class="k">1위 고민</div><div class="v">여드름 79%</div></div>
+        <div><div class="k">같이 사는 것</div><div class="v">히어로 쿠션</div></div>
       </div>
     </div>
+
     <p>이 제품이 어떤 제품인지 한마디로 하면 이렇습니다.</p>
     <div class="onesent">아침에 화장하기 전, 5분 붙여서 열을 식히고 화장이 잘 먹게 만들어주는 대용량 패드.</div>
     <ul>
@@ -167,12 +247,12 @@
     <p>큐텐 후기에는 구매자가 직접 고른 <b>피부 고민</b>이 붙어 있습니다. 19,809건 중 12,828건(65%)에 기재돼 있습니다.</p>
     <table>
       <tr><th>피부 고민 (복수 선택)</th><th style="text-align:right">비율</th><th></th></tr>
-      <tr><td><b>여드름·피부 트러블</b></td><td style="text-align:right"><b>79.3%</b></td><td><div style="height:9px;width:200px;background:var(--gold)"></div></td></tr>
-      <tr><td>모공</td><td style="text-align:right">58.1%</td><td><div style="height:9px;width:146px;background:var(--gold)"></div></td></tr>
-      <tr><td>건조</td><td style="text-align:right">35.1%</td><td><div style="height:9px;width:88px;background:var(--gold)"></div></td></tr>
-      <tr><td>칙칙함·색 얼룩</td><td style="text-align:right">19.6%</td><td><div style="height:9px;width:49px;background:var(--gold)"></div></td></tr>
-      <tr><td>기미</td><td style="text-align:right">11.5%</td><td><div style="height:9px;width:29px;background:var(--gold)"></div></td></tr>
-      <tr><td>주름·처짐</td><td style="text-align:right">7.5%</td><td><div style="height:9px;width:19px;background:var(--gold)"></div></td></tr>
+      <tr><td><b>여드름·피부 트러블</b></td><td style="text-align:right"><b>79.3%</b></td><td><div style="height:9px;width:200px;background:var(--c1)"></div></td></tr>
+      <tr><td>모공</td><td style="text-align:right">58.1%</td><td><div style="height:9px;width:146px;background:var(--c1)"></div></td></tr>
+      <tr><td>건조</td><td style="text-align:right">35.1%</td><td><div style="height:9px;width:88px;background:var(--c1)"></div></td></tr>
+      <tr><td>칙칙함·색 얼룩</td><td style="text-align:right">19.6%</td><td><div style="height:9px;width:49px;background:var(--c1)"></div></td></tr>
+      <tr><td>기미</td><td style="text-align:right">11.5%</td><td><div style="height:9px;width:29px;background:var(--c1)"></div></td></tr>
+      <tr><td>주름·처짐</td><td style="text-align:right">7.5%</td><td><div style="height:9px;width:19px;background:var(--c1)"></div></td></tr>
     </table>
     <p class="note">피부 타입은 혼합성 44.9% · 건성 26.3% · 지성 17.9% · 민감성 10.9%. 피부 톤은 웜톤 51.4% / 쿨톤 48.6%로 반반입니다.</p>
     <ul>
@@ -208,15 +288,15 @@
     <h2>지도 · 20칸 중 어디에 있나</h2>
     <p>큐텐 19,809건 · 앳코스메 103건 · LIPS 312건에서 <b>피부 고민과 쓰는 때를 한 문장 안에서 같이 말한 문장</b>만 뽑아 칸에 넣었습니다. 칸의 숫자는 <b>그 문장의 개수</b>이고, 칸을 누르면 나오는 목록과 같은 것을 셉니다.</p>
     <table class="grid" id="tpoGrid">
-      <tr><th></th><th style="text-align:center">아침 세안 후</th><th style="text-align:center">밤 세안 후</th><th style="text-align:center">화장 전</th><th style="text-align:center">급할 때·밖에서</th><th style="text-align:center">계절·컨디션</th></tr>
-                  <tr><td style="font-weight:700;white-space:nowrap">각질·모공</td><td style="background:#e6edf6" data-k="각질·모공|아침 세안 후" class="ck">24<sup style="font-size:9px;opacity:.75">-1</sup></td><td style="background:#e6edf6" data-k="각질·모공|밤 세안 후" class="ck">9</td><td style="background:#e6edf6" data-k="각질·모공|화장 전" class="ck">38<sup style="font-size:9px;opacity:.75">-1</sup></td><td style="background:#f1ece0;color:#b7ad98">0</td><td style="background:#e6edf6" data-k="각질·모공|계절·컨디션" class="ck">20</td></tr>
-      <tr><td style="font-weight:700;white-space:nowrap">붉은기·진정</td><td style="background:#bed0e8" data-k="붉은기·진정|아침 세안 후" class="ck">56</td><td style="background:#e6edf6" data-k="붉은기·진정|밤 세안 후" class="ck">29<sup style="font-size:9px;opacity:.75">-1</sup></td><td style="background:#bed0e8" data-k="붉은기·진정|화장 전" class="ck">103<sup style="font-size:9px;opacity:.75">-1</sup></td><td style="background:#e6edf6" data-k="붉은기·진정|급할 때·밖에서" class="ck">2</td><td style="background:#bed0e8" data-k="붉은기·진정|계절·컨디션" class="ck">63</td></tr>
-      <tr><td style="font-weight:700;white-space:nowrap">수분·건조</td><td style="background:#7d9fd0;color:#fff;font-weight:700" data-k="수분·건조|아침 세안 후" class="ck">219</td><td style="background:#bed0e8" data-k="수분·건조|밤 세안 후" class="ck">80</td><td style="background:#2456a6;color:#fff;font-weight:700" data-k="수분·건조|화장 전" class="ck">546<sup style="font-size:9px;opacity:.75">-1</sup></td><td style="background:#e6edf6" data-k="수분·건조|급할 때·밖에서" class="ck">9<sup style="font-size:9px;opacity:.75">-4</sup></td><td style="background:#7d9fd0;color:#fff;font-weight:700" data-k="수분·건조|계절·컨디션" class="ck">143</td></tr>
-      <tr><td style="font-weight:700;white-space:nowrap">톤·결</td><td style="background:#e6edf6" data-k="톤·결|아침 세안 후" class="ck">16</td><td style="background:#e6edf6" data-k="톤·결|밤 세안 후" class="ck">9</td><td style="background:#e6edf6" data-k="톤·결|화장 전" class="ck">27</td><td style="background:#f1ece0;color:#b7ad98">0</td><td style="background:#e6edf6" data-k="톤·결|계절·컨디션" class="ck">11</td></tr>
+      <tr><th></th><th>아침 세안 후</th><th>밤 세안 후</th><th>화장 전</th><th>급할 때·밖에서</th><th>계절·컨디션</th></tr>
+                        <tr><td>각질·모공</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="각질·모공|아침 세안 후" class="ck">24<sup style="font-size:9px;opacity:.7">-1</sup></td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="각질·모공|밤 세안 후" class="ck">9</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="각질·모공|화장 전" class="ck">38<sup style="font-size:9px;opacity:.7">-1</sup></td><td style="background:var(--sunken);color:var(--subtle)">0</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="각질·모공|계절·컨디션" class="ck">20</td></tr>
+      <tr><td>붉은기·진정</td><td style="background:color-mix(in oklab,var(--c1) 26%,var(--card));color:var(--ink)" data-k="붉은기·진정|아침 세안 후" class="ck">56</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="붉은기·진정|밤 세안 후" class="ck">29<sup style="font-size:9px;opacity:.7">-1</sup></td><td style="background:color-mix(in oklab,var(--c1) 26%,var(--card));color:var(--ink)" data-k="붉은기·진정|화장 전" class="ck">103<sup style="font-size:9px;opacity:.7">-1</sup></td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="붉은기·진정|급할 때·밖에서" class="ck">2</td><td style="background:color-mix(in oklab,var(--c1) 26%,var(--card));color:var(--ink)" data-k="붉은기·진정|계절·컨디션" class="ck">63</td></tr>
+      <tr><td>수분·건조</td><td style="background:color-mix(in oklab,var(--c1) 44%,var(--card));color:#fff;font-weight:600" data-k="수분·건조|아침 세안 후" class="ck">219</td><td style="background:color-mix(in oklab,var(--c1) 26%,var(--card));color:var(--ink)" data-k="수분·건조|밤 세안 후" class="ck">80</td><td style="background:var(--primary);color:#fff;font-weight:600" data-k="수분·건조|화장 전" class="ck">546<sup style="font-size:9px;opacity:.7">-1</sup></td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="수분·건조|급할 때·밖에서" class="ck">9<sup style="font-size:9px;opacity:.7">-4</sup></td><td style="background:color-mix(in oklab,var(--c1) 44%,var(--card));color:#fff;font-weight:600" data-k="수분·건조|계절·컨디션" class="ck">143</td></tr>
+      <tr><td>톤·결</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="톤·결|아침 세안 후" class="ck">16</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="톤·결|밤 세안 후" class="ck">9</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="톤·결|화장 전" class="ck">27</td><td style="background:var(--sunken);color:var(--subtle)">0</td><td style="background:color-mix(in oklab,var(--c1) 12%,var(--card));color:var(--sub)" data-k="톤·결|계절·컨디션" class="ck">11</td></tr>
       </table>
 
-    <div id="cellPanel" style="display:none;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--blue);padding:16px 18px;margin:14px 0;">
-      <div style="font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px" id="cpTitle"></div>
+    <div id="cellPanel" style="display:none;background:var(--sunken);border:1px solid var(--line);border-left:2px solid var(--primary);border-radius:10px;padding:16px 18px;margin:14px 0;">
+      <div style="font-size:13px;font-weight:600;margin-bottom:4px;color:var(--ink)" id="cpTitle"></div>
       <div class="note" id="cpMeta" style="margin-bottom:10px"></div>
       <div id="cpList"></div>
     </div>
@@ -233,21 +313,21 @@
     <h3>「계절·컨디션」 칸을 열어보면</h3>
     <table>
       <tr><th>상황</th><th style="text-align:right">건수</th><th></th></tr>
-      <tr><td>냉장고에 넣어두고 씀</td><td style="text-align:right">334</td><td><div style="height:9px;width:180px;background:var(--gold)"></div></td></tr>
-      <tr><td>여름·더위</td><td style="text-align:right">315</td><td><div style="height:9px;width:170px;background:var(--gold)"></div></td></tr>
-      <tr><td>목욕 후 화끈거림</td><td style="text-align:right">132</td><td><div style="height:9px;width:71px;background:var(--gold)"></div></td></tr>
-      <tr><td>겨울·난방</td><td style="text-align:right">96</td><td><div style="height:9px;width:52px;background:var(--gold)"></div></td></tr>
-      <tr><td>햇볕·자외선</td><td style="text-align:right">22</td><td><div style="height:9px;width:12px;background:var(--gold)"></div></td></tr>
-      <tr><td>꽃가루</td><td style="text-align:right">13</td><td><div style="height:9px;width:7px;background:var(--gold)"></div></td></tr>
-      <tr><td>환절기</td><td style="text-align:right">10</td><td><div style="height:9px;width:5px;background:var(--gold)"></div></td></tr>
-      <tr><td>에어컨</td><td style="text-align:right">4</td><td><div style="height:9px;width:2px;background:var(--gold)"></div></td></tr>
-      <tr><td>사우나·온천</td><td style="text-align:right">1</td><td><div style="height:9px;width:2px;background:var(--gold)"></div></td></tr>
+      <tr><td>냉장고에 넣어두고 씀</td><td style="text-align:right">334</td><td><div style="height:9px;width:180px;background:var(--c1)"></div></td></tr>
+      <tr><td>여름·더위</td><td style="text-align:right">315</td><td><div style="height:9px;width:170px;background:var(--c1)"></div></td></tr>
+      <tr><td>목욕 후 화끈거림</td><td style="text-align:right">132</td><td><div style="height:9px;width:71px;background:var(--c1)"></div></td></tr>
+      <tr><td>겨울·난방</td><td style="text-align:right">96</td><td><div style="height:9px;width:52px;background:var(--c1)"></div></td></tr>
+      <tr><td>햇볕·자외선</td><td style="text-align:right">22</td><td><div style="height:9px;width:12px;background:var(--c1)"></div></td></tr>
+      <tr><td>꽃가루</td><td style="text-align:right">13</td><td><div style="height:9px;width:7px;background:var(--c1)"></div></td></tr>
+      <tr><td>환절기</td><td style="text-align:right">10</td><td><div style="height:9px;width:5px;background:var(--c1)"></div></td></tr>
+      <tr><td>에어컨</td><td style="text-align:right">4</td><td><div style="height:9px;width:2px;background:var(--c1)"></div></td></tr>
+      <tr><td>사우나·온천</td><td style="text-align:right">1</td><td><div style="height:9px;width:2px;background:var(--c1)"></div></td></tr>
     </table>
     <p class="note">일본에만 있는 계절 상황(꽃가루 13, 에어컨 4, 사우나 1, 장마 0)은 이 제품 후기에서 아주 얇습니다. 대신 <b>냉장 보관(334)과 여름 더위(315)</b>가 이 칸을 채웁니다. 이 제품이 실제로 차지한 계절 자리는 「여름」이고, 꽃가루나 장마 자리는 아직 비어 있습니다.</p>
 
     <h3>냉장고에 넣어 쓰는 습관은 매년 여름 돌아옵니다</h3>
-    <div class="chart"><div class="bars"><div class="bar" title="2025.01 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.02 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.03 · 0.1%"><i style="height:2px"></i></div><div class="bar" title="2025.04 · 0.5%"><i style="height:7px"></i></div><div class="bar" title="2025.05 · 0.6%"><i style="height:8px"></i></div><div class="bar" title="2025.06 · 2.0%"><i style="height:27px;background:var(--red)"></i></div><div class="bar" title="2025.07 · 0.5%"><i style="height:7px;background:var(--red)"></i></div><div class="bar" title="2025.08 · 3.6%"><i style="height:50px;background:var(--red)"></i></div><div class="bar" title="2025.09 · 3.3%"><i style="height:45px;background:var(--red)"></i></div><div class="bar" title="2025.10 · 2.7%"><i style="height:37px"></i></div><div class="bar" title="2025.11 · 1.2%"><i style="height:16px"></i></div><div class="bar" title="2025.12 · 0.6%"><i style="height:8px"></i></div><div class="bar" title="2026.01 · 0.9%"><i style="height:12px"></i></div><div class="bar" title="2026.02 · 0.5%"><i style="height:7px"></i></div><div class="bar" title="2026.03 · 0.7%"><i style="height:10px"></i></div><div class="bar" title="2026.04 · 1.7%"><i style="height:23px"></i></div><div class="bar" title="2026.05 · 2.7%"><i style="height:37px"></i></div><div class="bar" title="2026.06 · 3.0%"><i style="height:41px;background:var(--red)"></i></div><div class="bar" title="2026.07 · 5.1%"><i style="height:70px;background:var(--red)"></i></div></div><div class="xlabs"><span>2025.01</span><span>2025.07</span><span>2026.01</span><span>2026.07</span></div></div>
-    <p class="note">빨간 막대가 6~9월입니다. 그달 후기 수 대비 비율로 그렸습니다(후기 수 자체가 메가와리 때 확 늘어나기 때문에 건수로 보면 왜곡됩니다). 겨울에 0.5% 안팎이던 게 여름에 3~5%까지 올라가고, <b>2025년과 2026년 두 해 모두 똑같은 모양</b>이 나옵니다. 한 해 유행이 아니라 매년 돌아오는 수요라는 뜻입니다.</p>
+    <div class="chart"><div class="bars"><div class="bar" title="2025.01 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.02 · 0.0%"><i style="height:2px"></i></div><div class="bar" title="2025.03 · 0.1%"><i style="height:2px"></i></div><div class="bar" title="2025.04 · 0.5%"><i style="height:7px"></i></div><div class="bar" title="2025.05 · 0.6%"><i style="height:8px"></i></div><div class="bar" title="2025.06 · 2.0%"><i style="height:27px;background:var(--warn)"></i></div><div class="bar" title="2025.07 · 0.5%"><i style="height:7px;background:var(--warn)"></i></div><div class="bar" title="2025.08 · 3.6%"><i style="height:50px;background:var(--warn)"></i></div><div class="bar" title="2025.09 · 3.3%"><i style="height:45px;background:var(--warn)"></i></div><div class="bar" title="2025.10 · 2.7%"><i style="height:37px"></i></div><div class="bar" title="2025.11 · 1.2%"><i style="height:16px"></i></div><div class="bar" title="2025.12 · 0.6%"><i style="height:8px"></i></div><div class="bar" title="2026.01 · 0.9%"><i style="height:12px"></i></div><div class="bar" title="2026.02 · 0.5%"><i style="height:7px"></i></div><div class="bar" title="2026.03 · 0.7%"><i style="height:10px"></i></div><div class="bar" title="2026.04 · 1.7%"><i style="height:23px"></i></div><div class="bar" title="2026.05 · 2.7%"><i style="height:37px"></i></div><div class="bar" title="2026.06 · 3.0%"><i style="height:41px;background:var(--warn)"></i></div><div class="bar" title="2026.07 · 5.1%"><i style="height:70px;background:var(--warn)"></i></div></div><div class="xlabs"><span>2025.01</span><span>2025.07</span><span>2026.01</span><span>2026.07</span></div></div>
+    <p class="note">노란 막대가 6~9월입니다. 그달 후기 수 대비 비율로 그렸습니다(후기 수 자체가 메가와리 때 확 늘어나기 때문에 건수로 보면 왜곡됩니다). 겨울에 0.5% 안팎이던 게 여름에 3~5%까지 올라가고, <b>2025년과 2026년 두 해 모두 똑같은 모양</b>이 나옵니다. 한 해 유행이 아니라 매년 돌아오는 수요라는 뜻입니다.</p>
 
     <div class="card">
       <b>이 지도가 보여주는 범위.</b> 지금 채운 건 <b>이 제품 하나가 어디에 쓰이는지</b>입니다. 칸마다 「경쟁 제품이 몇 개 있나」와 「시장 전체가 그 이야기를 얼마나 하나」를 넣으려면 카테고리 100개를 모아야 하고, 그게 다음 단계입니다.
@@ -326,7 +406,7 @@
   </section>
 
   <div class="footer">
-    TPO MAP #1 · 토너패드 · 제품 한 개 테스트 · 2026. 08. 02 · Mikey<br>
+    TPO MAP #1 · 토너패드 · 제품 한 개 테스트 · 2026. 08. 04 · Mikey<br>
     출처: 큐텐 재팬, 앳코스메, LIPS, 인스타그램, X, 메타 광고 라이브러리. 전부 공개된 페이지에서 각 사이트 정책과 속도 제한을 지켜 모았고, 작성자 개인정보는 저장하지 않았습니다. 인용은 분석에 필요한 짧은 발췌입니다. 내부 공유용.
   </div>
 
@@ -342,14 +422,14 @@
     td.addEventListener('click',function(){
       var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[];
       document.querySelectorAll('#tpoGrid td.ck').forEach(function(x){x.style.outline=''});
-      td.style.outline='3px solid var(--gold)';
+      td.style.outline='2px solid var(--primary)';
       T.textContent=k.replace('|',' × ');
       var G=(window.GRID||{})[k]||{};
       M.textContent=list.length? ('이 칸 '+(G.n||list.length)+'문장 중 '+list.length+'개 표시 · 전부 원문 대조 완료'+(G.neg?(' · 불만 '+G.neg+'건 포함'):'')) : '이 칸에 해당하는 문장이 없습니다';
       L.innerHTML=list.map(function(o){
-        var why=[].concat(o.c||[],o.m||[]).map(function(w){return '<span style="display:inline-block;font-family:\'Noto Sans KR\',sans-serif;font-size:10.5px;padding:0 5px;border:1px solid var(--line);color:var(--sub);margin-right:4px">'+esc(w)+'</span>'}).join('');
-        var neg=o.neg?'<span style="display:inline-block;font-family:\'Noto Sans KR\',sans-serif;font-size:10.5px;padding:0 5px;background:#f6ece6;border:1px solid #e0c9b8;color:#8a5a3a;margin-right:5px">불만</span>':'';
-        return '<div style="padding:11px 0;border-bottom:1px solid var(--line)"><div style="font-size:14px;line-height:1.7">'+neg+''+esc(o.t)+'</div><div class="note" style="font-size:13.5px;margin-top:3px">'+esc(o.ko||'')+'</div><div style="margin-top:6px">'+why+'<span class="note" style="font-size:11px">'+esc(o.d||'')+' · '+({qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'}[o.s]||o.s)+'</span></div></div>';
+        var why=[].concat(o.c||[],o.m||[]).map(function(w){return '<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;background:var(--raised);color:var(--muted);margin-right:4px">'+esc(w)+'</span>'}).join('');
+        var neg=o.neg?'<span style="display:inline-block;font-size:10px;padding:1px 6px;background:rgba(226,169,76,.15);color:var(--warn);border-radius:4px;margin-right:5px">불만</span>':'';
+        return '<div style="padding:11px 0;border-bottom:1px solid var(--line)"><div style="font-size:13.5px;line-height:1.75;color:var(--ink)">'+neg+''+esc(o.t)+'</div><div class="note" style="font-size:12.5px;margin-top:4px">'+esc(o.ko||'')+'</div><div style="margin-top:6px">'+why+'<span class="note" style="font-size:11px">'+esc(o.d||'')+' · '+({qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'}[o.s]||o.s)+'</span></div></div>';
       }).join('');
       P.style.display='block';
       P.scrollIntoView({behavior:'smooth',block:'nearest'});
