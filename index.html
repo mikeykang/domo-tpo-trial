@@ -168,6 +168,8 @@
   .u{border-bottom:1px dotted var(--line-strong);cursor:help}
 
   /* ads */
+  .land{color:var(--subtle);font-weight:500}
+  .land.me{color:var(--c1)}
   .afilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
   .ab{font:inherit;font-size:11px;padding:4px 10px;border:1px solid var(--line);background:var(--card);
       border-radius:6px;color:var(--subtle);cursor:pointer}
@@ -256,7 +258,7 @@
   <div class="band">
     <div class="bhead"><h2>메타 광고</h2><i class="ib" data-tip="메타 광고 라이브러리 일본. 종료된 광고는 보관되지 않아 이 스냅샷 이후는 소급 수집이 안 된다.">i</i></div>
     <div class="row">
-      <div class="tile hero" data-tip="이 광고의 문구: 「メイク前に肌の温度を下げてからベースを塗ると、メイクノリも良くなる」&lt;i&gt;화장 전에 피부 온도를 낮추고 베이스를 바르면 화장도 잘 먹는다&lt;/i&gt;"><div class="k">최장 게재</div><div><div class="v">349<small>일</small></div><div class="s">APRILSKIN · 카테고리 최장은 457일</div></div></div>
+      <div class="tile hero" data-tip="이 브랜드가 메타에 거는 광고 전체 기준이다. 이 패드 리스팅으로 보내는 광고만 따로 세면 최장 62일. 카테고리 최장은 457일.&lt;i&gt;패드 문구를 쓰는 최장 광고는 330일짜리이고, 그 광고도 쿠션 리스팅으로 보낸다&lt;/i&gt;"><div class="k">최장 게재</div><div><div class="v">349<small>일</small></div><div class="s">브랜드 전체 · 링크는 쿠션</div></div></div>
       <div class="tile"><div class="k">이 브랜드 광고</div><div><div class="v">67</div><div class="s">카테고리 전체는 160 · 중복 제거</div></div></div>
       <div class="tile" data-tip="게재일수 100일 이상인 광고 중 <b>첫 줄이 계절·날씨</b>인 것만 셌다. 세일 기간 하루만 도는 광고에 붙은 계절 문구는 상시 메시지로 보지 않아 뺐다."><div class="k">장기 광고 계절 소구</div><div><div class="v">1</div><div class="s">100일 이상 61개 중</div></div></div>
       <div class="tile" data-tip="일본 광고 라이브러리는 <b>종료된 광고를 보관하지 않는다.</b> 이 스냅샷 이후는 소급 수집이 불가능해서 제품마다 그 시점에 떠야 한다. 미국은 보관돼서 대조군으로 쓸 수 있다."><div class="k">현재 활성</div><div><div class="v">149</div><div class="s">종료 11 · 일본은 종료분 미보관</div></div></div>
@@ -284,7 +286,7 @@
   <div class="panel sum">
         <p class="d1">아침에 화장하기 전, 5분 붙여서 열을 식히고 화장이 잘 먹게 만들어주는 대용량 패드.</p>
         <ul>
-          <li>성격이 완전히 다른 <b>네 군데에서 똑같이</b> 확인됐습니다. 문장 1,404개의 51%, 큐텐 자체 만족도 1위, 앳코스메 질문 15개 중 5개, <b>327일 도는 광고</b>.</li>
+          <li>성격이 완전히 다른 <b>네 군데에서 똑같이</b> 확인됐습니다. 문장 1,404개의 51%, 큐텐 자체 만족도 1위, 앳코스메 질문 15개 중 5개, <b>「화장 전에 피부 온도를 낮춘다」를 330일째 거는 광고</b>.</li>
           <li>빈칸은 <b>계절·컨디션</b>입니다. 사람들은 이야기하는데, <b>100일 넘게 도는 광고 61개 중 계절을 앞세운 건 1개</b>뿐입니다.</li>
           <li>약점은 <b>휴대성</b>입니다. 「밖에서」 11문장 중 4건이 액이 샌다는 불만입니다.</li>
           <li><b>「톤·결」 줄 전체가 63문장</b>뿐입니다. 브랜드가 내세우는 칙칙함 케어를 아무도 말하지 않습니다.</li>
@@ -387,15 +389,9 @@
   <!-- ADS -->
   <div class="panel" style="margin-top:14px">
     <div class="ph"><h3>메타 광고</h3><i class="ib" data-tip="게재일수가 긴 순서로 나열한다. 문구를 누르면 광고 전문이 펼쳐진다.">i</i></div>
-    <div class="afilt" id="afilt">
-      <button class="ab on" data-f="aprilskin">이 브랜드 <b>67</b></button>
-      <button class="ab" data-f="long">장기 100일+ <b>61</b></button>
-      <button class="ab" data-f="season">계절 문구 <b>34</b></button>
-      <button class="ab" data-f="off">종료 <b>11</b></button>
-      <button class="ab" data-f="all" data-tip="이 브랜드 광고에 같은 카테고리 경쟁사 광고를 더한 것. <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려면 대조군이 있어야 해서 같이 모은다.">카테고리 전체 <b>160</b></button>
-    </div>
+    <div class="afilt" id="afilt"></div>
+    <p style="margin:0 0 12px"><b>패드 이야기로 끌고, 쿠션으로 보냅니다.</b> 이 브랜드 광고 67개 중 <b>패드 문구를 쓰는 것이 32개</b>인데, <span class="u" data-tip="랜딩 분포: 히어로 쿠션 43 · 립타투 틴트 18 · 쑥 시카 앰플 4 · 이 제품 1 · 신상 1. 광고마다 실제 링크 주소의 상품번호로 갈랐다.">이 패드 리스팅으로 보내는 광고는 1개</span>입니다. 후기에서 나온 <b>쿠션 → 패드</b> 유입이 광고비에서도 그대로 보입니다.</p>
     <div id="adL"></div>
-    
   </div>
 
   <div class="foot">
@@ -453,31 +449,52 @@
   // ── ads
   var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
   var AL=document.getElementById('adL');
+  var MINE=function(a){return /Aprilskin/i.test(a.pg||'')};
+  var GD=function(a){return ((a.url||'').split('/g/')[1]||'').split(/[^0-9]/)[0]};
+  var LAND={'979030998':'히어로 쿠션','1147259677':'립타투 틴트','1138527320':'쑥 시카 앰플',
+            '999332513':'이 제품','1208033186':'히어로 뿌른'};
+  var PADTXT=/パッド|パック|カロテン/;
+  var PRED={aprilskin:function(){return true},
+            mine:function(a){return GD(a)==='999332513'},
+            padtxt:function(a){return PADTXT.test(a.msg||'')},
+            long:function(a){return (a.run||0)>=100},
+            season:function(a){return SEASON.test(a.msg||'')},
+            off:function(a){return !a.act}};
+  // every chip stays inside this brand; only 카테고리 전체 widens the scope
+  function pick(mode){
+    var A=window.ADS||[];
+    return mode==='all'?A.slice():A.filter(MINE).filter(PRED[mode]||PRED.aprilskin);
+  }
   function drawAds(mode){
-    var L=(window.ADS||[]).filter(function(a){
-      if(mode==='aprilskin') return /Aprilskin/i.test(a.pg||'');
-      if(mode==='long') return (a.run||0)>=100;
-      if(mode==='season') return SEASON.test(a.msg||'');
-      if(mode==='off') return !a.act;
-      return true;
-    });
+    var L=pick(mode);
     AL.innerHTML=L.map(function(a){
       var th=a.img?('<img src="'+esc(a.img)+'" alt="" loading="lazy">'):(a.vid?'VIDEO':'—');
       return '<div class="ad"><div class="adthumb">'+th+'</div><div class="adm">'+
         '<div class="adpg"><span class="dot'+(a.act?'':' off')+'"></span>'+esc(a.pg)+'</div>'+
         '<div class="adtx">'+esc(a.msg||'(문구 없음)')+'</div>'+
         '<div class="admeta">'+esc(a.s||'')+' · '+esc(a.fmt||'')+(a.cta?(' · '+esc(a.cta)):'')+
+        (LAND[GD(a)]?(' · <b class="land'+(GD(a)==='999332513'?' me':'')+'">→ '+LAND[GD(a)]+'</b>'):'')+
         (a.url?(' · <a href="'+esc(a.url)+'" target="_blank" rel="noreferrer" style="color:var(--c1)">링크 ↗</a>'):'')+'</div>'+
         '</div><div class="adrun"><b>'+(a.run||0)+'</b><span>일</span></div></div>';
     }).join('') || '<p style="font-size:12px;color:var(--subtle)">해당 광고 없음</p>';
     AL.querySelectorAll('.adtx').forEach(function(t){t.addEventListener('click',function(){t.closest('.ad').classList.toggle('open')})});
   }
-  document.querySelectorAll('#afilt .ab').forEach(function(b){
+  var CHIPS=[['aprilskin','이 브랜드'],['padtxt','패드 문구'],['mine','이 제품으로 보내는 광고'],
+             ['long','장기 100일+'],['season','계절 문구'],['off','종료'],
+             ['all','카테고리 전체','이 브랜드 광고에 같은 카테고리 경쟁사 광고를 더한 것. <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려면 대조군이 있어야 해서 같이 모은다.']];
+  var FB=document.getElementById('afilt');
+  FB.innerHTML=CHIPS.map(function(c){
+    var n=pick(c[0]).length;
+    return n?('<button class="ab'+(c[0]==='aprilskin'?' on':'')+'" data-f="'+c[0]+'"'+
+              (c[2]?(' data-tip="'+c[2]+'"'):'')+'>'+c[1]+' <b>'+n+'</b></button>'):'';
+  }).join('');
+  FB.querySelectorAll('.ab').forEach(function(b){
     b.addEventListener('click',function(){
-      document.querySelectorAll('#afilt .ab').forEach(function(x){x.classList.remove('on')});
+      FB.querySelectorAll('.ab').forEach(function(x){x.classList.remove('on')});
       b.classList.add('on'); drawAds(b.getAttribute('data-f'));
     });
   });
+  bindTips(FB);
   drawAds('aprilskin');
 })();
 </script>
