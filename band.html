@@ -84,13 +84,6 @@
       color:var(--muted);font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
   .gnote{font-size:12.5px;color:var(--sub);line-height:1.65;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 
-  /* provenance strip */
-  .prov{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
-        font-size:11.5px;color:var(--subtle)}
-  .prov span{display:inline-flex;align-items:center}
-  .prov b{color:var(--ink);font-weight:500;font-family:"Geist Mono",ui-monospace,monospace;
-          font-variant-numeric:tabular-nums;margin-left:5px}
-
   /* ---- audit table ---- */
   table{border-collapse:collapse;width:100%;font-size:12.5px}
   th{text-align:left;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);font-weight:600;
@@ -136,7 +129,10 @@
     <h2>제안</h2>
     <div class="frame">
 
-      <div class="kick2">DOMO · TPO MAP · 판매랭킹 1위</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap">
+        <div class="kick2">DOMO · TPO MAP · 판매랭킹 1위</div>
+        <div style="font-size:11px;color:var(--subtle)">수집 <b class="mono" style="color:var(--ink);font-weight:500">2026.08.05</b></div>
+      </div>
       <div class="ptitle">SKIN1004 센텔라 퀵 카밍 패드 (테카리OFF 모공 쿨링 케어 세트)</div>
 
       <div class="prod">
@@ -164,7 +160,7 @@
         </div>
         <div class="legend">
           <span><i class="sw" style="background:#4f46e5"></i>후기가 말하는 것 <b class="mono" style="color:var(--subtle);font-weight:400">문장 566</b></span>
-          <span><i class="sw" style="background:#c2410c"></i>광고가 말하는 것 <b class="mono" style="color:var(--subtle);font-weight:400">패드 광고 23</b></span>
+          <span><i class="sw" style="background:#c2410c"></i>광고가 말하는 것 <b class="mono" style="color:var(--subtle);font-weight:400">패드 광고 23 / 브랜드 390</b></span>
         </div>
 
         <div class="axl">고민 축</div>
@@ -172,15 +168,6 @@
         <div class="axl">순간 축</div>
         <div id="gB"></div>
 
-        <div class="gnote">패드 광고 23개의 문구 라벨(복수): 진정 21 · 수분 21 · 계절 12 · 각질·모공 2 · 화장 전 0 · 냉감 0. 브랜드 광고 390개 중 패드를 언급한 것이 23개입니다.</div>
-
-        <div class="prov">
-          <span>수집<b>2026.08.05</b></span>
-          <span>큐텐 후기<b>1,754</b></span>
-          <span>지도 문장<b>566</b></span>
-          <span>메타 광고<b>390</b></span>
-          <span>패드 광고<b>23</b></span>
-        </div>
       </div>
 
     </div>
@@ -203,7 +190,7 @@
           <tr class="cut"><td>최다 칸 107</td><td><span class="v kill">삭제</span></td><td>아래 TPO 지도 20칸 중 최댓값. 지도에 이미 표시됨.</td></tr>
           <tr><td>화장 전 150 · 계절 184</td><td><span class="v keep">차트로</span></td><td>566문장 대비 27% · 33%.</td></tr>
           <tr><td>이 브랜드 광고 390</td><td><span class="v move">작게</span></td><td>390개 중 패드 언급 23개 (6%). 차트의 모수.</td></tr>
-          <tr><td>이 제품 광고 23</td><td><span class="v keep">차트로</span></td><td>문구 라벨(복수): 진정 21 · 수분 21 · 계절 12 · 각질·모공 2 · 화장 전 0.</td></tr>
+          <tr><td>이 제품 광고 23</td><td><span class="v keep">차트로</span></td><td>패드를 언급한 광고 수. 차트의 광고 계열 모수.</td></tr>
           <tr class="cut"><td>연령 소스 0</td><td><span class="v kill">삭제</span></td><td>값 0. 5개 제품 중 2개가 0 (skin1004 · skinfood).</td></tr>
           <tr class="cut"><td>구조 필드 618</td><td><span class="v kill">삭제</span></td><td>같은 밴드 「1위 피부 고민 73.1%」의 분모와 동일한 값.</td></tr>
           <tr class="cut"><td>불만 문장 1</td><td><span class="v kill">삭제</span></td><td>값 1. TPO 지도 해당 칸에 이미 표시됨.</td></tr>
