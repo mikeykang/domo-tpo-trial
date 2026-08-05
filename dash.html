@@ -227,7 +227,8 @@
 (function(){
   var p=(location.search.match(/[?&]p=([\w-]+)/)||[])[1]||'aprilskin';
   document.write('<script src="p/'+p+'.js?v=6"><\/script>');
-  if(p==='aprilskin') document.write('<script src="ads.js?v=4"><\/script>');
+  var ADSFILE={aprilskin:'ads.js?v=4',skin1004:'ads-skin1004.js?v=1',cellfusionc:'ads-cellfusionc.js?v=1'}[p];
+  if(ADSFILE) document.write('<script src="'+ADSFILE+'"><\/script>');
 })();
 </script>
 <script>
@@ -433,7 +434,7 @@
   var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
   var AL=document.getElementById('adL');
   if(AL){
-  var MINE=function(a){return /Aprilskin/i.test(a.pg||'')};
+  var MINE=function(a){return (window.ADSBRAND||/Aprilskin/i).test(a.pg||'')};
   var GD=function(a){return ((a.url||'').split('/g/')[1]||'').split(/[^0-9]/)[0]};
   var LAND={'979030998':'히어로 쿠션','1147259677':'립타투 틴트','1138527320':'쑥 시카 앰플',
             '999332513':'이 제품','1208033186':'히어로 뿌른'};
@@ -474,11 +475,16 @@
              ['long','장기 100일+'],
              ['all','카테고리 전체','이 브랜드 광고에 같은 카테고리 경쟁사 광고를 더한 것. <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려면 대조군이 있어야 해서 같이 모은다.']];
   var FB=document.getElementById('afilt');
+  var first='';
   FB.innerHTML=CHIPS.map(function(c){
     var n=pick(c[0]).length;
-    return n?('<button class="ab'+(c[0]==='pad'?' on':'')+'" data-f="'+c[0]+'"'+
+    if(c[0]==='all'&&n===pick('aprilskin').length) return '';
+    if(c[0]==='tagonly'&&!pick('claim').length) return '';
+    if(n&&!first) first=c[0];
+    return n?('<button class="ab'+'" data-f="'+c[0]+'"'+
               (c[2]?(' data-tip="'+c[2]+'"'):'')+'>'+c[1]+' <b>'+n+'</b></button>'):'';
   }).join('');
+  var fb0=FB.querySelector('[data-f="'+first+'"]'); if(fb0)fb0.classList.add('on');
   FB.querySelectorAll('.ab').forEach(function(b){
     b.addEventListener('click',function(){
       FB.querySelectorAll('.ab').forEach(function(x){x.classList.remove('on')});
@@ -486,7 +492,7 @@
     });
   });
   bindTips(FB);
-  drawAds('pad');
+  drawAds(first||'pad');
   }
 })();
 </script>
