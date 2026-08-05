@@ -74,18 +74,14 @@
   .axl{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:500;
        font-family:"Geist Mono",ui-monospace,monospace;margin:14px 0 7px}
   .axl:first-of-type{margin-top:0}
-  .grow{display:grid;grid-template-columns:88px 1fr 74px;gap:12px;align-items:center;padding:5px 0}
+  .grow{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:center;padding:5px 0}
   .grow .lab{font-size:12px;text-align:right;color:var(--sub);line-height:1.3}
-  .track{display:grid;gap:3px}
+  .track{display:grid;gap:3px;margin-right:104px}
   .bar{height:9px;border-radius:0 4px 4px 0;position:relative;min-width:2px}
   .bar.none{width:0;background:none}
   .bv.zero{color:var(--c2)}
   .bv{position:absolute;left:calc(100% + 7px);top:50%;transform:translateY(-50%);font-size:10.5px;
       color:var(--muted);font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .chip{font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:5px;border:1px solid var(--line-strong);
-        color:var(--muted);justify-self:start;white-space:nowrap}
-  .chip.hole{border-color:#c9c3f5;color:var(--c1);background:#f4f3ff}
-  .chip.over{border-color:#eccfbe;color:var(--c2);background:#fdf5f0}
   .gnote{font-size:12.5px;color:var(--sub);line-height:1.65;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
 
   /* provenance strip */
@@ -123,8 +119,7 @@
   .tile .s{font-size:10.5px;color:var(--subtle);margin-top:6px;line-height:1.4}
   .tile.hero{background:var(--panel);border-color:var(--panel);color:#fff}
   .tile.hero .k,.tile.hero .s,.tile.hero .tv small{color:#8f8f8f}
-  .tile.dup{outline:2px solid #c2410c;outline-offset:-1px}
-  .duptag{position:absolute}
+  .tile.dup{outline:2px solid #9a9a9a;outline-offset:-1px}
 </style>
 </head>
 <body>
@@ -133,7 +128,7 @@
   <div class="doc">
     <div class="kick">DOMO · 상단 지표 재설계</div>
     <h1>상단 15개 숫자를 5개로</h1>
-    <p>판매랭킹 1위 SKIN1004 페이지 기준. 숫자는 전부 실데이터이고, 잘라낸 근거는 5개 제품 전체를 대조해서 세웠습니다.</p>
+    <p>판매랭킹 1위 SKIN1004 페이지 기준. 5개 제품 전체를 대조한 값입니다.</p>
   </div>
 
   <!-- ======================= 제안 ======================= -->
@@ -164,7 +159,7 @@
       <!-- the one thing no panel below shows -->
       <div class="gap">
         <div class="ghead">
-          <h3>사는 이유와 파는 말이 어긋난 자리</h3>
+          <h3>후기와 광고의 비중</h3>
           <i class="ib" data-tip="후기 = 큐텐 후기에서 뽑은 문장 566개를 TPO 20칸에 실은 뒤 축별로 합산. 광고 = 메타 광고 라이브러리 일본, 게재 중, 패드를 언급한 23개의 카피에 붙인 라벨(복수). 라벨은 랜딩 URL이 아니라 문구에 붙였다. 이 리스팅은 4종 세트라 후기 문장이 어느 품목의 것인지 리스팅만으로는 갈리지 않는다.">i</i>
         </div>
         <div class="legend">
@@ -177,7 +172,7 @@
         <div class="axl">순간 축</div>
         <div id="gB"></div>
 
-        <div class="gnote">1위 고민인 <b>각질·모공</b>과 3위 순간인 <b>화장 전</b>이 광고에서 비어 있습니다. 브랜드는 <b>진정·수분</b>을 말하는데 후기에서 진정은 12%입니다. 판매랭킹 3위 APRILSKIN이 <b>화장 전 냉감</b>을 통째로 가져간 자리를, 1위는 건드리지 않습니다.</div>
+        <div class="gnote">패드 광고 23개의 문구 라벨(복수): 진정 21 · 수분 21 · 계절 12 · 각질·모공 2 · 화장 전 0 · 냉감 0. 브랜드 광고 390개 중 패드를 언급한 것이 23개입니다.</div>
 
         <div class="prov">
           <span>수집<b>2026.08.05</b></span>
@@ -198,26 +193,25 @@
       <table>
         <thead><tr><th style="width:150px">지금 타일</th><th style="width:78px">판정</th><th>근거 (5개 제품 대조)</th></tr></thead>
         <tbody>
-          <tr><td>Reviews 1,754</td><td><span class="v move">작게</span></td><td>제품 카드에 이미 <b>같은 숫자</b>가 있습니다. 25px 히어로 타일과 카드에 두 번 나옵니다.</td></tr>
-          <tr class="cut"><td>화장이 잘 먹는다 99.0%</td><td><span class="v kill">삭제</span></td><td>5개 제품이 <span class="mono">98.2 · 98.6 · 98.8 · 98.9 · 99.0</span>입니다. <b>폭이 0.8%p</b>라 아무것도 가르지 못합니다. 항상 초록인 점등입니다.</td></tr>
-          <tr><td>1위 피부 고민 73.1%</td><td><span class="v keep">차트로</span></td><td>남는 값이지만 <b>분포의 1등만</b> 보여주고 나머지를 버립니다. 막대로 옮기면 2·3위와 꼬리까지 같은 자리에서 읽힙니다.</td></tr>
-          <tr><td>검색 순위 #1</td><td><span class="v move">작게</span></td><td>이 제품이 이 페이지에 있는 이유입니다. 남기되 제품 카드로.</td></tr>
-          <tr class="cut"><td>5점 비율 83.0%</td><td><span class="v kill">삭제</span></td><td>이 타일의 툴팁이 <b>「포인트가 만든 편향이라 평점은 지표로 쓰지 않았다」</b>고 적혀 있습니다. 쓰지 않는 지표를 25px로 띄우고 있습니다.</td></tr>
-          <tr><td>Sentences 566</td><td><span class="v move">작게</span></td><td>표본 크기입니다. 남기되 작게.</td></tr>
-          <tr class="cut"><td>1위 순간 184</td><td><span class="v kill">삭제</span></td><td><b>오른쪽 두 칸 중 하나와 글자까지 똑같습니다.</b> 5개 제품 중 4개에서 중복입니다 (<span class="mono">184=184 · 714=714 · 514=514 · 35=35</span>).</td></tr>
-          <tr class="cut"><td>최다 칸 107</td><td><span class="v kill">삭제</span></td><td>바로 아래 TPO 지도에서 <b>가장 진한 칸</b>이 그 칸입니다. 지도를 보면 알 수 있는 값입니다.</td></tr>
-          <tr><td>화장 전 150 · 계절 184</td><td><span class="v keep">차트로</span></td><td>건수가 아니라 <b>비중</b>으로 읽어야 하는 값입니다. 광고와 나란히 놓을 때 처음 뜻이 생깁니다.</td></tr>
-          <tr><td>이 브랜드 광고 390</td><td><span class="v move">작게</span></td><td>단독으로는 이 제품과 무관합니다. 다만 <b>390개 중 패드를 말하는 것이 23개(6%)</b>라는 비율은 뜻이 있어서, 패드 광고 23 옆에 모수로 남깁니다.</td></tr>
-          <tr><td>이 제품 광고 23</td><td><span class="v keep">차트로</span></td><td>광고 크롤링의 목적 그 자체입니다. 개수가 아니라 <b>무슨 문구인지</b>가 답이므로 차트로.</td></tr>
-          <tr class="cut"><td>연령 소스 0</td><td><span class="v kill">삭제</span></td><td><b>0입니다.</b> 없다는 사실을 상단에 25px로 띄웁니다. 5개 중 2개가 0입니다.</td></tr>
-          <tr class="cut"><td>구조 필드 618</td><td><span class="v kill">삭제</span></td><td>바로 위 <b>「1위 피부 고민」의 분모</b>와 같은 숫자입니다. 방법 배관이지 결과가 아닙니다.</td></tr>
-          <tr class="cut"><td>불만 문장 1</td><td><span class="v kill">삭제</span></td><td>지도에 이미 표시돼 있습니다. 1건을 상단 5칸 중 하나로 씁니다.</td></tr>
+          <tr><td>Reviews 1,754</td><td><span class="v move">작게</span></td><td>같은 값이 바로 아래 제품 카드 「후기 1,754」에 있습니다.</td></tr>
+          <tr class="cut"><td>화장이 잘 먹는다 99.0%</td><td><span class="v kill">삭제</span></td><td>5개 제품 값 <span class="mono">98.2 · 98.6 · 98.8 · 98.9 · 99.0</span>. 폭 0.8%p.</td></tr>
+          <tr><td>1위 피부 고민 73.1%</td><td><span class="v keep">차트로</span></td><td>6개 고민 중 1위 값. 2~6위는 <span class="mono">46.4 · 44.3 · 43.7 · 37.2 · 35.4</span>%.</td></tr>
+          <tr><td>검색 순위 #1</td><td><span class="v move">작게</span></td><td>이 제품의 선정 기준값.</td></tr>
+          <tr class="cut"><td>5점 비율 83.0%</td><td><span class="v kill">삭제</span></td><td>이 타일의 툴팁 원문: 「포인트가 만든 편향이라 평점은 지표로 쓰지 않았다」.</td></tr>
+          <tr><td>Sentences 566</td><td><span class="v move">작게</span></td><td>TPO 지도 표본 수.</td></tr>
+          <tr class="cut"><td>1위 순간 184</td><td><span class="v kill">삭제</span></td><td>같은 밴드의 「계절·컨디션 184」와 값·설명문 동일. 5개 제품 중 4개에서 동일 (<span class="mono">184=184 · 714=714 · 514=514 · 35=35</span>).</td></tr>
+          <tr class="cut"><td>최다 칸 107</td><td><span class="v kill">삭제</span></td><td>아래 TPO 지도 20칸 중 최댓값. 지도에 이미 표시됨.</td></tr>
+          <tr><td>화장 전 150 · 계절 184</td><td><span class="v keep">차트로</span></td><td>566문장 대비 27% · 33%.</td></tr>
+          <tr><td>이 브랜드 광고 390</td><td><span class="v move">작게</span></td><td>390개 중 패드 언급 23개 (6%). 차트의 모수.</td></tr>
+          <tr><td>이 제품 광고 23</td><td><span class="v keep">차트로</span></td><td>문구 라벨(복수): 진정 21 · 수분 21 · 계절 12 · 각질·모공 2 · 화장 전 0.</td></tr>
+          <tr class="cut"><td>연령 소스 0</td><td><span class="v kill">삭제</span></td><td>값 0. 5개 제품 중 2개가 0 (skin1004 · skinfood).</td></tr>
+          <tr class="cut"><td>구조 필드 618</td><td><span class="v kill">삭제</span></td><td>같은 밴드 「1위 피부 고민 73.1%」의 분모와 동일한 값.</td></tr>
+          <tr class="cut"><td>불만 문장 1</td><td><span class="v kill">삭제</span></td><td>값 1. TPO 지도 해당 칸에 이미 표시됨.</td></tr>
         </tbody>
       </table>
       <div class="gnote" style="margin-top:18px">
-        구조 문제 하나 더. <b>「메타 광고」 밴드의 5칸 중 3칸이 메타 광고가 아닙니다.</b>
-        연령 소스는 앳코스메, 구조 필드는 큐텐, 불만 문장은 TPO 지도에서 온 값입니다.
-        칸을 다섯 개씩 채우려다 남는 숫자를 밀어 넣은 자리입니다.
+        「메타 광고」 밴드 5칸의 출처: 이 브랜드 광고·이 제품 광고 = 메타 광고 라이브러리, 연령 소스 = 앳코스메,
+        구조 필드 = 큐텐 후기, 불만 문장 = TPO 지도.
       </div>
     </div>
   </div>
@@ -227,18 +221,18 @@
     <h2>이 설계가 5개 제품에서</h2>
     <div class="frame">
       <table>
-        <thead><tr><th>제품</th><th class="n">후기</th><th class="n">문장</th><th class="n">패드 광고</th><th>차트가 보여주는 것</th></tr></thead>
+        <thead><tr><th>제품</th><th class="n">후기</th><th class="n">문장</th><th class="n">패드 광고</th><th>1위 고민 · 1위 순간</th><th>광고 막대</th></tr></thead>
         <tbody>
-          <tr><td>1. SKIN1004</td><td class="n">1,754</td><td class="n">566</td><td class="n">23</td><td>각질·모공 46% vs 광고 9% · 화장 전 27% vs <b>0%</b></td></tr>
-          <tr><td>2. SKINFOOD</td><td class="n">83,031</td><td class="n">4,637</td><td class="n">0</td><td>후기 막대만. <b>일본 메타 광고 0건</b>이 그대로 결과입니다</td></tr>
-          <tr><td>3. APRILSKIN</td><td class="n">19,809</td><td class="n">1,404</td><td class="n">33<span style="color:var(--subtle)"> · 설명 10</span></td><td>화장 전 51% vs 광고 <b>70%</b>(설명 10개 중 7) · <b>수요와 카피가 맞은 유일한 제품</b></td></tr>
-          <tr><td>4. CellFusionC</td><td class="n">12,499</td><td class="n">1,433</td><td class="n">0</td><td>후기 막대만</td></tr>
-          <tr><td>5. DEWYTREE</td><td class="n">642</td><td class="n">111</td><td class="n">0</td><td>후기 막대만</td></tr>
+          <tr><td>1. SKIN1004</td><td class="n">1,754</td><td class="n">566</td><td class="n">23</td><td>각질·모공 46% · 계절 33%</td><td>있음</td></tr>
+          <tr><td>2. SKINFOOD</td><td class="n">83,031</td><td class="n">4,637</td><td class="n">0</td><td>수분·건조 63% · 아침 44%</td><td>없음</td></tr>
+          <tr><td>3. APRILSKIN</td><td class="n">19,809</td><td class="n">1,404</td><td class="n">33<span style="color:var(--subtle)"> · 설명 10</span></td><td>수분·건조 71% · 화장 전 51%</td><td>있음</td></tr>
+          <tr><td>4. CellFusionC</td><td class="n">12,499</td><td class="n">1,433</td><td class="n">0</td><td>붉은기·진정 45% · 화장 전 36%</td><td>없음</td></tr>
+          <tr><td>5. DEWYTREE</td><td class="n">642</td><td class="n">111</td><td class="n">0</td><td>붉은기·진정 45% · 계절 32%</td><td>없음</td></tr>
         </tbody>
       </table>
       <div class="gnote" style="margin-top:18px">
-        광고가 0건인 세 제품에서 지금 설계는 <b>0을 세 칸</b> 띄웁니다 (이 제품 광고 0 · 연령 소스 0 · 브랜드 광고 0).
-        새 설계는 광고 막대가 사라지고 후기 막대만 남습니다. <b>없다는 사실이 빈 자리로 보입니다.</b>
+        일본 메타 광고 0건: SKINFOOD · CellFusionC · DEWYTREE. 이 세 제품은 광고 막대 없이 후기 막대만 그려집니다.
+        지금 설계에서는 같은 상황이 <span class="mono">0</span> 세 칸(이 제품 광고 · 연령 소스 · 브랜드 광고)으로 표시됩니다.
       </div>
     </div>
   </div>
@@ -274,10 +268,6 @@
 
   function draw(el,rows){
     el.innerHTML=rows.map(function(d){
-      var gap=(d.a==null)?null:(d.r-d.a);
-      var chip='';
-      if(gap!=null&&gap>=25)  chip='<span class="chip hole">빈자리 '+gap+'%p</span>';
-      if(gap!=null&&gap<=-25) chip='<span class="chip over">과잉 '+Math.abs(gap)+'%p</span>';
       var adbar = d.a==null
         ? '<div class="bar none"><span class="bv">&mdash;</span></div>'
         : '<div class="bar" style="width:'+Math.max(d.a,0.6)+'%;background:#c2410c"><span class="bv'+(d.a===0?' zero':'')+'">'+d.a+'% · '+d.an+'개</span></div>';
@@ -286,7 +276,7 @@
         '<div class="track">'+
           '<div class="bar" style="width:'+Math.max(d.r,1)+'%;background:#4f46e5"><span class="bv">'+d.r+'% · '+d.rn+'문장</span></div>'+
           adbar+
-        '</div>'+chip+'</div>';
+        '</div></div>';
     }).join('');
   }
   draw(document.getElementById('gA'),A);
@@ -306,7 +296,7 @@
           (t.s?('<div class="s">'+esc(t.s)+'</div>'):'')+'</div></div>';
       }).join('')+'</div></div>';
   }).join('')+
-  '<div class="gnote">주황 테두리 = 같은 밴드 안에서 값이 글자까지 같은 타일.</div>';
+  '<div class="gnote">테두리 = 같은 밴드 안에서 값이 동일한 타일.</div>';
 })();
 </script>
 </body>
