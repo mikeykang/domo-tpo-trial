@@ -226,7 +226,8 @@
 // per-product data, chosen by ?p=<slug>
 (function(){
   var p=(location.search.match(/[?&]p=([\w-]+)/)||[])[1]||'aprilskin';
-  document.write('<script src="p/'+p+'.js?v=4"><\/script>');
+  document.write('<script src="p/'+p+'.js?v=5"><\/script>');
+  if(p==='aprilskin') document.write('<script src="ads.js?v=4"><\/script>');
 })();
 </script>
 <script>
@@ -374,9 +375,10 @@
 
   // ---- ads
   if(D.ads){ var ad=E('div','panel'); ad.style.marginTop='14px';
-    ad.innerHTML='<div class="ph"><h3>메타 광고</h3>'+ib(D.ads.tip)+'</div>'+
-      '<div class="afilt" id="afilt"></div>'+(D.ads.note?('<p style="margin:0 0 12px">'+D.ads.note+'</p>'):'')+
-      '<div id="adL"></div>';
+    ad.innerHTML='<div class="ph"><h3>메타 광고</h3>'+(D.ads.list?ib(D.ads.tip):'')+'</div>'+
+      (D.ads.list?'<div class="afilt" id="afilt"></div>':'')+
+      (D.ads.note?('<p style="margin:0 0 12px">'+D.ads.note+'</p>'):'')+
+      (D.ads.list?'<div id="adL"></div>':'');
     W.appendChild(ad); }
 
   var ft=E('div','ft'); ft.innerHTML=D.footer||''; W.appendChild(ft);
@@ -389,11 +391,11 @@
   var SRC={qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'};
   document.querySelectorAll('#tpoGrid td.ck').forEach(function(td){
     td.addEventListener('click',function(){
-      var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[], G=(window.GRID||{})[k]||{};
+      var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[], G=(((window.D||{}).grid||{}).cells||{})[k]||{};
       document.querySelectorAll('#tpoGrid td.ck').forEach(function(x){x.classList.remove('sel')});
       td.classList.add('sel');
       T.textContent=k.replace('|',' × ');
-      M.textContent=list.length?(list.length+'문장'+(G.neg?(' · 불만 '+G.neg):'')+' · 한국어 '+(G.ko||0)):'';
+      M.textContent=list.length?(list.length+'문장'+(G.neg?(' · 불만 '+G.neg):'')):'';
       L.innerHTML=list.map(function(o){
         var w=[].concat(o.c||[],o.m||[]).map(function(x){return '<span class="w">'+esc(x)+'</span>'}).join('');
         return '<div class="sent">'+(o.neg?'<span class="w neg">불만</span> ':'')+
@@ -429,6 +431,7 @@
   // ── ads
   var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
   var AL=document.getElementById('adL');
+  if(AL){
   var MINE=function(a){return /Aprilskin/i.test(a.pg||'')};
   var GD=function(a){return ((a.url||'').split('/g/')[1]||'').split(/[^0-9]/)[0]};
   var LAND={'979030998':'히어로 쿠션','1147259677':'립타투 틴트','1138527320':'쑥 시카 앰플',
@@ -483,6 +486,7 @@
   });
   bindTips(FB);
   drawAds('pad');
+  }
 })();
 </script>
 <script>
