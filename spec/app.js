@@ -10,12 +10,112 @@
   var MK = { both: '양국', kr: '한국', jp: '일본' };
   var sat = D.jpSatTot;
   var g = D.grid;
+  var KN = { abib: '아비브', mediheal: '메디힐', numbuzin: '넘버즈인', cellfusion: '셀퓨전씨', torriden: '토리든',
+    bringgreen: '브링그린', medicube: '메디큐브', dewytree: '듀이트리', biodance: '바이오던스', dermatory: '더마토리',
+    skin1004: 'SKIN1004', skinfood: 'SKINFOOD', aprilskin: 'APRILSKIN', cellfusionc: 'CellFusionC' };
+
+  // ── 원자료 지연 로드 + 렌더
+  var loaded = {};
+  function lazy(f, cb) {
+    if (loaded[f]) return cb();
+    var s = document.createElement('script');
+    s.src = f; s.onload = function () { loaded[f] = 1; cb(); };
+    s.onerror = function () { alert('원자료 로드 실패: ' + f); };
+    document.head.appendChild(s);
+  }
+  function evBtn(label, f, gname, k, extra) {
+    return '<a class="evlink" data-f="' + f + '" data-g="' + gname + '" data-k="' + k + '"' + (extra || '') + '>' + label + '</a>';
+  }
+  var CHUNK = 300;
+  function rowLine(r, badge) {
+    var b = '';
+    if (r[3] && badge === 're') b = '<span class="bpill">재구매</span>';
+    if (r[3] && badge === 'neg') b = '<span class="bpill npill">부정</span>';
+    return '<div class="evr"><span class="pill">' + (KN[r[0]] || r[0]) + '</span><span class="evd mono">' + esc(r[1] || '') + '</span>' +
+      b + '<span class="evt">' + esc(r[2]) + '</span></div>';
+  }
+  function paneRender(pane) {
+    var st = pane._st, q = st.q.trim();
+    var arr = q ? st.arr.filter(function (r) { return r[2].indexOf(q) >= 0; }) : st.arr;
+    var list = arr.slice(0, st.shown).map(function (r) { return rowLine(r, st.badge); }).join('');
+    pane.querySelector('.evlist').innerHTML = list || '<div class="evr" style="color:var(--faint)">매치 없음</div>';
+    pane.querySelector('.evcnt').textContent = (q ? arr.length.toLocaleString() + ' / ' : '') + st.arr.length.toLocaleString() + '건';
+    pane.querySelector('.evmore').style.display = arr.length > st.shown ? '' : 'none';
+  }
+  function paneOpen(pane, title, arr, headHtml, note, badge) {
+    pane.style.display = '';
+    pane._st = { arr: arr, shown: CHUNK, q: '', badge: badge || '' };
+    pane.innerHTML = '<div class="evhd"><b>' + title + '</b><span class="evcnt mono"></span>' +
+      '<input class="evq" placeholder="본문 검색">' +
+      (note ? '<span class="evnote">' + note + '</span>' : '') +
+      '<a class="evclose">닫기</a></div>' + (headHtml || '') +
+      '<div class="evlist"></div><a class="evmore">더 보기 (' + CHUNK + '건씩)</a>';
+    paneRender(pane);
+    pane.scrollIntoView({ block: 'nearest' });
+  }
+  document.addEventListener('input', function (e) {
+    if (!e.target.classList.contains('evq')) return;
+    var pane = e.target.closest('.evpane');
+    pane._st.q = e.target.value; pane._st.shown = CHUNK; paneRender(pane);
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.classList.contains('evclose')) { t.closest('.evpane').style.display = 'none'; return; }
+    if (t.classList.contains('evmore')) { var p = t.closest('.evpane'); p._st.shown += CHUNK; paneRender(p); return; }
+    if (t.classList.contains('evlink')) {
+      var f = t.dataset.f, gn = t.dataset.g, k = t.dataset.k, label = t.textContent;
+      var pane = t.closest('.panel').querySelector('.evpane');
+      lazy(f, function () {
+        if (t.dataset.sup) {  // 후보 1 공급 원자료: 상세 이미지 + 광고 전문
+          var S = window.EV1S;
+          pane.style.display = '';
+          pane.innerHTML = '<div class="evhd"><b>공급 원자료 · 샤워/드라이 순간을 말하는 브랜드 자료 전부</b><a class="evclose">닫기</a></div>' +
+            '<div class="evr"><span class="pill">아비브</span><span class="evt">상세페이지 472장 중 유일한 매치 (06.jpg, 「뜨거웠던 하루의 끝」 구획)</span></div>' +
+            '<img class="evimg" src="' + S.img + '" loading="lazy">' +
+            '<div class="evr" style="border-top:1px solid var(--line);margin-top:8px"><span class="evt"><b>메타 광고 매치 ' + S.adTotal + '건</b> (같은 문안 접어서 ' + S.ads.length + '종)</span></div>' +
+            S.ads.map(function (a) { return '<div class="evr"><span class="pill">' + esc(a.pg || a.s) + '</span>' + (a.n > 1 ? '<span class="bpill">같은 문안 ' + a.n + '건</span>' : '') + '<span class="evt">' + esc(a.b) + '</span></div>'; }).join('');
+          pane.scrollIntoView({ block: 'nearest' });
+          return;
+        }
+        var arr = window[gn][k];
+        var head = '';
+        if (t.dataset.sum) {  // 후보 2: 제품별 원시 재구매율 머리표
+          head = '<table class="auto sub"><tr><th>제품</th><th style="text-align:right">매치</th><th style="text-align:right">매치 중 재구매</th><th style="text-align:right">그 제품 전체 재구매</th></tr>' +
+            window.EV2.krSum.map(function (r) { return '<tr><td>' + KN[r[0]] + '</td><td class="n">' + r[1].toLocaleString() + '</td><td class="n"><b>' + r[2].toFixed(1) + '%</b></td><td class="n">' + r[3].toFixed(1) + '%</td></tr>'; }).join('') +
+            '</table><p style="margin:4px 0 10px">원시 비율이라 층화 보정값(+23.7pp)과는 다르다. 방향 확인용.</p>';
+        }
+        var note = /^(EV[1-5])$/.test(gn) && (k === 'jp' || k === 'co' || k.indexOf('co') === 0 || k.indexOf('jp') === 0) ? '일본어 원문 그대로' : '';
+        var badge = (k === 'kr' || k === 'krThin' || k === 'krThick') ? 're' : '';
+        paneOpen(pane, label + ' · 매치 리뷰 전문', arr, head, note, badge);
+      });
+      return;
+    }
+    var cell = t.closest && t.closest('.evcell');
+    if (cell) {
+      var key = cell.dataset.gc;
+      var pane = document.getElementById('evp-grid');
+      lazy('evgrid.js', function () {
+        var kr = window.EVG.kr[key] || [], jp = window.EVG.jp[key] || [];
+        paneOpen(pane, '칸 「' + key.replace('|', ' × ') + '」 · 한국 문장 ' + kr.length.toLocaleString() + ' + 일본 문장 ' + jp.length.toLocaleString(),
+          kr.concat(jp), '', '일본 문장은 원문 그대로 · 부정 문장은 지우지 않고 실었다', 'neg');
+      });
+      return;
+    }
+    if (t.classList.contains('evfl')) {
+      var m = t.dataset.m, lab = t.dataset.lab;
+      var pane = document.getElementById('evp-faults');
+      lazy('evfaults.js', function () {
+        paneOpen(pane, lab + ' · ' + (m === 'kr' ? '한국 1~3점' : '일본 イマイチ') + ' 매치 전문', window.EVF[m][lab] || [], '', m === 'jp' ? '일본어 원문 그대로' : '');
+      });
+      return;
+    }
+  });
 
   // ── 머리
   E.push('<div class="top"><div>' +
     '<div class="kick">Concept &amp; TPO &middot; KR 10 + JP 5</div>' +
     '<h1>토너패드 제품 컨셉 후보 5</h1>' +
-    '<div class="sub">한국 올리브영 상위 ' + D.corpus.krProducts + '종 · 일본 큐텐 판매랭킹 상위 ' + D.corpus.jpProducts + '종 (광고 제외) · 수요와 공급을 같은 자로 잰 결과</div>' +
+    '<div class="sub">한국 올리브영 상위 ' + D.corpus.krProducts + '종 · 일본 큐텐 판매랭킹 상위 ' + D.corpus.jpProducts + '종 (광고 제외) · 수요와 공급을 같은 자로 잰 결과 · 모든 수치는 눌러서 원자료를 연다</div>' +
     '</div><div class="topmeta">' +
     '<span>리뷰 <b class="mono">' + n(D.corpus.krReviews) + '</b> + <b class="mono">' + n(D.corpus.jpReviews) + '</b></span>' +
     '<span>@cosme <b class="mono">' + n(D.corpus.jpCosme) + '</b></span>' +
@@ -40,18 +140,31 @@
         '<span class="ci-n">' + esc(c.name) + '</span><span class="ci-k mono">' + esc(oneNum[c.rank - 1]) + '</span></li>';
     }).join('') + '</ul></div>');
 
+  // ── 카드별 원자료 버튼 배선 (rank -> demand/supply 행 번호 -> 버튼들)
+  var EVMAP = {
+    1: { demand: { 0: [evBtn('6,319건 전부 보기', 'ev1.js', 'EV1', 'kr')], 1: [evBtn('382건 전부 보기', 'ev1.js', 'EV1', 'co')], 2: [evBtn('1,880건 전부 보기', 'ev1.js', 'EV1', 'jp')] },
+         supply: { 0: [evBtn('그 1장 + 광고 11건 보기', 'ev1sup.js', 'EV1S', 'ads', ' data-sup="1"')], 1: [evBtn('그 1장 + 광고 11건 보기', 'ev1sup.js', 'EV1S', 'ads', ' data-sup="1"')] } },
+    2: { demand: { 0: [evBtn('매치 379건 전부 보기', 'ev2.js', 'EV2', 'kr', ' data-sum="1"')], 1: [evBtn('매치 379건 전부 보기', 'ev2.js', 'EV2', 'kr', ' data-sum="1"')], 2: [evBtn('큐텐 701건', 'ev2.js', 'EV2', 'jp'), evBtn('@cosme 46건', 'ev2.js', 'EV2', 'co')] } },
+    3: { demand: { 0: [evBtn('3,260건 전부 보기', 'ev3.js', 'EV3', 'jp')], 1: [evBtn('207건 전부 보기', 'ev3.js', 'EV3', 'co')], 2: [evBtn('14건 전부 보기', 'ev3.js', 'EV3', 'kr')] } },
+    4: { demand: { 0: [evBtn('5,081건 전부 보기', 'ev4.js', 'EV4', 'jp')], 2: [evBtn('@cosme 각질 언급 164건', 'ev4.js', 'EV4', 'co')] } },
+    5: { demand: { 0: [evBtn('@cosme 두께 380건', 'ev5.js', 'EV5', 'coThick'), evBtn('에센스 1,816건', 'ev5.js', 'EV5', 'coEss'), evBtn('한국 두께 3,775건', 'ev5.js', 'EV5', 'krThick')],
+                   1: [evBtn('한국 얇음 9,373건 전부', 'ev5.js', 'EV5', 'krThin')], 2: [evBtn('일본 얇음 イマイチ 173건', 'ev5.js', 'EV5', 'jpThin')] } },
+  };
+
   // ── 후보 카드 5장
-  var evTable = function (title, rows) {
-    return '<div class="evb"><div class="evh">' + title + '</div><table class="ev">' + rows.map(function (r) {
-      return '<tr><td class="ek">' + esc(r[0]) + '</td><td class="evv mono">' + r[1] + '</td><td class="es">' + esc(r[2] || '') + '</td></tr>';
+  var evTable = function (title, rows, btnMap) {
+    return '<div class="evb"><div class="evh">' + title + '</div><table class="ev">' + rows.map(function (r, i) {
+      var btns = btnMap && btnMap[i] ? '<span class="evbtns">' + btnMap[i].join('') + '</span>' : '';
+      return '<tr><td class="ek">' + esc(r[0]) + '</td><td class="evv mono">' + r[1] + '</td><td class="es">' + esc(r[2] || '') + btns + '</td></tr>';
     }).join('') + '</table></div>';
   };
   D.cand.forEach(function (c) {
+    var m = EVMAP[c.rank] || {};
     var body = '';
-    body += '<div class="evrow">' + evTable('수요 · 고객이 말한다', c.demand) + evTable('공급 · 브랜드가 판다', c.supply) + '</div>';
+    body += '<div class="evrow">' + evTable('수요 · 고객이 말한다', c.demand, m.demand) + evTable('공급 · 브랜드가 판다', c.supply, m.supply) + '</div>';
+    body += '<div class="evpane" style="display:none"></div>';
     body += '<ul class="why">' + c.why.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>';
 
-    // 카드 안 근거 테이블: 2번 = 정착 언어 상위, 4번 = 일본 구조필드 만족도
     if (c.rank === 2) {
       body += '<table class="auto sub"><tr><th>재구매자 쪽으로 기운 말 상위 5 (전체 149개 중 유의 양수는 10개)</th><th style="text-align:right;width:76px">리프트</th><th style="text-align:right;width:64px">n</th></tr>' +
         D.settle.slice(0, 5).map(function (r) {
@@ -83,7 +196,7 @@
   CN.forEach(function (c) {
     rows += '<tr><td class="lab">' + c + '</td>' + MO.map(function (o) {
       var a = g.kr[c + '|' + o], b = g.jp[c + '|' + o], hi = Math.max(a, b) >= mx * 0.45;
-      return '<td><div class="cell' + (hi ? ' hi' : '') + '"><div class="duo"><span class="a">' + a.toFixed(1) + '</span><span class="b">' + b.toFixed(1) + '</span></div>' +
+      return '<td><div class="cell evcell' + (hi ? ' hi' : '') + '" data-gc="' + c + '|' + o + '" title="누르면 이 칸의 문장 전체"><div class="duo"><span class="a">' + a.toFixed(1) + '</span><span class="b">' + b.toFixed(1) + '</span></div>' +
         '<div class="bars"><i class="a" style="width:' + Math.max(2, a / mx * 34) + 'px"></i><i class="b" style="width:' + Math.max(2, b / mx * 34) + 'px"></i></div></div></td>';
     }).join('') + '</tr>';
   });
@@ -91,7 +204,8 @@
     ib('한국 리뷰 ' + n(D.corpus.krReviews) + '건에서 뽑은 문장 ' + n(g.krSent) + '개, 일본 ' + n(g.jpSent) + '개. 고민어와 순간어를 함께 담은 문장만 센다. 제품마다 리뷰 수가 달라 큰 제품이 시장을 대표하지 않도록 제품별 분포를 낸 뒤 동일가중 평균했다.') +
     '</h3><div class="lg"><span><i class="a"></i>한국 ' + D.corpus.krProducts + '종</span><span><i class="b"></i>일본 ' + D.corpus.jpProducts + '종</span></div></div>' +
     '<table class="cellgrid">' + rows + '</table>' +
-    '<p>후보 1은 밤(목욕 직후) 칸, 후보 3은 일본 최대 칸인 수분 × 아침(12.7%), 후보 4는 일본 각질·모공 축(28.1%)에 선다.</p></div>');
+    '<div class="evpane" id="evp-grid" style="display:none"></div>' +
+    '<p>칸을 누르면 그 칸에 실린 문장 전체(한국 ' + n(g.krSent) + ' + 일본 ' + n(g.jpSent) + ')가 열린다. 후보 1은 밤(목욕 직후) 칸, 후보 3은 일본 최대 칸인 수분 × 아침(12.7%), 후보 4는 일본 각질·모공 축(28.1%)에 선다.</p></div>');
 
   // ── 진단: 축 요약
   var cmp = function (labels, a, b) {
@@ -108,7 +222,7 @@
     '</h3><div class="lg"><span><i class="a"></i>한국</span><span><i class="b"></i>일본</span></div></div>' +
     cmp(CN, g.krConcernStrict, g.jpConcernStrict) +
     '<p>진정과 수분이 거의 뒤집혀 있다. 한국 진정 <b>' + g.krConcernStrict[1].toFixed(1) + '%</b> 대 일본 <b>' + g.jpConcernStrict[1].toFixed(1) + '%</b>, ' +
-    '일본 수분 <b>' + g.jpConcernStrict[2].toFixed(1) + '%</b> 대 한국 <b>' + g.krConcernStrict[2].toFixed(1) + '%</b>. 후보 1·2가 한국에서 진정으로, 후보 3이 일본에서 수분으로 말해야 하는 이유.</p></div>' +
+    '일본 수분 <b>' + g.jpConcernStrict[2].toFixed(1) + '%</b> 대 한국 <b>' + g.krConcernStrict[2].toFixed(1) + '%</b>. 후보 1·2가 한국에서 진정으로, 후보 3이 일본에서 수분으로 말해야 하는 이유. 문장 단위 원자료는 위 격자의 칸에서 연다.</p></div>' +
     '<div class="panel"><div class="ph"><h3>진단 3 · 순간축</h3><div class="lg"><span><i class="a"></i>한국</span><span><i class="b"></i>일본</span></div></div>' +
     cmp(MO, g.krMoment, g.jpMoment) +
     '<p>화장 전이 양국 유일한 공통 순간이다 (한국 ' + g.krMoment[2].toFixed(1) + '% · 일본 ' + g.jpMoment[2].toFixed(1) + '%). 하지만 일본 화장먹힘 만족도가 ' + sat['化粧ノリ'].pct.toFixed(1) + '%로 포화라 정면 공략은 기각했다(아래 기각 목록). 일본은 아침(후보 3), 한국은 계절로 갈린다.</p></div></div>');
@@ -141,13 +255,16 @@
   // ── 진단: 불만
   E.push('<div class="panel"><div class="ph"><h3>진단 6 · 불만이 무엇에 대한 불만인가' +
     ib('한국은 1~3점 리뷰 8,486건, 일본은 큐텐 구조 필드에 イマイチ가 붙은 리뷰 7,011건. 일본 평점은 리뷰 포인트 보상 때문에 5점이 88%라 쓸 수 없다. 배수는 각 시장 전체 대비. 일본 리뷰가 절반 길이라 시장 간 절대율은 비교하지 않는다.') +
-    '</h3></div>' +
-    '<table class="auto"><tr><th>속성</th><th style="text-align:right;width:74px">한국 불만</th><th style="text-align:right;width:56px">배수</th>' +
-    '<th style="text-align:right;width:74px">일본 불만</th><th style="text-align:right;width:56px">배수</th></tr>' +
-    D.faults.slice().sort(function (a, b) { return b.kl + b.jl - a.kl - a.jl; }).slice(0, 9).map(function (f) {
-      return '<tr><td><b>' + esc(f.lab) + '</b></td><td class="n">' + pc(f.kb) + '</td><td class="n">' + f.kl.toFixed(1) + 'x</td>' +
-        '<td class="n">' + pc(f.jb) + '</td><td class="n"><b>' + f.jl.toFixed(1) + 'x</b></td></tr>';
+    '</h3><div class="hint">불만 비율을 누르면 매치 리뷰 전문이 열린다</div></div>' +
+    '<table class="auto"><tr><th>속성</th><th style="text-align:right;width:86px">한국 불만</th><th style="text-align:right;width:56px">배수</th>' +
+    '<th style="text-align:right;width:86px">일본 불만</th><th style="text-align:right;width:56px">배수</th></tr>' +
+    D.faults.map(function (f, i) { return { f: f, i: i }; }).sort(function (a, b) { return b.f.kl + b.f.jl - a.f.kl - a.f.jl; }).slice(0, 9).map(function (x) {
+      var f = x.f;
+      return '<tr><td><b>' + esc(f.lab) + '</b></td>' +
+        '<td class="n"><a class="evfl" data-m="kr" data-lab="' + esc(f.lab) + '">' + pc(f.kb) + '</a></td><td class="n">' + f.kl.toFixed(1) + 'x</td>' +
+        '<td class="n"><a class="evfl" data-m="jp" data-lab="' + esc(f.lab) + '">' + pc(f.jb) + '</a></td><td class="n"><b>' + f.jl.toFixed(1) + 'x</b></td></tr>';
     }).join('') + '</table>' +
+    '<div class="evpane" id="evp-faults" style="display:none"></div>' +
     '<p>한국 1위 「효과를 모르겠다」가 후보 2의 출발점이고, 일본에서 배수가 가장 높은 「각질이 안 없어진다」(8.6x)가 후보 4의 출발점이다.</p></div>');
 
   // ── 진단: 컨셉 이전
@@ -168,7 +285,7 @@
   // ── 진단: 획득 언어
   E.push('<div class="panel"><div class="ph"><h3>진단 8 · 첫 구매를 만들고 재구매는 안 만드는 말' +
     ib('제품 · 리뷰 길이 · 채널로 층화한 뒤 언급/미언급 재구매율 차이를 층 가중평균했다(Mantel-Haenszel 위험차). 재구매 어휘가 본문에 있는 리뷰는 통째로 제외해 플래그가 자기 자신을 읽는 누수를 막았다.') +
-    '</h3><div class="hint">제품 일치 = 그 정규식이 잡히는 제품들에서 부호가 같은 비율. 후보 5장이 이 목록을 피해 간 이유가 여기 있다</div></div>' +
+    '</h3><div class="hint">제품 일치 = 그 정규식이 잡히는 제품들에서 부호가 같은 비율. 컨셉별 대표 인용은 <a href="../kr/" style="text-decoration:underline">한국 10종 컨셉 리포트</a>에 전부 있다</div></div>' +
     '<table class="auto"><tr><th>컨셉</th><th style="text-align:right;width:70px">리프트</th><th style="text-align:right;width:56px">z</th>' +
     '<th style="text-align:right;width:60px">n</th><th style="text-align:right;width:90px">제품 일치</th></tr>' +
     D.acquire.slice(0, 10).map(function (r) {
@@ -209,13 +326,14 @@
     '일본 = 큐텐 「トナーパッド」 판매랭킹 상위 ' + D.corpus.jpProducts + '종, 광고 슬롯 제외 (' + D.corpus.jpNames.join(' · ') + ').<br>' +
     '<b>코퍼스</b> 리뷰 ' + n(D.corpus.krReviews) + ' + ' + n(D.corpus.jpReviews) + '건 · 일본 @cosme ' + n(D.corpus.jpCosme) + '건 · ' +
     '한국 상세페이지 이미지 ' + n(D.corpus.krDetail) + '장(OCR) · 한국 메타 광고 ' + n(D.corpus.krAds) + '건 · 한국 UGC ' + n(D.corpus.krUgc) + '건. 스냅샷 ' + D.collected + '. 인용문은 전부 원문 문자열 대조로 검증했다(생성 없음).<br>' +
+    '<b>원자료</b> 카드의 수치, 격자의 칸, 불만 표의 비율은 눌러서 매치 리뷰 전문을 연다(처음 누를 때 그 묶음만 내려받는다). 일본어 리뷰는 번역 없이 원문 그대로다. 작성자 식별정보는 수집하지 않았다.<br>' +
     '<b>보정</b> 재구매 리프트는 제품 · 리뷰 길이 · 채널로 층화. 리뷰 길이가 짧을수록 재구매율이 높고(30~40자 18.1% 대 100~150자 13.6%), ' +
     '출시 직후 리뷰가 2~4배 길다(브링그린 192자 → 44자). 두 교란을 잡지 않으면 기울기와 리프트가 모두 뒤집힌다.<br>' +
     '<b>단위</b> 시장 간 절대율은 비교하지 않는다. 한국 리뷰 중앙 49자, 일본 큐텐 24자, @cosme는 장문이다. ' +
     '비교는 같은 시장 안의 순위와 배수로만 한다. TPO 격자는 제품 동일가중.<br>' +
     '<b>한계</b> 일본 공급 표본이 ' + D.corpus.jpProducts + '종이다. 「공급 없음」은 「일본에 없다」가 아니라 <b>「큐텐 판매랭킹 상위 ' + D.corpus.jpProducts + '종의 타이틀 · 광고에 없다」</b>로만 쓸 수 있다. 확정하려면 일본 리스팅 타이틀 센서스가 필요하다. ' +
     '일본 상세페이지는 OCR하지 않았다. 가격 · 원가 · 실제 전환은 이 데이터에 없다. 후보 2의 리프트는 관찰 상관이지 실험이 아니다.<br>' +
-    '<b>수집</b> 전부 공개 페이지에서 속도 제한을 지켜 수집. 원자료는 공개하지 않고 짧은 인용만 싣는다. 작성자 식별정보는 저장하지 않았다.' +
+    '<b>수집</b> 전부 공개 페이지에서 속도 제한을 지켜 수집.' +
     '</div>');
 
   document.getElementById('app').innerHTML = E.join('');
