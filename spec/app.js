@@ -28,15 +28,18 @@
   }
   var CHUNK = 300;
   function rowLine(r, badge) {
-    var b = '';
-    if (r[3] && badge === 're') b = '<span class="bpill">재구매</span>';
-    if (r[3] && badge === 'neg') b = '<span class="bpill npill">부정</span>';
+    var b = '', last = r[r.length - 1];
+    var ko = (r.length >= 4 && typeof last === 'string' && last !== r[2]) ? last : null;
+    if (typeof r[3] === 'number' && r[3]) {
+      if (badge === 're') b = '<span class="bpill">재구매</span>';
+      if (badge === 'neg') b = '<span class="bpill npill">부정</span>';
+    }
     return '<div class="evr"><span class="pill">' + (KN[r[0]] || r[0]) + '</span><span class="evd mono">' + esc(r[1] || '') + '</span>' +
-      b + '<span class="evt">' + esc(r[2]) + '</span></div>';
+      b + '<div class="evtw"><div class="evt">' + esc(r[2]) + '</div>' + (ko ? '<div class="evko">' + esc(ko) + '</div>' : '') + '</div></div>';
   }
   function paneRender(pane) {
     var st = pane._st, q = st.q.trim();
-    var arr = q ? st.arr.filter(function (r) { return r[2].indexOf(q) >= 0; }) : st.arr;
+    var arr = q ? st.arr.filter(function (r) { var last = r[r.length - 1]; return r[2].indexOf(q) >= 0 || (typeof last === 'string' && last.indexOf(q) >= 0); }) : st.arr;
     var list = arr.slice(0, st.shown).map(function (r) { return rowLine(r, st.badge); }).join('');
     pane.querySelector('.evlist').innerHTML = list || '<div class="evr" style="color:var(--faint)">매치 없음</div>';
     pane.querySelector('.evcnt').textContent = (q ? arr.length.toLocaleString() + ' / ' : '') + st.arr.length.toLocaleString() + '건';
@@ -84,7 +87,7 @@
             window.EV2.krSum.map(function (r) { return '<tr><td>' + KN[r[0]] + '</td><td class="n">' + r[1].toLocaleString() + '</td><td class="n"><b>' + r[2].toFixed(1) + '%</b></td><td class="n">' + r[3].toFixed(1) + '%</td></tr>'; }).join('') +
             '</table><p style="margin:4px 0 10px">원시 비율이라 층화 보정값(+23.7pp)과는 다르다. 방향 확인용.</p>';
         }
-        var note = /^(EV[1-5])$/.test(gn) && (k === 'jp' || k === 'co' || k.indexOf('co') === 0 || k.indexOf('jp') === 0) ? '일본어 원문 그대로' : '';
+        var note = /^(EV[1-5])$/.test(gn) && (k === 'jp' || k === 'co' || k.indexOf('co') === 0 || k.indexOf('jp') === 0) ? '원문 + 한국어 병기' : '';
         var badge = (k === 'kr' || k === 'krThin' || k === 'krThick') ? 're' : '';
         paneOpen(pane, label + ' · 매치 리뷰 전문', arr, head, note, badge);
       });
@@ -97,7 +100,7 @@
       lazy('evgrid.js', function () {
         var kr = window.EVG.kr[key] || [], jp = window.EVG.jp[key] || [];
         paneOpen(pane, '칸 「' + key.replace('|', ' × ') + '」 · 한국 문장 ' + kr.length.toLocaleString() + ' + 일본 문장 ' + jp.length.toLocaleString(),
-          kr.concat(jp), '', '일본 문장은 원문 그대로 · 부정 문장은 지우지 않고 실었다', 'neg');
+          kr.concat(jp), '', '일본 문장은 한국어 병기 · 부정 문장은 지우지 않고 실었다', 'neg');
       });
       return;
     }
@@ -105,7 +108,7 @@
       var m = t.dataset.m, lab = t.dataset.lab;
       var pane = document.getElementById('evp-faults');
       lazy('evfaults.js', function () {
-        paneOpen(pane, lab + ' · ' + (m === 'kr' ? '한국 1~3점' : '일본 イマイチ') + ' 매치 전문', window.EVF[m][lab] || [], '', m === 'jp' ? '일본어 원문 그대로' : '');
+        paneOpen(pane, lab + ' · ' + (m === 'kr' ? '한국 1~3점' : '일본 イマイチ') + ' 매치 전문', window.EVF[m][lab] || [], '', m === 'jp' ? '원문 + 한국어 병기' : '');
       });
       return;
     }
@@ -326,7 +329,7 @@
     '일본 = 큐텐 「トナーパッド」 판매랭킹 상위 ' + D.corpus.jpProducts + '종, 광고 슬롯 제외 (' + D.corpus.jpNames.join(' · ') + ').<br>' +
     '<b>코퍼스</b> 리뷰 ' + n(D.corpus.krReviews) + ' + ' + n(D.corpus.jpReviews) + '건 · 일본 @cosme ' + n(D.corpus.jpCosme) + '건 · ' +
     '한국 상세페이지 이미지 ' + n(D.corpus.krDetail) + '장(OCR) · 한국 메타 광고 ' + n(D.corpus.krAds) + '건 · 한국 UGC ' + n(D.corpus.krUgc) + '건. 스냅샷 ' + D.collected + '. 인용문은 전부 원문 문자열 대조로 검증했다(생성 없음).<br>' +
-    '<b>원자료</b> 카드의 수치, 격자의 칸, 불만 표의 비율은 눌러서 매치 리뷰 전문을 연다(처음 누를 때 그 묶음만 내려받는다). 일본어 리뷰는 번역 없이 원문 그대로다. 작성자 식별정보는 수집하지 않았다.<br>' +
+    '<b>원자료</b> 카드의 수치, 격자의 칸, 불만 표의 비율은 눌러서 매치 리뷰 전문을 연다(처음 누를 때 그 묶음만 내려받는다). 일본어 리뷰는 전부 한국어 번역을 병기했다(기존 번역 재사용 + 기계 번역, 원문이 판정 기준). 작성자 식별정보는 수집하지 않았다.<br>' +
     '<b>보정</b> 재구매 리프트는 제품 · 리뷰 길이 · 채널로 층화. 리뷰 길이가 짧을수록 재구매율이 높고(30~40자 18.1% 대 100~150자 13.6%), ' +
     '출시 직후 리뷰가 2~4배 길다(브링그린 192자 → 44자). 두 교란을 잡지 않으면 기울기와 리프트가 모두 뒤집힌다.<br>' +
     '<b>단위</b> 시장 간 절대율은 비교하지 않는다. 한국 리뷰 중앙 49자, 일본 큐텐 24자, @cosme는 장문이다. ' +
