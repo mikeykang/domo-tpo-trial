@@ -28,11 +28,19 @@
   }
   var CHUNK = 300;
   function rowLine(r, badge) {
-    var b = '', last = r[r.length - 1];
-    var ko = (r.length >= 4 && typeof last === 'string' && last !== r[2]) ? last : null;
-    if (typeof r[3] === 'number' && r[3]) {
-      if (badge === 're') b = '<span class="bpill">재구매</span>';
-      if (badge === 'neg') b = '<span class="bpill npill">부정</span>';
+    var b = '', ko = null;
+    if (badge === 'eval') {
+      // ev4: r[3] = 3축 체크 결과, r[4] = 한국어
+      if (typeof r[3] === 'string') b = r[3].split('|').map(function (x) {
+        return '<span class="bpill' + (/아쉬움/.test(x) ? ' npill' : '') + '">' + x + '</span>'; }).join('');
+      ko = (typeof r[4] === 'string' && r[4]) ? r[4] : null;
+    } else {
+      var last = r[r.length - 1];
+      ko = (r.length >= 4 && typeof last === 'string' && last !== r[2] && last) ? last : null;
+      if (typeof r[3] === 'number' && r[3]) {
+        if (badge === 're') b = '<span class="bpill">재구매</span>';
+        if (badge === 'neg') b = '<span class="bpill npill">부정</span>';
+      }
     }
     return '<div class="evr"><span class="pill">' + (KN[r[0]] || r[0]) + '</span><span class="evd mono">' + esc(r[1] || '') + '</span>' +
       b + '<div class="evtw"><div class="evt">' + esc(r[2]) + '</div>' + (ko ? '<div class="evko">' + esc(ko) + '</div>' : '') + '</div></div>';
@@ -89,7 +97,13 @@
         }
         var note = /^(EV[1-5])$/.test(gn) && (k === 'jp' || k === 'co' || k.indexOf('co') === 0 || k.indexOf('jp') === 0) ? '원문 + 한국어 병기' : '';
         var badge = (k === 'kr' || k === 'krThin' || k === 'krThick') ? 're' : '';
-        paneOpen(pane, label + ' · 매치 리뷰 전문', arr, head, note, badge);
+        var title = label + ' · 매치 리뷰 전문';
+        if (gn === 'EV4' && k === 'jp') {
+          badge = 'eval';
+          title = '角質ケア(각질케어) イマイチ(아쉬움) 체크 리뷰 전문';
+          note = '본문 매치가 아니라 구조 필드 매치다. 이 목록 전원이 각질케어 항목에 아쉬움을 체크했고, 본문은 칭찬인 리뷰가 많다. 그 괴리 자체가 이 컨셉의 근거다. 행마다 그 고객의 3축 체크 결과를 붙였다';
+        }
+        paneOpen(pane, title, arr, head, note, badge);
       });
       return;
     }
@@ -149,7 +163,7 @@
          supply: { 0: [evBtn('그 1장 + 광고 11건 보기', 'ev1sup.js', 'EV1S', 'ads', ' data-sup="1"')], 1: [evBtn('그 1장 + 광고 11건 보기', 'ev1sup.js', 'EV1S', 'ads', ' data-sup="1"')] } },
     2: { demand: { 0: [evBtn('매치 379건 전부 보기', 'ev2.js', 'EV2', 'kr', ' data-sum="1"')], 1: [evBtn('매치 379건 전부 보기', 'ev2.js', 'EV2', 'kr', ' data-sum="1"')], 2: [evBtn('큐텐 701건', 'ev2.js', 'EV2', 'jp'), evBtn('@cosme 46건', 'ev2.js', 'EV2', 'co')] } },
     3: { demand: { 0: [evBtn('3,260건 전부 보기', 'ev3.js', 'EV3', 'jp')], 1: [evBtn('207건 전부 보기', 'ev3.js', 'EV3', 'co')], 2: [evBtn('14건 전부 보기', 'ev3.js', 'EV3', 'kr')] } },
-    4: { demand: { 0: [evBtn('5,081건 전부 보기', 'ev4.js', 'EV4', 'jp')], 2: [evBtn('@cosme 각질 언급 164건', 'ev4.js', 'EV4', 'co')] } },
+    4: { demand: { 0: [evBtn('체크 리뷰 5,081건 전부 보기', 'ev4.js', 'EV4', 'jp')], 2: [evBtn('@cosme 각질 언급 164건', 'ev4.js', 'EV4', 'co')] } },
     5: { demand: { 0: [evBtn('@cosme 두께 380건', 'ev5.js', 'EV5', 'coThick'), evBtn('에센스 1,816건', 'ev5.js', 'EV5', 'coEss'), evBtn('한국 두께 3,775건', 'ev5.js', 'EV5', 'krThick')],
                    1: [evBtn('한국 얇음 9,373건 전부', 'ev5.js', 'EV5', 'krThin')], 2: [evBtn('일본 얇음 イマイチ 173건', 'ev5.js', 'EV5', 'jpThin')] } },
   };
