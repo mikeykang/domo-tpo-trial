@@ -128,7 +128,7 @@
     '<h1>세럼 제품 컨셉 후보 5</h1>' +
     '<div class="sub">한국 올리브영 에센스/세럼/앰플 상위 ' + D.corpus.krProducts + '종 · 일본 큐텐 「美容液」 판매랭킹 상위 ' + D.corpus.jpProducts + '종 (광고 제외) · 수요와 공급을 같은 자로 잰 결과 · 모든 수치는 눌러서 원자료를 연다</div>' +
     '</div><div class="topmeta">' +
-    '<span>리뷰 <b class="mono">' + n(D.corpus.krReviews) + '</b> + <b class="mono">' + n(D.corpus.jpReviews) + '</b></span>' +
+    '<span>리뷰 <b class="mono">' + n(D.corpus.krReviews) + '</b>' + ib('한국은 층화 표본이다. 올리브영 전체 ' + n(D.corpus.krSiteTotal) + '건 중 ' + (D.corpus.krReviews / D.corpus.krSiteTotal * 100).toFixed(1) + '%. 일본은 전량.') + ' + <b class="mono">' + n(D.corpus.jpReviews) + '</b></span>' +
     '<span>@cosme <b class="mono">' + n(D.corpus.jpCosme) + '</b></span>' +
     '<span>상세 <b class="mono">' + n(D.corpus.krDetail) + '</b></span>' +
     '<span>광고 <b class="mono">' + n(D.corpus.krAds) + '</b></span>' +
@@ -261,7 +261,7 @@
       return '<tr><td><b>' + esc(r.lab) + '</b>' + (big ? '<span class="pill ' + big + '">' + (big === 'kr' ? '한국' : '일본') + '</span>' : '') + '</td>' +
         '<td class="n">' + pc(r.kr) + '</td><td class="n">' + pc(r.jp) + '</td><td class="n" style="color:var(--subtle)">' + pc(r.co) + '</td></tr>';
     }).join('') + '</table>' +
-    '<p>같은 라인인데 한국은 피지·트러블을 말하고 일본은 재구매를 말한다. 한국 상품명은 <b>「트러블 세범 리밸런싱 131 앰플」</b>(피지 연화), 일본 상품명은 <b>「131ポアセラム」</b>(131 포어세럼)로 일본 쪽이 고민을 한 단어로 줄였다. 제품이 같으므로 이 차이는 제품 차이가 아니라 시장의 말하기 차이다.</p></div>');
+    '<p>같은 라인인데 <b>한국은 피지</b>(' + pc(D.pair[0].kr) + ' 대 ' + pc(D.pair[0].jp) + ')를, <b>일본은 여드름과 재구매</b>(트러블 ' + pc(D.pair[2].jp) + ' · 재구매 ' + pc(D.pair[4].jp) + ')를 말한다. 한국 상품명은 <b>「트러블 세범 리밸런싱 131 앰플」</b>(피지 연화 = 원인), 일본 상품명은 <b>「131ポアセラム」</b>(131 포어세럼 = 부위)로 일본 쪽이 고민을 한 단어로 줄였다. 제품이 같으므로 이 차이는 제품 차이가 아니라 시장의 말하기 차이다. 덧바르기는 이 통제쌍에서도 한국에만 있다(' + pc(D.pair[5].kr) + ' 대 ' + pc(D.pair[5].jp) + ').</p></div>');
 
   // ── 진단 6: 불만
   E.push('<div class="panel"><div class="ph"><h3>진단 6 · 불만이 무엇에 대한 불만인가' +
