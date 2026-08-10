@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>TPO MAP · 토너패드 판매랭킹 1~5위 비교</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* cobble radar dashboard — light tokens from src/styles/tokens.css */
+  :root{
+    --canvas:#fafafa; --card:#ffffff; --sunken:#f7f7f7; --panel:#0f0f0f;
+    --line:#e9e9e9; --line-strong:#d9d9d9;
+    --ink:#171717; --sub:#454545; --muted:#5c5c5c; --subtle:#757575; --faint:#bfbfbf;
+    --c1:#4f46e5; --up:#16a34a; --warn:#f59e0b; --bad:#ef4444; --info:#3b82f6;
+    --r:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--canvas);color:var(--ink);
+       font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,-apple-system,sans-serif;
+       font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 20px 80px}
+  b,strong{font-weight:600}
+  a{color:inherit}
+
+  /* top bar */
+  .top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;
+       padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .top h1{font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+  .kick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+        font-family:"Geist Mono",ui-monospace,monospace}
+  .top .sub{font-size:12.5px;color:var(--subtle);margin-top:4px}
+  .topmeta{display:flex;gap:16px;font-size:11px;color:var(--subtle);flex-wrap:wrap;align-items:center}
+  .topmeta b{color:var(--ink);font-weight:500}
+
+  /* metric band */
+  .band{margin-top:22px}
+  .bhead{display:flex;align-items:baseline;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+  .bhead h2{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .bhead .bs{font-size:11.5px;color:var(--subtle)}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:10px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 13px;min-height:88px;
+        display:flex;flex-direction:column;justify-content:space-between}
+  .tile .k{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+           font-family:"Geist Mono",ui-monospace,monospace}
+  .tile .v{font-size:25px;font-weight:500;letter-spacing:-.02em;margin-top:7px;line-height:1.05;
+           font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .tile .v small{font-size:14px;font-weight:400;color:var(--subtle)}
+  .tile .s{font-size:10.5px;color:var(--subtle);margin-top:6px;line-height:1.4}
+  .tile.hero{background:var(--panel);border-color:var(--panel);color:#fff;position:relative;overflow:hidden}
+  .tile.hero .k,.tile.hero .s{color:#8f8f8f}
+  .tile.hero .v small{color:#8f8f8f}
+  .tile.hero svg{position:absolute;right:11px;bottom:11px;opacity:.9}
+  .cap{font-size:11px;color:var(--subtle);margin-top:7px;line-height:1.55}
+
+  /* product card */
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px;
+        display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start}
+  .prod img{width:76px;height:76px;object-fit:contain;border:1px solid var(--line);border-radius:8px;flex:none}
+  .prod img{grid-row:1/3}
+  .prod .pm{min-width:0}
+  .prod .pt{font-size:15px;font-weight:600;line-height:1.4}
+  .prod .pa{font-size:10.5px;color:var(--subtle);margin-top:5px;letter-spacing:.04em;
+            font-family:"Geist Mono",ui-monospace,monospace}
+  .pf{display:flex;gap:34px;flex-wrap:wrap;margin-top:12px;grid-column:2}
+  .pf>div{text-align:left}
+  .pf .k{font-size:10.5px;color:var(--subtle)}
+  .pf .v{font-size:16px;font-weight:500;margin-top:2px;font-family:"Geist Mono",ui-monospace,monospace;
+         font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* chip row */
+
+  /* panels */
+  .cols{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;align-items:start}
+  @media(min-width:940px){.cols.s21{grid-template-columns:1.85fr 1fr}}
+  .stack{display:grid;gap:14px;align-content:start;min-width:0}
+  .sum{margin-top:14px}
+  .sum .d1{font-size:16.5px;margin-bottom:8px}
+  .sum ul{margin:0 0 0 17px;columns:2;column-gap:34px}
+  @media(max-width:939px){.sum ul{columns:1}}
+  .sum li{font-size:13px;break-inside:avoid;margin:0 0 8px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px 17px}
+  .ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .ib{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;flex:0 0 13px;
+     border:1px solid var(--line2,#dcdcdc);border-radius:50%;font-size:8.5px;font-style:normal;font-weight:600;
+     color:var(--subtle);cursor:help;margin-left:6px;line-height:1;position:relative;top:-1px;transition:.12s}
+  .ib:hover{border-color:#a8a8a8;color:var(--ink);background:#f2f2f2}
+  .ph h3{font-size:13px;font-weight:600}
+  .ph .hint{font-size:10.5px;color:var(--subtle)}
+  .panel p{font-size:12.5px;color:var(--muted);margin:8px 0}
+  .panel ul{margin:8px 0 2px 16px} .panel li{font-size:12.5px;color:var(--muted);margin:6px 0}
+  .panel li::marker{color:var(--faint)}
+  .panel li b,.panel p b{color:var(--ink)}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);font-weight:500;text-align:left;
+     padding:0 10px 8px;font-family:"Geist Mono",ui-monospace,monospace}
+  td{padding:9px 10px;border-top:1px solid var(--line);color:var(--muted);vertical-align:top}
+  td b{color:var(--ink)}
+  td.n{text-align:right;font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .yes{color:var(--up);font-weight:500} .no{color:var(--bad);font-weight:500} .may{color:var(--warn);font-weight:500}
+  .barcell{width:38%;vertical-align:middle} .barcell i{display:block;height:5px;border-radius:3px;background:#d7d3f6}
+  .barcell i.hi{background:var(--c1)}
+
+  /* TPO grid */
+  .grid{border-collapse:separate;border-spacing:3px;margin:-3px}
+  .grid th{padding:0 0 6px;text-align:center;font-size:9.5px}
+  .grid th[scope=row]{text-align:left;padding:0 10px 0 2px;font-size:11px;color:var(--muted);
+     text-transform:none;letter-spacing:0;font-family:inherit;font-weight:500;white-space:nowrap;width:1%}
+  .grid td{border:0;padding:13px 6px;text-align:center;border-radius:7px;
+     font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink)}
+  .grid td sup{font-size:8.5px;color:var(--warn);margin-left:2px;font-weight:600}
+  .grid td.z{background:var(--sunken);color:var(--faint)}
+  .grid td.l1{background:#eceafb} .grid td.l2{background:#d7d3f6}
+  .grid td.l3{background:#a9a2ee;color:#0f0f0f} .grid td.l4{background:var(--c1);color:#fff}
+  .grid td.ck{cursor:pointer;transition:box-shadow .12s}
+  .grid td.ck:hover{box-shadow:0 0 0 2px var(--line-strong)}
+  .grid td.sel{box-shadow:0 0 0 2px var(--ink)!important}
+
+  /* sentence list */
+  
+  .def .d1{font-size:14.5px;color:var(--ink);font-weight:600;line-height:1.6;margin:0 0 4px}
+  .rev{display:flex;flex-direction:column;min-height:0}
+  .rev .ph{margin-bottom:10px;align-items:baseline}
+  #cpL{flex:1;max-height:900px;overflow:auto;padding-right:6px}
+  #cpL::-webkit-scrollbar{width:8px}
+  #cpL::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+  .sent{padding:10px 0;border-bottom:1px solid var(--line)}
+  .sent:last-child{border-bottom:0}
+  .sj{font-size:12.5px;line-height:1.7}
+  .sk{font-size:11.5px;color:var(--subtle);margin-top:3px;line-height:1.6}
+  .sm{margin-top:6px;display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+  .w{font-size:9.5px;padding:1px 6px;border-radius:5px;background:var(--sunken);color:var(--subtle)}
+  .w.neg{background:#fef3c7;color:#92400e;font-weight:600}
+  .ages{display:flex;gap:26px;justify-content:center;text-align:center;margin:2px 0 14px}
+  .ages .dl{font-size:11.5px;font-weight:500;color:var(--ink);margin-top:6px}
+  .ages .dc{font-size:10.5px;color:var(--subtle);margin-top:1px}
+  .agt td:first-child{color:var(--ink)} .sw{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:0}
+  .src{font-size:9.5px;color:var(--faint);font-family:"Geist Mono",ui-monospace,monospace}
+
+  /* seasonal bars */
+  .bars{display:flex;align-items:flex-end;gap:3px;height:62px;margin-top:4px}
+  .bar{flex:1;display:flex;align-items:flex-end}
+  .bar i{display:block;width:100%;background:#d7d3f6;border-radius:2px 2px 0 0}
+  .bar.hot i{background:var(--c1)}
+  .bar:hover i{opacity:.7}
+  .xl{display:flex;justify-content:space-between;font-size:9.5px;color:var(--faint);margin-top:5px;
+      font-family:"Geist Mono",ui-monospace,monospace}
+
+  /* tooltip */
+  [data-tip]{position:relative}
+  .tile[data-tip]::after,.q[data-tip]::after{content:"";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    border:1px solid var(--line-strong);border-radius:50%;opacity:.75}
+  .tile.hero[data-tip]::after{border-color:#4a4a4a}
+  .tile[data-tip]::before{content:"i";position:absolute;top:11px;right:12px;width:11px;height:11px;
+    font-size:8px;line-height:11px;text-align:center;color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace;z-index:1}
+  .tile.hero[data-tip]::before{color:#7a7a7a}
+  .tip{position:fixed;z-index:99;max-width:330px;background:var(--panel);color:#e8e8e8;font-size:11.5px;line-height:1.6;
+       padding:9px 12px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.22);pointer-events:none;opacity:0;
+       transition:opacity .1s;white-space:normal}
+  .tip.on{opacity:1}
+  .tip b{color:#fff}
+  .tip i{color:#a8a8a8;display:block;margin-top:4px;font-style:normal}
+  .u{border-bottom:1px dotted var(--line-strong);cursor:help}
+
+  /* ads */
+  .land{color:var(--subtle)}
+  .clm{display:inline-block;margin:5px 0 1px;font-size:10.5px;font-weight:500;color:var(--c1);
+       background:#eeecfd;border-radius:4px;padding:2px 7px}
+  .clm.g{color:var(--subtle);background:var(--sunken)}
+  .afilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+  .ab{font:inherit;font-size:11px;padding:4px 10px;border:1px solid var(--line);background:var(--card);
+      border-radius:6px;color:var(--subtle);cursor:pointer}
+  .ab b{color:var(--ink);font-family:"Geist Mono",ui-monospace,monospace;margin-left:3px}
+  .ab.on{background:var(--panel);border-color:var(--panel);color:#fff} .ab.on b{color:#fff}
+  #adL{max-height:600px;overflow:auto;padding-right:6px}
+  #adL::-webkit-scrollbar{width:8px} #adL::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+  .ad{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:start;
+      padding:11px 0;border-top:1px solid var(--line)}
+  .ad:first-child{border-top:0}
+  .adthumb{width:52px;height:52px;border-radius:7px;background:var(--sunken);border:1px solid var(--line);
+           display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--faint);overflow:hidden}
+  .adthumb img{width:100%;height:100%;object-fit:cover}
+  .adm{min-width:0}
+  .adpg{font-size:11.5px;font-weight:600}
+  .adpg .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--up);margin-right:5px;vertical-align:middle}
+  .adpg .dot.off{background:var(--faint)}
+  .adtx{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.55;white-space:pre-wrap;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+  .ad.open .adtx{-webkit-line-clamp:unset;overflow:visible}
+  .adko{font-size:11px;color:var(--subtle);margin-top:3px;line-height:1.6;
+        display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ad.open .adko{-webkit-line-clamp:unset;overflow:visible}
+  .admeta{font-size:9.5px;color:var(--faint);margin-top:5px;font-family:"Geist Mono",ui-monospace,monospace}
+  .adrun{text-align:right;white-space:nowrap}
+  .adrun b{font-size:15px;font-weight:500;font-family:"Geist Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .adrun span{display:block;font-size:9.5px;color:var(--subtle)}
+  .foot{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:10.5px;color:var(--subtle);line-height:1.7}
+  @media(max-width:640px){.wrap{padding:18px 13px 60px}.tile .v{font-size:21px}}
+
+  .navp{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .navp a{font-size:11.5px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;
+          text-decoration:none;color:var(--muted);background:var(--card)}
+  .cmp{border-collapse:separate;border-spacing:3px}
+  .cmp th[scope=row]{text-align:left;font-family:inherit;text-transform:none;letter-spacing:0;
+     font-size:12px;color:var(--ink);padding:10px 12px 10px 2px;white-space:nowrap;font-weight:400}
+  .cmp td{text-align:center;border:0;border-radius:7px;padding:14px 6px;
+     font-family:"Geist Mono",ui-monospace,monospace;font-size:13.5px;color:var(--ink)}
+  .cmp td.z{background:var(--sunken);color:var(--faint)}
+  .cmp td.l1{background:#eceafb} .cmp td.l2{background:#d7d3f6}
+  .cmp td.l3{background:#a9a2ee;color:#0f0f0f} .cmp td.l4{background:var(--c1);color:#fff}
+  .occ{border-collapse:separate;border-spacing:4px;width:100%;table-layout:fixed}
+  .occ th{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);font-weight:500;
+          font-family:"Geist Mono",ui-monospace,monospace;padding:0 0 6px;text-align:center}
+  .occ th[scope=row]{text-align:left;font-family:inherit;text-transform:none;letter-spacing:0;font-size:11px;
+          color:var(--muted);font-weight:500;width:74px;padding-right:8px}
+  .occ td{border:1px solid var(--line);border-radius:8px;padding:7px;vertical-align:top;height:74px;background:var(--card)}
+  .occ td.empty{border-style:dashed;background:var(--sunken)}
+  .occ td.empty .cellnote{font-size:10px;color:var(--faint);text-align:center;margin-top:22px}
+  .pchip{display:flex;align-items:center;gap:5px;font-size:10.5px;line-height:1.3;padding:2.5px 6px;border-radius:5px;
+         border:1px solid var(--line);margin-bottom:3px;text-decoration:none;background:var(--card);
+         white-space:nowrap;overflow:hidden}
+  .pchip:hover{border-color:#a8a8a8}
+  .pchip .rk{font-family:"Geist Mono",ui-monospace,monospace;font-size:9.5px;color:var(--subtle);flex:none}
+  .pchip .nm{font-weight:500;overflow:hidden;text-overflow:ellipsis}
+  .pchip .pc{margin-left:auto;font-family:"Geist Mono",ui-monospace,monospace;font-size:10px;color:var(--muted);flex:none}
+  .pchip.top{background:var(--c1);border-color:var(--c1)}
+  .pchip.top .rk,.pchip.top .pc{color:#c9c5f5}
+  .pchip.top .nm{color:#fff}
+</style></head>
+<body><div class="wrap">
+  <div class="top">
+    <div><div class="kick">DOMO · TPO MAP · 토너패드 판매랭킹 1~5위</div>
+      <h1>같은 카테고리, 다섯 개의 다른 자리</h1>
+      <div class="sub">큐텐 재팬 「トナーパッド(토너패드)」 랭킹순에서 광고를 걷어낸 1~5위<i class="ib" data-tip="상단 16칸(プラス展示, 플러스 전시)은 화면에 광고 표시가 없는 유료 슬롯이라 통째로 버리고, 자연 순위에서 PR 배지가 붙은 행을 추가로 버린 뒤의 순서. 측정 2026-08-05, 메가포 세일 기간 중이라 순위는 흔들릴 수 있다.">i</i></div></div>
+    <div class="topmeta"><span>수집 <b class="mono">2026.08.05</b></span><span>작성 <b>Mikey</b></span>
+      <a href="hub.html" style="font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:6px;text-decoration:none">목록 →</a>
+      <a href="report.html" style="font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:6px;text-decoration:none">리포트 →</a></div>
+  </div>
+  <div class="navp"><a href="dash.html?p=skin1004">1. SKIN1004</a><a href="dash.html?p=skinfood">2. SKINFOOD</a><a href="dash.html?p=aprilskin">3. APRILSKIN</a><a href="dash.html?p=cellfusionc">4. CellFusionC</a><a href="dash.html?p=dewytree">5. DEWYTREE</a></div>
+  <div class="panel sum"><p class="d1">판매랭킹 1~5위가 서로 다른 순간을 차지하고 있습니다. 겹치는 자리가 없습니다.</p>
+    <ul>
+      <li><b>다섯 제품이 각자 다른 열에서 1등입니다.</b> SKINFOOD는 아침 44%, APRILSKIN은 화장 전 51%,
+          SKIN1004와 CellFusionC는 계절 33·34%, DEWYTREE는 밤 22%로 유일하게 밤이 높습니다.
+          같은 카테고리 상위 다섯이 <b>같은 축에서 싸우고 있지 않습니다.</b></li>
+      <li>제품 1에서 「계절·컨디션이 빈칸」이라고 봤던 것을 고쳐야 합니다.
+          <b>계절은 SKIN1004 33% · CellFusionC 34% · DEWYTREE 32%로 이미 셋이 차지</b>하고 있고,
+          <b>APRILSKIN 17%와 SKINFOOD 19%만 비어 있습니다.</b> 카테고리의 빈칸이 아니라 두 브랜드의 빈칸이었습니다.</li>
+      <li>반대로 <b>화장 전 51%는 APRILSKIN 혼자</b>입니다. 2위가 36%, 1위 SKIN1004는 27%입니다.
+          이쪽이 APRILSKIN이 실제로 지키고 있는 자리입니다.</li>
+      <li>광고비도 후기 수도 순위를 설명하지 못합니다. <b>2위 SKINFOOD와 5위 DEWYTREE는 자사 메타 광고가 0개</b>,
+          1위 SKIN1004는 390개입니다. 그리고 <b>후기 642건짜리가 71,701건짜리보다 위</b>에 있습니다.
+          큐텐이 밝힌 랭킹 정의가 「판매수·매출·서비스 포인트」이지 후기 수가 아니기 때문입니다.</li>
+      <li>결정적으로 <b>1위 SKIN1004 리스팅은 51일밖에 안 됐고 후기가 1,754건</b>입니다.
+          83,031건짜리 SKINFOOD 바로 위입니다. <b>랭킹은 누적이 아니라 최근 판매를 봅니다.</b>
+          이 카테고리에 들어갈 때 「후기부터 쌓자」가 아니라 「그 달에 팔자」가 맞습니다.</li>
+    </ul></div>
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>TPO 자리 지도 · 다섯 제품</h3><i class="ib" data-tip="칸마다 그 칸에 자기 문장의 10% 이상을 둔 제품을 비중 순으로 나열한다. 비중 = 그 제품 문장 대비 %. 채워진 칩은 그 제품의 1위 칸. 칩을 누르면 제품 대시보드. 다섯 제품 모두 같은 생성기, 같은 축, 같은 필터를 통과했다.">i</i></div>
+    <table class="occ"><tr><th></th><th>아침 세안 후</th><th>밤 세안 후</th><th>화장 전</th><th>급할 때·밖에서</th><th>계절·컨디션</th></tr><tr><th scope="row">각질·모공</th><td><a class="pchip" href="dash.html?p=skin1004"><span class="rk">1</span><span class="nm">SKIN1004</span><span class="pc">12%</span></a></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip" href="dash.html?p=cellfusionc"><span class="rk">4</span><span class="nm">CellFusionC</span><span class="pc">15%</span></a><a class="pchip" href="dash.html?p=skin1004"><span class="rk">1</span><span class="nm">SKIN1004</span><span class="pc">10%</span></a></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip top" href="dash.html?p=skin1004"><span class="rk">1</span><span class="nm">SKIN1004</span><span class="pc">19%</span></a></td></tr><tr><th scope="row">붉은기·진정</th><td class="empty"><div class="cellnote">빈 자리</div></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip" href="dash.html?p=cellfusionc"><span class="rk">4</span><span class="nm">CellFusionC</span><span class="pc">14%</span></a></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip top" href="dash.html?p=cellfusionc"><span class="rk">4</span><span class="nm">CellFusionC</span><span class="pc">17%</span></a><a class="pchip top" href="dash.html?p=dewytree"><span class="rk">5</span><span class="nm">DEWYTREE</span><span class="pc">16%</span></a></td></tr><tr><th scope="row">수분·건조</th><td><a class="pchip top" href="dash.html?p=skinfood"><span class="rk">2</span><span class="nm">SKINFOOD</span><span class="pc">28%</span></a><a class="pchip" href="dash.html?p=aprilskin"><span class="rk">3</span><span class="nm">APRILSKIN</span><span class="pc">16%</span></a><a class="pchip" href="dash.html?p=skin1004"><span class="rk">1</span><span class="nm">SKIN1004</span><span class="pc">12%</span></a></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip top" href="dash.html?p=aprilskin"><span class="rk">3</span><span class="nm">APRILSKIN</span><span class="pc">39%</span></a><a class="pchip" href="dash.html?p=skinfood"><span class="rk">2</span><span class="nm">SKINFOOD</span><span class="pc">16%</span></a><a class="pchip" href="dash.html?p=skin1004"><span class="rk">1</span><span class="nm">SKIN1004</span><span class="pc">11%</span></a></td><td class="empty"><div class="cellnote">빈 자리</div></td><td><a class="pchip" href="dash.html?p=skinfood"><span class="rk">2</span><span class="nm">SKINFOOD</span><span class="pc">11%</span></a><a class="pchip" href="dash.html?p=aprilskin"><span class="rk">3</span><span class="nm">APRILSKIN</span><span class="pc">10%</span></a></td></tr><tr><th scope="row">톤·결</th><td class="empty"><div class="cellnote">빈 자리</div></td><td class="empty"><div class="cellnote">빈 자리</div></td><td class="empty"><div class="cellnote">빈 자리</div></td><td class="empty"><div class="cellnote">빈 자리</div></td><td class="empty"><div class="cellnote">빈 자리</div></td></tr></table>
+    
+  </div>
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>제품별 실측</h3><i class="ib" data-tip="후기는 큐텐 리스팅에 쌓인 전량. 문장은 TPO 지도에 실린 수. 5점 비율과 「화장이 잘 먹는다」 만족도는 큐텐이 후기마다 집계하는 값이다. 광고는 메타 광고 라이브러리 일본, 게재 중인 것만.">i</i></div>
+    <table><tr><th>순위</th><th>브랜드</th><th style="text-align:right">후기</th><th style="text-align:right">문장</th>
+      <th>차지한 자리</th><th>최다 칸</th><th style="text-align:right">5점 %</th><th style="text-align:right">화장 잘 먹음 %</th><th style="text-align:right">광고</th></tr><tr><td class="mono">1</td><td><a href="dash.html?p=skin1004" style="text-decoration:none"><b>SKIN1004</b></a> <span class="src">세트 리스팅</span></td><td class="n">1,754</td><td class="n">566</td><td><b>계절·컨디션</b> <span class="src">33%</span></td><td>각질·모공 × 계절·컨디션 <span class="src">107</span></td><td class="n">83.0</td><td class="n">99.0</td><td class="n">390</td></tr><tr><td class="mono">2</td><td><a href="dash.html?p=skinfood" style="text-decoration:none"><b>SKINFOOD</b></a> <span class="src">13종 선택 번들</span></td><td class="n">83,031</td><td class="n">4,637</td><td><b>아침 세안 후</b> <span class="src">44%</span></td><td>수분·건조 × 아침 세안 후 <span class="src">1300</span></td><td class="n">84.3</td><td class="n">98.6</td><td class="n">1</td></tr><tr><td class="mono">3</td><td><a href="dash.html?p=aprilskin" style="text-decoration:none"><b>APRILSKIN</b></a> <span class="src">220ml · 단품 리스팅</span></td><td class="n">19,809</td><td class="n">1,404</td><td><b>화장 전</b> <span class="src">51%</span></td><td>수분·건조 × 화장 전 <span class="src">546</span></td><td class="n">88.1</td><td class="n">98.9</td><td class="n">67</td></tr><tr><td class="mono">4</td><td><a href="dash.html?p=cellfusionc" style="text-decoration:none"><b>CellFusionC</b></a> <span class="src">70매 · 단품 리스팅</span></td><td class="n">12,499</td><td class="n">1,433</td><td><b>계절·컨디션</b> <span class="src">34%</span></td><td>붉은기·진정 × 계절·컨디션 <span class="src">239</span></td><td class="n">82.2</td><td class="n">98.8</td><td class="n">16</td></tr><tr><td class="mono">5</td><td><a href="dash.html?p=dewytree" style="text-decoration:none"><b>DEWYTREE</b></a> <span class="src">60매 · 단품 리스팅</span></td><td class="n">642</td><td class="n">111</td><td><b>밤 세안 후</b> <span class="src">22%</span></td><td>붉은기·진정 × 계절·컨디션 <span class="src">18</span></td><td class="n">78.0</td><td class="n">98.2</td><td class="n">0</td></tr></table>
+    <p><b>후기가 많다고 읽을 수 있는 양이 많은 것은 아닙니다.</b> CellFusionC는 후기 12,499건에서 1,433문장, APRILSKIN은 19,809건에서 1,404문장으로 거의 같습니다.
+       큐텐 후기는 포인트 때문에 짧게 쓰는 사람이 많아서 코퍼스 크기와 읽을 수 있는 양이 비례하지 않습니다.</p>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>나이는 다르지 않습니다</h3><i class="ib" data-tip="앳코스메는 후기마다 작성자의 실제 나이가 적혀 있다. 큐텐·인스타그램·X에는 나이 정보가 없고, 일본 광고 라이브러리도 상업 광고의 인구통계는 비공개다. 스킨푸드 리스팅에는 붙은 앳코스메 표본이 없다.">i</i></div>
+    <table>
+      <tr><th>제품</th><th style="text-align:right">앳코스메 표본</th><th style="text-align:right">중앙 나이</th><th style="text-align:right">25-34 비중</th></tr>
+      <tr><td>1. SKIN1004 <span class="src">이전 세대 패드</span></td><td class="n">2,496</td><td class="n">33세</td><td class="n">50%</td></tr><tr><td>2. SKINFOOD</td><td class="n">841</td><td class="n">32세</td><td class="n">44%</td></tr><tr><td>3. APRILSKIN</td><td class="n">102</td><td class="n">35세</td><td class="n">43%</td></tr><tr><td>4. CellFusionC</td><td class="n">137</td><td class="n">33세</td><td class="n">51%</td></tr><tr><td>5. DEWYTREE</td><td class="n">28</td><td class="n">33세</td><td class="n">71%</td></tr>
+    </table>
+    <p><b>네 제품 모두 중앙 33~35세, 25-34가 절반 안팎으로 같습니다.</b> (SKIN1004 표본은 이 리스팅의 패드가 아니라 같은 브랜드 이전 세대 패드의 것이고, 그중 80.4%가 무상 제공입니다.)
+       사는 사람이 다른 게 아니라 <b>쓰는 순간이 다릅니다.</b> 이 카테고리를 나이로 쪼개는 것은 의미가 없고,
+       위의 다섯 열로 쪼개야 갈립니다.</p>
+  </div>
+
+  <!-- 이 지도가 얼마나 잡아내는가: owner call 2026-08-05, hidden
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>이 지도가 얼마나 잡아내는가</h3><i class="ib" data-tip="가장 작은 제품(DEWYTREE, 642건)의 후기를 한 건씩 전부 손으로 읽어 같은 20칸에 배치한 뒤, 같은 코퍼스에 생성기를 돌린 결과와 칸 단위로 대조했다. 손판독은 문맥을 읽고 생성기는 사전에 걸린 표현만 잡는다.">i</i></div>
+    <table>
+      <tr><th>방법</th><th style="text-align:right">배치된 문장</th><th style="text-align:right">손판독 대비</th><th>최다 칸</th></tr>
+      <tr><td><b>손으로 전수 판독</b> <span class="src">642건 한 건씩</span></td><td class="n">140</td><td class="n">100%</td><td>붉은기·진정 × 계절·컨디션 <span class="src">28</span></td></tr>
+      <tr><td><b>생성기</b> <span class="src">다섯 제품에 실제로 쓴 것</span></td><td class="n">111</td><td class="n">79%</td><td>붉은기·진정 × 계절·컨디션 <span class="src">18</span></td></tr>
+    </table>
+    <p><b>모양은 맞고 절대값은 바닥값입니다.</b> 최다 칸이 양쪽 다 같고 칸 순서도 유지되지만, 생성기는 사람이 읽어낸 것의 <b>79%</b>만 잡습니다.
+       빠지는 곳이 고르지 않고 <b>「화장 전」에 몰립니다</b>(15→8, 17→10). 「メイク前(화장 전)」처럼 대놓고 쓴 표현만 잡고 돌려 말한 문장은 놓치기 때문입니다.
+       그래서 위 표의 <b>화장 전 비율은 실제보다 낮게 잡혔을 가능성이 큽니다.</b> 다섯 제품에 같은 사전을 썼으니 <b>제품끼리 비교하는 데는 문제가 없고</b>, 절대 수치를 인용할 때만 바닥값으로 읽으십시오.</p>
+  </div>
+  -->
+
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>협찬 후기 비중</h3><i class="ib" data-tip="앳코스메는 무상 제공 후기에 사이트가 직접 モニター・プレゼント(모니터·프레젠트, 무상 제공) 라벨을 붙인다. 배지와 글 제목 두 신호가 일치하는 것만 협찬으로 셌고, 텍스트 해석은 쓰지 않았다. 큐텐 후기에는 이런 라벨이 없어서 앳코스메에서만 잴 수 있다.">i</i></div>
+    <table>
+      <tr><th>제품</th><th style="text-align:right">앳코스메 후기</th><th style="text-align:right">협찬</th>
+          <th style="text-align:right">협찬 비중</th><th class="barcell"></th>
+          <th style="text-align:right">메타 광고</th><th style="text-align:right">중앙 나이</th></tr>
+      <tr><td>1. SKIN1004</td><td class="n">2,496</td><td class="n">1,997</td><td class="n"><b>80.0%</b></td><td class="barcell"><i class="hi" style="width:80%"></i></td><td class="n">390</td><td class="n">33세</td></tr><tr><td>2. SKINFOOD</td><td class="n">841</td><td class="n">115</td><td class="n"><b>13.7%</b></td><td class="barcell"><i style="width:14%"></i></td><td class="n">1</td><td class="n">32세</td></tr><tr><td>3. APRILSKIN</td><td class="n">102</td><td class="n">94</td><td class="n"><b>92.2%</b></td><td class="barcell"><i class="hi" style="width:92%"></i></td><td class="n">67</td><td class="n">35세</td></tr><tr><td>4. CellFusionC</td><td class="n">137</td><td class="n">46</td><td class="n"><b>33.6%</b></td><td class="barcell"><i style="width:34%"></i></td><td class="n">16</td><td class="n">33세</td></tr><tr><td>5. DEWYTREE</td><td class="n">28</td><td class="n">28</td><td class="n"><b>100.0%</b></td><td class="barcell"><i class="hi" style="width:100%"></i></td><td class="n">0</td><td class="n">33세</td></tr>
+    </table>
+    <p><b>상위 두 개가 정반대 방식으로 올라왔습니다.</b>
+       1위 SKIN1004는 <b>협찬 80% · 광고 390개 · 리스팅 51일</b>로 돈을 써서 빠르게 올라왔고,
+       2위 SKINFOOD는 <b>협찬 13.7% · 광고 0개 · 후기 83,031건</b>으로 시간을 들여 쌓았습니다.
+       같은 카테고리 1·2위인데 <b>재현할 방법이 서로 다릅니다.</b></p>
+    <p>DEWYTREE는 앳코스메 후기 28건이 <b>전부 협찬</b>이라, 앳코스메에 쌓인 평판은 아직 전부 브랜드가 만든 것입니다.
+       나이는 다섯 다 중앙 32~35세로 같습니다.</p>
+  </div>
+
+  <div class="panel" style="margin-top:14px">
+    <div class="ph"><h3>토너패드는 진입 제품이 아닙니다</h3><i class="ib" data-tip="각 제품 후기 중 같은 브랜드의 다른 제품이 나오는 글을 전부 읽고, 「어느 쪽을 먼저 샀다고 적었는가」로만 갈랐다. 순서를 적지 않은 글은 어느 쪽에도 넣지 않았다. 나머지 세 제품은 후기에 형제 제품이 거의 나오지 않아 방향을 잴 수 없었다.">i</i></div>
+    <table>
+      <tr><th>제품</th><th>먼저 산 것</th><th style="text-align:right">먼저</th><th style="text-align:right">반대</th><th style="text-align:right">비율</th><th style="text-align:right">그 제품의 후기</th></tr>
+      <tr><td>1. SKIN1004</td><td>센테라 앰플 · 퀵 카밍 패드 · 선세럼</td><td class="n">94</td><td class="n">14</td><td class="n"><b>87.0%</b></td><td class="n">70,290</td></tr>
+      <tr><td>3. APRILSKIN</td><td>히어로 쿠션</td><td class="n">64</td><td class="n">3</td><td class="n"><b>95.5%</b></td><td class="n">23,498</td></tr>
+    </table>
+    <p><b>방향을 잴 수 있었던 두 제품 모두, 패드가 나중입니다.</b>
+       SKIN1004는 앰플로 모은 고객에게, APRILSKIN은 쿠션으로 모은 고객에게 패드를 두 번째로 팝니다.
+       두 브랜드 다 그 히어로 제품의 후기가 이 패드 리스팅의 <b>13배 · 40배</b>입니다.</p>
+    <p>기획으로 옮기면, 일본에서 토너패드로 먼저 들어가는 것은 이 다섯 개 중 아무도 하고 있지 않은 방식입니다.
+       <b>패드는 이미 확보한 고객에게 두 번째로 파는 물건</b>으로 쓰이고 있습니다.</p>
+  </div>
+  <div class="ft">TPO MAP · 토너패드 판매랭킹 1~5위 · 2026.08.05 · Mikey<br>
+    출처: 큐텐 재팬, 앳코스메, 메타 광고 라이브러리. 전부 공개된 페이지에서 각 사이트 정책과 속도 제한을 지켜 모았습니다.</div>
+</div><script>
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var T=document.getElementById('cpT'),M=document.getElementById('cpM'),L=document.getElementById('cpL');
+  var SRC={qoo10:'큐텐',cosme:'앳코스메',lips:'LIPS'};
+  document.querySelectorAll('#tpoGrid td.ck').forEach(function(td){
+    td.addEventListener('click',function(){
+      var k=td.getAttribute('data-k'), list=(window.CELLS||{})[k]||[], G=(window.GRID||{})[k]||{};
+      document.querySelectorAll('#tpoGrid td.ck').forEach(function(x){x.classList.remove('sel')});
+      td.classList.add('sel');
+      T.textContent=k.replace('|',' × ');
+      M.textContent=list.length?(list.length+'문장'+(G.neg?(' · 불만 '+G.neg):'')+' · 한국어 '+(G.ko||0)):'';
+      L.innerHTML=list.map(function(o){
+        var w=[].concat(o.c||[],o.m||[]).map(function(x){return '<span class="w">'+esc(x)+'</span>'}).join('');
+        return '<div class="sent">'+(o.neg?'<span class="w neg">불만</span> ':'')+
+          '<span class="sj">'+esc(o.t)+'</span><div class="sk">'+esc(o.ko||'')+'</div>'+
+          '<div class="sm">'+w+'<span class="src">'+esc(o.d||'')+' · '+(SRC[o.s]||o.s)+'</span></div></div>';
+      }).join('');
+    });
+  });
+  var f=document.querySelector('#tpoGrid td[data-k="수분·건조|화장 전"]'); if(f) f.click();
+
+  // ── tooltip
+  var tipEl=document.createElement('div'); tipEl.className='tip'; document.body.appendChild(tipEl);
+  function showTip(el){
+    tipEl.innerHTML=el.getAttribute('data-tip'); tipEl.classList.add('on');
+    var r=el.getBoundingClientRect(), t=tipEl.getBoundingClientRect();
+    var x=Math.min(Math.max(8,r.left), window.innerWidth-t.width-8);
+    var y=r.bottom+8; if(y+t.height>window.innerHeight-8) y=Math.max(8,r.top-t.height-8);
+    tipEl.style.left=x+'px'; tipEl.style.top=y+'px';
+  }
+  function hideTip(){ tipEl.classList.remove('on'); }
+  function bindTips(root){
+    (root||document).querySelectorAll('[data-tip]').forEach(function(el){
+      if(el.__tip) return; el.__tip=1;
+      el.addEventListener('mouseenter',function(){showTip(el)});
+      el.addEventListener('mouseleave',hideTip);
+      el.addEventListener('focus',function(){showTip(el)});
+      el.addEventListener('blur',hideTip);
+      el.addEventListener('click',function(){ if(matchMedia('(hover:none)').matches){ showTip(el); setTimeout(hideTip,3500);} });
+    });
+  }
+  bindTips(); window.addEventListener('scroll',hideTip,{passive:true});
+
+  // ── ads
+  var SEASON=/夏|冬|梅雨|花粉|真夏|猛暑|季節/;
+  var AL=document.getElementById('adL');
+  var MINE=function(a){return /Aprilskin/i.test(a.pg||'')};
+  var GD=function(a){return ((a.url||'').split('/g/')[1]||'').split(/[^0-9]/)[0]};
+  var LAND={'979030998':'히어로 쿠션','1147259677':'립타투 틴트','1138527320':'쑥 시카 앰플',
+            '999332513':'이 제품','1208033186':'히어로 뿌른'};
+  var PADTXT=/パッド|パック|カロテン/;
+  var CLAIM=function(a){return a.cl&&a.cl!=='사은품 구성'};
+  var PRED={pad:function(a){return !!a.pad},
+            claim:CLAIM,
+            tagonly:function(a){return a.pad&&!a.cl},
+            aprilskin:function(){return true},
+            long:function(a){return (a.run||0)>=100},
+            off:function(a){return !a.act}};
+  // every chip stays inside this brand; only 카테고리 전체 widens the scope
+  function pick(mode){
+    var A=window.ADS||[];
+    var L=mode==='all'?A.slice():A.filter(MINE).filter(PRED[mode]||PRED.aprilskin);
+    return L.sort(function(x,y){return (y.run||0)-(x.run||0)});
+  }
+  function drawAds(mode){
+    var L=pick(mode);
+    AL.innerHTML=L.map(function(a){
+      var th=a.img?('<img src="'+esc(a.img)+'" alt="" loading="lazy">'):(a.vid?'VIDEO':'—');
+      return '<div class="ad"><div class="adthumb">'+th+'</div><div class="adm">'+
+        '<div class="adpg"><span class="dot'+(a.act?'':' off')+'"></span>'+esc(a.pg)+'</div>'+
+        '<div class="adtx">'+esc(a.msg||'(문구 없음)')+'</div>'+
+        (a.ko?('<div class="adko">'+esc(a.ko)+'</div>'):'')+
+        (a.cl?('<div><span class="clm'+(a.cl==='사은품 구성'?' g':'')+'">'+esc(a.cl)+'</span></div>'):'')+
+        '<div class="admeta">'+esc(a.s||'')+' · '+esc(a.fmt||'')+(a.cta?(' · '+esc(a.cta)):'')+
+        (LAND[GD(a)]?(' · <span class="land">→ '+LAND[GD(a)]+'</span>'):'')+
+        (a.url?(' · <a href="'+esc(a.url)+'" target="_blank" rel="noreferrer" style="color:var(--c1)">링크 ↗</a>'):'')+'</div>'+
+        '</div><div class="adrun"><b>'+(a.run||0)+'</b><span>일</span></div></div>';
+    }).join('') || '<p style="font-size:12px;color:var(--subtle)">해당 광고 없음</p>';
+    AL.querySelectorAll('.adtx,.adko').forEach(function(t){t.addEventListener('click',function(){t.closest('.ad').classList.toggle('open')})});
+  }
+  var CHIPS=[['pad','이 제품이 나오는 광고'],
+             ['claim','제품을 설명하는 광고'],
+             ['tagonly','해시태그만'],
+             ['aprilskin','브랜드 전체'],
+             ['long','장기 100일+'],
+             ['all','카테고리 전체','이 브랜드 광고에 같은 카테고리 경쟁사 광고를 더한 것. <b>경쟁 메시지에 무엇이 비어 있는지</b> 보려면 대조군이 있어야 해서 같이 모은다.']];
+  var FB=document.getElementById('afilt');
+  FB.innerHTML=CHIPS.map(function(c){
+    var n=pick(c[0]).length;
+    return n?('<button class="ab'+(c[0]==='pad'?' on':'')+'" data-f="'+c[0]+'"'+
+              (c[2]?(' data-tip="'+c[2]+'"'):'')+'>'+c[1]+' <b>'+n+'</b></button>'):'';
+  }).join('');
+  FB.querySelectorAll('.ab').forEach(function(b){
+    b.addEventListener('click',function(){
+      FB.querySelectorAll('.ab').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on'); drawAds(b.getAttribute('data-f'));
+    });
+  });
+  bindTips(FB);
+  drawAds('pad');
+})();
+</script></body></html>
