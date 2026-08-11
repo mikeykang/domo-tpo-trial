@@ -307,7 +307,7 @@ Dr.Melaxin TX コウジ酸 패드 리뷰의 30.8%가 コウジ·麹를 언급하
  <li>변형 선택 표는 매수·가격·기획·재고가 통제되지 않았다. 순위가 아니라 존재/부재로만 읽어야 한다.</li>
  <li>유효성분 내생 처리는 공식 표기로 확인한 것만 넣었다. 확인 못 한 제품이 남아 있어 「3개 출처 이상」 조건을 따로 걸었다.</li>
  <li>@cosme 랭킹은 축당 상위 50위까지가 사이트가 주는 전부다. 프리미엄·인기 쪽으로 치우친 표본이다.</li>
- <li>재료를 눌러서 열리는 상품 목록은 인기순 상위 최대 1,200개다. 어성초처럼 1,200을 채운 재료는 그 뒤가 더 있다.
+ <li>재료를 눌러서 열리는 상품 목록은 <b>재료당 인기순 300개</b>다(한국어 번역을 붙인 만큼만 싣는다). 검색 결과 총계는 그보다 크고, 어성초처럼 1,200을 채운 재료는 그 뒤가 더 있다.
  검색이 제목뿐 아니라 본문까지 매치하므로 패드가 아닌 상품도 섞인다 — 목록을 직접 확인하라고 링크를 걸어 뒀다.</li>
  <li>재구매율은 체험단을 뺀 뒤에도 제품마다 리뷰 수집 구간이 다르다(일본 자국은 최신 400건, 아누아는 전량 11,728건).</li>
 </ul>
@@ -316,7 +316,7 @@ Dr.Melaxin TX コウジ酸 패드 리뷰의 30.8%가 コウジ·麹를 언급하
  <b>수집</b> 전부 공개 페이지에서 속도 제한을 지켜 수집. 측정일 2026-08-11.
  리뷰 342,676건(K뷰티 334,981 + 일본 자국 7,695) · @cosme 랭킹 437제품 ·
  브랜드 카탈로그 11,658제품(166브랜드) · 닦아내는 화장수 매대 50제품 · 큐텐 재료 검색 90회.<br>
- <b>근거</b> 표의 수치는 눌러서 원본을 연다. 상품 수는 큐텐 상품 목록(링크·리뷰수·가격), 비율·배수는 그 칸을 만든 리뷰 원문이다. 버튼 581개 · 상품 11,245행 · 리뷰 9,170건.<br><b>일본어</b> 본문에 실은 대표 인용문은 손으로 옮긴 전문 번역을 밑에 달았다. 드로어 안의 원문 수천 건은 통째로 기계번역하지 않고 (무료 번역기가 부정을 뒤집은 적이 있다) 용어 사전으로 <b>나온 단어의 뜻을 하나씩</b> 붙였다. 일본어만 남은 자리는 자동 검사(<span class="mono">ja_audit.py</span>)로 0을 확인했다.<br>
+ <b>근거</b> 표의 수치는 눌러서 원본을 연다. 상품 수는 큐텐 상품 목록(링크·리뷰수·가격), 비율·배수는 그 칸을 만든 리뷰 원문이다. 버튼 581개 · 상품 4,800행 · 리뷰 3,751건.<br><b>일본어</b> 본문에 실은 대표 인용문은 손으로 옮긴 전문 번역을 밑에 달았다. 드로어 안의 원문 <b>5,826건도 전부 한국어 전문 번역</b>을 밑에 달았다. 무료 기계번역은 쓰지 않았다(부정을 뒤집은 적이 있다). 번역은 <span class="mono">ko_map.json</span> 에 쌓아 두어 같은 문장을 두 번 옮기지 않는다. 일본어만 남은 자리는 자동 검사(<span class="mono">ja_audit.py</span>)로 0을 확인했다.<br>
  <b>재현</b> 어휘집 <span class="mono">lexicon.py</span> · 용어사전 <span class="mono">gloss.py</span> · 측정 <span class="mono">measure.py · shelf.py · behaviour.py · variants.py · skinfood.py · jpfam_pads.py</span> · 근거 <span class="mono">evidence.py · qoo10_pads.py</span> · 검사 <span class="mono">ja_audit.py</span>
 </div>
 
@@ -342,14 +342,14 @@ Dr.Melaxin TX コウジ酸 패드 리뷰의 30.8%가 コウジ·麹를 언급하
    h+='<a class="di" href="https://www.qoo10.jp/g/'+x.g+'" target="_blank" rel="noopener">'
     +'<span class="n"><span>#'+(i+1)+'</span><span>'+(x.p?x.p.toLocaleString()+'엔':'가격 -')+'</span>'
     +'<span>'+(x.rv!=null?'리뷰 '+x.rv.toLocaleString():'리뷰 -')+'</span><span>gd '+x.g+'</span></span>'
-    +'<span class="tt ja">'+esc(x.t)+'</span>'+(x.gl?'<span class="gl">'+esc(x.gl)+'</span>':'')+'</a>';}
+    +'<span class="tt ja">'+esc(x.t)+'</span>'+(x.ko?'<span class="ko">'+esc(x.ko)+'</span>':'')+'</a>';}
   shown=end; B.insertAdjacentHTML('beforeend',h); more(r.length);
  }
  function drawEv(){
   var r=E[cur].items, end=Math.min(shown+STEP,r.length), h='';
   for(var i=shown;i<end;i++){var x=r[i];
    h+='<div class="di"><span class="n"><span>#'+(i+1)+'</span>'+(x.meta?'<span>'+esc(x.meta)+'</span>':'')+'</span>'
-    +'<span class="tt ja">'+esc(x.ja)+'</span>'+(x.gl?'<span class="gl">'+esc(x.gl)+'</span>':'')+'</div>';}
+    +'<span class="tt ja">'+esc(x.ja)+'</span>'+(x.ko?'<span class="ko">'+esc(x.ko)+'</span>':'')+'</div>';}
   shown=end; B.insertAdjacentHTML('beforeend',h); more(r.length);
  }
  function open_(k,t){
@@ -357,7 +357,7 @@ Dr.Melaxin TX コウジ酸 패드 리뷰의 30.8%가 コウジ·麹를 언급하
   var o = t==='p'?P[k]:E[k];
   document.getElementById('dt').textContent = t==='p' ? (o.ko+' · '+o.ja) : o.label;
   document.getElementById('ds').textContent = t==='p'
-    ? ('「'+o.kw+'」 검색 결과 '+o.n.toLocaleString()+'개 · 인기순 · 눌러서 큐텐으로') : o.sub;
+    ? ('「'+o.kw+'」 검색 결과 '+o.n.toLocaleString()+'개 중 인기순 '+o.rows.length+'개 · 눌러서 큐텐으로') : o.sub;
   (t==='p'?drawProd:drawEv)(); W.classList.add('on');
  }
  document.addEventListener('click',function(e){
