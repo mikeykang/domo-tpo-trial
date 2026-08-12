@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>큐텐 재팬 · 아마존 재팬 · 입점 전에 알아야 할 것</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#fafafa;--card:#fff;--line:#e9e9e9;--line2:#d9d9d9;--ink:#171717;--sub:#454545;
+ --muted:#5c5c5c;--subtle:#757575;--faint:#bfbfbf;--kr:#c2410c;--jp:#4f46e5;--ok:#15803d;--r:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,sans-serif;
+ font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:30px 20px 90px}
+b,strong{font-weight:600} a{color:inherit}
+.ja{font-family:"Noto Sans JP","Noto Sans KR",sans-serif}
+.mono,.n{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.top{padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.kick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;font-family:"Geist Mono",monospace}
+h1{font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:5px}
+.lede{font-size:13.5px;color:var(--muted);margin-top:8px;max-width:860px}
+h2{scroll-margin-top:14px;font-size:16px;font-weight:600;margin:34px 0 4px;padding-top:22px;border-top:1px solid var(--line)}
+h3{font-size:13.5px;font-weight:600;margin:22px 0 6px}
+h4{font-size:13px;font-weight:600;margin:18px 0 6px}
+p{margin:8px 0;color:var(--sub);max-width:900px}
+ul,ol{margin:8px 0 8px 18px;color:var(--sub);max-width:900px} li{margin:4px 0}
+.role{font-size:12px;color:var(--subtle);margin:6px 0 2px}
+.ans{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:14px}
+.ans h3{margin-top:0}
+.ans .a{font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.5}
+.ans .b{font-size:12.5px;color:var(--muted);margin-top:5px}
+.ans + .ans{margin-top:10px}
+.tw{overflow-x:auto;margin:10px 0 4px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--subtle);
+ padding:9px 10px;border-bottom:1px solid var(--line2);white-space:nowrap;background:#fcfcfc;vertical-align:bottom}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.n{text-align:right;font-family:"Geist Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.lbl{white-space:nowrap;font-size:11.5px}
+td.hi{color:var(--kr);font-weight:600} td.zero{color:var(--faint)}
+td.tot{background:#f6f6f6;font-weight:600}
+tr.tot td{background:#f6f6f6;font-weight:600}
+small{font-size:10px;color:var(--subtle)}
+.na{color:var(--faint)}
+.cal{background:#fffbf7;border:1px solid #f0d9c6;border-radius:var(--r);padding:12px 15px;margin:12px 0;font-size:12.5px;color:#7c3a12}
+.cal b{color:#7c2d12}
+.note{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--line2);border-radius:0 var(--r) var(--r) 0;padding:11px 14px;margin:10px 0;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--ink)}
+.src{font-size:11px;color:var(--subtle);font-family:"Geist Mono",monospace}
+.tag{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:20px;border:1px solid var(--line2);
+ color:var(--subtle);font-family:"Geist Mono",monospace;white-space:nowrap;vertical-align:1px}
+.tag.ok{border-color:#bfe3c8;background:#effaf1;color:#15803d}
+.tag.mid{border-color:#f0d9c6;background:#fffbf7;color:#9a3412}
+.tag.low{border-color:var(--line2);background:#f6f6f6;color:#757575}
+.tag.q{border-color:#f0c8b0;background:#fdf1ea;color:#9a3412}
+.tag.a{border-color:#cfcaf7;background:#eeecfc;color:#3730a3}
+.foot{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--subtle);line-height:1.85}
+.foot b{color:var(--sub)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 2px}
+.toc a{font-size:11.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);
+ background:var(--card);border-radius:7px;padding:5px 10px}
+.toc a:hover{border-color:var(--line2);color:var(--ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:11.5px;background:#f2f2f2;padding:1px 5px;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;overflow-x:auto;margin:10px 0;
+ font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.7;color:var(--sub)}
+</style></head><body><div class="wrap">
+
+<div class="top">
+ <div class="kick">DOMO · K-Beauty Japan Entry · Platform Structure Study</div>
+ <h1>큐텐 재팬 · 아마존 재팬 · 입점 전에 알아야 할 것</h1>
+ <div class="lede">두 곳은 같은 물건을 파는 두 개의 가게가 아니다. 하나는 문이 열려 있고 연 4회 12일에 승부가 나며,
+ 하나는 문에 일본 상표와 일본 약사 허가가 걸려 있는 대신 나머지 353일이 있다.
+ 2026년에 확정된 변화(아마존 수수료 인상, 큐텐 투명화법 지정, 일본 소액수입 면세 폐지 일정)를 기준으로 두 플랫폼의 구조를 뜯었다.</div>
+ <div class="toc">
+  <a href="#do">무엇을 먼저 할 것인가</a><a href="#fork">재고를 어디에 두는가</a><a href="#money">돈이 어디로 새는가</a>
+  <a href="#tech">API가 주는 것</a><a href="#rank">순위는 어떻게 만들어지나</a><a href="#eff">시작하면 어떻게 되나</a>
+  <a href="#trap">함정</a><a href="#cal">2026-2028 캘린더</a><a href="#gap">모르는 것</a>
+ </div>
+</div>
+
+<h2 id="do">무엇을 먼저 할 것인가</h2>
+<p class="role">결정 여섯 개. 근거는 이 문서 나머지 전부에 있다.</p>
+
+<div class="ans"><div class="a">1. 큐텐부터 연다. 매출이 커서가 아니라, 허가 없이 팔 수 있는 유일한 경로여서다.</div>
+<div class="b">일본에 재고를 두는 순간 <span class="ja">薬機法</span>(약기법)상 화장품 제조판매업 허가가 필요하고,
+<b>한국 법인은 그 허가를 직접 가질 수 없다</b>(상근 총괄제조판매책임자와 일본 내 사무소가 요건).
+반면 한국에서 일본 소비자에게 직접 보내는 판매는 일본 정부계 기관이 <b>「일본 소비자의 개인수입에 해당하므로 특별한 허가가 필요하지 않다」</b>고 명문으로 답하고 있다.
+큐텐 재팬은 국적·거주지 무관 출점을 공식 FAQ로 허용하고, 출점료와 월정액이 0엔이다.
+아마존 FBA는 이 우회로가 없다. 아마존은 수입자(IOR) 역할을 맡지 않는다.</div></div>
+
+<div class="ans"><div class="a">2. 입점과 같은 날 일본 상표를 출원한다. 크리티컬 패스의 최선두다.</div>
+<div class="b">아마존 일본 마켓플레이스의 브랜드 등록은 <b>일본 특허청(JPO) 상표</b>를 요구한다. 한국 상표(KIPO)는 한국 마켓플레이스용이고 일본을 커버하지 않는다.
+통상 심사 평균 10개월, <span class="ja">ファストトラック</span>(패스트트랙) 적용 시 평균 6개월.
+다만 <b>등록 전이라도 출원번호만 나오면 브랜드 등록 신청이 가능</b>하므로, 출원 자체가 리드타임을 끊는다.
+화장품은 3류이고 표준 표기만 지정하면 패스트트랙이 자동 적용된다. 영문만 내지 말고 <b>가타카나 표기까지 별도 출원</b>한다.</div></div>
+
+<div class="ans"><div class="a">3. 첫 <span class="ja">メガ割</span>(메가와리)에는 못 나간다. 입점일이 곧 카운트다운 시작일이다.</div>
+<div class="b">메가와리 참가 조건이 <b>직전 약 3개월 내 주문 이력 1건 이상</b>이다. 매출 0인 신규 숍은 자격 미달로 잘린다.
+같은 기간 취소율 10% 미만도 요건이다. 즉 입점 → 소액 타임세일로 첫 주문 만들기 → 3개월 이력 축적 → 참가 신청이 강제 순서다.
+그리고 큐텐은 <b>메가와리 일정을 사전 고지하지 않는다.</b> 공식 발표는 전일·당일·사후에만 나온다. 재고와 광고는 발표 전에 잡아야 한다.</div></div>
+
+<div class="ans"><div class="a">4. 정가는 처음부터 20% 깎여도 남는 수로 건다. 나중에 못 올린다.</div>
+<div class="b">두 개의 규칙이 동시에 묶는다. ① 큐텐 <span class="ja">モニタリング期間</span>(가격 감시 기간): 메가와리 기간 판매가가 직전 가격을 넘으면 대상 제외이고,
+기존 할인을 삭제해서 최종가가 올라가는 것도 가격 인상으로 본다. ② 큐텐 판매수수료의 과세표준은 <b>할인 전 판매가</b>다. 할인이 깊을수록 실효 수수료율이 올라간다.
+우리가 직접 수집한 큐텐 매대 8,904개의 표시가 중앙값이 <b>¥3,640</b>인 것도 이 구조의 결과다. 매대가 이미 20%를 흡수하도록 올라가 있다.</div></div>
+
+<div class="ans"><div class="a">5. 재고는 한 곳에 둬도, 가격은 절대 통합하지 않는다.</div>
+<div class="b">아마존 재팬은 <b>아마존 밖 채널의 가격을 모니터링</b>해서, 신뢰할 만한 소매처의 최저가보다 아마존 가격이 비싸면 카트박스(<span class="ja">おすすめ出品</span>, 추천출품)를 억제한다.
+판정식은 <code>실질가격 = 상품가격 − 포인트 환원액 + 배송비</code>다. 카트가 죽으면 스폰서 광고도 같이 멈춘다.
+출품자가 자기 하나뿐인데 카트가 사라지는 사례의 대부분이 이것이다.
+<b>큐텐이 모니터링 대상에 포함되는지는 확인하지 못했다.</b> 일본 자료들은 라쿠텐·야후·자사몰만 열거한다.
+다만 문구가 "아마존 이외에서 출품하는 상품 가격도 대상"이라 포함 가능성이 높다. 메가와리 기간에는 아마존 가격을 선제적으로 내리거나, 큐텐 전용 세트 구성으로 SKU를 분리한다.</div></div>
+
+<div class="ans"><div class="a">6. 2027년 상반기까지 일본 재고 경로를 열어둔다. 2028년에 한국직발송의 이점이 사라진다.</div>
+<div class="b">일본 <span class="ja">令和8년도</span>(2026년도) 세제개정 대강이 2025-12-26 각의결정으로 확정됐다.
+<b>2028-04-01부터 통신판매로 수입되는 1만엔 이하 화물에 소비세 10%가 신설 과세</b>되고, 물품 플랫폼 과세가 함께 시행된다.
+관세 쪽 <span class="ja">0.6掛け</span>(0.6 곱하기) 특례 폐지는 이르면 2026-04-01이다.
+한국직발송의 가격 우위는 정확히 이 소비세 10%였다. 허가 취득에 4~6개월, 성분 표시명칭 취득에 별도 리드타임이 걸리므로
+<b>2028년에 준비를 시작하면 이미 늦는다.</b></div></div>
+
+<div class="cal"><b>일본 정부 문서가 한국을 명시적으로 지목하고 있다.</b>
+재무성 자료는 2024년 수입허가 건수가 약 1.9억 건으로 코로나 전의 4.1배로 늘었다고 적으면서
+<b>「특히 중국·한국 관련 <span class="ja">越境EC</span>(월경 EC) 사이트를 이용한 BtoC 화물(주로 1만엔 이하)이 증가」</b>라고 원인을 특정했다.
+개정 근거로는 <b>「국내사업자가 국외사업자와의 사이에서 적어도 소비세분(10%)의 가격차가 있는 상황에서 경쟁을 강요당한다」</b>를 들었다.
+이 규제는 한국 셀러를 우연히 스치는 것이 아니라 정면으로 겨냥한 것이다.</div>
+
+<h2 id="fork">하나의 사실이 나머지를 전부 결정한다 · 일본에 재고를 두는가</h2>
+<p class="role">법이 물류를 정하고, 물류가 채널을 정한다. 순서가 반대가 아니다.</p>
+
+<p>일본어 라벨 스티커를 붙이는 행위 자체가 <span class="ja">薬機法</span>상 <b>제조 행위</b>다(<span class="ja">貼りかえ</span>, 바꿔 붙이기가 표시 행위에 포함된다).
+그래서 일본 내 재고를 두는 모든 모델은 제조판매업 허가 + 제조업 허가(포장·표시·보관 구분) + 외국제조업자 신고 + 품목별 제조판매신고를 한 세트로 요구한다.
+이 네 개는 나눠서 딸 수 없다.</p>
+
+<div class="tw"><table><thead><tr>
+<th></th><th>① 큐텐 한국발송</th><th>② 큐텐 일본재고(3PL)</th><th>③ 아마존 FBA</th><th>④ 아마존 FBM(일본 3PL)</th></tr></thead><tbody>
+<tr><td class="lbl"><b>법적 성격</b></td><td>일본 소비자의 <b>개인수입</b></td><td><span class="ja">業として輸入</span>(업으로서의 수입)</td><td>업으로서의 수입</td><td>업으로서의 수입</td></tr>
+<tr><td class="lbl"><b>필요 허가</b></td><td class="hi">없음</td><td>제조판매업 + 제조업(포장·표시·보관) + 외국계 + 품목신고</td><td>②와 동일</td><td>②와 동일</td></tr>
+<tr><td class="lbl"><b>필요 주체</b></td><td class="hi">한국 법인 단독 가능</td><td>일본 법인 또는 일본 MAH 대행</td><td>좌동 + <span class="ja">税関事務管理人</span>(ACP)<br><small>아마존은 IOR 불가</small></td><td>좌동 + ACP</td></tr>
+<tr><td class="lbl"><b>일본어 라벨</b></td><td>불요</td><td>필수. 부착은 제조업 허가자만</td><td>필수</td><td>필수</td></tr>
+<tr><td class="lbl"><b>리드타임</b></td><td class="hi">즉시(입점심사 7~14영업일)</td><td>4~6개월 <span class="tag low">추정</span></td><td>4~6개월 + ACP 2주</td><td>4~6개월 +</td></tr>
+<tr><td class="lbl"><b>소비세</b></td><td class="hi">국외거래. 판매자 부담 없음<br><small>2028-04-01에 소멸</small></td><td>국내거래. 등록·신고<br><small>PE 없으면 간이과세 불가</small></td><td>좌동</td><td>좌동</td></tr>
+<tr><td class="lbl"><b>관세</b></td><td colspan="4">스킨케어·메이크업·헤어(HS 3304/3305)는 <b>WTO 협정세율 무세</b>. 원산지증명 없이 0%.<br>
+데오드란트(3307.20) 3.9%, 입욕제(3307.30) 3.9%(RCEP 적용해도 2.1%)로 여기만 유세. <span class="tag ok">실행관세율표 직접 확인</span></td></tr>
+<tr><td class="lbl"><b>브랜드 통제</b></td><td class="hi">최상</td><td colspan="3">MAH 대행이면 라벨 <span class="ja">製造販売元</span>(제조판매원)에 <b>대행사 이름</b>이 찍힌다</td></tr>
+<tr><td class="lbl"><b>리스크 등급</b></td><td>중 → <b>2028년 이후 높음</b></td><td>낮음</td><td>중</td><td>중</td></tr>
+</tbody></table></div>
+
+<div class="note"><b>24개 룰의 정확한 내용.</b> 후생노동성 기준으로 화장품은 <b>1회의 수입마다 1품목 24개 이내</b>(내용량 60g/60ml 이하 소량 제품은 120개).
+「품목」은 유형이 아니라 품목 단위라서, 립스틱은 브랜드·색상 불문 합계 24개다.
+<b>1주문이 24개를 넘으면 그 건은 판매 목적의 업무수입으로 간주되어 무허가 수입이 된다.</b>
+큐텐이 이 상한을 시스템으로 강제하는지는 확인하지 못했다(판매자 약관 페이지가 523 오류). 우리 쪽에서 주문 수량 상한을 걸어야 한다.</div>
+
+<div class="note"><b>통관에서 광고 카피를 본다.</b> 세관이 화물을 멈추고 <span class="ja">薬事該当性確認依頼</span>(약사 해당성 확인 의뢰)를 요구할 때 제출 자료에
+인보이스·AWB·화물 사진과 함께 <b>「국내외 선전광고, 팜플렛, 인터넷 광고」</b>가 들어간다.
+즉 랜딩페이지의 카피가 통관 판단 근거가 된다. 화장품 효능 56항목을 넘는 카피는 통관 리스크로 직결된다.</div>
+
+<h3>화장품이 말할 수 있는 것과 없는 것</h3>
+<p>일본 화장품 광고는 후생노동성이 정한 <b><span class="ja">化粧品の効能の範囲</span> 56항목</b> 안에서만 가능하다. K뷰티가 습관적으로 쓰는 말 다수가 여기서 걸린다.</p>
+<div class="tw"><table><thead><tr><th>표현</th><th>화장품으로 가능한가</th><th>대안</th></tr></thead><tbody>
+<tr><td><span class="ja">美白</span>(미백)</td><td class="zero">불가</td><td><span class="ja">医薬部外品</span>(의약부외품) 승인 필요. 화장품은 <b>「<span class="ja">日焼けによるシミ、そばかすを防ぐ</span>」</b>(햇볕에 의한 기미·주근깨를 막는다)까지</td></tr>
+<tr><td>주름 개선</td><td class="zero">불가</td><td><b>「<span class="ja">乾燥による小ジワを目立たなくする</span>」</b>(건조에 의한 잔주름을 눈에 띄지 않게 한다) 한 문장만</td></tr>
+<tr><td>기미 제거</td><td class="zero">불가</td><td>「막는다」는 되고 「지운다·개선」은 안 된다</td></tr>
+<tr><td><span class="ja">アンチエイジング</span>(안티에이징)</td><td class="zero">불가</td><td>문자 자체를 쓸 수 없다</td></tr>
+<tr><td>진정</td><td>사실상 불가</td><td>일본어로 그 자리를 차지하는 말은 <b>「<span class="ja">肌荒れを防ぐ</span>」</b>(피부 거칠어짐을 막는다)이고,
+이건 56항목 22번이라 화장품으로 쓸 수 있다. <a href="../ing/">원재료 문서</a> 참조</td></tr>
+<tr><td><span class="ja">浸透</span>(침투)</td><td>조건부</td><td>「<span class="ja">角質層まで</span>」(각질층까지) 한정 표기가 관행 <span class="tag low">추정</span></td></tr>
+</tbody></table></div>
+<p><b>과징금은 2개 법이 겹친다.</b> <span class="ja">薬機法</span> 위반은 위반 기간 중 대상 상품 <b>매출액의 4.5%</b>(과징금액 225만엔 미만이면 명령 없음, 자진보고 시 50% 감액),
+<span class="ja">景品表示法</span>(경품표시법)은 매출액의 3%다. 같은 광고가 둘 다 걸리면 조정 후 실질 상한이 매출의 4.5~7.5% 수준으로 추정된다.</p>
+
+<div class="cal"><b>메가와리의 이중가격 표시는 구조적으로 위험하다.</b>
+일본 경품표시법의 가격표시 가이드라인은 비교대조가격이 <b>「최근 상당 기간에 걸쳐 판매되고 있던 가격」</b>일 것을 요구한다.
+실무 기준으로 알려진 <span class="ja">8주 룰</span>은 ① 표시 시점부터 8주간에서 ② 그 가격으로 판매된 기간이 판매기간의 과반이고 ③ 통산 2주 이상이며 ④ 마지막 판매일부터 2주가 지나지 않았을 것이다.
+<b>연 4회 대형 할인 + 상시 쿠폰 구조에서는 「과반 기간 정가 판매」 요건을 채우기가 구조적으로 어렵다.</b>
+정가를 병기하는 한국식 운영을 그대로 옮기면 <span class="ja">有利誤認表示</span>(유리오인 표시)가 된다.
+(8주 룰의 구체 수치는 소비자청 본문이 아니라 2차 자료 기반이라 <span class="tag low">추정</span>이다. 가이드라인 PDF 원문 확인이 필요하다.)</div>
+
+<p><span class="ja">特定商取引法</span>(특정상거래법)은 해외 사업자에게도 적용되지만, <b>일본 주소·전화번호를 표시할 의무는 없다.</b>
+소비자청이 "일본에 사무소가 없으면 인터넷 통신판매 업무의 실제 활동장소를 주소로 표시하면 된다"고 명시한다. 한국 주소·한국 번호로 충분하다.
+단 개인수입 모델이면 <b>관세·소비세를 일본 소비자가 부담한다는 사실을 사이트에 사전 고지</b>해야 한다.</p>
+
+<h2 id="money">돈이 어디로 새는가</h2>
+<p class="role">2026년에 양쪽 다 요율이 바뀌었다. 2025년 이전 자료의 숫자는 전부 폐기해야 한다.</p>
+
+<h3>아마존 재팬 · 2026-04-01 개정 반영</h3>
+<p>전 카테고리 판매수수료가 <b>+0.4%p 인상</b>됐다(¥750 초과 상품 대상). 뷰티는 8% → 8.4%, 10% → 10.4%.
+일본어 블로그 다수가 아직 8%/10%로 쓰고 있으니 교차검증 없이 인용하면 안 된다.</p>
+
+<div class="grid2">
+<div class="tw"><table><thead><tr><th>뷰티·헬스·퍼스널케어</th><th>요율</th></tr></thead><tbody>
+<tr><td>¥750 이하</td><td class="n">5%</td></tr>
+<tr><td>¥750 초과 ~ ¥1,500</td><td class="n">8.4%</td></tr>
+<tr><td>¥1,500 초과</td><td class="n"><b>10.4%</b></td></tr>
+<tr><td>최저 판매수수료</td><td class="n">¥30</td></tr>
+</tbody></table></div>
+<div class="tw"><table><thead><tr><th>FBA 배송대행 <small>(세포함)</small></th><th>¥1,000 초과</th></tr></thead><tbody>
+<tr><td><span class="ja">小型</span> 25×18×2.0cm · 250g</td><td class="n">¥288</td></tr>
+<tr><td><span class="ja">標準1</span> 35×30×3.3cm · 1kg</td><td class="n">¥318</td></tr>
+<tr><td><span class="ja">標準2b</span> 3변합 30cm · 2kg</td><td class="n"><b>¥415</b></td></tr>
+<tr><td><span class="ja">標準2e</span> 3변합 60cm · 2kg</td><td class="n">¥430</td></tr>
+</tbody></table></div>
+</div>
+
+<p><b>수수료 기준금액은 소비세와 배송료를 포함한 총액</b>이다. 일본은 총액표시 의무라서 ¥2,980 표시가 안에 소비세 ¥271이 들어 있고, 수수료는 그 ¥271에도 붙는다.
+그리고 같은 페이지 안에서 표기 기준이 다르다. <b>판매수수료·월정액은 세제외, FBA 배송대행·보관료는 세포함</b>이다. 이걸 놓치면 손익이 10% 틀어진다.</p>
+
+<div class="cal"><b>가격 데드존이 있다. ¥1,501에서 ¥1,533 사이는 절대 쓰면 안 된다.</b>
+뷰티 수수료가 구간별 누진이 아니라 전액 단일요율이라, ¥1,500에서 ¥1,501로 1엔 올리면 순수취가 ¥1,374에서 ¥1,345로 <b>떨어진다.</b>
+손익분기는 ¥1,533.5다. ¥1,500에 붙이거나 ¥1,534 이상으로 올리거나 둘 중 하나다.
+같은 이유로 ¥750 문턱에도 데드존 ¥751~¥777이 있다.</div>
+
+<h3>큐텐 재팬 · 한국 법인이면 무조건 +2%</h3>
+<p>뷰티·코스메는 전 서브카테고리 <b>10%</b>이고 감면 경로가 없다. 여기에 부가수수료가 가산된다.
+<b>은행계좌 등록국이 일본 밖이거나 출하지가 일본 밖이면 +2%</b>이므로, 한국 법인은 일본 3PL에서 출고해도 한국 계좌를 쓰는 한 +2%를 낸다.</p>
+
+<div class="tw"><table><thead><tr><th>항목</th><th>요율</th><th>과세표준</th></tr></thead><tbody>
+<tr><td>판매수수료 (뷰티·코스메)</td><td class="n">10%</td><td>상품가 + 옵션가 + <b>배송비</b>, <b>할인 전 판매가</b></td></tr>
+<tr><td>해외 계좌 또는 해외 출하지</td><td class="n">+2%</td><td>판매금액</td></tr>
+<tr><td><span class="ja">メガ割システム利用料</span> (메가와리 시스템 이용료)</td><td class="n">+1%</td><td>구매자 결제금액</td></tr>
+<tr><td><span class="ja">割引サポート手数料</span> (할인 서포트 수수료)</td><td class="n">+0.5%</td><td>큐텐 부담 할인이 적용된 주문 <span class="tag low">과세표준 불명확</span></td></tr>
+<tr><td>외부광고·최저가코너 경유</td><td class="n">+1%</td><td>구매결제금액</td></tr>
+<tr><td>예약발송 4일 이상</td><td class="n">+2%</td><td>상품가 + 옵션가</td></tr>
+<tr class="tot"><td>출점료·월정액</td><td class="n">¥0</td><td>출금수수료만 ¥150/회. 결제수수료는 판매수수료에 포함</td></tr>
+</tbody></table></div>
+
+<div class="cal"><b>수수료 과세표준이 「할인 전 판매가」라는 점이 큐텐의 숨은 비용이다.</b>
+20% 할인 판매 시 명목 10%가 실질 12.5%가 된다. 셀러 부담 할인은 정산에서 조정되지 않는다(큐텐 부담 할인만 조정된다).
+할인 폭이 클수록 실효 수수료율이 명목보다 올라가는 구조이고, 큐텐은 상시 할인 플랫폼이다.</div>
+
+<h3><span class="ja">メガ割</span> 20% 쿠폰은 누가 내는가</h3>
+<p>큐텐 공식 셀러 교육 원문이 명확하다. <b><span class="ja">ショップ様負担: 20％割引クーポンの半分（10％割引） / Qoo10負担: 残りの半分（10％割引）</span></b>
+(샵 부담 20% 쿠폰의 절반인 10%, 큐텐 부담 나머지 절반 10%). <b>정확히 반반</b>이고, 소수점 이하는 큐텐이 부담한다.</p>
+<p>다만 현금흐름이 뒤틀린다. 셀러 부담 10%는 주문 정산일의 <b>다음 수요일에 선차감</b>되고, 판매대금 정산과
+<span class="ja">メガプロモーション補償金</span>(메가 프로모션 보상금) 환급은 그 뒤에 온다. 나가는 게 먼저다.</p>
+
+<div class="tw"><table><thead><tr><th>쿠폰</th><th>예시</th><th>부담 주체</th><th>병용</th></tr></thead><tbody>
+<tr><td><span class="ja">商品クーポン</span> (상품쿠폰)</td><td>메가와리 20% OFF</td><td><b>큐텐 50% + 셀러 50%</b></td><td>카트쿠폰과 병용 불가</td></tr>
+<tr><td><span class="ja">ショップクーポン</span> (샵쿠폰)</td><td>팔로우 보너스, 게릴라 쿠폰</td><td class="hi">셀러 100%</td><td>둘 다와 병용 가능</td></tr>
+<tr><td><span class="ja">カートクーポン</span> (카트쿠폰)</td><td>웰컴·생일·회원등급</td><td>큐텐 100%</td><td>상품쿠폰과 병용 불가</td></tr>
+<tr><td><span class="ja">メガポ</span> (메가포)</td><td>10% 쿠폰 + 10% Q포인트</td><td>큐텐 50% + 셀러 50%<br><small>셀러 10% 비용으로 20% 임팩트</small></td><td>카트·샵쿠폰 모두 병용 가능</td></tr>
+</tbody></table></div>
+
+<h3>같은 물건, 같은 정가 ¥2,980에서 남는 돈</h3>
+<p class="role">토너패드 250g, 박스 15×10×5cm(3변합 30cm) 기준. 광고비·제조원가 차감 전, 물류 전 잔액.</p>
+
+<div class="tw"><table><thead><tr><th></th>
+<th>큐텐 평시<br><small>한국직발송</small></th><th>큐텐 메가와리<br><small>한국직발송</small></th><th>아마존 FBA 평시</th></tr></thead><tbody>
+<tr><td class="lbl">표시가 / 정가</td><td class="n">2,980</td><td class="n">2,980</td><td class="n">2,980</td></tr>
+<tr><td class="lbl">구매자 결제액</td><td class="n">2,980</td><td class="n">2,384<small> (20% off)</small></td><td class="n">2,980</td></tr>
+<tr><td class="lbl">소비세 예수</td><td class="n zero">0<small> 국외거래</small></td><td class="n zero">0</td><td class="n">−271</td></tr>
+<tr><td class="lbl">셀러 할인 부담</td><td class="n zero">0</td><td class="n">−298<small> (정가의 10%)</small></td><td class="n zero">0</td></tr>
+<tr><td class="lbl">판매수수료</td><td class="n">−358<small> (12%)</small></td><td class="n">−358<small> (할인 전 기준)</small></td><td class="n">−310<small> (10.4%)</small></td></tr>
+<tr><td class="lbl">메가와리 시스템 1%</td><td class="n zero">0</td><td class="n">−24</td><td class="n zero">0</td></tr>
+<tr><td class="lbl">할인서포트 0.5%</td><td class="n zero">0</td><td class="n">−15</td><td class="n zero">0</td></tr>
+<tr><td class="lbl">FBA 배송대행 + 보관 60일</td><td class="n na">별도</td><td class="n na">별도</td><td class="n">−386</td></tr>
+<tr class="tot"><td class="lbl">플랫폼이 가져가는 몫</td><td class="n">358<small> (12.0%)</small></td><td class="n">694<small> (정가의 23.3%)</small></td><td class="n">696<small> (23.4%)</small></td></tr>
+<tr class="tot"><td class="lbl"><b>광고·원가·물류 전 잔액</b></td><td class="n"><b>2,622</b><small> (88.0%)</small></td><td class="n"><b>1,690</b><small> (56.7%)</small></td><td class="n"><b>2,013</b><small> (67.5%)</small></td></tr>
+<tr><td class="lbl"><small>2028-04-01 이후 (소비세 10% 신설)</small></td><td class="n">2,351<small> (78.9%)</small></td><td class="n">1,473<small> (49.4%)</small></td><td class="n">2,013<small> 변동 없음</small></td></tr>
+</tbody></table></div>
+
+<p><b>읽는 법.</b> 큐텐 평시의 88%는 소비세를 안 걷기 때문에 나오는 숫자다. 그 ¥271(정가의 9.1%)이 정확히 2028년에 사라지는 이점이다.
+메가와리에 나가면 56.7%로 떨어지는데, 아마존이 할인 없이 파는 67.5%보다 낮다. <b>큐텐은 마진을 팔아 물량 집중을 사는 구조</b>다.
+그 대가로 연간 유통액의 절반 이상이 그 12일에 몰린다.</p>
+
+<div class="note"><b>아마존 쪽 진짜 문제는 수수료가 아니라 FBA 고정비다.</b>
+¥415는 가격과 무관한 고정비라 ¥1,500에서는 순매출의 27.7%, ¥4,000에서는 10.4%를 먹는다.
+판매수수료 2%p 차이(¥30)는 이 영향의 1/10 수준이다.
+그래서 ¥1,500 단품은 영업이익 ¥50, 마진 3.7%로 사실상 적자 상품이다(ACoS 25% 가정). 손익분기 ACoS가 29.4%밖에 안 돼서 광고를 조금만 세게 돌리면 즉시 적자다.
+<b>포장 두께를 3.3cm 이하로 만들면</b> <span class="ja">標準1</span> ¥318로 내려가 ¥97이 절약된다. 항아리형 용기로는 불가능하니 일본 전용 플랫 포맷을 설계할 가치가 있다.</div>
+
+<h3>매대가 이미 답을 말하고 있다</h3>
+<p>우리가 직접 수집한 큐텐 재팬 K뷰티 스킨케어 매대 <b>8,904개 고유 상품</b>의 표시가 분포다(2026-08-11 수집).
+재료 45종 × <span class="ja">トナーパッド</span> 검색이라 패드 아닌 상품이 섞여 있으므로 패드 매대가 아니라 인접 매대로 읽어야 한다.</p>
+
+<div class="tw"><table><thead><tr><th>표시가 밴드</th><th>상품 수</th><th>비중</th><th>20% 쿠폰 적용 후</th></tr></thead><tbody>
+<tr><td>~¥1,499</td><td class="n">225</td><td class="n zero">2.5%</td><td class="n na">~1,199</td></tr>
+<tr><td>¥1,500-1,999</td><td class="n">315</td><td class="n">3.5%</td><td class="n">1,200-1,599</td></tr>
+<tr><td>¥2,000-2,499</td><td class="n">753</td><td class="n">8.5%</td><td class="n">1,600-1,999</td></tr>
+<tr><td>¥2,500-2,999</td><td class="n">1,357</td><td class="n">15.2%</td><td class="n">2,000-2,399</td></tr>
+<tr><td>¥3,000-3,499</td><td class="n">1,411</td><td class="n hi">15.8%</td><td class="n">2,400-2,799</td></tr>
+<tr><td>¥3,500-3,999</td><td class="n">1,293</td><td class="n">14.5%</td><td class="n">2,800-3,199</td></tr>
+<tr><td>¥4,000-4,999</td><td class="n">1,789</td><td class="n">20.1%</td><td class="n">3,200-3,999</td></tr>
+<tr><td>¥5,000+</td><td class="n">1,761</td><td class="n">19.8%</td><td class="n">4,000+</td></tr>
+<tr class="tot"><td>중앙값</td><td class="n">8,904</td><td class="n">p25 2,884 · p75 4,700</td><td class="n"><b>3,640 → 2,912</b></td></tr>
+</tbody></table></div>
+
+<div class="cal"><b>표시가는 20% 벌어져 있는데, 소비자가 실제로 내는 돈은 두 플랫폼이 같은 곳에서 만난다.</b>
+큐텐 매대 중앙값 ¥3,640에 메가와리 20%를 적용하면 <b>¥2,912</b>다. 그리고 아마존에서 마진이 나오기 시작하는 구간이 ¥2,500 이상,
+계산상 가장 건강한 지점이 ¥2,980이다. p25 ¥2,884는 할인 후 ¥2,307, p75 ¥4,700은 ¥3,760이다.
+<b>정가는 ¥2,900~3,900, 메가와리 실판매가는 ¥2,300~3,100.</b> 이게 두 플랫폼을 동시에 만족시키는 유일한 창이다.
+DOMO 스코프의 ¥1,500~4,000 밴드는 매대의 57.9%를 덮지만, 하단 ¥1,500~2,499는 12.0%뿐이고 그 구간은 아마존에서 적자다.</div>
+
+<h2 id="tech">API가 주는 것과 안 주는 것</h2>
+<p class="role">두 플랫폼의 기술 격차가 여기서 가장 크게 벌어진다. 그리고 그 격차가 우리에게 기회다.</p>
+
+<h3>큐텐 QSM API · 실측 결과</h3>
+<p>인증키 없이도 메서드 존재 여부를 판정할 수 있다. 잘못된 키로 호출하면 응답이 세 갈래로 갈리기 때문이다.
+<code>Can't find service Name</code>(클래스 없음), <code>Can't find method Info</code>(메서드 없음),
+<code>{"ErrorCode":-90001}</code>(둘 다 존재, 인증 단계 거부). 이걸 오라클로 약 240개 후보명을 프로브한 결과다.</p>
+
+<pre>POST https://api.qoo10.jp/GMKT.INC.Front.QAPIService/ebayjapan.qapi/&lt;Class&gt;.&lt;Method&gt;
+Content-Type: application/x-www-form-urlencoded
+GiosisCertificationKey: &lt;인증키&gt;
+QAPIVersion: 1.0
+--data "returnType=application/json&..."
+
+클래스 9개 · 검증된 메서드 30개가 전부
+  CertificationAPI   CreateCertificationKey
+  ItemsBasic         SetNewGoods · UpdateGoods · EditGoodsStatus · SetNewMoveGoods · UpdateMoveGoods
+  ItemsOptions       EditGoodsInventory · EditGoodsOption · EditMoveGoodsInventory
+  ItemsContents      EditGoodsContents · EditGoodsImage · EditMoveGoodsContents
+  ItemsLookup        GetAllGoodsInfo · GetItemDetailInfo · GetGoodsOptionInfo · GetSellerDeliveryGroupInfo · GetMoveItemDetailInfo
+  ShippingBasic      GetShippingInfo_v3 · SetSendingInfo · SetSendingComplete · GetClaimInfo_V3 (+ v1/v2 잔존)
+  Claim              SetCancelProcess
+  CSCenter           GetInquiryMessage · SetInquiryMessage
+  CommonInfoLookup   GetCatagoryListAll · SearchBrand      ← Catagory 오타가 공식 철자다</pre>
+
+<div class="cal"><b>분석용 READ API가 존재하지 않는다.</b>
+<code>Stat</code> <code>Statistics</code> <code>Analytics</code> <code>Report</code> <code>Rank</code> <code>Traffic</code> <code>Keyword</code>
+<code>Review</code> <code>Settlement</code> <code>Promotion</code> <code>Coupon</code>을 전부 프로브했고 전부 클래스 자체가 없다.
+기존 클래스 안의 <code>GetGoodsStat</code> <code>GetGoodsRank</code> <code>GetGoodsReview</code> <code>GetSalesStat</code>도 없다.
+<b>API로 얻을 수 있는 것은 내 상품, 내 주문, 내 문의뿐이다.</b> 정산·리뷰·랭킹·트래픽·키워드는 QSM 화면이나 FTP/CSV로만 접근할 수 있다.
+큐텐 대시보드를 만들려면 스크래핑 또는 CSV 파이프라인이 필수다. 아마존처럼 Reports API로 해결되지 않는다.</div>
+
+<p><b>연동 자체는 쉽다.</b> 인증이 헤더 키 하나이고 서명도 OAuth도 없다. 메서드가 30개뿐이라 SP-API나 틱톡샵보다 훨씬 단순하다.
+다만 함정이 몇 개 있다. HTTP 상태코드가 <b>항상 200</b>이고 에러는 body의 음수 <code>ErrorCode</code>로만 온다.
+메서드명은 대소문자를 무시한다. API 키는 셀프서브가 아니라 문의 티켓으로 신청해서 약 5영업일 심사를 거치고,
+<b>1년마다 갱신해야 하는데 만료 알림 기능이 큐텐 쪽에 없다.</b> 그리고 인증키 발급 API가 셀러 계정 평문 비밀번호를 받는다.
+비밀번호를 바꾸면 인증키가 무효화된다.</p>
+
+<h3>우리가 직접 확인한 프론트엔드 표면</h3>
+<p>큐텐 스토어프론트는 ASP.NET 계열 <code>gmkt.inc</code> 레거시 스택이고, 무한스크롤의 「<span class="ja">もっと見る</span>」가 때리는 내부 엔드포인트가 그대로 열린다.
+JSON이 아니라 <b>HTML 조각</b>을 돌려준다.</p>
+<pre>POST https://www.qoo10.jp/gmkt.inc/Search/SearchResultAjaxTemplate.aspx
+     ?ajax_search_type=S&curPage=N&pageSize=40&dispType=LIST
+     &sortType=RANK_POINT&search_option=tt&hid_keyword=&lt;kw&gt;
+헤더  X-Requested-With: XMLHttpRequest · Referer: same-origin
+응답  &lt;tr id="g_{gd_no}"&gt; 행 조각 (JSON 아님)
+
+GET  https://www.qoo10.jp/gmkt.inc/Goods/GoodsReviewAjaxAppend.aspx?gd_no=&lt;id&gt;&sort=N
+상품 https://www.qoo10.jp/g/&lt;gd_no&gt;   ·   샵 https://www.qoo10.jp/shop/&lt;name&gt;   ·   이미지 CDN gd.image-qoo10.jp</pre>
+<p><span class="tag ok">자체 확인 2026-08-11</span> 이 문서의 매대 데이터 8,904건이 이 경로로 수집됐다.
+정렬 파라미터가 <code>sortType=RANK_POINT</code>인 것이 눈에 띈다. 큐텐의 랭킹 점수가 파라미터 이름으로 노출되어 있다.
+다만 접근 안정성은 낮다. 조사 중 스토어프론트가 미국·한국 양쪽 IP에서 동시에 523을 반환한 시간대가 있었다.</p>
+
+<h3>아마존 SP-API · 일본 마켓플레이스</h3>
+<pre>JP marketplaceId  A1VC38T7YXB528        Region  FE (Far East)
+SP-API endpoint   https://sellingpartnerapi-fe.amazon.com
+Ads API (FE)      https://advertising-api-fe.amazon.com
+JP LWA token URL  https://api.amazon.co.jp/auth/o2/token   ← 미국용 api.amazon.com을 그대로 쓰면 실패할 수 있다</pre>
+<p>미국과 다른 점이 몇 가지 있다. 레이트 리밋은 마켓플레이스별이 아니라 셀러×애플리케이션 쌍별이라
+<b>리전별로 셀러 계정이 다르면 토큰 버킷이 분리된다</b>. 미국 트래픽이 일본 쿼터를 먹지 않는다.
+Listings Items API는 원래 일본에서 못 쓰다가 나중에 열렸고, 2026-07-29부터 <code>marketplaceIds</code>가 같은 리전 내 복수 ID를 받는다(JP+AU+SG 한 호출).</p>
+
+<div class="cal"><b>일본에서도 검색어 단위 1차 데이터를 API로 받을 수 있다. 이게 두 플랫폼의 결정적 차이다.</b>
+<code>GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT</code>(SQP)가 2025-02-26에 Reports API에 추가됐고
+<b>지원 스토어에 Japan이 명시적으로 들어 있다.</b> 검색어별 노출 → 클릭 → 구매와 그 검색어에서의 자사 점유율이 나온다.
+Data Kiosk도 NA/EU/FE 전 리전 제공이라 일본에서 쓸 수 있다.
+<b>브랜드 등록이 선행 조건</b>이므로, 일본 상표 출원이 데이터 파이프라인의 전제이기도 하다.
+(주의: <code>analytics_salesAndTraffic_2023_11_15</code>는 2026-03-26에 제거됐다. 후속 <code>2024_04_24</code>는 <code>marketplaceIds</code>를 입력으로 요구하므로 미국 코드를 그대로 붙이면 깨진다.)</div>
+
+<div class="tw"><table><thead><tr><th>데이터</th><th>큐텐</th><th>아마존 재팬</th></tr></thead><tbody>
+<tr><td>내 매출·주문</td><td>API + QSM</td><td>API</td></tr>
+<tr><td>상품별 PV / CVR / 유입경로</td><td>QSM Analytics 화면 (API 없음)<br><small>광고 유입과 오가닉 검색을 구분해준다</small></td><td>API (Data Kiosk)</td></tr>
+<tr><td>내 샵 유입 검색어</td><td>QSM 화면 「상위 검색어」</td><td>API (SQP)</td></tr>
+<tr><td><b>플랫폼 전체 검색어 랭킹</b></td><td class="zero">없음</td><td>브랜드 애널리틱스 <span class="ja">上位の検索用語</span></td></tr>
+<tr><td><b>경쟁사 가격·벤치마크</b></td><td class="zero">없음</td><td>일부 (Product Pricing API)</td></tr>
+<tr><td>노출수(impression)</td><td class="zero">없는 것으로 보임 <span class="tag low">추정</span></td><td>있음</td></tr>
+<tr><td>인구통계 분해</td><td class="zero">미확인</td><td>일본은 제한적 <span class="tag low">추정</span></td></tr>
+<tr><td>제3자 인텔리전스 툴</td><td class="zero"><b>Nint도 큐텐은 커버하지 않는다</b><br><small>Apify 스크레이퍼 $3/1,000행 수준만 존재</small></td><td>Nint · Keepa(domainId 5) · SellerSprite · Helium 10</td></tr>
+</tbody></table></div>
+
+<div class="cal"><b>큐텐에는 Nint급 서드파티 인텔리전스가 아예 없다.</b>
+일본 EC 분석의 표준인 Nint가 라쿠텐·아마존·야후 3몰만 커버하고 큐텐을 지원하지 않는다.
+K뷰티 최대 채널이 통째로 데이터 사각지대라는 뜻이다.
+<b>자체 수집 파이프라인을 만들면 경쟁 대비 정보 우위가 생긴다.</b> 우리는 이미 그 파이프라인을 갖고 있고, 이 문서의 가격 분포가 그 증거다.</div>
+
+<h3>물류</h3>
+<p><b><span class="ja">Qxpress</span>는 망하지 않았다. 이름이 바뀌었다.</b> Qxpress Corp가 <b>TracX Logis Japan</b>으로 사명을 변경했고
+<code>qxpress.net</code>이 <code>tracxlogis.com</code>으로 302 리다이렉트된다. 큐텐 재팬 공식 물류 파트너로 계속 운영 중이고,
+입금 익일 발송을 보장하는 KanDash 서비스를 돌린다. 큐텐 재팬은 직영 창고를 운영하지 않는다. FBA 등가물은 없고 외부 3PL 위탁 구조다.</p>
+<p>큐텐이 공식 소개하는 물류 파트너 9곳 중 <b>5곳이 한국계</b>다(품고, 쉽너지, KSE, STOO, LX판토스). 일원관리 툴 목록에는 cafe24가 들어 있다.
+큐텐 재팬 생태계는 한국 셀러 유입을 전제로 짜여 있다.</p>
+
+<div class="tw"><table><thead><tr><th>경로</th><th>건당 비용</th><th>비고</th></tr></thead><tbody>
+<tr><td>아마존 FBA <span class="ja">標準2b</span></td><td class="n">¥415 <small>(세포함)</small></td><td>가장 싸다</td></tr>
+<tr><td>아마존 MCF (FBA 재고로 큐텐 출고)</td><td class="n">¥550-662</td><td><b>판매수수료가 붙지 않는다.</b> 차액 ¥155-200을 수수료 미부과 ¥310로 상쇄하고 남는다.<br>단 EC 관리시스템 경유가 필요하다 (월 ¥10,000-50,000)</td></tr>
+<tr><td>일본 3PL 출고 + 택배</td><td class="n">약 ¥900</td><td>3PL 출고 ¥400-600 + <span class="ja">ゆうパケット</span> 2cm ¥310 / 3cm ¥360<br>FBA의 2배 이상. 프라임 배지도 없다</td></tr>
+<tr><td>한국 → 일본 직배송</td><td class="n na">미확인</td><td>요금표 확보 실패. 추정치를 지어내지 않았다.<br>정성적으로는 일본 내 발송보다 확실히 비싸고 리드타임 7-14일이 붙는다</td></tr>
+</tbody></table></div>
+
+<div class="note"><b>야마토 <span class="ja">ネコポス</span>가 현행 서비스 목록에서 사라졌다.</b>
+대신 <span class="ja">こねこ便420</span>(전국 균일 ¥420 세포함)과 <span class="ja">クロネコゆうパケット</span> 체제다.
+완전 폐지 여부는 확인하지 못했으나, 2024년 이전 자료의 네코포스 단가로 물류비를 계산하면 틀린다.</div>
+
+<h2 id="rank">순위는 어떻게 만들어지나</h2>
+
+<h3>큐텐 <span class="ja">Qランキング</span></h3>
+<p class="role">한국 셀러 커뮤니티가 「파워랭크」라고 부르는 것은 실제로 두 개가 섞인 말이다.</p>
+<p><b><span class="ja">Qランキング</span>이 검색 정렬 알고리즘이고, <span class="ja">パワーランクアップ</span>는 유료 광고 상품이다.</b> 대행사 미팅에서 용어를 혼동하면 안 된다.
+큐텐 공식이 밝힌 산식은 2축이다.</p>
+<pre><span class="ja">キーワード加算点数</span>  검색 키워드와 상품정보의 유사도·일치도
+       ×
+<span class="ja">商品ランキング点数</span>  판매량 · 매출 · 고객만족도
+       →  <span class="ja">毎日計算し、その順位により並び替えを行っています</span>  (매일 계산해 재정렬)</pre>
+<p>가중치는 공개되지 않았고, 실적 집계 윈도우와 시간 감쇠 계수도 공개 자료가 없다. 공식이 밝힌 것은 「매일 재계산」뿐이다.</p>
+<p>공식 최적화 4요소는 <b>상품명 · 광고문 · 검색어(최대 10개) · 카테고리</b>다.
+모바일과 앱 검색에서는 <b>상품명 앞 30자</b>가 클릭률을 결정한다. 상품명·이미지 가이드를 어기면 등록은 되지만 <b>검색 순위 가산점을 못 받는다.</b>
+검색어 필드에는 카테고리명과 브랜드명을 넣을 수 없다(이미 자동 포함되므로).</p>
+<p><b>광고가 자연순위를 직접 사지는 않는다.</b> 큐텐 공식이 파워랭크업은 자연검색 순위를 개선하지 않고 광고 영역에 별도 노출시킨다고 명시한다.
+다만 간접 경로는 확실하다. 광고 → 노출 → 판매·리뷰 축적 → 상품랭킹점수 상승 → 자연순위 상승.
+<b>광고는 순위를 사는 게 아니라 실적을 사서 순위를 만드는 우회로</b>이고, 그래서 초기 광고비가 자연순위의 시드머니가 된다.</p>
+
+<h3>아마존 A9 그리고 그 위에 얹힌 것들</h3>
+<p>토대는 여전히 A9(관련성 × 실적)이다. 그 위에 COSMO(의미 기반 검색)와 Rufus(AI 쇼핑 어시스턴트)가 얹혔다.
+<b>Rufus는 2025-09-02에 일본 전면 출시됐지만, 2026-05-13에 아마존이 Rufus 브랜드를 폐지하고 Alexa for Shopping으로 통합한다고 발표했다.</b>
+미국은 교체가 끝났고 일본 포함 미국 외 전환 일정은 미발표다. <b>Rufus의 일본 트래픽 영향에 대한 정량 데이터는 0건이다. 여기에 전략을 걸면 안 된다.</b></p>
+<p>일본 고유 요인이 하나 있다. <b>포인트가 카트 획득 알고리즘에 직접 들어간다.</b>
+실질 가격 계산식이 <code>상품가격 + 배송비 − 포인트액</code>이라, 포인트 부여율을 올리면 실질가가 내려가 카트에 유리해진다.
+포인트는 셀러가 개별 설정할 수 있고(셀러 부담), 대형 세일의 포인트업 캠페인은 아마존 부담이 기본이라 판매가를 안 내리고 매출을 올리는 레버가 된다.</p>
+
+<h3>양쪽 다 콜드스타트의 병목은 리뷰다</h3>
+<div class="tw"><table><thead><tr><th>일본 소비자 리뷰 작성 빈도 <small>(n=24,058, 2024-12)</small></th><th>비율</th></tr></thead><tbody>
+<tr><td>자주 쓴다</td><td class="n">3%</td></tr>
+<tr><td>가끔 쓴다</td><td class="n">27%</td></tr>
+<tr><td>거의 안 쓴다</td><td class="n">42%</td></tr>
+<tr><td>한 번도 없다</td><td class="n">28%</td></tr>
+<tr class="tot"><td><b>거의 또는 전혀 안 쓴다</b></td><td class="n"><b>70%</b></td></tr>
+</tbody></table></div>
+<p>그런데 큐텐은 예외다. <b>구매자의 20~30%가 리뷰를 쓴다</b>는 수치가 복수 소스에서 일치한다. 라쿠텐·아마존 대비 현저히 높다.
+이유는 포인트 원자에 있다. <b>메가와리 기간에는 큐텐이 리뷰 포인트를 직접 부담</b>하고, 셀러도 QSM에서 별도 리뷰 포인트를 설정할 수 있다(권장 수준 상품단가의 3~5%).
+그리고 아마존이 금지하는 것(패키지 동봉 카드로 리뷰 요청, 보상 제공)이 큐텐에서는 상당 부분 허용된다.</p>
+
+<div class="cal"><b>한국 셀러가 습관적으로 하는 것 중 아마존에서 계정이 삭제될 수 있는 것.</b>
+패키지에 「리뷰 남겨주세요」 카드를 동봉하는 것, 리뷰 대가로 보상·기프트카드를 주는 것, 「별 4개 이상」처럼 평점을 지정하는 것.
+아마존은 셀러센트럴의 <b>리뷰 리퀘스트 버튼만</b> 허용한다. 큐텐도 <span class="ja">やらせレビュー</span>(조작 리뷰)는 계정 정지 또는 삭제 사유이고,
+적발되면 <b>이벤트 참여 불가</b>가 따라오는데 이게 메가와리 상실이라 실질 타격이 가장 크다.</div>
+
+<div class="tw"><table><thead><tr><th>아마존 리뷰 수준</th><th>뷰티 CVR <span class="tag low">추정</span></th></tr></thead><tbody>
+<tr><td>리뷰 0건</td><td class="n">0.5-1.5%</td></tr>
+<tr><td>리뷰 10건 (★4.2)</td><td class="n">2-4%</td></tr>
+<tr><td>리뷰 50건+ (★4.4+)</td><td class="n hi">4-7%</td></tr>
+</tbody></table></div>
+<p>리뷰 0에서 50건 사이에서 CVR이 <b>4~5배</b> 벌어진다. 이것이 "일본에서 신규 리스팅은 왜 안 팔리나"의 답이다.
+그리고 <b>제로 리뷰 상품은 아마존 타임세일에 애초에 못 들어간다</b>(상품 리뷰 별 4.0 이상이 참가 요건). Vine → 리뷰 → 세일 참가가 강제 순서다.</p>
+
+<div class="tw"><table><thead><tr><th>Amazon Vine <span class="ja">先取りプログラム</span></th><th>등록 수수료</th></tr></thead><tbody>
+<tr><td>부모 ASIN당 1-2점</td><td class="n">¥0</td></tr>
+<tr><td>3-10점</td><td class="n">¥10,000</td></tr>
+<tr><td>11-30점 (최대)</td><td class="n">¥22,000</td></tr>
+</tbody></table></div>
+<p>조건은 대량출품 계정 + <b>브랜드 등록 완료</b> + FBA 재고 + 리뷰 30건 미만이다. 여기서도 일본 상표가 전제로 돌아온다.
+그리고 2026년 변경으로 <b>베리에이션 상품의 리뷰 통합 공유가 폐지</b>됐다는 서술이 있다. 사실이면 사이즈·타입별 SKU를 여러 개 낼 때 비용이 곱해진다.
+단일 소스라 교차검증이 필요하다. <span class="tag low">추정</span></p>
+
+<h3>일본어 표기 흔들림 · 과소평가된 기술 문제</h3>
+<p>일본 소비자가 같은 물건을 부르는 이름이 갈린다. 토너패드만 해도
+<b><span class="ja">トナーパッド</span> · <span class="ja">拭き取りパッド</span> · <span class="ja">ピーリングパッド</span> · <span class="ja">拭き取り化粧水</span></b>가 혼용되고,
+일본 뷰티 미디어가 반복해서 "종류가 너무 많아 모르겠다"는 소비자 혼란을 다룬다.</p>
+<p>아마존 검색 키워드 필드는 <b>영어·한자·히라가나·가타카나를 각각 등록</b>하는 것이 정석이다(반각/전각 가타카나는 아마존이 동일시하므로 한쪽만 넣으면 된다).
+<b>한국어 상품명을 번역기로 돌리면 <span class="ja">トナーパッド</span>만 나오고 <span class="ja">拭き取りパッド</span> 검색량을 통째로 놓친다.</b>
+큐텐도 검색어 필드가 10개뿐이라 표기 선택이 곧 트래픽이다.</p>
+
+<h2 id="eff">시작하면 실제로 어떻게 되나</h2>
+<p class="role">헤드라인을 만드는 숫자와 중앙값은 다르다. 중앙값부터 본다.</p>
+
+<div class="ans"><div class="a">큐텐 신인 브랜드 188개의 평균 연매출은 약 ¥1,780만(약 1.6억원)이다.</div>
+<div class="b">큐텐 <span class="ja">メガデビュー</span>(메가데뷔) 프로그램에 2025년 1년간 200개 브랜드가 참가했고 그중 <b>188개(94%)가 K뷰티</b>다.
+누적 매출 35억엔을 참가 브랜드 수로 나눈 값이다. 그리고 <b>분기 1,000만엔을 넘긴 브랜드는 51개(25%)</b>다.
+뒤집으면 <b>75%는 분기 1,000만엔에 도달하지 못했다.</b>
+헤드라인을 장식하는 APR(메디큐브) 2025 상반기 일본 732억원, 아누아 단일 세트 5.9억엔은 분포의 극단이지 중앙값이 아니다.</div></div>
+
+<div class="ans"><div class="a">한국에서 나가는 물량 증가는 이미 한 자릿수로 둔화했다.</div>
+<div class="b">2025년 한국 → 일본 화장품 수출은 <b>+4.9%</b>(10.87억 달러, 3위), 일본 측 수입 통계로도 <b>+5.6%</b>다.
+그런데 일본 내 K뷰티 소매 시장은 <b>+23.1%</b>(TPC 기준 1,798억엔)로 잡힌다.
+수출은 FOB 도매가이고 소매는 소매가라는 정의 차이를 감안해도 격차가 크다.
+<b>신규 진입 브랜드가 마주할 것은 "성장하는 시장"이 아니라 "이미 자리 잡은 상위 브랜드가 마진을 확장하는 시장"</b>일 가능성이 높다.
+Nint의 3몰 「<span class="ja">韓国コスメ</span>」 카테고리가 2026 Q2에 매출 −1.0%, 판매점수 −7.8%, 평균단가만 +7.4%인 것이 같은 방향의 보조 증거다. <span class="tag low">인과 검증 불가</span></div></div>
+
+<div class="ans"><div class="a">20대 여성의 39.7%는 K뷰티에 애초에 관심이 없다.</div>
+<div class="b">같은 조사(n=1,000, 2026-03)에서 한국 화장품 구매 경험이 있는 층이 42.5%, 애초에 전혀 관심 없는 층이 39.7%다.
+<b>"Z세대가 일률적으로 K뷰티를 받아들인다"는 전제는 성립하지 않는다.</b> 강하게 사는 층과 아예 안 보는 층으로 갈렸다.
+반면 인테이지 패널 기준 3년 성장률이 가장 높은 연령대는 20대가 아니라 <b>40~50대</b>다. 20대는 이미 포화이고 성장 여지는 위쪽에 있다.
+DOMO 스코프의 25-34세는 큐텐의 코어(10~20대)보다 위, 성장 최고 구간(40~50대)보다 아래에 있다.</div></div>
+
+<div class="tw"><table><thead><tr><th>채널</th><th>지표 종류</th><th>규모</th><th>연도</th></tr></thead><tbody>
+<tr><td>Amazon.co.jp</td><td>net sales (매출)</td><td class="n">4조 6,339억엔</td><td class="n">2025</td></tr>
+<tr><td>Amazon.co.jp</td><td>GMV <span class="tag low">3자 추정</span></td><td class="n">약 8조 1,703억엔</td><td class="n">2024</td></tr>
+<tr><td>楽天 국내EC</td><td>유통총액</td><td class="n">6조 3,452억엔</td><td class="n">2025</td></tr>
+<tr><td>Yahoo!쇼핑</td><td>취급고</td><td class="n">1조 7,506억엔</td><td class="n">FY2025.3</td></tr>
+<tr><td><b>Qoo10 Japan</b></td><td>유통총액 <span class="tag ok">법정 신고</span></td><td class="n"><b>3,000억엔 이상</b></td><td class="n">2025년도</td></tr>
+<tr><td>TikTok Shop Japan</td><td>GMV <span class="tag low">Nint 추계</span></td><td class="n">536억엔</td><td class="n">2025.7-2026.6</td></tr>
+</tbody></table></div>
+<p><b>규모 서열과 뷰티 서열은 완전히 다르다.</b> 전체로는 아마존 ≈ 라쿠텐 >> 야후 >> 큐텐이지만,
+큐텐은 <b>매출의 약 70%가 뷰티</b>이고 스스로 일본 온라인 뷰티 시장의 30% 이상을 점유한다고 주장한다.
+그리고 큐텐 연간 3,000억엔 중 메가와리 4회가 <b>65~75%</b>를 차지하는 것으로 계산된다(2025년 1회차 490억엔이 유일한 공표치라 나머지는 추정).
+eBay Japan 마케팅본부장 본인이 "행사 기간 매출 비중이 전체의 절반에 이를 정도"라고 말했다.</p>
+
+<div class="cal"><b>일본 화장품의 EC화율은 8.82%다.</b> 의류 23.4%, 가전 43.0%의 절반 이하다.
+<b>일본은 화장품의 91%를 오프라인에서 산다.</b> 이게 한국과의 최대 구조 차이다.
+다만 K뷰티에 한정하면 <b>판매의 71%가 온라인</b>이고, 15~34세는 큐텐이 압도적 1위, 35세 이상은 라쿠텐이 강해진다.
+즉 온라인은 K뷰티의 진입로일 뿐 종착지가 아니다.</div>
+
+<h3>한국 브랜드가 실제로 쓴 순서</h3>
+<p>사례를 모으면 예외 없이 같은 순서다. <b>아마존은 이 경로의 종점이지 시작점이 아니다.</b></p>
+<pre>[0] 큐텐 메가데뷔 (입점 3개월 이내 신규 브랜드, 30% 쿠폰 + 전방위 노출)
+     └ 데뷔 1개월 전 「サンプルマーケット」로 사전 리뷰 축적 ← 큐텐 스스로 병목이 리뷰임을 인정한 설계
+[1] 메가와리로 인지도·순위 확보 (연 4회 × 12-13일)
+[2] 큐텐 인큐베이션 3개월 (150개사) → 메가콜라보 (상위 50개, 라이브)
+[3] @cosme 리뷰 축적 → 어워드 / @cosme TOKYO 팝업          SKIN1004 2026-06
+[4] ロフト / PLAZA 입점 (LOFT K-Cosmetics Festival이 관문)   VIDIVICI 169점 동시 전개
+[5] ドンキ / マツキヨ / ハンズ / AEON 대중 확산              rom&nd · TIRTIR · numbuzin
+[6] 단독 매장 / 아마존 공식 스토어                          numbuzin 나고야 2026-04</pre>
+
+<div class="tw"><table><thead><tr><th>브랜드</th><th>일본 실적</th><th>비치헤드</th></tr></thead><tbody>
+<tr><td>APR (메디큐브)</td><td>2025 상반기 일본 732억원(전년 192억원의 3.8배). 메가와리 2주에만 224억원</td><td>큐텐 → 오프라인</td></tr>
+<tr><td>아누아</td><td>메가와리 1위 상품 5.9억엔, 단일 세트 17만 건+. 틱톡샵 재팬 한국 브랜드 1호(2025-06-30)</td><td>큐텐 → 틱톡샵</td></tr>
+<tr><td>VIDIVICI</td><td>2026 1분기 일본 60배, 큐텐만 50배+. 로프트·플라자·@cosme 169점</td><td>큐텐 → 오프라인</td></tr>
+<tr><td>COSRX</td><td>Qoo10 2026 상반기 베스코스 대상. 2026년 6월 메가와리 자사 최고 매출</td><td>큐텐</td></tr>
+<tr><td>numbuzin</td><td>로프트·@cosme·돈키·마츠키요·한즈·플라자·이온 → 나고야 단독점(2026-04)</td><td>큐텐 → 오프라인 → 단독점</td></tr>
+</tbody></table></div>
+
+<h3>토너패드 카테고리의 현재 위치</h3>
+<div class="tw"><table><thead><tr><th>순위</th><th>브랜드</th><th>제품</th><th>가격</th><th>국적</th></tr></thead><tbody>
+<tr><td class="n">1</td><td>Medicube</td><td>제로 모공 패드</td><td class="n">¥2,920</td><td>한국</td></tr>
+<tr><td class="n">2</td><td>Medicube</td><td>제로 모공 패드 70매</td><td class="n">¥2,350</td><td>한국</td></tr>
+<tr><td class="n">3</td><td>SKINFOOD</td><td>캐롯 카로틴 카밍 워터 패드 60매</td><td class="n">¥2,040</td><td>한국</td></tr>
+<tr><td class="n">4</td><td>One-day's you</td><td>헬프미 모공 티 패드 60매</td><td class="n">¥1,780</td><td>한국</td></tr>
+<tr><td class="n">5</td><td><b>Utena</b></td><td>Oh My Easy Daily Toner Pad 60매</td><td class="n hi">¥658~1,780</td><td class="hi"><b>일본</b></td></tr>
+</tbody></table></div>
+<p class="src">마이베스트 랭킹 2026-08-12 갱신</p>
+<p><b>상위 1~4위가 전부 한국 브랜드이고, 5위가 첫 일본 브랜드다.</b>
+그리고 그 일본 브랜드 우테나가 <b>¥658부터</b> 진입했다. 한국 브랜드 밴드(¥1,780~2,920)의 절반 이하다.
+일본 대기업이 저가로 들어오기 시작했다는 신호이고, 카테고리가 「신기한 K뷰티 아이템」에서 「일용품」으로 넘어가는 국면이라는 뜻이다.
+큐텐 스킨케어 물량 기준으로 패드는 <b>9.6%</b>로 세럼(44.2%)·유액/크림(18.1%)·토너(15.8%) 다음의 4번째 제형이다.
+니치는 아니지만 1군도 아니다. 패드 단독으로는 브랜드 볼륨이 안 나온다.</p>
+
+<div class="note"><b>토너패드는 어느 기관도 독립 카테고리로 시장 규모를 공표하지 않는다.</b>
+Nint·인테이지·후지경제 모두 서브카테고리에 없다. 유료 리서치를 사지 않으면 규모와 성장률을 알 수 없다.
+이 문서의 매대 분포와 랭킹은 규모의 대용이지 규모 자체가 아니다.</div>
+
+<h3>광고 벤치마크</h3>
+<div class="grid2">
+<div class="tw"><table><thead><tr><th>아마존 재팬 CPC <span class="tag low">대행사 집계</span></th><th>레인지</th></tr></thead><tbody>
+<tr><td><span class="ja">サプリメント</span></td><td class="n">¥100-500+</td></tr>
+<tr><td><span class="ja">ヘルス&パーソナルケア</span></td><td class="n">¥50-150</td></tr>
+<tr><td><b><span class="ja">ビューティー</span></b></td><td class="n hi"><b>¥40-120</b></td></tr>
+<tr><td><span class="ja">ファッション</span></td><td class="n">¥10-40</td></tr>
+</tbody></table></div>
+<div class="tw"><table><thead><tr><th>국면별 ACoS 목표</th><th>수준</th></tr></thead><tbody>
+<tr><td>신제품 런칭</td><td class="n">50-100%</td></tr>
+<tr><td>성장기</td><td class="n">25-40%</td></tr>
+<tr><td>안정기</td><td class="n">15-25%</td></tr>
+<tr><td>뷰티 카테고리 목표</td><td class="n hi">15-30%</td></tr>
+</tbody></table></div>
+</div>
+<p>Q4(10~12월)에는 통상기의 1.5~2배로 오른다. <b>"평균 CPC 5~10엔"이라고 쓴 일본 기사가 다수 검색되는데 오래된 값이거나 저경쟁 카테고리 기준이다.
+뷰티 예산 산정에 쓰면 안 된다.</b></p>
+<p>큐텐 쪽은 <b>공개된 CPC·ROAS 벤치마크가 없다.</b> 인벤토리 단가만 있다.</p>
+<div class="tw"><table><thead><tr><th>큐텐 광고</th><th>과금</th><th>단가</th></tr></thead><tbody>
+<tr><td><span class="ja">プラス展示</span> (플러스전시)</td><td>기간보장 입찰 (클릭 무과금)</td><td class="n">¥100-1,000~/일</td></tr>
+<tr><td><span class="ja">パワーランクアップ</span></td><td>정액</td><td class="n">30일 3,000 Q캐시 (≈¥100/일)</td></tr>
+<tr><td><span class="ja">スマートセールス</span></td><td><b>성과보수</b></td><td class="n">결제액의 5-30% (셀러 설정)</td></tr>
+<tr><td><span class="ja">タイムセール</span></td><td>정액</td><td class="n">¥2,000-6,000</td></tr>
+<tr><td><span class="ja">メガ割AD</span></td><td>정액</td><td class="n">¥3,000/상품/일 (1,500슬롯)</td></tr>
+<tr><td><span class="ja">クーポンPUSH</span></td><td>무료</td><td class="n">¥0 · 주 1회 팔로워 대상</td></tr>
+</tbody></table></div>
+<p><b>플러스전시는 클릭 과금이 아니라 하루 단위 경매다.</b> 입찰가 상위 10개 상품만 게재되고, 낙찰 실패 시 전액 환불된다.
+몇 번 클릭되든 비용이 같아서 <b>트래픽이 폭증하는 메가와리 기간에 실질 CPC가 자동으로 떨어진다.</b>
+입찰 마감이 게재 당일 <b>17:50</b>이다(18:00으로 착각해 슬롯을 놓친 셀러 기록이 있다).
+파워랭크업은 정액인 데다 <b>광고 표기가 붙지 않아</b> 자연 결과처럼 보인다.
+스마트세일즈는 판매 성사 시에만 과금이라 신규 셀러 리스크가 가장 낮다.</p>
+<p><b>광고는 전부 QSM 셀프서브다. 담당 MD를 거치지 않는다.</b>
+MD가 실제로 작동하는 지점은 광고 판매가 아니라 <b>큐레이션</b>이다. 특집 코너, 배너, 이벤트 추천, 메가데뷔 슬롯 배정이 MD 권한이다.
+한국 셀러들이 MD 관계를 강조하는 이유가 여기에 있다. <b>돈으로 살 수 있는 인벤토리와 살 수 없는 인벤토리가 분리되어 있고, 후자가 30% 쿠폰 같은 비대칭 혜택을 준다.</b>
+MD 배정 메커니즘은 어느 자료에도 문서화되어 있지 않다. 다만 큐텐 재팬이 한국어 카카오톡 비즈니스 채널과 KOTRA 파워셀러 트랙을 운영해온 것은 확인된다.</p>
+
+<h2 id="trap">함정</h2>
+<p class="role">공식 문서에 없고, 당해봐야 아는 것들. 신뢰도 라벨을 그대로 붙였다.</p>
+
+<div class="tw"><table><thead><tr><th>함정</th><th>무슨 일이 벌어지나</th><th>대응</th></tr></thead><tbody>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 취소율 10%</td><td>분기 취소율 10% 초과 시 <b>해당 분기 메가와리 참가 제한</b>. 15% 초과면 등록 상품 500개 제한, 2분기 연속이면 전 상품 판매정지 + 출금정지. 최대 원인은 품절 <span class="tag ok">확실</span></td><td>재고 계획 = 다음 메가와리 참가권. 분기 경계(1/1·4/1·7/1·10/1) 직전 취소가 다음 분기 전체를 날린다</td></tr>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 발송 3영업일</td><td>입금일+3영업일 미발송이면 주의, +4영업일이면 배송지연 포인트 −2, +5영업일 경과하고 발송률 95% 이하면 <b>해당 상품 30일 판매정지 + 프로모션 정지</b>. <b>해외발송 완화 규정은 없다</b> <span class="tag ok">확실</span></td><td>발송예정일을 보수적으로 입력. 단 발송예정일은 <b>API로 못 쓰고</b> QSM 수동 입력이며, 갱신하면 주문 상태가 바뀌어 동기화 전에 건드리면 주문 취득이 안 된다</td></tr>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 정산 15일+</td><td>일반 셀러는 배송완료 후 <b>15일 이후의 수요일</b> 정산. 우수 10일, 파워 5일. 대행사가 광고하는 "최단 1주일"은 파워셀러 기준이다 <span class="tag ok">확실</span></td><td>배송완료 → 계좌 착금까지 3~4.5주로 현금흐름을 짠다. 추적 불가 배송수단을 쓰면 배송완료 인식이 어긋나 더 밀린다</td></tr>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 2025-11 출금 변경</td><td>해외 판매점은 <b>JPY로만 출금 가능, 1만엔 이상일 때만 출금 가능</b>. 원화 통장으로 못 받는다 <span class="tag mid">추정</span></td><td>엔화 외화통장 선개설. 환전 주체가 우리 은행으로 이동하므로 <b>엔화 수취 수수료와 엔→원 우대율을 은행별로 비교</b>하는 것이 실질 FX 비용을 결정한다</td></tr>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 반품 회수 없음</td><td>셀러가 직접 회수하는 시스템이 없어 구매자가 한국으로 직접 보내고 영수증 제출로 Q머니 환급. 대형 2건에 ¥4,400을 부담한 사례 <span class="tag mid">추정</span></td><td>부피 큰 세트는 반품 1건이 마진 수십 건을 날린다. <b>일본 내 반품 수취 주소 확보가 사실상 필수</b></td></tr>
+<tr><td class="lbl"><span class="tag q">큐텐</span> 무단 셀러</td><td>통제 수단이 <b>QSafe 하나뿐이고 사후 대응</b>이다. 지재권 침해만 다루고, 삭제해도 새 리스팅을 만들면 그만. 무단 셀러의 공급 경로 중 하나가 <b>아마존에서 사서 FBA 멀티채널로 큐텐에 재판매</b> <span class="tag mid">추정</span></td><td>입점과 동시에 QSafe 권리자 등록. 신고 근거는 상품 진정성보다 <b>공식 이미지·상세문구 무단 사용</b>이 판정이 빠르다</td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> 카트가 죽는다</td><td>타 채널 최저가보다 비싸면 카트박스가 억제되고 <b>스폰서 광고도 같이 멈춘다.</b> 셀러 평가와 무관하게 발동한다 <span class="tag ok">확실</span></td><td>메가와리 기간에 아마존 가격을 선제적으로 내리거나 SKU를 분리한다. 조정할 때 <b>포인트 환원율과 배송비까지</b> 계산해야 한다</td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> <span class="ja">真贋調査</span></td><td>"이 상품 가품 아닌가요?" 리뷰 <b>한 건</b>이 AI 판정을 촉발해 재고 80개가 즉시 정지된 실제 기록. 요구 서류는 1년 이내 인보이스 + 거래 계약서 + 둘을 잇는 요약문 <span class="tag ok">확실</span></td><td>그 사례의 패인은 서류 내용이 아니라 <b>주소 불일치</b>였다(셀러 등록주소·물류업체 주소·작업장 주소가 셋 다 달랐다). <b>한국 브랜드는 구조상 100% 이 상황</b>이므로 지금 서류 패키지를 만들어 둔다</td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> 뷰티 게이트</td><td>뷰티는 <b>사전승인 카테고리</b>다. 해제 서류는 메이커·도매 발행 납품서 또는 영수증 1통 이상, 심사 수일~수주 <span class="tag ok">확실</span></td><td>사진보다 <b>PDF가 유리</b>하다는 경험이 반복 보고된다. 요건은 180일 이내 / 최소 10개 / 거래처 명칭·주소가 계정 등록정보와 일치</td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> <span class="ja">相乗り</span> (상어입점)</td><td><b>브랜드 등록만으로는 못 막는다.</b> "피기백이라서"는 신고 근거가 안 되고, 허위 신고로 간주되면 브랜드 등록 자체가 삭제될 수 있다 <span class="tag ok">확실</span></td><td>상표권 배제의 실제 요건은 ① 상표권 보유 ② <b>상품 본체에 상표가 각인·인쇄</b> ③ 카탈로그에 그 각인부 사진 게재. <b>박스에만 있으면 ②를 못 채운다. 생산 발주 단계에서 결정되는 문제다</b></td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> IPI 400</td><td>재고 성과 지표가 400 미만이면 보관 한도가 걸리고 초과보관수수료(㎥당 월 ¥31,727 <span class="tag low">추정</span>)가 붙는다</td><td>초도는 8~10주 판매분만 넣고 나머지는 일본 3PL이나 한국에 둔다. <b>신규 셀러가 초도 물량을 크게 넣으면 첫 분기에 바로 깨진다</b></td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> 기한관리</td><td>화장품은 <b><span class="ja">要期限管理商品</span></b>(요기한관리상품) 대상. 사용기한을 일본어로 명료하게 표시해야 하고, 잔여 일수가 규정 미달이면 반송된다. 알코올 함유는 위험물 판정 대상이라 <b>SDS 사전 제출 없이 보내면 수취 거부</b> <span class="tag ok">확실</span></td><td>라벨 사양(사용기한 일본어 표기, 전성분, 상표 각인)을 <b>한국 생산 발주 시점에 확정</b>한다. 일본 도착 후 재라벨링은 비용이 몇 배이고, 애초에 제조업 허가자만 붙일 수 있다</td></tr>
+<tr><td class="lbl"><span class="tag a">아마존</span> 계정 연결</td><td>과거 정지된 계정과 <b>연결(related account)</b>로 판정되어 미국 스토어까지 비활성화된 사례. 대표자·주소·결제수단이 겹치면 걸린다 <span class="tag mid">추정</span></td><td>등록 전에 사내 조사. 북미 통합계정이 있으면 <b>같은 primary email로</b> 등록해야 한다</td></tr>
+<tr><td class="lbl">양쪽 공통 · 신인 사망 패턴</td><td>① 상품명 앞 30자에 키워드 없음 ② 카테고리 오등록 ③ 모바일 썸네일 미최적화 ④ 리뷰 10건 미만인데 배너 광고 집행 ⑤ 30일 사전준비 없이 론칭 ⑥ 세트 없음 <span class="tag mid">추정</span></td><td>일 ¥100짜리 테스트 캠페인으로 키워드를 먼저 찾고 큰돈을 쓴다</td></tr>
+</tbody></table></div>
+
+<div class="cal"><b>객단가 갭이 세트 구성을 강제한다.</b>
+큐텐 메가와리 1회 지출액은 <b>¥5,000-10,000이 27%로 최다</b>이고 다음이 ¥3,000-5,000이다(LIPS n=2,045).
+상품 단가가 아니라 바스켓 단가다. ¥1,500~4,000 단품은 이 바스켓의 하단이라
+상위 경쟁사가 이미 세트로 싸우고 있다(아누아 「<span class="ja">選べる7種</span>」, 메디큐브 스킨뷰티 세트).
+아마존 쪽 계산도 같은 답을 낸다. 2~3개 번들로 ¥3,000~4,500을 만들면 FBA 고정비가 한 번만 붙는다.</div>
+
+<h2 id="cal">2026-2028 캘린더</h2>
+<p class="role">확정된 것만. 추측한 일정은 넣지 않았다.</p>
+<div class="tw"><table><thead><tr><th>시점</th><th>변화</th><th>우리에게</th></tr></thead><tbody>
+<tr><td class="n">2026-04-01</td><td>아마존 재팬 판매수수료 전 카테고리 <b>+0.4%p</b> (¥750 초과)</td><td>이미 시행됨. 뷰티 8.4% / 10.4%</td></tr>
+<tr><td class="n">2026-04-01</td><td>아마존 FBA 배송대행 <span class="ja">標準2a~3</span> 인하 (평균 ¥38)</td><td>이미 시행됨</td></tr>
+<tr><td class="n">2026-04-15</td><td>아마존 최저 장기재고 추가수수료 신설 (12개월 초과 1점당 월 ¥20)</td><td>이미 시행됨</td></tr>
+<tr><td class="n">2026-04-01<br><small>이르면</small></td><td>일본 관세 <span class="ja">課税価格決定の特例</span>(0.6 곱하기) <b>폐지</b></td><td>소매가 ¥10,001~16,666 구간이 새로 과세. 메가와리 바스켓 단가대가 직격</td></tr>
+<tr><td class="n">2026-06-12</td><td>큐텐이 <span class="ja">デジタルプラットフォーム取引透明化法</span> 규제 대상으로 지정</td><td>수수료·규약 변경이 <b>사전통지·공시 대상</b>이 된다. 기습 인상 리스크가 구조적으로 낮아졌다. 우리에게 유리</td></tr>
+<tr><td class="n">2026-08-25</td><td>Qoo10 Seller Conference 2026 (도쿄, 큐텐 최초 전 셀러 대상)</td><td><b>12일 뒤다.</b> 출점 전이라도 참가 가능한지 확인 가치 있음</td></tr>
+<tr><td class="n">2026-08-28<br><small>추정</small></td><td>2026년 3회차 메가와리 시작 <span class="tag low">미발표</span></td><td>2026년 1·2회가 모두 금요일 17시 시작 13일간이었고, 오프라인 MEGA POP UP이 8/29~9/6 확정. 과거 팝업은 메가와리 다음날 개시</td></tr>
+<tr><td class="n">2027-04-01</td><td>물품 플랫폼 과세 지정용 신고 의무 개시</td><td>플랫폼 측 준비 단계</td></tr>
+<tr><td class="n">2028-04-01</td><td><b>1만엔 이하 통신판매 수입에 소비세 신설 과세 + 물품 플랫폼 과세 시행</b></td><td class="hi"><b>한국직발송의 10% 가격 우위 소멸.</b> 허가 4~6개월 + 표시명칭 취득 리드타임을 감안하면 <b>2027년 상반기 착수가 데드라인</b></td></tr>
+</tbody></table></div>
+
+<h2 id="gap">우리가 모르는 것</h2>
+<p class="role">모르는 것을 아는 척하는 것이 이 조사에서 가장 큰 리스크다. 전화 한 통이나 전문가가 있어야 풀리는 것들.</p>
+
+<h3>지금 확인해야 할 것</h3>
+<ol>
+<li><b>화장품 제조판매업 허가를 자사로 갈지 대행을 쓸지.</b> 판단 기준은 비용이 아니라 <b>라벨 <span class="ja">製造販売元</span>에 누구 이름을 찍을 것인가</b>다. 테스트 판매는 대행, 브랜드 구축은 자사 허가가 정설이다. <span class="ja">行政書士</span>(행정서사) 상담.</li>
+<li><b>큐텐 판매가가 아마존 카트박스 판정에 들어가는지.</b> 아마존 셀러서포트에 「<span class="ja">競争力のある価格の参照対象にQoo10は含まれるか</span>」로 케이스 오픈. 답이 "예"면 메가와리 가격정책 전체를 다시 설계해야 한다.</li>
+<li><b>큐텐 2025-11 출금 규칙의 현행 여부와 한국 법인 서류 매트릭스.</b> 공식 QSM 공지가 로그인 뒤에 있어 확인 못 했다. 큐텐 셀러 지원에 직접 문의.</li>
+<li><b>큐텐이 1주문당 24개 상한을 시스템으로 강제하는지.</b> 판매자 약관 페이지가 523 오류로 확보 실패. 강제하지 않으면 우리가 걸어야 한다.</li>
+<li><b>취급 SKU가 위험물(액체) 판정을 받는지.</b> FBA 납품 전 SDS 준비하고 사전판정 신청. 승인 없이 보내면 수취 거부다.</li>
+<li><b>일본 화장품 기준 별표3(방부제)·별표4(자외선흡수제) 적합성.</b> 일본은 <b>포지티브 리스트</b>라 리스트에 없으면 못 쓴다. 한국·EU에서 허용되는 필터가 일본 리스트에 없으면 그 제품은 판매 불가이고 처방을 바꿔야 한다. 시험기관 사전검사.</li>
+<li><b><code>getDefinitionsProductType</code>을 JP + 화장품 productType으로 호출해 스키마 덤프.</b> 필수 속성은 문서가 아니라 API가 진실이다.</li>
+</ol>
+
+<h3>확인하지 못한 채로 남은 것</h3>
+<div class="tw"><table><thead><tr><th>항목</th><th>상태</th></tr></thead><tbody>
+<tr><td>한국 → 일본 소형포장 실단가 (EMS·K-Packet·국제특송)</td><td>요금표 확보 실패. <b>추정치를 지어내지 않았다.</b> 이 문서의 큐텐 P&L에서 물류가 비어 있는 이유다</td></tr>
+<tr><td>큐텐 랭킹 산식의 가중치, 실적 집계 윈도우, 시간 감쇠 계수</td><td>공개 자료 전무. "매일 재계산"만 공식 확인</td></tr>
+<tr><td>큐텐 신상품 콜드스타트 부스트의 존재 여부</td><td>있는지 없는지 자체가 미확인</td></tr>
+<tr><td>큐텐 키워드별 실제 낙찰가와 신규 셀러 월 광고예산 벤치마크</td><td>시작가만 공개. 독립 검증된 ROAS 없음</td></tr>
+<tr><td>MD 배정 메커니즘 (기준, 신청 경로, 페이투플레이 여부)</td><td>한국어·일본어 어느 쪽에도 문서 없음. 직접 물어보는 게 유일한 방법</td></tr>
+<tr><td>메가와리 직후 매출 급락 폭</td><td>큐텐 공식도 "떨어지는 경향"까지만 말하고 숫자를 안 낸다</td></tr>
+<tr><td>토너패드 카테고리 시장 규모·성장률</td><td>어느 기관도 독립 카테고리로 공표하지 않음</td></tr>
+<tr><td>화장품 EC 반품률</td><td>리포트 다운로드 게이트 안. 개봉 후 반품 불가가 관행이라 낮을 것으로 추정되나 수치 미확인</td></tr>
+<tr><td>FBA 재고의 <span class="ja">恒久的施設</span>(PE) 해당성</td><td><b>불확실.</b> 한일 조세조약 5조 문언과 MLI 적용 여부 미확인. 국제조세 <span class="ja">税理士</span> 확인 필수.<br>다만 소비세 납세의무는 PE와 무관하게 국내거래 판정으로 별도 발생한다. <b>"PE가 없으니 일본 세무 신고가 필요 없다"는 오해가 가장 위험하다</b></td></tr>
+<tr><td>MAH 대행·ACP·세리사 실제 비용</td><td>전부 견적제. 공개 단가 없음. 행정서사 보수만 확인됨(제조판매업 허가 22만엔~, 제조업 13.2만엔~, 품목신고 3.3만엔~)</td></tr>
+<tr><td>일본에서 K뷰티 브랜드명이 제3자에게 선점된 구체 사례</td><td>무단선점 급증 통계(2024년 9,520건, 전년비 +90%)는 확실하나 열거된 지역은 베트남·태국·인도네시아·중국. <b>일본 사례를 특정하지 못했다</b></td></tr>
+<tr><td>한국 브랜드의 일본 철수 사례</td><td>찾지 못했다. 검색 결과가 성공 서사에 압도적으로 편중되어 있다. <b>철수 사례가 없다는 뜻으로 읽으면 안 된다</b></td></tr>
+</tbody></table></div>
+
+<h3>소스가 서로 어긋난 곳</h3>
+<div class="tw"><table><thead><tr><th>쟁점</th><th>충돌</th><th>채택</th></tr></thead><tbody>
+<tr><td>큐텐 회원수 vs MAU</td><td>회원 2,800만 vs MAU 3,500만. <b>MAU가 회원수보다 크다.</b> 같은 발표에 병기된 수치</td><td>「액티브 유저」가 실제로는 비로그인 방문 세션 포함 지표일 가능성. <b>그대로 인용하면 안 된다</b></td></tr>
+<tr><td>큐텐 GMV</td><td>법정 신고 3,000억엔+ vs 3자 추정 2,790억엔(2024)</td><td>법정 신고. 허위 신고 시 법적 책임이 발생하므로 마케팅 자료보다 신뢰도가 높다. 다만 상한이 없어 3,000억인지 4,000억인지는 여전히 모른다</td></tr>
+<tr><td>큐텐 성비</td><td>공식(앱) 여성 76-80% vs VALUES 웹패널 여성 60%</td><td>측정 모집단이 다르다(앱 vs 웹). 구매의 90%가 앱이므로 공식 수치가 구매자 실태에 가깝다</td></tr>
+<tr><td>일본 내 K뷰티 시장 규모</td><td>Bain 2,700억엔 vs TPC 1,798억엔 vs Nint 44억엔. <b>60배 차이</b></td><td>TPC. Nint의 44억엔은 큐텐이 커버리지에 없고 오프라인이 전무해 <b>절대 규모로 쓰면 안 된다</b>(추세로만 읽는다). Bain은 발표 주체가 큐텐 컨퍼런스라 이해상충 여지</td></tr>
+<tr><td>아마존 뷰티 수수료</td><td>8%/10% (블로그 다수, 2026-08 갱신 표기 포함) vs 8.4%/10.4%</td><td>8.4%/10.4%. 아마존 자사 페이지와 셀러포럼 공식 공지 두 곳이 2026-04-01 개정을 명시한다. <b>블로그가 개정을 반영하지 않은 것이다</b></td></tr>
+<tr><td>아마존 CPC 벤치마크</td><td>"평균 5~10엔" vs "뷰티 40~120엔". <b>20배 차이</b></td><td>뷰티 40~120엔. 전자는 오래된 값이거나 초저경쟁 카테고리 기준</td></tr>
+<tr><td>브랜드 등록 인정 상표국</td><td>한 소스는 14개국 목록에 한국 없음, 다른 소스는 KIPO도 전역 목록에 포함되나 한국 마켓플레이스용</td><td>실무 결론은 같다. <b>일본 마켓플레이스에는 JPO 상표가 필요하다</b></td></tr>
+<tr><td>메가와리 매출 배수</td><td>실제 셀러 8배 vs 큐텐 공식 인터뷰 10~20배 vs 대행사 "3~10배 이상"</td><td>대행사 숫자들은 동일 문구가 여러 블로그에 반복되어 <b>단일 출처 확산 가능성이 높다</b>. <b>첫 메가와리는 1.5~3배로 잡고 재고를 짠다</b></td></tr>
+<tr><td>큐텐 CVR 12.1%</td><td>아마존 뷰티 3~6%의 2~4배로 보이나</td><td>어워드 수상 상품 대상이라 선택 편향이 있고 CVR 산식이 미공개다. <b>"큐텐 CVR이 아마존의 2~4배"라고 결론 내면 안 된다</b></td></tr>
+</tbody></table></div>
+
+<div class="foot">
+<b>이 문서의 성격</b> 2026-08-13에 수행한 8개 병렬 조사(큐텐 구조·수수료 / 큐텐 랭킹·광고·이벤트 / 큐텐 API·물류 /
+아마존 계정·수수료·FBA / 아마존 알고리즘·광고·SP-API / 일본 법규·통관·세무 / 일본 EC 시장·벤치마크 / 현장 운영정보)를 종합한 것이다.
+플랫폼 정책은 계속 바뀌므로 <b>2026년 이전 자료의 수치는 이 문서에서 의도적으로 배제하거나 「오래된 소스」로 표시</b>했다.<br>
+<b>신뢰도 표기</b> 정부·플랫폼 공식 문서를 1차로 두고, 컨설팅·대행사 자료는 추정, 개별 블로그·일화는 소문으로 분리했다.
+확인하지 못한 것은 공란으로 두었다. <b>한국 → 일본 배송 단가처럼 값을 못 구한 항목에 추정치를 채워 넣지 않았다.</b><br>
+<b>자체 데이터</b> 가격 분포 표는 우리가 2026-08-11에 직접 수집한 큐텐 재팬 상품 8,904건이다.
+재료 45종 × <span class="ja">トナーパッド</span> 검색 결과라 패드 아닌 상품이 섞여 있고, 표시가는 상시 할인이 반영된 값일 수 있다. 패드 매대가 아니라 <b>인접 매대</b>로 읽어야 한다.<br>
+<b>일본어</b> 모든 일본어 용어에 한국어 뜻을 병기했다. 법령·제도명은 원문을 남겼다. 오역 시 원문으로 대조할 수 있어야 하기 때문이다.<br>
+<b>한계</b> 조사 세션의 웹 검색 예산이 소진되어 후반부는 확보한 URL에 대한 직접 접근으로만 진행했다.
+일본 정부 PDF 일부(재무성 WG 자료, 소비자청 가이드라인)는 파싱 실패 또는 403으로 원문 대신 대형 로펌 뉴스레터의 인용을 거쳤다.
+큐텐 스토어프론트와 판매자 약관 페이지는 조사 시점에 523 오류로 접근할 수 없었다.
+<b>이 문서의 법률·세무 서술은 조사 결과이지 자문이 아니다.</b> 실행 전 <span class="ja">行政書士</span>·<span class="ja">税理士</span>·변리사 확인이 필요한 항목을 위에 따로 적어두었다.
+</div>
+
+</div></body></html>
