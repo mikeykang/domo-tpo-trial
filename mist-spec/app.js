@@ -133,11 +133,11 @@
 
   // ── 후보 색인
   var oneNum = {
-    replace: '리프트 상위 전부 이 계열 · 공급은 달바 1곳',
+    replace: '재구매 양수 6개 컨셉 · 일본 타이틀 0/5',
     habit: '한국 순간축 ' + g.krMoment[4].toFixed(1) + '% 대 일본 ' + g.jpMoment[4].toFixed(1) + '%',
     retouch: '일본 순간축 ' + g.jpMoment[3].toFixed(1) + '% · 타이틀에 건 곳 1/5',
-    spray: '한국 고객 컨셉 1~3위 · 수치를 적은 상세 0장',
-    scent: '일본 불만 1위 ' + D.faults.filter(function (f) { return /향이 싫다/.test(f.lab); })[0].jb.toFixed(1) + '% · 그중 달바 18.2%'
+    spray: '@cosme 속성 3위 · 불만 배수 1위 5.8배 · 수치를 적은 상세 3장',
+    scent: '@cosme 속성 2위 ' + D.attrPanel.rows[1].co.toFixed(1) + '% · 일본 불만 1위 · 타이틀에 건 곳 1/5'
   };
   E.push('<div class="panel dark"><div class="ph"><h3 style="color:#fff">후보 컨셉 5 · 순위</h3>' +
     '<div class="hint" style="color:#8f8f8f">기준: 고객 언어에 이미 있고(수요) 브랜드 주장에 없다(공급). 카드마다 근거 전체를 붙였다</div></div>' +
@@ -247,8 +247,30 @@
     }).join('') + '</ul>' +
     (function () { var f = D.props[2].full; return '<div class="quote">단계 대체 언급, 코퍼스 전량 기준 &nbsp; 한국 <b>' + f.kr.toFixed(2) + '%</b> (' + n(f.krN) + '/' + n(f.krT) + ') &nbsp; 일본 큐텐 <b>' + f.jp.toFixed(2) + '%</b> (' + n(f.jpN) + '/' + n(f.jpT) + ') &nbsp; @cosme <b>' + f.co.toFixed(2) + '%</b> (' + n(f.coN) + '/' + n(f.coT) + ')</div>'; })() + '</div>');
 
+  // ── 진단 4b: 속성 언급 순위 — 타이틀이 파는 것 대 리뷰가 말하는 것
+  var A = D.attrPanel;
+  var amax = Math.max.apply(null, A.rows.map(function (r) { return r.co; }));
+  E.push('<div class="panel"><div class="ph"><h3>진단 5 · 타이틀이 파는 것과 장문 리뷰가 말하는 것' +
+    ib('같은 속성 프로브를 세 코퍼스에 그대로 댔다. 일본 @cosme ' + n(A.coN) + '건(장문) · 일본 큐텐 ' + n(A.qoN) + '건(단문) · 한국 올리브영 ' + n(A.krN) + '건. 매체가 길수록 속성을 많이 말하므로 시장 간 절대율이 아니라 같은 코퍼스 안의 순위로 읽는다.') +
+    '</h3><div class="lg"><span><i class="a"></i>일본 @cosme</span><span><i class="b"></i>일본 큐텐</span><span>한국</span></div></div>' +
+    '<table class="auto"><tr><th>속성</th><th style="text-align:right;width:78px">@cosme</th><th style="width:120px"></th>' +
+    '<th style="text-align:right;width:66px">큐텐</th><th style="text-align:right;width:66px">한국</th></tr>' +
+    A.rows.map(function (r, i) {
+      return '<tr><td>' + (i + 1) + '. <b>' + esc(r.lab) + '</b></td>' +
+        '<td class="n"><b>' + pc(r.co) + '</b></td>' +
+        '<td><span class="tk"><i class="a" style="width:' + (r.co / amax * 100) + '%"></i></span></td>' +
+        '<td class="n">' + pc(r.qo) + '</td><td class="n" style="color:var(--subtle)">' + pc(r.kr) + '</td></tr>';
+    }).join('') + '</table>' +
+    '<table class="auto sub"><tr><th>일본 상위 5종 타이틀이 파는 것</th><th style="width:150px">거는 축</th></tr>' +
+    A.titles.map(function (x) {
+      return '<tr><td><b>' + esc(x.name) + '</b> <span style="color:var(--subtle)">' + esc(x.t) + '</span>' +
+        '<div style="color:var(--subtle);font-size:12px;margin-top:2px">' + esc(x.ko) + '</div></td>' +
+        '<td>' + x.sells.map(function (s) { return '<span class="pill ' + (s === '성분' ? '' : 'jp') + '">' + s + '</span>'; }).join('') + '</td></tr>';
+    }).join('') + '</table>' +
+    '<p><b>5종 중 4종이 타이틀을 성분으로 채운다</b>(트러플 · 세라미드 · 콜라겐 · 프로폴리스/PDRN). 그런데 일본 장문 리뷰에서 성분은 10개 속성 중 <b>7위 ' + pc(A.rows[6].co) + '</b>다 — 향(' + pc(A.rows[1].co) + ')의 1/5, 분사(' + pc(A.rows[2].co) + ')의 절반. 타이틀에 향을 건 곳은 에스트라 「無香料」 하나, 분사를 건 곳은 미그하라 「微細ミスト」 하나뿐이다. 고객이 가장 많이 말하는 두 축을 파는 브랜드가 각각 한 곳씩밖에 없다는 것이 후보 4·5의 근거다. 한국 열을 같이 보면 다른 것도 보인다: <b>향은 일본 ' + pc(A.rows[1].co) + ' 대 한국 ' + pc(A.rows[1].kr) + '</b>로 6배 넘게 벌어지고(후보 5의 국경), <b>쿨링은 한국 ' + pc(A.rows[9].kr) + ' 대 일본 ' + pc(A.rows[9].co) + '</b>로 뒤집힌다 — 한율 −5.7°C · 클레어스 −8.3°C · 디어달리아 −11.53°C를 파는 한국 임상 언어가 일본에는 대응어조차 없다.</p></div>');
+
   // ── 진단 5: 통제쌍 (미스트는 4쌍이다)
-  E.push('<div class="panel"><div class="ph"><h3>진단 5 · 같은 브랜드 통제쌍이 넷 (세럼판은 하나였다)' +
+  E.push('<div class="panel"><div class="ph"><h3>진단 6 · 같은 브랜드 통제쌍이 넷 (세럼판은 하나였다)' +
     ib('한국 10종과 일본 5종에 동시에 있는 브랜드가 달바 · 에스트라 · 바이오힐보 · 차앤박 넷이다. 달바(퍼스트 스프레이 세럼 - 리뉴얼 관계) · 에스트라(아토베리어365 크림미스트 - 완전 동일 제품) · 바이오힐보(콜라겐 리모델링 세럼 겔 미스트 - 완전 동일 제품) · 차앤박(프로폴리스 미스트 - 주력 옵션 동일). 심층 표는 완전 동일 제품인 에스트라.') +
     '</h3><div class="lg"><span><i class="a"></i>한국</span><span><i class="b"></i>일본</span></div></div>' +
     '<table class="auto sub"><tr><th>브랜드 (리뷰 한국/일본)</th><th style="text-align:right">분사 KR/JP</th><th style="text-align:right">향 KR/JP</th><th style="text-align:right">재구매 KR/JP</th></tr>' +
@@ -267,7 +289,7 @@
     '<p>완전히 같은 제품인데 <b>한국은 분사를 말하고</b>(' + pc(D.pair[0].kr) + ' 대 ' + pc(D.pair[0].jp) + ') <b>일본은 재구매를 말한다</b>(' + pc(D.pair[5].jp) + ' 대 ' + pc(D.pair[5].kr) + '). 4쌍 전부에서 같은 방향이다 — 제품이 같으므로 이 차이는 제품 차이가 아니라 시장의 말하기 차이다. 일본 @cosme 열은 큐텐과 다르게 분사·수정화장이 높다: 같은 일본 안에서도 쇼핑 리뷰(큐텐)와 취미 리뷰(@cosme)의 언어가 갈린다.</p></div>');
 
   // ── 진단 6: 불만
-  E.push('<div class="panel"><div class="ph"><h3>진단 6 · 불만이 무엇에 대한 불만인가' +
+  E.push('<div class="panel"><div class="ph"><h3>진단 7 · 불만이 무엇에 대한 불만인가' +
     ib('한국은 1~3점 리뷰, 일본은 큐텐 구조 필드에 イマイチ가 붙은 리뷰. 일본 평점은 리뷰 포인트 보상 때문에 5점에 몰려 쓸 수 없다. 배수는 각 시장 전체 대비. 일본 리뷰가 짧아 시장 간 절대율은 비교하지 않는다.') +
     '</h3><div class="hint">불만 비율을 누르면 매치 리뷰 전문이 열린다</div></div>' +
     '<table class="auto"><tr><th>속성</th><th style="text-align:right;width:86px">한국 불만</th><th style="text-align:right;width:56px">배수</th>' +
@@ -290,13 +312,13 @@
       }).join('') + '</table>' + (note ? '<p>' + note + '</p>' : '') + '</div>';
   };
   E.push('<div class="two">' +
-    tl('진단 7 · 한국에서 크고 일본에 발판이 없다', D.transfer.krOnly.slice(0, 8),
+    tl('진단 8 · 한국에서 크고 일본에 발판이 없다', D.transfer.krOnly.slice(0, 8),
       '전부 안개분사와 저자극·테스트 계열이다. 단 @cosme 열이 높은 항목(분사)은 부재가 아니라 매체 차이다 — 일본에서 분사는 쇼핑 리뷰가 아니라 취미 리뷰의 언어다. 저자극·논코메도제닉은 @cosme에서도 낮다: 이쪽이 진짜 부재다.') +
     tl('일본이 더 크게 말한다', D.transfer.jpMore.slice(0, 8),
       '통수 세기(何本目)와 욕실 의식(お風呂上がり)이 위에 있다. 일본 리뷰의 기본형이 「또 샀다」라서다. 후보 1이 이 언어에 올라탄다.') + '</div>');
 
   // ── 진단 8: 획득 언어
-  E.push('<div class="panel"><div class="ph"><h3>진단 8 · 처음 사게는 해도, 다시 사게 하지는 못하는 말' +
+  E.push('<div class="panel"><div class="ph"><h3>진단 9 · 처음 사게는 해도, 다시 사게 하지는 못하는 말' +
     ib('계산법: 제품 · 리뷰 길이 · 채널이 같은 그룹 안에서 그 말이 든 리뷰와 아닌 리뷰의 재구매율 차이를 내고 가중평균했다(Mantel-Haenszel). 재구매라는 단어가 본문에 든 리뷰는 계산에서 뺐다. 한국 컨셉 200개 중 n>=120인 ' + D.dist.n + '개가 대상이고, |z|>=3 인 것이 ' + D.dist.sig + '개(양수 ' + D.dist.sigPos + ' · 음수 ' + D.dist.sigNeg + ')다. 컨셉별 대표 인용은 한국 10종 컨셉 리포트(../mist/)에 있다.') +
     '</h3><div class="hint">읽는 법: 이 말을 쓴 고객은 같은 제품의 다른 고객보다 재구매가 그만큼 적다</div></div>' +
     '<table class="auto"><tr><th>말</th><th style="text-align:right;width:90px">재구매 차이</th>' +
@@ -309,8 +331,8 @@
     '<p>네 갈래다: 형제 SKU 임상 수치와 판매 속도 자랑(브랜드가 상세에서 가장 크게 쓰는 말), 향 반대표, 분사 배신(「안개분사가 아니다」), 그리고 바이럴·굿즈 구매(「곰돌이 공병 때문에 샀다」). 넷 다 사게는 하고 남기지는 못한다.</p></div>');
 
   // ── 진단 9: 행동 동사
-  E.push('<div class="panel"><div class="ph"><h3>진단 9 · 한국은 빈도로 쓰고, 일본은 의식으로 쓴다' +
-    ib('코퍼스 전량 기준. 시간 기울기는 따로 진단 10에 실었다.') +
+  E.push('<div class="panel"><div class="ph"><h3>진단 10 · 한국은 빈도로 쓰고, 일본은 의식으로 쓴다' +
+    ib('코퍼스 전량 기준. 시간 기울기는 따로 진단 12에 실었다.') +
     '</h3><div class="hint">고객이 미스트를 가지고 실제로 하는 행동. 한국 = 올리브영 리뷰, 일본 = 큐텐 리뷰</div></div>' +
     '<table class="auto"><tr><th>행동</th><th style="text-align:right;width:80px">한국</th><th style="text-align:right;width:80px">일본</th>' +
     '<th style="text-align:right;width:60px">배수</th><th style="text-align:right;width:110px">한국 브랜드가 주장</th></tr>' +
@@ -324,8 +346,31 @@
     }).join('') + '</table>' +
     '<p>한국 고객은 미스트를 <b>빈도</b>로 쓴다 — 수시로 뿌리고, 자리마다 배치하고, 분사를 판정한다. 일본 고객은 미스트를 <b>반복 의식</b>으로 쓴다 — 목욕 후에 뿌리고, 수정화장에 쓰고, 같은 걸 다시 산다. 오른쪽 열이 한국 브랜드의 주장 비율인데, 배치·빈도 계열은 상세페이지에서 TIP 한 줄이고 정착 계열은 사실상 0이다.</p></div>');
 
+  // ── 진단 11: 간극 스캔 (후보 선정의 감사 기록)
+  var GS = D.gapscan;
+  E.push('<div class="panel"><div class="ph"><h3>진단 11 · 빈 자리가 몇 개나 있나 (후보 선정의 감사 기록)' +
+    ib('컨셉 ' + GS.n + '개 전부를 같은 자로 훑었다. 수요 = 그 말이 든 한국 리뷰 비율, 공급 = 상세페이지 ' + GS.detTot + '장과 메타 광고 ' + n(GS.adTot) + '건 중 그 말이 든 수. 후보 5개가 어디서 나왔고 무엇이 탈락했는지를 되짚을 수 있게 남긴다.') +
+    '</h3><div class="hint">패드 리포트와 같은 기준(수요 3% 이상 · 상세 2장 이하 · 광고 0.5% 이하)을 그대로 적용</div></div>' +
+    '<div class="quote">패드 기준을 통과하는 컨셉이 <b>' + GS.n + '개 중 ' + GS.strict.length + '개</b>뿐이다. 미스트 선반은 패드 선반보다 빈 자리가 적다 — 10종이 전부 안개분사 · 보습 · 저자극을 이미 걸어 놔서, 아무도 안 판 클레임이 거의 없다. 그래서 후보 4·5는 「아무도 안 판다」가 아니라 <b>「형용사로만 판다」(분사)</b>와 <b>「한 곳만 판다」(향)</b>라는 약한 형태의 간극에 선다. 카드에 그렇게 적었다.</div>' +
+    '<table class="auto"><tr><th>수요는 큰데 공급이 얇다 (수요 2% 이상 · 상세 6장 이하 · 광고 25건 이하)</th>' +
+    '<th style="text-align:right;width:96px">수요</th><th style="text-align:right;width:64px">상세</th><th style="text-align:right;width:64px">광고</th></tr>' +
+    GS.loose.map(function (c) {
+      return '<tr><td>' + esc(c.label.length > 46 ? c.label.slice(0, 46) + '…' : c.label) + '<span class="pill">' + c.name + '</span>' +
+        '<span class="pill">' + (c.side === 'brand' ? '브랜드' : '고객') + '</span></td>' +
+        '<td class="n"><b>' + pc(c.rev) + '</b> <span style="color:var(--subtle)">' + n(c.revN) + '</span></td>' +
+        '<td class="n">' + c.detN + '</td><td class="n">' + c.adN + '</td></tr>';
+    }).join('') + '</table>' +
+    '<p>이 목록을 후보로 올리지 않은 이유: 대부분이 <b>넓은 그물</b>이다. 아누아 「30ml 미니」(' + pc(GS.loose[0].rev) + ')는 「휴대 · 들고 다니」 같은 상투구를 같이 잡고, 클레어스 「자기 동선 배치」는 「샤워 후」를 통째로 잡는다. 실제 매치 문장을 열어 보면 컨셉이 아니라 편의성 상투어다. 후보 2가 이 축을 배치 습관으로 좁혀서 가져간다.</p>' +
+    '<table class="auto sub"><tr><th>반대 방향 — 브랜드가 크게 파는데 리뷰에 도착하지 않는다</th>' +
+    '<th style="text-align:right;width:64px">상세</th><th style="text-align:right;width:64px">광고</th><th style="text-align:right;width:70px">리뷰</th></tr>' +
+    GS.inverse.map(function (c) {
+      return '<tr><td>' + esc(c.label.length > 46 ? c.label.slice(0, 46) + '…' : c.label) + '<span class="pill">' + c.name + '</span></td>' +
+        '<td class="n"><b>' + c.detN + '</b>/' + GS.detTot + '</td><td class="n">' + c.adN + '</td><td class="n neg">' + pc(c.rev) + '</td></tr>';
+    }).join('') + '</table>' +
+    '<p>전부 임상 수치와 독자 성분이다. 에스트라는 인체적용시험 각주를 상세 ' + GS.inverse[0].detN + '장 · 광고 ' + GS.inverse[0].adN + '건에 싣는데 리뷰 도달은 ' + pc(GS.inverse[0].rev) + '다. 달바 「모공보다 467배 작은 나노 펩타이드」는 상세 20장인데 리뷰 0.03%. 진단 5의 「성분은 7위」와 같은 사실을 한국 쪽에서 본 것이다.</p></div>');
+
   // ── 진단 10: 시간 기울기
-  E.push('<div class="panel"><div class="ph"><h3>진단 10 · 한국에서 뜨는 컨셉 (최근 12개월 대 그 이전, 길이 보정)' +
+  E.push('<div class="panel"><div class="ph"><h3>진단 12 · 한국에서 뜨는 컨셉 (최근 12개월 대 그 이전, 길이 보정)' +
     ib('길이를 안 잡으면 모든 컨셉의 언급률이 시간이 갈수록 기계적으로 떨어진다 → ' + D.slope.band + '만 놓고 잰다. 기준선 ' + D.slope.cut + '. 최근·이전 양쪽에 150건 이상, 매치 25건 이상인 컨셉만 남겼다. 표본 창이 짧은 신제품(클레어스 · 디어달리아 · 바이오힐보 · 아누아 · 메디큐브)은 계산에서 빠진다.') +
     '</h3><div class="hint">측정 가능 컨셉 ' + D.slope.n + '개 · 제품 ' + D.slope.prods.join(' · ') + '</div></div>' +
     '<div class="two" style="gap:0 18px">' +
@@ -353,7 +398,7 @@
     '<b>일본어 원문</b> 후보 카드의 인용문과 근거 패널의 일본어 행 <b>17,030건 전부</b>에 한국어 전문 번역을 붙였다 (@cosme 6,863건 전량 + 큐텐 패널별 500건). 사람이 옮겼고 기계번역은 쓰지 않았다 — 무료 기계번역이 부정형을 뒤집는 오류(「べたつかず」를 「끈적끈적」으로)를 내기 때문이다. 번역은 ko_map 에 누적되어 다음 코퍼스는 새 문장만 번역한다. 격자·불만 딥패널은 원문 그대로다. 작성자 식별정보는 수집하지 않았다.<br>' +
     '<b>보정</b> 재구매 리프트는 제품 · 리뷰 길이 · 채널로 층화. TPO 격자는 제품 동일가중. 고민축은 오염 토큰을 양쪽에서 대칭으로 뺀 값.<br>' +
     '<b>단위</b> 시장 간 절대율은 비교하지 않는다. 한국 리뷰가 일본 큐텐 리뷰보다 길다. 비교는 같은 시장 안의 순위와 배수, 그리고 같은 제품의 통제쌍(4쌍)으로 한다.<br>' +
-    '<b>한계</b> 한국 리뷰는 전량이 아니라 <b>비로그인 층화 표본</b>이다 (' + n(D.corpus.krReviews) + ' / ' + n(D.corpus.krSiteTotal) + '건 = ' + (D.corpus.krReviews / D.corpus.krSiteTotal * 100).toFixed(1) + '%). 올리브영은 비로그인에서 조합당 500건에서 끊는다. 정렬 5축 × 리뷰유형 4축으로 1차 수집한 뒤, 피부타입 7축 × 피부톤 6축이 비로그인에서도 열린다는 것을 확인해(2026-08-13) 그 42개 조합으로 2차 확장했다 (42,935 → 70,344건, +64%). 대형 리스팅(달바 · 아벤느)일수록 표본 비율이 낮고 최근으로 쏠려 있다. 시간 기울기(진단 10)는 창이 충분한 5종에서만 냈고 나머지 5종은 계산에서 빠진다. 일본 큐텐은 전량이지만 리뷰의 76%가 달바 한 제품이다 — 시장 합계가 아니라 제품별 분해로 읽어야 하는 이유고, 격자는 제품 동일가중으로 이를 보정했다. MIGUHARA는 후기 22건(랭킹은 최근 판매속도 가중이라 신제품이 위로 온다)이라 비율 계산에서 사실상 빠진다. 일본 상세페이지와 일본 광고는 수집하지 않았다(한국은 둘 다). 가격 · 원가 · 실제 전환은 이 데이터에 없다. 재구매 차이는 관찰 상관이지 실험이 아니다.<br>' +
+    '<b>한계</b> 한국 리뷰는 전량이 아니라 <b>비로그인 층화 표본</b>이다 (' + n(D.corpus.krReviews) + ' / ' + n(D.corpus.krSiteTotal) + '건 = ' + (D.corpus.krReviews / D.corpus.krSiteTotal * 100).toFixed(1) + '%). 올리브영은 비로그인에서 조합당 500건에서 끊는다. 정렬 5축 × 리뷰유형 4축으로 1차 수집한 뒤, 피부타입 7축 × 피부톤 6축이 비로그인에서도 열린다는 것을 확인해(2026-08-13) 그 42개 조합으로 2차 확장했다 (42,935 → 70,344건, +64%). 대형 리스팅(달바 · 아벤느)일수록 표본 비율이 낮고 최근으로 쏠려 있다. 시간 기울기(진단 12)는 창이 충분한 5종에서만 냈고 나머지 5종은 계산에서 빠진다. 일본 큐텐은 전량이지만 리뷰의 76%가 달바 한 제품이다 — 시장 합계가 아니라 제품별 분해로 읽어야 하는 이유고, 격자는 제품 동일가중으로 이를 보정했다. MIGUHARA는 후기 22건(랭킹은 최근 판매속도 가중이라 신제품이 위로 온다)이라 비율 계산에서 사실상 빠진다. 일본 상세페이지와 일본 광고는 수집하지 않았다(한국은 둘 다). 가격 · 원가 · 실제 전환은 이 데이터에 없다. 재구매 차이는 관찰 상관이지 실험이 아니다.<br>' +
     '<b>수집</b> 전부 공개 페이지에서 속도 제한을 지켜 수집.' +
     '</div>');
 
