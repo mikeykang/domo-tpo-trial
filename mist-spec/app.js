@@ -367,7 +367,7 @@
       return '<tr><td>' + esc(c.label.length > 46 ? c.label.slice(0, 46) + '…' : c.label) + '<span class="pill">' + c.name + '</span></td>' +
         '<td class="n"><b>' + c.detN + '</b>/' + GS.detTot + '</td><td class="n">' + c.adN + '</td><td class="n neg">' + pc(c.rev) + '</td></tr>';
     }).join('') + '</table>' +
-    '<p>전부 임상 수치와 독자 성분이다. 에스트라는 인체적용시험 각주를 상세 ' + GS.inverse[0].detN + '장 · 광고 ' + GS.inverse[0].adN + '건에 싣는데 리뷰 도달은 ' + pc(GS.inverse[0].rev) + '다. 달바 「모공보다 467배 작은 나노 펩타이드」는 상세 20장인데 리뷰 0.03%. 진단 5의 「성분은 7위」와 같은 사실을 한국 쪽에서 본 것이다.</p></div>');
+    '<p>전부 임상 수치와 독자 성분이다. 에스트라는 인체적용시험 각주를 상세 ' + GS.inverse[0].detN + '장, 광고 ' + GS.inverse[0].adN + '건에 싣는데 리뷰까지 오는 건 ' + pc(GS.inverse[0].rev) + '다. 달바 「모공보다 467배 작은 나노 펩타이드」는 상세 20장인데 리뷰 0.03%. 진단 5에서 본 「성분은 7위」를 한국 쪽에서 다시 본 셈이다.</p></div>');
 
   // ── 진단 10: 시간 기울기
   E.push('<div class="panel"><div class="ph"><h3>진단 12 · 한국에서 뜨는 컨셉 (최근 12개월 대 그 이전, 길이 보정)' +
