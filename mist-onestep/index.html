@@ -90,6 +90,46 @@
   .foot{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--subtle);line-height:1.7}
   .foot b{color:var(--sub)}
   .small{font-size:11px;color:var(--subtle);line-height:1.6}
+
+  /* ---------- 근거 서랍 ---------- */
+  .evb{display:inline-block;font-size:10.5px;padding:1.5px 8px;border-radius:20px;border:1px solid #cfcfcf;
+       background:#fff;color:var(--sub);font-family:"Geist Mono",ui-monospace,monospace;cursor:pointer;
+       margin-left:6px;white-space:nowrap;line-height:1.5;vertical-align:baseline;user-select:none}
+  .evb:hover{border-color:#8f8f8f;color:var(--ink);background:#f4f4f4}
+  .evb.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .evb.empty{opacity:.45;cursor:default}
+  .panel.dark .evb{background:#262626;border-color:#3a3a3a;color:#c9c9c9}
+  .panel.dark .evb:hover{border-color:#6a6a6a;color:#fff}
+  .panel.dark .evb.on{background:#fff;color:#111;border-color:#fff}
+  .evd{display:none;margin:10px 0 4px;border:1px solid var(--line-strong);border-radius:8px;background:#fff;color:var(--ink)}
+  .evd.open{display:block}
+  .evd .evh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .evd .evh .t{font-size:12.5px;font-weight:600}
+  .evd .evh .cnt{font-size:10.5px;color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace}
+  .evd .evh input{margin-left:auto;font:inherit;font-size:11.5px;padding:3px 8px;border:1px solid var(--line-strong);
+                  border-radius:6px;min-width:170px;outline:none}
+  .evd .evh input:focus{border-color:#8f8f8f}
+  .evd .evh .x{cursor:pointer;font-size:15px;color:var(--subtle);padding:0 2px;line-height:1}
+  .evd .evh .x:hover{color:var(--ink)}
+  .evd .note{font-size:11px;color:var(--subtle);padding:8px 12px;border-bottom:1px solid var(--line);line-height:1.6;background:var(--sunken)}
+  .evd .list{max-height:430px;overflow:auto;padding:4px 12px 10px}
+  .evr{border-top:1px solid var(--line);padding:7px 0;font-size:12px;line-height:1.6;color:var(--sub)}
+  .evr:first-child{border-top:0}
+  .evr .m{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:2px}
+  .evr .tag{display:inline-block;font-size:9.5px;padding:0 6px;border-radius:16px;background:var(--sunken);
+            border:1px solid var(--line);color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace}
+  .evr .tag.hot{background:var(--kr-t);border-color:#f0c8b0;color:#9a3412}
+  .evr .tag.cool{background:var(--jp-t);border-color:#cfcaf7;color:#3730a3}
+  .evr .tag.good{background:#eaf7ef;border-color:#bfe3cc;color:#166534}
+  .evr .tag.warn{background:#fdeeee;border-color:#f3c1c1;color:#b91c1c}
+  .evr .txt{color:var(--ink)}
+  .evr .kv{color:var(--muted)}
+  .evr .kv b{color:var(--ink);font-weight:500}
+  .evr a{color:var(--jp);text-decoration:none;word-break:break-all}
+  .evr a:hover{text-decoration:underline}
+  .evgroup{position:sticky;top:0;background:#fff;font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+           color:var(--subtle);font-family:"Geist Mono",ui-monospace,monospace;padding:8px 0 4px;border-bottom:1px solid var(--line)}
+  .evfoot{font-size:10px;color:var(--faint);padding:7px 12px;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -99,7 +139,7 @@
   <div>
     <div class="kick">DOMO · MIST CLAIM RESEARCH · 2026-08-15</div>
     <h1>「이걸로 끝」은 팔리는 말인가 - 미스트 종결 클레임 한일 검증</h1>
-    <div class="sub">컨셉 1순위 「뿌리는 크림. 토너 칸을 통째로 가져가는 미스트」에 붙일 키워드 검증. 「이걸로 끝」「한방에 끝」 류의 <b>루틴 종결 선언</b>이 한국·일본에서 성립하는지를 수요(리뷰 속 자발 언어) · 정착(재구매 연결) · 공급(이미 건 제품의 생존) · 반증(불신의 크기) 네 기준으로 판정했다.</div>
+    <div class="sub">컨셉 1순위 「뿌리는 크림. 토너 칸을 통째로 가져가는 미스트」에 붙일 키워드 검증. 「이걸로 끝」「한방에 끝」 류의 <b>루틴 종결 선언</b>이 한국·일본에서 성립하는지를 수요(리뷰 속 자발 언어) · 정착(재구매 연결) · 공급(이미 건 제품의 생존) · 반증(불신의 크기) 네 기준으로 판정했다. <b>본문의 「근거」 버튼을 누르면 그 수치를 만든 원자료 전체가 열린다.</b></div>
   </div>
   <div class="topmeta">
     <span>한국 <b>리뷰 70,344 + 광고 1,699 + 올리브영 카탈로그 522종 스캔</b></span>
@@ -115,7 +155,7 @@
     <div class="vc kr">
       <div class="k"><span class="dot kr"></span>한국</div>
       <div class="verdict">문자 그대로는 기각. 작명·열거·시간으로 번역하면 채택.</div>
-      <div class="s">「올인원 미스트」 구글 검색량 <b>5년 내내 0</b> · 올리브영 미스트 279종 중 종결 작명 <b>0종</b> · 범용 종결어의 재구매 리프트 <b>-0.35pp</b>(부호 음수). 반면 <b>역할 열거 카피의 에코는 +7.1pp</b>, 시장의 실제 상향 언어는 「토너미스트」 같은 <b>카테고리 작명</b>과 「3초」 같은 <b>시간 표현</b>이다. 「한방에」는 韓方과의 동음 탓에 카피 사용례 0 - 폐기.</div>
+      <div class="s">「올인원 미스트」 구글 검색량 <b>5년 내내 0</b> · 올리브영 「미스트」 검색 299행(페이스 미스트 181종) 중 종결 클레임 작명 <b>0종</b> · 범용 종결어의 재구매 리프트 <b>-0.35pp</b>(부호 음수). 반면 <b>역할 열거 카피의 에코는 +7.1pp</b>, 시장의 실제 상향 언어는 「토너미스트」 같은 <b>카테고리 작명</b>과 「3초」 같은 <b>시간 표현</b>이다. 「한방에」는 韓方과의 동음 탓에 카피 사용례 0 - 폐기.</div>
     </div>
     <div class="vc jp">
       <div class="k"><span class="dot jp"></span>일본</div>
@@ -124,15 +164,15 @@
     </div>
   </div>
   <ul class="rule" style="margin-top:14px">
-    <li><div class="rh"><span class="rn">R1</span><span class="rt">끝나는 목록을 열거하라</span></div>
+    <li><div class="rh"><span class="rn">R1</span><span class="rt">끝나는 목록을 열거하라</span><span class="evb" data-ev="spec_settle"></span><span class="evb" data-ev="kr_lift"></span></div>
       <div class="rb">「이걸로 끝」이 아니라 「토너·에센스·세럼은 이걸로」. 한국에서 열거 카피의 리뷰 에코는 재구매 +7.1pp(달바), 범용 종결어는 -0.35pp - 같은 코퍼스에서 갈렸다. 일본 약기법 실무도 역할 열거(「化粧水・美容液・乳液の機能」)만 사용법 서술로 통용된다.</div></li>
-    <li><div class="rh"><span class="rn">R2</span><span class="rt">질감이 클레임의 자격이다</span></div>
+    <li><div class="rh"><span class="rn">R2</span><span class="rt">질감이 클레임의 자격이다</span><span class="evb" data-ev="jp_cross_dalba"></span><span class="evb" data-ev="jp_skeptic"></span></div>
       <div class="rb">물 미스트 + 종결 약속 = 배신 기전(뿌린 수분은 유분 없이 증발한다는 일본 정설 그대로). <b>「뿌리는 크림」이라는 형태 자체가 이 클레임을 걸 수 있는 유일한 자격</b> - 컨셉과 키워드는 한 몸이어야 한다.</div></li>
-    <li><div class="rh"><span class="rn">R3</span><span class="rt">순간을 한정하라</span></div>
+    <li><div class="rh"><span class="rn">R3</span><span class="rt">순간을 한정하라</span><span class="evb" data-ev="kr_t1"></span><span class="evb" data-ev="jp_jitan"></span></div>
       <div class="rb">자발적 종결어의 실제 모양은 양국 다 조건부다 - 한국은 「귀찮을 때 이거 하나」(종결어의 59%), 일본은 「忙しい朝はこれ1本」. 아침 한정 시장은 サボリーノ가 누적 12억장으로 증명했다. 「아침은 이걸로 끝」은 살고 「이제 토너 안 삽니다」는 죽는다.</div></li>
-    <li><div class="rh"><span class="rn">R4</span><span class="rt">한국은 선언 대신 작명</span></div>
+    <li><div class="rh"><span class="rn">R4</span><span class="rt">한국은 선언 대신 작명</span><span class="evb" data-ev="kr_naming"></span><span class="evb" data-ev="oy_counts"></span></div>
       <div class="rb">한국 미스트가 상향 주장을 하는 실존 방식은 작명이다: 「토너미스트」 「뿌리는토너미스트」 「크림 미스트」. 선언형은 규제(절대·배타 표현 금지, 「7단계를 하나로」는 실증 대상)와 수요 부재에 다 걸린다. 「뿌리는 크림」은 정확히 이 문법이다.</div></li>
-    <li><div class="rh"><span class="rn">R5</span><span class="rt">금지선 셋</span></div>
+    <li><div class="rh"><span class="rn">R5</span><span class="rt">금지선 셋</span><span class="evb" data-ev="kr_hanbang"></span><span class="evb" data-ev="oy_allinone"></span><span class="evb" data-ev="jp15"></span></div>
       <div class="rb">「한방에」(한국: 동음 충돌, 뷰티 카피 사용례 0) · 「올인원」 단독 명사(한국: 남성 카테고리 고착 / 일본: 여성 사용률 29.9→25.9% 하락) · 「これ1本でスキンケア完了」 총량형(일본: 이 문구를 정면에 건 미스트가 전부 무덤).</div></li>
   </ul>
 </div>
@@ -141,13 +181,13 @@
   <div class="ph"><h3>판정 기준 - 「먹힌다」의 정의</h3><div class="hint">기준을 먼저 정하고 데이터를 모았다. 네 기준 중 셋 이상이 서야 채택.</div></div>
   <ul class="crit">
     <li><div class="ct">① 수요어 실재 - 소비자가 이미 그 말을 자발적으로 쓰는가 <span class="small">(상세페이지 카피의 에코는 제거)</span></div>
-      <div class="cb">한국 <span class="no">약함</span>(0.72%, 그나마 59%는 조건부) · 일본 <span class="ok">실재</span>(@cosme 기준 2.6~3.6%, K뷰티·자국 동급)</div></li>
+      <div class="cb">한국 <span class="no">약함</span>(0.72%, 그나마 59%는 조건부) · 일본 <span class="ok">실재</span>(@cosme 기준 2.6~3.6%, K뷰티·자국 동급) <span class="evb" data-ev="kr_agg"></span><span class="evb" data-ev="jp_agg"></span></div></li>
     <li><div class="ct">② 정착 연결 - 그 말을 쓴 고객이 더 재구매하는가</div>
-      <div class="cb">한국 범용 종결어 <span class="no">-0.35pp</span> vs 열거 카피 <span class="ok">+7.1pp</span> · 일본 물미스트 <span class="no">음수</span>(달바) vs 크림미스트 <span class="ok">양수</span>(에스트라)</div></li>
+      <div class="cb">한국 범용 종결어 <span class="no">-0.35pp</span> vs 열거 카피 <span class="ok">+7.1pp</span> · 일본 물미스트 <span class="no">음수</span>(달바) vs 크림미스트 <span class="ok">양수</span>(에스트라) <span class="evb" data-ev="kr_lift"></span><span class="evb" data-ev="jp_cross_repeat"></span></div></li>
     <li><div class="ct">③ 공급 생존 - 이미 건 제품이 흥했는가</div>
-      <div class="cb">한국 <span class="no">건 제품 자체가 0</span>(미스트 279종 전수) · 일본 <span class="no">15종 전원 스케일 실패</span> + 카테고리 리더 전원 회피</div></li>
+      <div class="cb">한국 <span class="no">건 제품 자체가 0</span>(페이스 미스트 181종 전수) · 일본 <span class="no">15종 전원 스케일 실패</span> + 카테고리 리더 전원 회피 <span class="evb" data-ev="oy_mist279"></span><span class="evb" data-ev="jp15"></span></div></li>
     <li><div class="ct">④ 반증의 크기 - 「미스트만으론 안 된다」는 불신이 얼마나 큰가</div>
-      <div class="cb">한국 반증 2.02%로 종결어의 <b>2.8배</b>(「그냥 물」이 절반) · 일본 「化粧水だけでは蒸発する」가 제약사·의사 감수 콘텐츠의 표준 논법</div></li>
+      <div class="cb">한국 반증 2.02%로 종결어의 <b>2.8배</b>(「그냥 물」이 절반) · 일본 「化粧水だけでは蒸発する」가 제약사·의사 감수 콘텐츠의 표준 논법 <span class="evb" data-ev="kr_ctr"></span><span class="evb" data-ev="jp_skeptic"></span></div></li>
   </ul>
 </div>
 
@@ -156,13 +196,14 @@
     <div class="ph"><h3>수요 · 한국 <span class="pill kr">리뷰 70,344</span></h3><div class="hint">제품 동일가중 · 상세페이지 카피 에코와 재구매 어휘 누수는 제거</div></div>
     <table>
       <tr><th>측정</th><th style="text-align:right">값</th><th>내용</th></tr>
-      <tr><td><b>종결어율</b></td><td class="n">0.72%</td><td>「이거 하나로」「기초 끝」「올인원」 등 전 어휘 합산 (제품별 0.32~1.43%)</td></tr>
-      <tr><td><b>반증율</b></td><td class="n neg">2.02%</td><td>「그냥 물」(56.5%) · 「더 건조해짐」(30%)이 대부분. 종결어의 <b>2.8배</b></td></tr>
-      <tr><td><b>종결어의 구성</b></td><td class="n">59%</td><td>「귀찮을 때 이거 하나로 때운다」는 <b>조건부 대체</b>. 문자 그대로 「~끝」 선언은 10%뿐</td></tr>
-      <tr><td><b>「한방에」</b></td><td class="n neg">1건</td><td>71,344건 중 진짜 용례 1건. 나머지는 韓方·한방울·한방향 동음 오탐</td></tr>
-      <tr><td><b>공급-수요 갭</b></td><td class="n">6배</td><td>브랜드 광고의 4.47%가 이 언어를 쓰지만 리뷰엔 0.72%만 남는다 - 걸어도 고객의 말이 안 된다</td></tr>
+      <tr><td><b>종결어율</b></td><td class="n">0.72%</td><td>「이거 하나로」「기초 끝」「올인원」 등 전 어휘 합산 (제품별 0.32~1.43%) <span class="evb" data-ev="kr_t1"></span></td></tr>
+      <tr><td><b>반증율</b></td><td class="n neg">2.02%</td><td>「그냥 물」(56.5%) · 「더 건조해짐」(30%)이 대부분. 종결어의 <b>2.8배</b> <span class="evb" data-ev="kr_ctr"></span></td></tr>
+      <tr><td><b>종결어의 구성</b></td><td class="n">59%</td><td>「귀찮을 때 이거 하나로 때운다」는 <b>조건부 대체</b>. 문자 그대로 「~끝」 선언은 10%뿐 <span class="evb" data-ev="kr_t1"></span></td></tr>
+      <tr><td><b>「한방에」</b></td><td class="n neg">2건</td><td>리뷰 70,344건에서 「한방」 부분일치 자체가 <b>11건</b>뿐이고, 그중 의미상 진짜 종결 용례는 2건(정규식 집계 1건 + 「한방에 귀차니즘 해결」 수동 판정 1건). 나머지는 韓方·한방울·한방향 동음 오탐 <span class="evb" data-ev="kr_hanbang"></span></td></tr>
+      <tr><td><b>공급-수요 갭</b></td><td class="n">6배</td><td>브랜드 광고의 4.47%가 이 언어를 쓰지만 리뷰엔 0.72%만 남는다 - 걸어도 고객의 말이 안 된다 <span class="evb" data-ev="kr_ads"></span><span class="evb" data-ev="kr_ugc"></span><span class="evb" data-ev="kr_ocr"></span></td></tr>
     </table>
-    <div class="q"><div class="t">스킨로션 하나씩 따로 바르기 긔찮아서 요 미스트로 한방에 해결하고 <b>에센스 발라줍니다</b></div><div class="src">에스트라 · 전 코퍼스 유일의 「한방에」 용례 - 그마저 바로 다음 단계를 덧붙인다</div></div>
+    <p class="small" style="margin-top:8px">'3초'는 종결어가 아니라 대부분 브랜드 사용법 안내의 에코였다(달바 「세안 후 3초 안에」·아벤느 분사 주의문) - 격리하고 세었다. <span class="evb" data-ev="kr_3cho"></span><span class="evb" data-ev="kr_ctr_leak"></span></p>
+    <div class="q"><div class="t">스킨로션 하나씩 따로 바르기 긔찮아서 요 미스트로 한방에 해결하고 <b>에센스 발라줍니다</b></div><div class="src">에스트라 · 「한방에」 진짜 용례 2건 중 하나 - 그마저 바로 다음 단계를 덧붙인다</div></div>
     <div class="q"><div class="t">기초 케어 귀찮아하는 귀차니스트들에게 이거 하나로 끝낼 수 있는 최고의 꿀템입니다</div><div class="src">달바 · 종결어의 전형 - 「귀찮을 때」라는 조건이 붙는다</div></div>
     <div class="q"><div class="t">지성이라 아침에 시간 없을 때 이거 하나만 뿌리고 나가요</div><div class="src">아벤느 · 아침 한정</div></div>
     <div class="q bad"><div class="t">그냥 물이에오 진짜로!! 가습기 대용으로 쓰는건 좋지만 이걸로 피부 수분 생각하면 안댐</div><div class="src">아벤느 · 반증 1위 유형(전체 반증의 56.5%)</div></div>
@@ -172,12 +213,13 @@
     <div class="ph"><h3>수요 · 일본 <span class="pill jp">큐텐 97,490 + @cosme 12,110 + 자국 8,000</span></h3><div class="hint">같은 제품도 @cosme가 큐텐보다 종결어를 3~11배 더 쓴다 - 소스 안에서만 비교</div></div>
     <table>
       <tr><th>측정</th><th style="text-align:right">값</th><th>내용</th></tr>
-      <tr><td><b>종결어율 (@cosme 기준)</b></td><td class="n">2.6~3.6%</td><td>K뷰티 페이지 2.66~3.55% vs 일본 자국 브랜드 2.60% - <b>동급.</b> 말 자체는 일본에 실재한다</td></tr>
-      <tr><td><b>종결어의 서식지</b></td><td class="n">8%</td><td>자국 20종 중 최고 둘이 <b>닦아내는 화장수</b>(치후레 후키토리 8%·네이처콘크 8%, 네이처콘크는 반증 0%) - 단계를 합쳐주는 물건에만 이 말이 산다</td></tr>
-      <tr><td><b>반증율 (자국)</b></td><td class="n neg">3.75%</td><td>物足りない(뭔가 부족하다) 중심. 종결어율보다 크다</td></tr>
-      <tr><td><b>보습 배신 크로스</b></td><td class="n neg">2.4배</td><td>달바(물 세럼 미스트)의 종결어 리뷰는 강제 3축 중 保湿力 불만이 베이스의 2.4배(7.8% vs 3.2%) · 재구매도 낮다(13.1 vs 15.2%)</td></tr>
-      <tr><td><b>크림 미스트 역전</b></td><td class="n pos">18.2%</td><td>에스트라(크림 미스트)의 종결어 리뷰는 재구매 18.2% vs 비종결 8.6% (n=22, 방향 참고용)</td></tr>
+      <tr><td><b>종결어율 (@cosme 기준)</b></td><td class="n">2.6~3.6%</td><td>K뷰티 페이지 2.66~3.55% vs 일본 자국 브랜드 2.60% - <b>동급.</b> 말 자체는 일본에 실재한다 <span class="evb" data-ev="jp_t1"></span><span class="evb" data-ev="jp_agg"></span></td></tr>
+      <tr><td><b>종결어의 서식지</b></td><td class="n">8%</td><td>자국 20종 중 최고 둘이 <b>닦아내는 화장수</b>(치후레 후키토리 8%·네이처콘크 8%, 네이처콘크는 반증 0%) - 단계를 합쳐주는 물건에만 이 말이 산다 <span class="evb" data-ev="jp_agg"></span></td></tr>
+      <tr><td><b>반증율 (자국)</b></td><td class="n neg">3.75%</td><td>物足りない(뭔가 부족하다) 중심. 종결어율보다 크다 <span class="evb" data-ev="jp_ctr"></span></td></tr>
+      <tr><td><b>보습 배신 크로스</b></td><td class="n neg">2.4배</td><td>달바(물 세럼 미스트)의 종결어 리뷰는 강제 3축 중 保湿力 불만이 베이스의 2.4배(7.8% vs 3.2%) · 재구매도 낮다(13.1 vs 15.2%) <span class="evb" data-ev="jp_cross_dalba"></span></td></tr>
+      <tr><td><b>크림 미스트 역전</b></td><td class="n pos">18.2%</td><td>에스트라(크림 미스트)의 종결어 리뷰는 재구매 18.2% vs 비종결 8.6% (n=22, 방향 참고용) <span class="evb" data-ev="jp_cross_repeat"></span></td></tr>
     </table>
+    <p class="small" style="margin-top:8px">애매 매칭(「1本で1ヶ月」 용량 서술 등 263건)과 「オールインワンの後に」 순서 문맥 16건은 격리·제외했다. <span class="evb" data-ev="jp_tier2"></span><span class="evb" data-ev="jp_allinone_exc"></span></p>
     <div class="q bad"><div class="t">めんどくさがりなのでオールインワンと思って購入しましたが、これ一本でお手入れ完了するには保湿の持続力はありませんでした。ただお風呂あがりに(…)つなぎの役割としてはかなり優秀です。</div><div class="ko">귀찮음이 많아 올인원인 줄 알고 샀는데, 이거 한 병으로 손질을 끝내기엔 보습 지속력이 없었어요. 다만 목욕 후 (다음 케어까지의) 중간다리 역할로는 꽤 우수합니다.</div><div class="src">달바 큐텐 · 종결 약속 → 지속력 배신 → 「중간다리」로 강등의 전 과정이 한 리뷰에 있다</div></div>
     <div class="q"><div class="t">朝の洗顔後はこれ1本で済ませています。肌にしっかり馴染んでしっとりします。</div><div class="ko">아침 세안 후엔 이거 하나로 끝냅니다. 피부에 잘 스며들어 촉촉해요.</div><div class="src">달바 큐텐 · 자발 종결어의 실제 모양 = 아침 한정</div></div>
     <div class="q"><div class="t">忙しい日はこれだけで済ませる事も多々あり。</div><div class="ko">바쁜 날엔 이것만으로 끝내는 경우도 많아요.</div><div class="src">CNP 큐텐</div></div>
@@ -189,8 +231,8 @@
   <div class="ph"><h3>정착 - 같은 코퍼스에서 갈린 두 운명</h3><div class="hint">한국 10종, 재구매 어휘 텍스트 누수 제외(가드) 후. 열거 카피 수치는 제품×길이×채널 층화(기존 리포트), 범용 종결어는 이번 재측정</div></div>
   <table>
     <tr><th>언어</th><th>예</th><th style="text-align:right">재구매 리프트</th><th>읽기</th></tr>
-    <tr><td><b>역할을 열거한 대체 카피의 에코</b></td><td>달바 「토너·에센스·세럼 올인원」 / 에스트라 「뿌리는 크림」 / 아누아 「토너 칸으로 승격」 / 한율 「욕실의 3초템」 / 디어달리아 「기초 끝」</td><td class="n pos">+7.1 / +6.6 / +6.6 / +6.1 / +5.7pp</td><td>무엇이 끝나는지 명시된 한 줄 카피를 받아쓴 고객은 정착한다. 제품 간 부호 일치 최대 86%</td></tr>
-    <tr><td><b>범용 종결어 전체</b></td><td>「이거 하나로」 「귀찮아서 이걸로」 「기초 끝」 등 어휘 일반</td><td class="n neg">-0.35pp</td><td>동일가중, 10종 중 8종이 0 이하. 가드 전 +0.20pp가 가드 후 반전 - bioheal은 +4.36 → -0.89pp까지 뒤집혔다(자기지시 결합)</td></tr>
+    <tr><td><b>역할을 열거한 대체 카피의 에코</b> <span class="evb" data-ev="spec_settle"></span></td><td>달바 「토너·에센스·세럼 올인원」 / 에스트라 「뿌리는 크림」 / 아누아 「토너 칸으로 승격」 / 한율 「욕실의 3초템」 / 디어달리아 「기초 끝」</td><td class="n pos">+7.1 / +6.6 / +6.6 / +6.1 / +5.7pp</td><td>무엇이 끝나는지 명시된 한 줄 카피를 받아쓴 고객은 정착한다. 제품 간 부호 일치 최대 86%</td></tr>
+    <tr><td><b>범용 종결어 전체</b> <span class="evb" data-ev="kr_lift"></span></td><td>「이거 하나로」 「귀찮아서 이걸로」 「기초 끝」 등 어휘 일반</td><td class="n neg">-0.35pp</td><td>동일가중, 10종 중 8종이 0 이하. 가드 전 +0.20pp가 가드 후 반전 - bioheal은 +4.36 → -0.89pp까지 뒤집혔다(자기지시 결합)</td></tr>
   </table>
   <p style="margin-top:10px">종결 <b>어휘</b>는 정착을 예측하지 못하고, 종결 <b>구조를 명시한 카피</b>만 예측한다. 「이걸로 끝」이라는 말을 파는 게 아니라 <b>끝나는 목록이 적힌 라벨</b>을 팔아야 하는 이유.</p>
 </div>
@@ -200,12 +242,12 @@
     <div class="ph"><h3>공급 · 한국 - 시장이 이미 기각한 말 <span class="pill kr">올리브영 전수</span></h3></div>
     <table>
       <tr><th>확인</th><th>결과</th></tr>
-      <tr><td><b>미스트 279종 작명 전수</b></td><td>종결·올인원 계열(올인원/하나로/한번에/끝/원스텝/토너 대신/올킬) <b>0종.</b> 최다 태그는 「화잘먹」 - 한국 미스트가 스스로 정의한 존재 이유는 종결이 아니라 <b>화장 준비</b>다</td></tr>
-      <tr><td><b>올리브영 전 카탈로그</b></td><td>「한방에」 0 · 「끝내는」 0 · 「이것만」 0 · 「하나로」 1(로션 1종) · 「원스텝」 22 · 「만능」 22. 한국 브랜드는 종결을 말로 선언하지 않는다</td></tr>
-      <tr><td><b>「올인원」의 정체</b></td><td>검색 상위 195건 분해: 제품명이 올인원으로 끝나는 건 사실상 전부 남성 라인(아이오페 맨 10년 연속 1위 등). 여성 기초에서 올인원은 수식어(올인원 크림·팩)일 뿐 <b>루틴 종결 명사가 아니다.</b> 토리든도 「포맨」 전용</td></tr>
-      <tr><td><b>실존하는 상향 언어</b></td><td>알파루틴 「토너미스트」 · 허블룸 「[뿌리는토너미스트]」 · 리쥬덱스 「크림 미스트」 - <b>카테고리 작명으로 역할을 흡수</b>하되 「대신」이라 말하지 않는다. 디마프는 「a.k.a 만능기초」로 소비자 별명인 척 우회</td></tr>
-      <tr><td><b>검색 수요 (구글 5년)</b></td><td>미스트 36→71로 2배, 토너 47→79 - 카테고리는 강한데 「올인원 미스트」는 <b>5년 내내 0.</b> 「스킵케어」도 0(업계 B2B 용어, 소비자 검색어 아님)</td></tr>
-      <tr><td><b>규제선</b></td><td>사용 편의 진술은 안전. 「이거 하나면 끝」류 절대·배타 표현은 시행규칙 별표5 바목, 「7단계를 하나로」류 효능 등가는 비교광고 + 제23조 실증 대상</td></tr>
+      <tr><td><b>「미스트」 검색 299행 작명 전수</b><br><span class="small">(페이스 미스트 카테고리 181종)</span></td><td>종결·올인원 계열 정규식 히트는 그라펜 「포어<b>올킬</b> 미스트토너」 1건뿐(스킨/토너 카테고리) - 세정 강도 표현이라 종결 클레임이 아니고, 작명은 오히려 「미스트토너」 병합 패턴의 사례다. <b>페이스 미스트 181종 중 루틴 종결 클레임 0종.</b> 대신 병합 작명이 즐비하다: 「토너 미스트」 「미스트 토너」 「겔 미스트」에 준말 <b>「뿌토」</b>(시카고 「[진정뿌토]」 = 뿌리는 토너)까지. 최다 태그는 「화잘먹」 - 한국 미스트가 스스로 정의한 존재 이유는 종결이 아니라 <b>화장 준비</b>다 <span class="evb" data-ev="oy_mist279"></span></td></tr>
+      <tr><td><b>올리브영 전 카탈로그</b></td><td>「한방에」 0 · 「끝내는」 0 · 「이것만」 0 · 「하나로」 1(로션 1종) · 「원스텝」 22 · 「만능」 22. 한국 브랜드는 종결을 말로 선언하지 않는다 <span class="evb" data-ev="oy_counts"></span></td></tr>
+      <tr><td><b>「올인원」의 정체</b></td><td>검색 상위 195건 중 제품명에 올인원 포함 153건 = <b>남성 94 / 비남성 59.</b> 제품명이 올인원으로 끝나는 건 사실상 전부 남성 라인(아이오페 맨 10년 연속 1위 등). 여성 기초에서 올인원은 수식어(올인원 크림·팩)일 뿐 <b>루틴 종결 명사가 아니다.</b> 토리든도 「포맨」 전용 <span class="evb" data-ev="oy_allinone"></span><span class="evb" data-ev="musinsa"></span></td></tr>
+      <tr><td><b>실존하는 상향 언어</b></td><td>알파루틴 「토너미스트」 · 허블룸 「[뿌리는토너미스트]」 · 리쥬덱스 「크림 미스트」 - <b>카테고리 작명으로 역할을 흡수</b>하되 「대신」이라 말하지 않는다. 디마프는 「a.k.a 만능기초」로 소비자 별명인 척 우회 <span class="evb" data-ev="kr_naming"></span></td></tr>
+      <tr><td><b>검색 수요 (구글 5년)</b></td><td>미스트 검색량 5년 새 2배(36→71). 같은 정규화 배치 안에서 토너 78.7 대 「올인원 미스트」 <b>0</b> · 「올인원 화장품」 0.2 - 종결형의 소비자 검색 수요는 측정 하한 미만. 「스킵케어」도 0(업계 B2B 용어, 소비자 검색어 아님) <span class="evb" data-ev="trends"></span><span class="evb" data-ev="kr_skipcare"></span></td></tr>
+      <tr><td><b>규제선</b></td><td>사용 편의 진술은 안전. 「이거 하나면 끝」류 절대·배타 표현은 시행규칙 별표5 바목, 「7단계를 하나로」류 효능 등가는 비교광고 + 제23조 실증 대상 <span class="evb" data-ev="kr_law"></span></td></tr>
     </table>
   </div>
   <div class="panel">
@@ -218,8 +260,9 @@
       <tr><td><b>나리스 ミルティー→VC→ビタフロート</b> (2023→24→26)</td><td>「3秒スプレーするだけで化粧水・美容液・パック・乳液・クリームの機能」 - <b>유액(우유)을 넣은 스프레이로 3연속 재도전</b></td><td class="n">신규 라인</td></tr>
       <tr><td>기타 11종 (바이슨 ラクイック·NULL·nine·더페이스샵 TV통판 등)</td><td>대부분 남성용·통판, 「化粧水+乳液」 부분 종결형 포함</td><td class="n">전부 소규모</td></tr>
     </table>
-    <p><b>카테고리 리더는 전원 이 클레임을 회피한다.</b> 큐렐 스프레이(LIPS 3,476건·명예의전당)는 보습 「보충」 씬만 나열, 아벤느(3,134건)는 메이크업 보조, 달바 일본 공식몰(6,468건·스킨케어 11위)은 글로벌판의 「토너+미스트+세럼+에센스를 한 번에」 카피를 <b>지우고</b> 「うるおいキープ」로 후퇴했다.</p>
-    <p><b>그런데 큐텐 검색은 이미 점령돼 있다.</b> 「オールインワンミスト」 인기순 1페이지(46행, 직접 확인): 일본 브랜드 0, 상위는 전부 한국 셀러. 달바 리스팅 7건(공식이 안 거는 말을 셀러가 검색어로 붙여 판다), 「<b>保湿クリームより強いミスト</b>(보습 크림보다 강한 미스트)」 「クリームイン トナー ミスト」 같은 셀러 자생 카피, 크림+미스트 세트를 「オールインワンケア」로 묶은 리스팅 - <b>「뿌리는 크림」 수요를 셀러들이 먼저 감지했고, 브랜드 공식 클레임 자리는 비어 있다.</b></p>
+    <p style="margin:6px 0 2px"><span class="evb" data-ev="jp15"></span> - 15종 전체의 발매일·가격·클레임 원문·출처 링크</p>
+    <p><b>카테고리 리더는 전원 이 클레임을 회피한다.</b> 큐렐 스프레이(LIPS 3,476건·명예의전당)는 보습 「보충」 씬만 나열, 아벤느(3,134건)는 메이크업 보조, 달바 일본 공식몰(6,468건·스킨케어 11위)은 글로벌판의 「토너+미스트+세럼+에센스를 한 번에」 카피를 <b>지우고</b> 「うるおいキープ」로 후퇴했다. <span class="evb" data-ev="jp_leaders"></span><span class="evb" data-ev="jp_dalba"></span></p>
+    <p><b>그런데 큐텐 검색은 이미 점령돼 있다.</b> 「オールインワンミスト」 인기순 1페이지(46행, 직접 확인): 일본 브랜드 0, 상위는 전부 한국 셀러. 달바 리스팅 7건(공식이 안 거는 말을 셀러가 검색어로 붙여 판다), 「<b>保湿クリームより強いミスト</b>(보습 크림보다 강한 미스트)」 「クリームイン トナー ミスト」 같은 셀러 자생 카피, 크림+미스트 세트를 「オールインワンケア」로 묶은 리스팅 - <b>「뿌리는 크림」 수요를 셀러들이 먼저 감지했고, 브랜드 공식 클레임 자리는 비어 있다.</b> <span class="evb" data-ev="qoo10"></span></p>
   </div>
 </div>
 
@@ -227,12 +270,12 @@
   <div class="ph"><h3>일본 배경 - 클레임의 본고장에서 미스트만 예외인 이유</h3><div class="hint">숫자는 공개 프레스릴리스 기준 · 여성 올인원 시장의 2019년 이후 규모는 유료 리포트 뒤라 미확인</div></div>
   <div class="two" style="margin-top:2px">
     <div>
-      <p><b>말 자체는 완전히 검증돼 있다.</b> 신니혼제약 퍼펙트원 「1品で7役」 누적 8,888만개·올인원 시장 9년 연속 1위(富士経済 셰어 기준), 하다라보 극윤퍼펙트겔 「洗顔後、これ1つで＜化粧水＋美容液＋乳液＋クリーム＋パック＞の5役が完了します」(세안 후 이거 하나로 5역 완료), 메디플러스겔 누적 2,300만병(2차 출처). 時短케어 시장 1,284億円(2018 전망, 富士経済). 아침 시장은 サボリーノ가 누적 <b>12억장</b> - 「아침 한정 루틴 대체」는 일본 최대급으로 증명된 포맷이다.</p>
-      <p><b>단, 젤이 이긴 이유가 미스트가 진 이유다.</b> 젤은 유분과 점도로 「마지막 단계」의 감각(뚜껑 덮기)을 준다. 미스트는 그 반대편 - 「油分が少ないと、化粧水で保水をしても水分はすぐに蒸発してしまいます」(유분이 적으면 수분을 채워도 금방 증발한다, 大正製薬)가 제약사·의사 감수 칼럼의 표준 논법으로 깔려 있고, 리뷰의 배신 기전(위 크로스)과 정확히 일치한다.</p>
+      <p><b>말 자체는 완전히 검증돼 있다.</b> 신니혼제약 퍼펙트원 「1品で7役」 누적 8,888만개·올인원 시장 9년 연속 1위(富士経済 셰어 기준), 하다라보 극윤퍼펙트겔 「洗顔後、これ1つで＜化粧水＋美容液＋乳液＋クリーム＋パック＞の5役が完了します」(세안 후 이거 하나로 5역 완료), 메디플러스겔 누적 2,300만병(2차 출처). 時短케어 시장 1,284億円(2018 전망, 富士経済). 아침 시장은 サボリーノ가 누적 <b>12억장</b> - 「아침 한정 루틴 대체」는 일본 최대급으로 증명된 포맷이다. <span class="evb" data-ev="jp_gel"></span><span class="evb" data-ev="jp_jitan"></span></p>
+      <p><b>단, 젤이 이긴 이유가 미스트가 진 이유다.</b> 젤은 유분과 점도로 「마지막 단계」의 감각(뚜껑 덮기)을 준다. 미스트는 그 반대편 - 「油分が少ないと、化粧水で保水をしても水分はすぐに蒸発してしまいます」(유분이 적으면 수분을 채워도 금방 증발한다, 大正製薬)가 제약사·의사 감수 칼럼의 표준 논법으로 깔려 있고, 리뷰의 배신 기전(위 크로스)과 정확히 일치한다. <span class="evb" data-ev="jp_skeptic"></span></p>
     </div>
     <div>
-      <p><b>「オールインワン」이라는 단어 자체도 기울고 있다.</b> 여성 올인원 사용률 29.9%(2019) → 25.9%(2023). 반면 남성 시장은 올인원이 견인해 모이스처 카테고리 +30%(2023)·+15%(2024), 2025년 326億円 전망 - 한국과 똑같이 <b>일본에서도 올인원의 무게중심이 남성으로 이동 중</b>이다. 여성 시장에서 이 단어를 정면 명사로 쓰는 것은 양국 공통으로 낡은 수가 된다.</p>
-      <p><b>약기법 경계.</b> 「1品5役」「化粧水・乳液の役割/機能」은 효능 주장이 아니라 사용법·카테고리 서술로 통용된다(퍼펙트원·하다라보·나리스가 실사용). 각 역할에 붙는 형용(미백·주름개선)은 별도 승인 필요, 「絶対」「究極」 등 단정·최상급은 금지. ※ 「これ1本で完了」의 적법성을 명시 판정한 행정 가이드라인 원문은 미확인 - 대형 제품의 실사용 문형을 따르는 것이 안전선.</p>
+      <p><b>「オールインワン」이라는 단어 자체도 기울고 있다.</b> 여성 올인원 사용률 29.9%(2019) → 25.9%(2023). 반면 남성 시장은 올인원이 견인해 모이스처 카테고리 +30%(2023)·+15%(2024), 2025년 326億円 전망 - 한국과 똑같이 <b>일본에서도 올인원의 무게중심이 남성으로 이동 중</b>이다. 여성 시장에서 이 단어를 정면 명사로 쓰는 것은 양국 공통으로 낡은 수가 된다. <span class="evb" data-ev="jp_jitan"></span></p>
+      <p><b>약기법 경계.</b> 「1品5役」「化粧水・乳液の役割/機能」은 효능 주장이 아니라 사용법·카테고리 서술로 통용된다(퍼펙트원·하다라보·나리스가 실사용). 각 역할에 붙는 형용(미백·주름개선)은 별도 승인 필요, 「絶対」「究極」 등 단정·최상급은 금지. ※ 「これ1本で完了」의 적법성을 명시 판정한 행정 가이드라인 원문은 미확인 - 대형 제품의 실사용 문형을 따르는 것이 안전선. <span class="evb" data-ev="jp_yakkiho"></span></p>
     </div>
   </div>
 </div>
@@ -241,13 +284,13 @@
   <div class="ph"><h3>키워드 사다리 - 쓸 것과 버릴 것</h3><div class="hint">전부 위 데이터에 근거. 일본어 카피는 실제 통용 문형에서 조립</div></div>
   <table class="lex">
     <tr><th>후보</th><th>판정</th><th>근거</th></tr>
-    <tr><td>뿌리는 크림 / スプレークリーム · クリームミスト</td><td class="ok">주력</td><td>카테고리 작명 = 한국 미스트의 실존 상향 문법. 큐텐 셀러 카피(「크림보다 강한 미스트」)가 수요 선행 증거. R2의 질감 자격을 이름이 직접 선언</td></tr>
-    <tr><td>토너·에센스·세럼은 이걸로 / 化粧水・美容液・乳液、これ1本</td><td class="ok">주력</td><td>열거형만 정착과 동행(+7.1pp) · 일본 약기법 안전 문형 · 젤 카테고리가 증명한 클레임 구조</td></tr>
-    <tr><td>아침은 이걸로 끝 / 忙しい朝はこれ1本</td><td class="ok">채택</td><td>자발 종결어의 실제 모양(한국 59% 조건부, 일본 인용 다수) · サボリーノ 12억장의 포맷. 「끝」을 쓰려면 반드시 순간을 한정</td></tr>
-    <tr><td>3초 / 3秒</td><td class="ok">보조</td><td>한국 뷰티의 실질 종결 어휘는 시간 단위(3초화잘먹·1초 수분결). 나리스도 「3秒スプレー」. 단 사용법 문구와 섞이므로 단독 축은 아님</td></tr>
-    <tr><td>이걸로 끝 (총량 선언)</td><td class="no">기각</td><td>한국: 검색 0·작명 0·리프트 음수·절대 표현 규제. 일본: ズボラボ 18건의 무덤 + 보습 배신 기전. 순간 한정 없인 쓰지 않는다</td></tr>
-    <tr><td>한방에 끝</td><td class="no">폐기</td><td>리뷰 71,344건 중 용례 1건 · 올리브영 카탈로그 0건 · 韓方 동음 충돌(화장품 맥락에선 먼저 韓方으로 읽힌다)</td></tr>
-    <tr><td>올인원 / オールインワン (단독 명사)</td><td class="no">회피</td><td>한국: 남성 카테고리 고착(맨 올인원 10년 1위) · 일본: 여성 사용률 하락. 열거 뒤에 붙는 수식으로만(「토너·에센스·세럼 올인원」은 가능 - 달바가 증명)</td></tr>
+    <tr><td>뿌리는 크림 / スプレークリーム · クリームミスト</td><td class="ok">주력</td><td>카테고리 작명 = 한국 미스트의 실존 상향 문법. 큐텐 셀러 카피(「크림보다 강한 미스트」)가 수요 선행 증거. R2의 질감 자격을 이름이 직접 선언 <span class="evb" data-ev="kr_naming"></span><span class="evb" data-ev="qoo10"></span></td></tr>
+    <tr><td>토너·에센스·세럼은 이걸로 / 化粧水・美容液・乳液、これ1本</td><td class="ok">주력</td><td>열거형만 정착과 동행(+7.1pp) · 일본 약기법 안전 문형 · 젤 카테고리가 증명한 클레임 구조 <span class="evb" data-ev="spec_settle"></span><span class="evb" data-ev="jp_yakkiho"></span></td></tr>
+    <tr><td>아침은 이걸로 끝 / 忙しい朝はこれ1本</td><td class="ok">채택</td><td>자발 종결어의 실제 모양(한국 59% 조건부, 일본 인용 다수) · サボリーノ 12억장의 포맷. 「끝」을 쓰려면 반드시 순간을 한정 <span class="evb" data-ev="kr_t1"></span><span class="evb" data-ev="jp_t1"></span></td></tr>
+    <tr><td>3초 / 3秒</td><td class="ok">보조</td><td>한국 뷰티의 실질 종결 어휘는 시간 단위(3초화잘먹·1초 수분결). 나리스도 「3秒スプレー」. 단 사용법 문구와 섞이므로 단독 축은 아님 <span class="evb" data-ev="kr_3cho"></span></td></tr>
+    <tr><td>이걸로 끝 (총량 선언)</td><td class="no">기각</td><td>한국: 검색 0·작명 0·리프트 음수·절대 표현 규제. 일본: ズボラボ 18건의 무덤 + 보습 배신 기전. 순간 한정 없인 쓰지 않는다 <span class="evb" data-ev="trends"></span><span class="evb" data-ev="jp15"></span></td></tr>
+    <tr><td>한방에 끝</td><td class="no">폐기</td><td>리뷰 70,344건 중 「한방」 부분일치 11건·진짜 용례 2건 · 올리브영 카탈로그 「한방에」 0건 · 韓方 동음 충돌(화장품 맥락에선 먼저 韓方으로 읽힌다) <span class="evb" data-ev="kr_hanbang"></span><span class="evb" data-ev="kr_hanbang_mkt"></span></td></tr>
+    <tr><td>올인원 / オールインワン (단독 명사)</td><td class="no">회피</td><td>한국: 남성 카테고리 고착(맨 올인원 10년 1위) · 일본: 여성 사용률 하락. 열거 뒤에 붙는 수식으로만(「토너·에센스·세럼 올인원」은 가능 - 달바가 증명) <span class="evb" data-ev="oy_allinone"></span><span class="evb" data-ev="jp_jitan"></span></td></tr>
   </table>
 </div>
 
@@ -258,14 +301,129 @@
   · 에스트라 크림 미스트의 재구매 역전은 n=22라 방향 참고용 - 크림 질감 가설의 확증은 출시 후 자사 데이터로 해야 한다.<br>
   · 일본 여성 올인원 시장의 최신 규모(2019년 이후)는 유료 리포트 뒤에 있어 미확인. 약기법 파트는 민간 해설 + 실사용 문형 기준이며 행정 원문 미열람.<br>
   · 시장 간 절대율 비교는 하지 않았다(리뷰 길이·플랫폼 관행 차). 모든 비교는 같은 시장 안의 순위·배수.<br>
-  · 「종결 클레임 미스트 15종 전원 소규모」는 클레임 탓과 유통 탓(전부 드럭스토어·통판 저가)이 섞여 있다 - 프리미엄 실행으로 뒤집힐 여지는 남는다. 그 실험이 정확히 이 컨셉의 자리다.</p>
+  · 「종결 클레임 미스트 15종 전원 소규모」는 클레임 탓과 유통 탓(전부 드럭스토어·통판 저가)이 섞여 있다 - 프리미엄 실행으로 뒤집힐 여지는 남는다. 그 실험이 정확히 이 컨셉의 자리다.<br>
+  · 큐텐 JP 검색 캡처는 인기순 1페이지 46행 중 타이틀 추출된 25행분만 보존(캡처 후 봇월로 재수집 불가) - 근거 서랍에 그대로 명시.<br>
+  · 올리브영 스캔은 1차(브라우저 세션)와 근거 레일 재덤프(Playwright) 사이 랭킹 드리프트로 행수가 소폭 다르다(수집 279→299행 · 올인원 상위 195→197). 본문 수치는 근거 레일과 같은 재덤프 기준으로 통일했고(「미스트」 검색 수집 299행 = 전 카테고리, 그중 페이스 미스트 계열 181종), 결론은 불변. 「한방」 부분일치 71건·올인원 남녀 89/64 등 1차 집계의 필사 오류 3건은 재덤프 대조에서 발견해 본문에서 정정했다.</p>
 </div>
 
 <div class="foot">
-  <b>방법.</b> 수요: 한국 올리브영 리뷰 70,344건(10종) + UGC 2,645 + 광고 1,699 · 일본 큐텐 97,490건(5종) + @cosme 12,110 + 자국 브랜드 20종 8,000건을 종결·반증 어휘 사전으로 전수 스캔(제품 동일가중, 내생 카피·재구매 텍스트 누수·동음 오탐 제거). 정착: 재구매 플래그 리프트(가드 전후 병기) + @cosme repeat · 큐텐 강제 3축 크로스. 공급: 올리브영 검색 API 전수(미스트 279종·올인원 195건) · 무신사 · 일본 15종 제품 페이지 실사 · 큐텐 JP 검색 DOM 직접 확인. 배경: 富士経済 프레스릴리스 · 법제처 국가법령정보 API 원문 · 약기법 해설. 일본어 인용은 전부 수작업 번역, 기계번역 미사용.
-  <br><b>연결.</b> 원 컨셉 카드: <a href="../mist-spec/">미스트 컨셉 후보 5</a> 1순위 「뿌리는 크림」 - 이 리포트는 그 컨셉의 클레임 언어 검증이다.
+  <b>방법.</b> 수요: 한국 올리브영 리뷰 70,344건(10종) + UGC 2,645 + 광고 1,699 · 일본 큐텐 97,490건(5종) + @cosme 12,110 + 자국 브랜드 20종 8,000건을 종결·반증 어휘 사전으로 전수 스캔(제품 동일가중, 내생 카피·재구매 텍스트 누수·동음 오탐 제거). 정착: 재구매 플래그 리프트(가드 전후 병기) + @cosme repeat · 큐텐 강제 3축 크로스. 공급: 올리브영 검색 API 전수(「미스트」 검색 299행 - 페이스 미스트 181종·올인원 상위 197건) · 무신사 · 일본 15종 제품 페이지 실사 · 큐텐 JP 검색 DOM 직접 확인. 배경: 富士経済 프레스릴리스 · 법제처 국가법령정보 API 원문 · 약기법 해설. 카드 인용문은 수작업 번역 - <b>근거 서랍의 일본어 대량 원자료는 원문 그대로 게재한다</b>(무료 기계번역이 부정형을 반전시킨 전력이 있어 근거 판에 쓰지 않는다).
+  <br><b>연결.</b> 원 컨셉 카드: <a href="../mist-spec/">미스트 컨셉 후보 5</a> 1순위 「뿌리는 크림」 - 이 리포트는 그 컨셉의 클레임 언어 검증이다. 열거 카피 리프트(+7.1pp 등)의 원자료 드릴은 그 리포트의 근거 레일에 있다.
 </div>
 
 </div>
+<script src="ev.js"></script>
+<script>
+(function(){
+  var EV = window.EV || {};
+  var open = null; // {btn, drawer}
+
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  var SLUGKO = {aestura:'에스트라',anua:'아누아',avene:'아벤느',bioheal:'바이오힐보',cnp:'차앤박',dahlia:'디어달리아',dalba:'달바',hanyul:'한율',klairs:'디어클레어스',medicube:'메디큐브',miguhara:'미구하라'};
+
+  function tagHtml(txt, cls){ return '<span class="tag'+(cls?' '+cls:'')+'">'+esc(txt)+'</span>'; }
+
+  function rowHtml(r){
+    if (r == null) return '';
+    if (typeof r === 'string') return '<div class="evr"><span class="txt">'+esc(r)+'</span></div>';
+    var tags = [], body = '', kvs = [];
+    var slug = r.slug || r.brand || '';
+    if (r.grp) tags.push(tagHtml(r.grp, r.grp==='kbeauty' ? 'hot' : 'cool'));
+    if (slug) tags.push(tagHtml(SLUGKO[slug] || slug));
+    if (r.src && !/^https?:/.test(r.src)) tags.push(tagHtml(r.src));
+    if (r.token) tags.push(tagHtml(r.token, 'hot'));
+    if (r.tone) tags.push(tagHtml(r.tone === 'finality' ? '종결' : '반증', r.tone==='finality'?'good':'warn'));
+    if (r.verdict) tags.push(tagHtml(r.verdict, r.verdict==='real' ? 'good' : 'warn'));
+    if (typeof r.re === 'boolean') tags.push(tagHtml(r.re ? '재구매O' : '재구매X', r.re ? 'good' : ''));
+    if (r.leak) tags.push(tagHtml('가드제외', 'warn'));
+    if (typeof r.repeat === 'boolean') tags.push(tagHtml(r.repeat ? 'repeat O' : 'repeat X', r.repeat ? 'good' : ''));
+    if (r.e) tags.push(tagHtml(r.e.length > 46 ? r.e.slice(0,46)+'…' : r.e, /イマイチ/.test(r.e) ? 'warn' : ''));
+    if (r.claim_type) tags.push(tagHtml(r.claim_type, r.claim_type==='terminal' ? 'warn' : ''));
+    var main = r.t || r.text || r.name || r.finding || r.case || r.claim || r.label || r.positioning || '';
+    if (main) body += '<div class="txt">'+esc(main)+'</div>';
+    var sub = [];
+    if (r.claim_ja && r.claim_ja !== main) sub.push(['클레임', r.claim_ja]);
+    if (r.claim_ko) sub.push(['번역', r.claim_ko]);
+    if (r.ko && r.ko !== main) sub.push(['번역', r.ko]);
+    if (r.year) sub.push(['발매/연도', r.year]);
+    if (r.figure) sub.push(['수치', r.figure]);
+    if (r.price || r.prc) sub.push(['가격', r.price || r.prc]);
+    if (r.channel) sub.push(['판매처', r.channel]);
+    if (r.review_scale || r.reviews) sub.push(['리뷰', r.review_scale || r.reviews]);
+    if (r.category) sub.push(['카테고리', r.category]);
+    if (r.gender) sub.push(['구분', r.gender === 'male' ? '남성' : '비남성']);
+    if (r.sales) sub.push(['판매 실적', r.sales]);
+    if (r.buyer_age && r.buyer_age !== '미확인') sub.push(['구매층', r.buyer_age]);
+    if (r.source) sub.push(['출처 기관', r.source]);
+    if (r.note) sub.push(['비고', r.note]);
+    if (r.caution) sub.push(['주의', r.caution]);
+    if (r.series) sub.push(['연평균', Object.keys(r.series).map(function(y){return y+': '+r.series[y];}).join(' · ')]);
+    if (r.keyword) tags.push(tagHtml(r.keyword, 'hot'));
+    if (r.query != null) { tags.push(tagHtml('검색어: '+r.query, 'hot')); if (r.total != null) sub.push(['전체 건수', r.total]); if (Array.isArray(r.hits)) sub.push(['히트', r.hits.length ? r.hits.join(' / ') : '(0건)']); }
+    // 분할표 셀 (재구매 원표)
+    ['fin_re','fin_nore','nofin_re','nofin_nore','g_fin_re','g_fin_nore','g_nofin_re','g_nofin_nore','n','tier1_rate','counter_rate'].forEach(function(k){
+      if (r[k] != null && typeof r[k] !== 'object') sub.push([k, r[k]]);
+    });
+    if (r.tier1 && typeof r.tier1 === 'object') sub.push(['종결 토큰', Object.keys(r.tier1).map(function(k){return k+' '+r.tier1[k];}).join(' · ')]);
+    if (r.counter && typeof r.counter === 'object') sub.push(['반증 토큰', Object.keys(r.counter).map(function(k){return k+' '+r.counter[k];}).join(' · ')]);
+    if (r.endog && r.endog.length) sub.push(['내생 의심', r.endog.join(', ')]);
+    var subHtml = sub.map(function(p){ return '<div class="kv"><b>'+esc(p[0])+'</b> · '+esc(p[1])+'</div>'; }).join('');
+    var link = (r.src && /^https?:/.test(r.src)) ? '<div class="kv"><a href="'+esc(r.src)+'" target="_blank" rel="noopener">'+esc(r.src)+'</a></div>' : '';
+    return '<div class="evr"><div class="m">'+tags.join('')+'</div>'+body+subHtml+link+'</div>';
+  }
+
+  function render(drawer, key){
+    var d = EV[key];
+    var rows = d.rows;
+    var q = (drawer.querySelector('input').value || '').toLowerCase();
+    var shown = q ? rows.filter(function(r){ return JSON.stringify(r).toLowerCase().indexOf(q) >= 0; }) : rows;
+    var cap = 800;
+    var html = shown.slice(0, cap).map(rowHtml).join('');
+    if (shown.length > cap) html += '<div class="evr"><span class="kv">…외 '+(shown.length-cap)+'건 - 검색으로 좁혀서 보세요</span></div>';
+    if (!shown.length) html = '<div class="evr"><span class="kv">일치하는 행이 없습니다</span></div>';
+    drawer.querySelector('.list').innerHTML = html;
+    drawer.querySelector('.cnt').textContent = (q ? shown.length + ' / ' : '') + rows.length + '건';
+  }
+
+  function toggle(btn){
+    var key = btn.getAttribute('data-ev');
+    var d = EV[key];
+    if (!d || !d.rows || !d.rows.length) return;
+    if (open && open.btn === btn){ open.drawer.remove(); open.btn.classList.remove('on'); open = null; return; }
+    if (open){ open.drawer.remove(); open.btn.classList.remove('on'); open = null; }
+    var drawer = document.createElement('div');
+    drawer.className = 'evd open';
+    drawer.innerHTML = '<div class="evh"><span class="t">'+esc(d.title)+'</span><span class="cnt"></span>'+
+      '<input type="search" placeholder="원자료 검색…"><span class="x" title="닫기">×</span></div>'+
+      (d.note ? '<div class="note">'+esc(d.note)+'</div>' : '')+
+      '<div class="list"></div>'+
+      '<div class="evfoot">원자료 파일: ~/Desktop/domo-trial-data/onestep/ · 일본어 행은 원문 그대로(방침)</div>';
+    var host = btn.closest('td,li,p,.rh,.cb,.ph,div');
+    var panel = btn.closest('.panel') || document.body;
+    // 패널 폭 전체를 쓰도록 표/리스트 밖, 패널 안 버튼 위치 다음에 삽입
+    var anchor = btn.closest('table,ul.rule,ul.crit,p') || host;
+    anchor.parentNode.insertBefore(drawer, anchor.nextSibling);
+    drawer.querySelector('input').addEventListener('input', function(){ render(drawer, key); });
+    drawer.querySelector('.x').addEventListener('click', function(){ drawer.remove(); btn.classList.remove('on'); open = null; });
+    render(drawer, key);
+    btn.classList.add('on');
+    open = {btn: btn, drawer: drawer};
+    drawer.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  document.querySelectorAll('.evb').forEach(function(btn){
+    var key = btn.getAttribute('data-ev');
+    var d = EV[key];
+    if (d && d.rows && d.rows.length){
+      btn.textContent = '근거 ' + d.rows.length.toLocaleString() + '건';
+      btn.addEventListener('click', function(){ toggle(btn); });
+    } else {
+      btn.textContent = '근거 준비 중';
+      btn.classList.add('empty');
+    }
+  });
+})();
+</script>
 </body>
 </html>
