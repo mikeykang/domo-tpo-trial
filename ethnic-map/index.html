@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>북미 K뷰티 기초 카테고리 × 커뮤니티 지도</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--canvas:#fafafa;--card:#fff;--line:#e9e9e9;--line2:#d9d9d9;--ink:#171717;--sub:#454545;
+ --muted:#5c5c5c;--subtle:#757575;--faint:#bfbfbf;--kr:#c2410c;--jp:#4f46e5;--ok:#15803d;--r:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font-family:Inter,"Noto Sans KR",ui-sans-serif,system-ui,sans-serif;
+ font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:30px 20px 90px}
+b,strong{font-weight:600} a{color:inherit}
+.mono,.n{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.top{padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.kick{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--subtle);font-weight:500;font-family:"Geist Mono",monospace}
+h1{font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:5px}
+.lede{font-size:13.5px;color:var(--muted);margin-top:8px;max-width:860px}
+h2{scroll-margin-top:14px;font-size:16px;font-weight:600;margin:34px 0 4px;padding-top:22px;border-top:1px solid var(--line)}
+h3{font-size:13.5px;font-weight:600;margin:22px 0 6px}
+p{margin:8px 0;color:var(--sub);max-width:900px}
+ul,ol{margin:8px 0 8px 18px;color:var(--sub);max-width:900px} li{margin:4px 0}
+.role{font-size:12px;color:var(--subtle);margin:6px 0 2px}
+.ans{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:14px}
+.ans .a{font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.5}
+.ans .b{font-size:12.5px;color:var(--muted);margin-top:5px}
+.ans + .ans{margin-top:10px}
+.tw{overflow-x:auto;margin:10px 0 4px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--subtle);
+ padding:9px 10px;border-bottom:1px solid var(--line2);white-space:nowrap;background:#fcfcfc;vertical-align:bottom}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+td.n{text-align:right;font-family:"Geist Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.lbl{white-space:nowrap;font-size:11.5px}
+td.hi{color:var(--kr);font-weight:600} td.lo{color:var(--faint)}
+td.src{font-size:11px;color:var(--subtle)} td.why{font-size:11.5px;color:var(--muted);min-width:320px}
+td.mk{text-align:center;font-size:15px;width:96px;padding:6px 4px}
+td.mk.main{color:var(--kr);font-weight:700;background:#fdf1ea}
+td.mk.sec{color:#9a3412} td.mk.aux{color:var(--subtle)} td.mk.low{color:var(--faint)} td.mk.na{color:var(--faint)}
+small{font-size:10px;color:var(--subtle)}
+.na{color:var(--faint)}
+.cal{background:#fffbf7;border:1px solid #f0d9c6;border-radius:var(--r);padding:12px 15px;margin:12px 0;font-size:12.5px;color:#7c3a12}
+.cal b{color:#7c2d12}
+.note{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--line2);border-radius:0 var(--r) var(--r) 0;padding:11px 14px;margin:10px 0;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--ink)}
+.src{font-size:11px;color:var(--subtle);font-family:"Geist Mono",monospace}
+p.src{max-width:none}
+.tag{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:20px;border:1px solid var(--line2);
+ color:var(--subtle);font-family:"Geist Mono",monospace;white-space:nowrap;vertical-align:1px}
+.tag.ok{border-color:#bfe3c8;background:#effaf1;color:#15803d}
+.tag.mid{border-color:#f0d9c6;background:#fffbf7;color:#9a3412}
+.tag.low{border-color:var(--line2);background:#f6f6f6;color:#757575}
+.foot{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--subtle);line-height:1.85}
+.foot b{color:var(--sub)}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 2px}
+.toc a{font-size:11.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);background:var(--card);border-radius:7px;padding:5px 10px}
+.toc a:hover{border-color:var(--line2);color:var(--ink)}
+code{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:11.5px;background:#f2f2f2;padding:1px 5px;border-radius:4px}
+.legend{font-size:11.5px;color:var(--muted);margin:6px 0 2px}
+.legend span{margin-right:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.card h4{font-size:13px;font-weight:600;margin:0 0 4px}
+.card .v{font-size:12.5px;color:var(--ink);margin-bottom:6px}
+.card ul{margin:4px 0 0 16px;font-size:12px}
+.card li{margin:3px 0}
+.q{color:var(--sub)}
+</style></head><body><div class="wrap">
+
+<div class="top">
+ <div class="kick">DOMO · K-Beauty North America · Category × Community Map</div>
+ <h1>북미 K뷰티 기초 카테고리 × 커뮤니티 지도</h1>
+ <div class="lede">K뷰티 기초 라인의 카테고리마다 미국·캐나다에서 주로 소구하는 인종·커뮤니티가 따로 있는지 쟀다.
+ 결론은 「있다, 그러나 카테고리보다 <b>제형·성분·브랜드</b>에서 갈린다」이다. 코어는 거의 모든 카테고리에서 아시아계이고,
+ 히스패닉은 <b>토너패드·시트마스크</b>와 아누아·조선미녀·믹순에서, 흑인은 <b>백탁 없는 선크림·달팽이·브라이트닝</b> 서사에서,
+ 백인 메인스트림은 <b>스팟패치·립마스크·달팽이</b>처럼 이미 전국화된 품목에서 두드러진다.
+ 출발 가설이었던 「토너 → 히스패닉」은 액상 토너에서는 기각되고 토너패드에서 성립한다.</div>
+ <div class="toc">
+  <a href="#map">지도</a><a href="#rule">읽는 법과 가정</a><a href="#u">사용률 설문</a><a href="#s">패널 지출</a><a href="#g">검색 지리</a>
+  <a href="#brand">브랜드 지도</a><a href="#p">언론·크리에이터</a><a href="#m">메커니즘</a><a href="#cat">카테고리별 카드</a><a href="#ca">캐나다</a><a href="#gap">모르는 것</a><a href="#ref">출처</a>
+ </div>
+</div>
+
+<h2 id="map">지도 · 카테고리 × 커뮤니티</h2>
+<p class="role">● 메인(성격이 다른 두 레인 이상에서 인구 대비 상위) · ◐ 2위 또는 공동 · ○ 보조 신호 · × 인구 대비 하위 · ▢ 측정값 없음. 열의 순서는 인구 크기와 무관하다.</p>
+<div class="tw"><table><thead><tr><th>카테고리</th><th>히스패닉·라티노</th><th>흑인</th><th>아시아계(동·동남아)</th><th>남아시아계</th><th>백인·메인스트림</th><th>판정 근거(요약)</th></tr></thead>
+<tbody><tr><td class="lbl">K뷰티 전체</td><td class="mk sec">◐</td><td class="mk aux">○</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="why">아시아계 고소득 밀레니얼이 코어(NIQ), 히스패닉이 확장(K÷일반 검색비 β 히스패닉 +0.35 ≈ 아시아계 +0.38), 백인은 볼륨(가구 침투 25~28.7%)</td></tr>
+<tr><td class="lbl">클렌저 · 폼·오일·더블</td><td class="mk sec">◐</td><td class="mk low">×</td><td class="mk main">●</td><td class="mk na">▢</td><td class="mk aux">○</td><td class="why">베트남계 폼클렌저 주 7.2일 vs 3.5~4.3일 · 매일 세안 아시안 56% 히스패닉 55% 백인 41%</td></tr>
+<tr><td class="lbl">토너 · 액상</td><td class="mk low">×</td><td class="mk aux">○</td><td class="mk main">●</td><td class="mk na">▢</td><td class="mk aux">○</td><td class="why">기타(아시안 포함) 사용지수 130 · korean toner 검색 β 아시아계 +0.77 · 라티나 주 0.9일로 최저</td></tr>
+<tr><td class="lbl">토너패드 · 수분패드</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="mk na">▢</td><td class="mk low">×</td><td class="why">히스패닉 사용지수 142(36.7% vs 25.8%) · K뷰티 내부 검색비 β 히스패닉 +0.16 흑인 +0.13 아시아계 +0.03</td></tr>
+<tr><td class="lbl">에센스</td><td class="mk aux">○</td><td class="mk low">×</td><td class="mk main">●</td><td class="mk na">▢</td><td class="mk aux">○</td><td class="why">NIQ 아시아계 트리트먼트 구매액 +$17.22 · 검색 표본 얇음(52 DMA)</td></tr>
+<tr><td class="lbl">세럼·앰플 · K세럼 전체</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="why">korean serum 검색 β 아시아계 +0.75 · 사용지수는 백인 106 히스패닉 98 흑인 85</td></tr>
+<tr><td class="lbl">　달팽이 뮤신</td><td class="mk sec">◐</td><td class="mk sec">◐</td><td class="mk low">×</td><td class="mk na">▢</td><td class="mk main">●</td><td class="why">K뷰티 내부 검색비 β 아시아계 −0.55 · 흑인 raw β +0.27(K 용어 중 최고) · 칠레 1995 → 한국 2000년대 계보</td></tr>
+<tr><td class="lbl">　브라이트닝 · 나이아신아마이드 등</td><td class="mk sec">◐</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="mk low">×</td><td class="why">색소침착 반점 흑인 65% 히스패닉 48% 백인 25% 아시안 18% · 남아시아계 고민 uneven tone 21% dark spots 18%</td></tr>
+<tr><td class="lbl">　시카 · 진정</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk main">●</td><td class="mk na">▢</td><td class="mk aux">○</td><td class="why">민감피부 자각 52% 인종차 없음 · 스킨1004·토리든 검색 β 아시아계 +0.64/+0.82</td></tr>
+<tr><td class="lbl">　레티놀</td><td class="mk low">×</td><td class="mk low">×</td><td class="mk aux">○</td><td class="mk low">×</td><td class="mk main">●</td><td class="why">주름은 유색인종에서 10년 늦게 · 자극→색소침착(PIH) 리스크가 유색인종에 집중</td></tr>
+<tr><td class="lbl">크림 · 모이스처라이저</td><td class="mk aux">○</td><td class="mk low">×</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="why">NIQ 아시아계 페이셜 모이스처라이저 +$53.51(최대 격차) · 매일 사용 아시안 63% 백인 49% · 흑인은 바디로션 주 6.0일</td></tr>
+<tr><td class="lbl">선크림</td><td class="mk sec">◐</td><td class="mk aux">○</td><td class="mk main">●</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="why">korean sunscreen 검색 β 아시아계 +0.82(전 용어 최고) · 습관적 사용 백인 40.4% 히스패닉 24.7% 흑인 10.9% · 히스패닉 31→45%로 최속 성장</td></tr>
+<tr><td class="lbl">시트마스크</td><td class="mk main">●</td><td class="mk low">×</td><td class="mk main">●</td><td class="mk na">▢</td><td class="mk sec">◐</td><td class="why">사용지수 히스패닉 120 기타 118 백인 111 흑인 55 · 캘리포니아 조사에선 인종차 없음</td></tr>
+<tr><td class="lbl">스팟패치</td><td class="mk aux">○</td><td class="mk low">×</td><td class="mk sec">◐</td><td class="mk na">▢</td><td class="mk main">●</td><td class="why">pimple patch÷acne 검색비 β 3개 소수집단 모두 음수 · 최하위 DMA도 1.2배 이상 = 전국 보편 · 여드름 유병은 흑인 37% 히스패닉 32% 아시안 30% 백인 24%</td></tr>
+<tr><td class="lbl">립마스크</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk na">▢</td><td class="mk main">●</td><td class="why">lip sleeping mask÷lip balm β ≈ 0 · 립밤 사용 주 4.0~5.0일 전 집단 균등 · 라네즈는 K 내부에서 백인 지역 편중</td></tr>
+<tr><td class="lbl">미스트</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk aux">○</td><td class="mk na">▢</td><td class="mk aux">○</td><td class="why">설문·패널 데이터 없음 · 검색비 β ≈ 0 · 민텔은 아시아계 "well above the norm"</td></tr>
+<tr><td class="lbl">아이크림</td><td class="mk sec">◐</td><td class="mk low">×</td><td class="mk aux">○</td><td class="mk sec">◐</td><td class="mk main">●</td><td class="why">사용지수 백인 114 히스패닉 112 기타 79 흑인 64 · 남아시아계 미국 여성 1위 고민 = 다크서클</td></tr>
+</tbody></table></div>
+<p class="src">설문 사용지수 = 해당 집단 사용률 ÷ 전체 사용률 × 100(오픈서베이 2026, 미국 여성 18~49세 600명). 검색 β = DMA 210개 인구가중 회귀의 표준화 계수(히스패닉·흑인·아시아계 인구 비중이 검색 지수를 얼마나 설명하는가). 각 칸의 원자료는 아래 레인별 표에 있다.</p>
+
+<div class="ans"><div class="a">1. 코어는 카테고리를 가리지 않고 아시아계다. 액상 토너·선크림·세럼·크림·클렌저 전부.</div>
+<div class="b">NIQ는 미국 K뷰티 붐의 동력을 「고소득 아시아계 밀레니얼」로 적었고, 아시아계는 NIQ가 열거한 모든 페이셜 스킨케어 하위 카테고리에서 미국 평균보다 더 산다(모이스처라이저 연 $147.07, 평균 대비 +$53.51).
+검색 지리도 같다. <code>korean sunscreen</code>은 아시아계 인구 비중 β +0.82로 조사한 용어 중 가장 아시아계에 쏠린다.</div></div>
+<div class="ans"><div class="a">2. 「토너 → 히스패닉」은 액상에서는 틀리고 패드에서는 맞다.</div>
+<div class="b">액상 토너: 라티나 사용 빈도 주 0.9일로 5개 집단 중 최저(캘리포니아 318명), 사용지수 97, 히스패닉과 토너를 잇는 언론·데이터 0건.
+토너패드(수분패드): 히스패닉 사용률 36.7% vs 전체 25.8%, 사용지수 142로 전 표에서 가장 큰 히스패닉 초과. K뷰티 검색 내부에서도 토너패드는 히스패닉·흑인 쪽으로 기운다(β +0.16 / +0.13, 아시아계 +0.03). 단 히스패닉 표본이 60명이라 ±12%p를 본다.</div></div>
+<div class="ans"><div class="a">3. 흑인 커뮤니티는 서사가 가장 진하고 사용률은 가장 낮다. 갈라지는 자리는 선크림이다.</div>
+<div class="b">습관적 선크림 사용 흑인 10.9%(백인 40.4%), 사용지수 60. 그런데 K뷰티×흑인 기사 6개 매체가 예외 없이 「백탁 없는 한국 선크림」(조선미녀·이니스프리·네오젠)을 첫 품목으로 든다.
+니즈는 최대(색소침착 반점 65%), 습관은 최저, 그 사이를 K 선크림이 메운다는 것이 언론의 서사이고, 미주 한인 업계지의 2026년 흑인 선크림 가이드에는 한국 브랜드가 0개다. 채널 정착은 아직이다.</div></div>
+<div class="ans"><div class="a">4. 이미 전국화된 품목에는 커뮤니티가 없다. 스팟패치·립마스크·달팽이 뮤신.</div>
+<div class="b">세 품목 모두 K 용어를 일반 용어로 나눈 검색비가 소수집단 인구와 무관하거나 음(−)이고, 가장 낮은 DMA에서도 지수가 남아 있다. 달팽이 뮤신은 K뷰티 내부에서 아시아계 β −0.55로 가장 「비아시아계」인 K 품목이다.
+이 셋은 커뮤니티 마케팅이 아니라 매스 유통의 문제다.</div></div>
+<div class="ans"><div class="a">5. 히스패닉은 K뷰티 전체의 확장 엔진이고, 그 이름은 브랜드에 붙어 있다.</div>
+<div class="b">K뷰티 검색을 일반 스킨케어 검색으로 나누면 히스패닉 β +0.35, 아시아계 +0.38로 거의 같다. 브랜드로 내려가면 아누아(+0.40)·믹순(+0.40)·조선미녀(+0.35)·토리든(+0.31)이 히스패닉 쪽이고, 상위 DMA는 유마·엘센트로, 할링겐·브라운즈빌, 댈러스, 베이커스필드다.
+NIQ는 히스패닉 뷰티 소비자를 「K뷰티 트렌드에 over-index」로 적었고(수치 미공개), 멕시코에서는 소비자 61%가 K뷰티를 인기 있다고 답한다(미국 약 45%).</div></div>
+<div class="ans"><div class="a">6. 남아시아계는 미국 데이터가 비어 있고, 캐나다에서만 이름이 나온다.</div>
+<div class="b">NIQ 캐나다는 K뷰티가 중국계·필리핀계·남아시아계 가구에서 「buyer index가 전국 평균을 크게 웃돈다」고 적었다. 미국 쪽은 다크서클(인도계 여성 1위 고민)·색소 고민(uneven tone 21%, dark spots 18%)이라는 니즈 데이터만 있고 구매 데이터가 없다.</div></div>
+
+<h2 id="rule">읽는 법과 가정</h2>
+<ul>
+<li><b>「메인」의 정의</b>: 그 카테고리의 수요가 인구 비중보다 큰 집단. 설문 사용지수 110 이상, 검색 회귀에서 가장 큰 양(+)의 β, 패널 구매액 초과 중 <b>성격이 다른 두 레인 이상</b>이 같은 방향일 때만 ●를 찍었다. 한 레인만 있으면 ◐ 이하.</li>
+<li><b>커뮤니티 구분</b>은 미국 센서스 기준(히스패닉은 인종 무관, 나머지는 비히스패닉 단일 인종). 남아시아계는 센서스 「아시안」 안에 묻히므로 설문·검색에서 분리되지 않고, 연구 문헌과 캐나다 패널에서만 따로 보인다. 오픈서베이의 「기타 인종」은 아시아계를 포함한 잔여 집단이다.</li>
+<li><b>K뷰티 특정 × 인종 × 카테고리 데이터는 시중에 없다.</b> 그래서 (1) 전 브랜드 기준 사용률 설문, (2) 아시아계·히스패닉·흑인 패널 지출, (3) K 용어의 검색 지리, (4) 언론·크리에이터 서사, (5) 피부 생리·습관 문헌을 서로 다른 성격의 레인으로 놓고 겹치는 곳만 읽었다.</li>
+<li><b>검색 지리는 생태학적 추론이다.</b> 「히스패닉이 많은 DMA에서 검색이 많다」이지 「히스패닉이 검색했다」가 아니다. 소득·도시화·연령이 같이 움직인다. 그래서 K 용어를 같은 카테고리의 일반 용어로 나눈 비(比)를 함께 봤다. 비는 「스킨케어 관심이 높은 도시」 효과를 지운다.</li>
+<li><b>시간창</b>: 검색은 2025-09-09~2026-09-09 12개월. 설문은 2025-12(오픈서베이), 2019(캘리포니아 CAPABLE), 2013·2016-17(버지니아 대학생). 패널은 2023~2026. 언론은 2021~2026.</li>
+<li><b>이 문서는 DOMO의 역검색용이다.</b> 「어느 커뮤니티에 어떤 제형·성분·브랜드가 닿아 있는가」를 읽는 자료이지, 커뮤니티를 타깃하라는 권고가 아니다. 판정어를 쓰지 않고 잰 값만 적었다.</li>
+</ul>
+
+<h2 id="u">레인 1 · 사용률 설문</h2>
+<h3>오픈서베이 뷰티 트렌드 리포트 2026 · 미국 여성 18~49세 600명 · 현재 사용 중인 스킨케어(중복응답)</h3>
+<p>인종 비례 할당 표본(백인 362 · 흑인 131 · 히스패닉 60 · 기타 47). 전 브랜드 기준이며 K뷰티 한정이 아니다. 각 집단의 사용률과 전체 대비 지수를 나란히 둔다.</p>
+<div class="tw"><table><thead><tr><th>카테고리</th><th>전체 %</th><th>백인 %</th><th>지수</th><th>흑인 %</th><th>지수</th><th>히스패닉 %</th><th>지수</th><th>기타 %</th><th>지수</th></tr></thead>
+<tbody><tr><td class="lbl">크림</td><td class="n">71.8</td><td class="n">76.0</td><td class="n">106</td><td class="n">59.5</td><td class="n" class="lo">83</td><td class="n">70.0</td><td class="n">97</td><td class="n">76.6</td><td class="n">107</td></tr>
+<tr><td class="lbl">클렌저</td><td class="n">70.0</td><td class="n">73.5</td><td class="n">105</td><td class="n">63.4</td><td class="n">91</td><td class="n">68.3</td><td class="n">98</td><td class="n">63.8</td><td class="n">91</td></tr>
+<tr><td class="lbl">로션/에멀전</td><td class="n">51.5</td><td class="n">52.5</td><td class="n">102</td><td class="n">45.8</td><td class="n">89</td><td class="n">58.3</td><td class="n">113</td><td class="n">51.1</td><td class="n">99</td></tr>
+<tr><td class="lbl">선크림/선스틱</td><td class="n">46.8</td><td class="n">53.9</td><td class="n" class="hi">115</td><td class="n">28.2</td><td class="n" class="lo">60</td><td class="n">45.0</td><td class="n">96</td><td class="n">46.8</td><td class="n">100</td></tr>
+<tr><td class="lbl">아이크림/아이세럼/아이스틱</td><td class="n">43.3</td><td class="n">49.4</td><td class="n">114</td><td class="n">27.5</td><td class="n" class="lo">64</td><td class="n">48.3</td><td class="n">112</td><td class="n">34.0</td><td class="n" class="lo">79</td></tr>
+<tr><td class="lbl">스킨/토너</td><td class="n">39.3</td><td class="n">40.6</td><td class="n">103</td><td class="n">32.1</td><td class="n" class="lo">82</td><td class="n">38.3</td><td class="n">97</td><td class="n">51.1</td><td class="n" class="hi">130</td></tr>
+<tr><td class="lbl">마스크팩</td><td class="n">36.0</td><td class="n">39.8</td><td class="n">111</td><td class="n">19.8</td><td class="n" class="lo">55</td><td class="n">43.3</td><td class="n" class="hi">120</td><td class="n">42.6</td><td class="n" class="hi">118</td></tr>
+<tr><td class="lbl">에센스/세럼/앰플/페이스오일</td><td class="n">35.8</td><td class="n">38.1</td><td class="n">106</td><td class="n">30.5</td><td class="n" class="lo">85</td><td class="n">35.0</td><td class="n">98</td><td class="n">34.0</td><td class="n">95</td></tr>
+<tr><td class="lbl">스팟케어</td><td class="n">27.5</td><td class="n">29.3</td><td class="n">107</td><td class="n">22.9</td><td class="n" class="lo">83</td><td class="n">28.3</td><td class="n">103</td><td class="n">25.5</td><td class="n">93</td></tr>
+<tr><td class="lbl">수분패드/토너패드</td><td class="n">25.8</td><td class="n">24.9</td><td class="n">97</td><td class="n">21.4</td><td class="n" class="lo">83</td><td class="n">36.7</td><td class="n" class="hi">142</td><td class="n">31.9</td><td class="n" class="hi">124</td></tr>
+</tbody></table></div>
+<p class="src">출처 · <a href="https://blog.opensurvey.co.kr/article/beauty-2026-2/">오픈서베이 블로그 「미국 시장에서 발견한 K-뷰티 트렌드의 새로운 기회와 핵심 타겟」</a>(2026-01-19) 리포트 10쪽 이미지에서 판독 <span class="tag ok">직접 확인</span> · 조사 2025-12-10~11 · 히스패닉 60명은 95% 신뢰구간 ±12%p, 기타 47명은 ±14%p <span class="tag mid">표본 얇음</span></p>
+<div class="note"><b>이 표에서 읽히는 것 세 개.</b> 히스패닉의 초과는 수분패드·토너패드(142)·마스크팩(120)·로션(113)에 몰려 있고 액상 토너(97)에는 없다.
+흑인은 10개 품목 전부 100 미만이고 선크림(60)·마스크팩(55)·아이크림(64)이 특히 낮다. 기타 인종(아시아계 포함)은 액상 토너(130)·토너패드(124)·마스크팩(118)에서 높다.
+같은 리포트는 미국 전체 사용률을 한국과 비교해 선크림 46.8%(한국 85.2%), 스킨·토너 39.3%(한국 86.2%)로 적는다. 미국에서 토너는 아직 절반이 안 쓰는 단계다.</div>
+
+<h3>캘리포니아 CAPABLE 조사 · 여성 318명 · 주당 사용 일수(2019)</h3>
+<div class="tw"><table><thead><tr><th>제품</th><th>흑인 (70)</th><th>라티나 (73)</th><th>베트남계 (78)</th><th>백인 (79)</th></tr></thead><tbody>
+<tr><td class="lbl">토너</td><td class="n hi">2.2</td><td class="n lo">0.9</td><td class="n">1.4</td><td class="n">1.7</td></tr>
+<tr><td class="lbl">얼굴 선크림</td><td class="n lo">2.1</td><td class="n hi">4.0</td><td class="n">3.1</td><td class="n">3.1</td></tr>
+<tr><td class="lbl">폼클렌저·얼굴 비누</td><td class="n lo">3.5</td><td class="n">4.3</td><td class="n hi">7.2</td><td class="n">4.1</td></tr>
+<tr><td class="lbl">각질 클렌저</td><td class="n">1.2</td><td class="n">2.0</td><td class="n hi">5.2</td><td class="n">1.5</td></tr>
+<tr><td class="lbl">얼굴 크림(SPF 없음)</td><td class="n">3.1</td><td class="n lo">2.4</td><td class="n">3.5</td><td class="n hi">4.1</td></tr>
+<tr><td class="lbl">바디 로션</td><td class="n hi">6.0</td><td class="n hi">6.0</td><td class="n">4.5</td><td class="n">4.8</td></tr>
+<tr><td class="lbl">립밤</td><td class="n">4.7</td><td class="n">4.0</td><td class="n">5.0</td><td class="n">5.0</td></tr>
+<tr><td class="lbl">페이스 마스크</td><td colspan="4" class="na">집단 간 차이 없음(표에서 제외됨)</td></tr>
+</tbody></table></div>
+<p class="src">출처 · Collins et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10005944/">J Expo Sci Environ Epidemiol, Table 2</a> <span class="tag ok">직접 확인</span> · 평균 ± SE, 혼혈 18명 생략 · 라티나·베트남계는 이민 1~2세대 비중이 높은 캘리포니아 표본이라 전국 대표치가 아니다</p>
+
+<h3>버지니아 대학생 조사 · 770명 · 매일 사용 비율(2013, 2016-17)</h3>
+<div class="tw"><table><thead><tr><th>제품</th><th>아시안 (154)</th><th>중동·북아프리카계 (50)</th><th>히스패닉 (96)</th><th>흑인 (109)</th><th>백인 (267)</th></tr></thead><tbody>
+<tr><td class="lbl">페이셜 모이스처라이저</td><td class="n hi">63%</td><td class="n">62%</td><td class="n">52%</td><td class="n">51%</td><td class="n lo">49%</td></tr>
+<tr><td class="lbl">선크림</td><td class="n">26%</td><td class="n hi">36%</td><td class="n">24%</td><td class="n lo">15%</td><td class="n">22%</td></tr>
+<tr><td class="lbl">얼굴 비누·클렌저</td><td class="n hi">56%</td><td class="n">52%</td><td class="n">55%</td><td class="n">50%</td><td class="n lo">41%</td></tr>
+<tr><td class="lbl">핸드·바디 로션</td><td class="n">63%</td><td class="n">67%</td><td class="n">60%</td><td class="n hi">78%</td><td class="n lo">46%</td></tr>
+</tbody></table></div>
+<p class="src">출처 · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11098005/">UCL Open Environment 2024, Table 2</a>(조지메이슨대, 평균 22.8세) <span class="tag ok">직접 확인</span> · 중동·북아프리카계가 스킨케어 매일 사용 55%로 최고인 유일한 자료</p>
+
+<h2 id="s">레인 2 · 패널 지출</h2>
+<div class="tw"><table><thead><tr><th>집단</th><th>수치</th><th>출처</th></tr></thead><tbody>
+<tr><td class="lbl">아시아계</td><td>미국 K뷰티 붐의 동력은 「high-income, Asian American Millennials」(고소득 아시아계 밀레니얼), 성장은 더 넓은 집단으로 확산 중 · 미국 K뷰티 $20억, +37% · 온라인 70%</td><td class="src"><a href="https://nielseniq.com/global/en/insights/report/2025/k-beautys-viral-rise-in-the-us-market/">NIQ + Spate 2025-10-21</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">아시아계</td><td>연간 구매액(구매자당) vs 미국 전체: 페이셜 모이스처라이저 $147.07(+$53.51) · 트리트먼트 $57.13(+$17.22) · 클렌저 $65.95(+$16.70) · 아이 $59.78(+$15.08) · 토너 $31.95(+$5.47) · 연간 뷰티 지출 평균보다 18% 많음</td><td class="src"><a href="https://nielseniq.com/global/en/insights/commentary/2024/see-the-power-of-the-asian-american-beauty-buyer/">NIQ 2024-06-06</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">아시아계</td><td>페이셜 스킨케어 사용 확률 평균보다 17% 높음 · 아시아계 여성 35%가 6~8단계 루틴, 거의 3분의 1이 9단계 이상 · 토너·시트마스크·미스트 사용이 「well above the norm」(평균을 크게 웃돎)</td><td class="src"><a href="https://store.mintel.com/report/us-asian-american-beauty-consumer-market-report">Mintel 2023</a> <span class="tag ok">17%·단계 직접</span> <span class="tag mid">토너·마스크·미스트 문장은 재인용</span></td></tr>
+<tr><td class="lbl">아시아계 여성</td><td>스킨케어에 연 $500 이상 쓴 확률 미국 전체보다 83% 높음</td><td class="src"><a href="https://www.nielsen.com/news-center/2025/nielsen-report-asian-american-audiences-are-reshaping-sports-digital-media-and-beauty-trends/">Nielsen 2025-04</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">히스패닉</td><td>뷰티 가구의 14.4%, 뷰티 지출의 16.6% · 비히스패닉보다 연 $39 더 지출 · 「K-beauty 같은 트렌드에 over-index」(수치 미공개) · 지출의 51%가 오프라인</td><td class="src"><a href="https://nielseniq.com/global/en/insights/commentary/2024/understanding-the-hispanic-beauty-consumer-trends-values-and-buying-power/">NIQ 2024-10-10</a> · <a href="https://nielseniq.com/global/en/insights/report/2025/unlocking-growth-the-power-of-the-hispanic-beauty-consumer/">NIQ 2025-10-02</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">히스패닉</td><td>비히스패닉보다 더 쓰는 카테고리에 헤어·색조·네일·<b>페이셜 스킨케어</b>·향수</td><td class="src"><a href="https://nielseniq.com/global/en/insights/report/2023/the-hispanic-beauty-consumer-report-a-growing-and-dynamic-cohort/">NIQ 2023-09-29</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">히스패닉</td><td>「미국 히스패닉 소비자가 2023년 K뷰티 매출 성장의 22%」</td><td class="src">CosmeticsDesign USA 2024-10-16, 페이지 삭제(410) <span class="tag low">미검증</span></td></tr>
+<tr><td class="lbl">히스패닉 + 흑인</td><td>두 집단 가구가 틱톡샵 뷰티 지출의 36%(2025년 4분기)</td><td class="src"><a href="https://wwd.com/business-news/business-features/tiktok-shop-beauty-sales-2-billion-dollar-growth-1239106171/">Circana via WWD 2026</a> <span class="tag mid">스니펫(유료 벽)</span></td></tr>
+<tr><td class="lbl">흑인</td><td>뷰티·퍼스널케어 구매자의 13.1%, 지출의 12.8% · 초과 카테고리는 향수·바스&샤워·바디케어 · 페이셜 스킨케어 지출의 절반 이상이 온라인, 성장률은 미국 전체를 상회</td><td class="src"><a href="https://nielseniq.com/global/en/insights/commentary/2026/black-beauty-landscape-culture-meets-care/">NIQ 2026-03-05</a> · <a href="https://nielseniq.com/global/en/insights/analysis/2024/black-consumer-spending-in-the-us-beauty-category/">NIQ 2024-01-30</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">흑인</td><td>선크림 사용자 49%, 그중 54%가 1년 전보다 자주 바름, 84%가 「내 피부톤용 선택지가 더 있었으면」</td><td class="src"><a href="https://www.mintel.com/press-centre/sunscreen-fountain-of-youth-use-of-sunscreen-for-anti-aging-purposes-increased-25-from-2021-22/">Mintel 2023-03-07</a> <span class="tag ok">직접 확인</span></td></tr>
+<tr><td class="lbl">전체</td><td>K뷰티 구매 가구 25%(2020년 8%), 재구매율 26→48% · NIQ 기준 가구 침투 28.7%, $28억</td><td class="src"><a href="https://asiams.net/AM/beauty-fashion-news/386/k-beauty-crosses-the-2-billion-mark-as-u-s-household-adoption-triples-since-2020">Numerator 2026-07-28</a> · <a href="https://www.cnbc.com/2026/07/18/korean-beauty-products-are-becoming-mainstream-in-the-us.html">CNBC 2026-07-18</a> <span class="tag ok">직접 확인</span></td></tr>
+</tbody></table></div>
+<div class="note"><b>패널이 말하는 순서.</b> 아시아계는 모든 페이셜 카테고리에서 더 사고, 그 격차가 가장 큰 곳이 모이스처라이저(+$53.51)이고 가장 작은 곳이 토너(+$5.47)다.
+히스패닉은 뷰티 전체에서 인구보다 더 쓰지만 카테고리 수준에서는 「페이셜 스킨케어」라는 한 단어뿐이다. 흑인의 초과는 향수·바디에 있고 페이셜은 성장률로만 잡힌다.</div>
+
+<h2 id="g">레인 3 · 검색 지리 · 구글 트렌드 × 센서스</h2>
+<p>구글 트렌드 「지역별 관심도」(미국, 최근 12개월, 2026-09-09 수집)를 주(州) 51개와 DMA(닐슨 방송권역) 210개 단위로 받아, 센서스 2024년 인구추계의 인종 비중과 인구가중 회귀했다.
+표의 β는 히스패닉·흑인·아시아계 비중을 동시에 넣은 회귀의 표준화 계수다(백인 비중은 셋의 여집합이라 제외). 카운티→DMA 매핑, 코네티컷 계획구역 분할, 팜스프링스 분리 방법은 <a href="_sources/dma_crosswalk_source.md">_sources/dma_crosswalk_source.md</a>에 있다.</p>
+<div class="cal"><b>읽기 전에.</b> 이 값은 「그 집단이 많이 사는 곳에서 검색이 많다」는 뜻이다. 소득·연령·도시화가 같이 움직이므로 세 β가 동시에 양수인 용어(거의 전부)는 「대도시·연안·젊은 도시」 효과를 함께 담고 있다.
+그래서 K 용어를 같은 카테고리의 일반 용어로 나눈 비(比)의 β를 따로 뒀다. 캔자스(주)와 위치타(DMA)는 미해석 IP가 미국 중심점으로 떨어지는 알려진 인공물이라 제외했고, 인구 30만 미만 DMA와 값 0(검색량 부족) DMA도 제외했다.</div>
+
+<h3>K 용어의 원(原) 지수 · DMA 210개</h3>
+<div class="tw"><table><thead><tr><th>검색어</th><th>DMA 수</th><th>β 히스패닉</th><th>β 흑인</th><th>β 아시아계</th><th>상위 DMA(지수)</th></tr></thead><tbody><tr><td class="lbl">korean skincare (K뷰티 전체)</td><td class="n">166</td><td class="n">+0.34</td><td class="n">+0.14</td><td class="n hi">+0.78</td><td class="src">Honolulu HI 40, Los Angeles CA 35, San Francisco-Oakl 34, New York NY 30, Washington DC 25</td></tr>
+<tr><td class="lbl">skincare (대조)</td><td class="n">166</td><td class="n">+0.27</td><td class="n">+0.22</td><td class="n hi">+0.67</td><td class="src">New York NY 16, Honolulu HI 15, Los Angeles CA 15, San Francisco-Oakl 15, San Diego CA 15</td></tr>
+<tr><td class="lbl">korean toner</td><td class="n">128</td><td class="n">+0.32</td><td class="n">+0.10</td><td class="n hi">+0.83</td><td class="src">Honolulu HI 32, San Francisco-Oakl 27, Los Angeles CA 23, San Diego CA 21, Sacramento-Stockto 19</td></tr>
+<tr><td class="lbl">toner (대조)</td><td class="n">166</td><td class="n">+0.47</td><td class="n">+0.18</td><td class="n hi">+0.59</td><td class="src">New York NY 23, Los Angeles CA 22, Miami-Ft. Lauderda 21, San Francisco-Oakl 21, Sacramento-Stockto 21</td></tr>
+<tr><td class="lbl">toner pad</td><td class="n">137</td><td class="n">+0.38</td><td class="n">+0.13</td><td class="n hi">+0.73</td><td class="src">San Francisco-Oakl 11, Honolulu HI 10, Los Angeles CA 10, San Diego CA 10, Miami-Ft. Lauderda 8</td></tr>
+<tr><td class="lbl">korean cleanser</td><td class="n">90</td><td class="n">+0.39</td><td class="n">+0.09</td><td class="n hi">+0.70</td><td class="src">Minot-Bismarck-Dic 24, Palm Springs CA 22, San Francisco-Oakl 22, Santa Barbara-Sant 20, Los Angeles CA 19</td></tr>
+<tr><td class="lbl">cleansing oil</td><td class="n">166</td><td class="n">+0.48</td><td class="n">+0.14</td><td class="n hi">+0.69</td><td class="src">Los Angeles CA 14, San Francisco-Oakl 14, Honolulu HI 12, New York NY 11, Miami-Ft. Lauderda 11</td></tr>
+<tr><td class="lbl">face wash (대조)</td><td class="n">166</td><td class="n">+0.43</td><td class="n">+0.39</td><td class="n hi">+0.56</td><td class="src">New York NY 14, Baton Rouge LA 14, Los Angeles CA 14, Sacramento-Stockto 14, Baltimore MD 13</td></tr>
+<tr><td class="lbl">korean serum</td><td class="n">136</td><td class="n">+0.33</td><td class="n">+0.12</td><td class="n hi">+0.75</td><td class="src">San Francisco-Oakl 13, Honolulu HI 12, Miami-Ft. Lauderda 11, San Diego CA 11, Utica NY 10</td></tr>
+<tr><td class="lbl">serum (대조)</td><td class="n">166</td><td class="n">+0.48</td><td class="n">+0.23</td><td class="n hi">+0.60</td><td class="src">Miami-Ft. Lauderda 10, San Francisco-Oakl 10, New York NY 9, Los Angeles CA 9, San Diego CA 9</td></tr>
+<tr><td class="lbl">snail mucin</td><td class="n">166</td><td class="n">+0.38</td><td class="n">+0.30</td><td class="n hi">+0.71</td><td class="src">San Francisco-Oakl 31, Los Angeles CA 28, San Diego CA 28, New York NY 27, Honolulu HI 27</td></tr>
+<tr><td class="lbl">korean moisturizer</td><td class="n">95</td><td class="n">+0.32</td><td class="n">+0.06</td><td class="n hi">+0.75</td><td class="src">Honolulu HI 16, San Francisco-Oakl 16, Missoula MT 15, Los Angeles CA 14, San Diego CA 14</td></tr>
+<tr><td class="lbl">moisturizer (대조)</td><td class="n">166</td><td class="n">+0.31</td><td class="n">+0.30</td><td class="n hi">+0.62</td><td class="src">New York NY 7, Miami-Ft. Lauderda 7, San Francisco-Oakl 7, Atlanta GA 6, Austin TX 6</td></tr>
+<tr><td class="lbl">korean sunscreen</td><td class="n">156</td><td class="n">+0.29</td><td class="n">-0.00</td><td class="n hi">+0.83</td><td class="src">San Francisco-Oakl 60, Honolulu HI 56, Los Angeles CA 51, San Diego CA 43, Sacramento-Stockto 37</td></tr>
+<tr><td class="lbl">sunscreen (대조)</td><td class="n">166</td><td class="n">+0.31</td><td class="n">+0.08</td><td class="n hi">+0.72</td><td class="src">Honolulu HI 26, San Francisco-Oakl 20, San Diego CA 20, Los Angeles CA 18, Miami-Ft. Lauderda 16</td></tr>
+<tr><td class="lbl">sheet mask</td><td class="n">166</td><td class="n">+0.23</td><td class="n">+0.11</td><td class="n hi">+0.79</td><td class="src">San Francisco-Oakl 9, New York NY 7, Los Angeles CA 7, Miami-Ft. Lauderda 6, Gainesville FL 6</td></tr>
+<tr><td class="lbl">face mask (대조)</td><td class="n">166</td><td class="n">+0.38</td><td class="n">+0.12</td><td class="n hi">+0.69</td><td class="src">San Francisco-Oakl 17, Miami-Ft. Lauderda 15, Los Angeles CA 15, New York NY 14, Honolulu HI 14</td></tr>
+<tr><td class="lbl">pimple patch</td><td class="n">166</td><td class="n">+0.31</td><td class="n">+0.11</td><td class="n hi">+0.66</td><td class="src">Los Angeles CA 53, Honolulu HI 52, San Francisco-Oakl 50, Fresno-Visalia CA 49, Bakersfield CA 46</td></tr>
+<tr><td class="lbl">acne (대조)</td><td class="n">166</td><td class="n">+0.29</td><td class="n">+0.11</td><td class="n hi">+0.68</td><td class="src">San Francisco-Oakl 19, New York NY 18, Los Angeles CA 18, Sacramento-Stockto 17, Dallas-Ft. Worth T 16</td></tr>
+<tr><td class="lbl">lip sleeping mask</td><td class="n">139</td><td class="n">+0.17</td><td class="n">+0.12</td><td class="n hi">+0.48</td><td class="src">Utica NY 7, Miami-Ft. Lauderda 6, Syracuse NY 6, San Francisco-Oakl 6, New York NY 5</td></tr>
+<tr><td class="lbl">lip balm (대조)</td><td class="n">166</td><td class="n">+0.29</td><td class="n">+0.25</td><td class="n hi">+0.62</td><td class="src">New York NY 7, Miami-Ft. Lauderda 6, Los Angeles CA 6, San Francisco-Oakl 6, Philadelphia PA 5</td></tr>
+<tr><td class="lbl">face mist</td><td class="n">166</td><td class="n">+0.37</td><td class="n">+0.20</td><td class="n hi">+0.52</td><td class="src">Miami-Ft. Lauderda 6, New York NY 5, Baton Rouge LA 5, Los Angeles CA 5, San Francisco-Oakl 5</td></tr>
+<tr><td class="lbl">korean eye cream</td><td class="n">58</td><td class="n">+0.29</td><td class="n">+0.11</td><td class="n hi">+0.58</td><td class="src">Anchorage AK 25, Charleston SC 15, Traverse City-Cadi 15, Dayton OH 15, San Francisco-Oakl 14</td></tr>
+<tr><td class="lbl">eye cream (대조)</td><td class="n">166</td><td class="n">+0.39</td><td class="n">+0.22</td><td class="n hi">+0.61</td><td class="src">Miami-Ft. Lauderda 10, New York NY 9, Los Angeles CA 9, San Francisco-Oakl 9, San Diego CA 8</td></tr>
+<tr><td class="lbl">glass skin</td><td class="n">166</td><td class="n">+0.34</td><td class="n">+0.34</td><td class="n hi">+0.61</td><td class="src">Baton Rouge LA 6, San Francisco-Oakl 6, New York NY 5, Atlanta GA 5, Miami-Ft. Lauderda 5</td></tr>
+<tr><td class="lbl">olive young</td><td class="n">147</td><td class="n">+0.29</td><td class="n">-0.02</td><td class="n hi">+0.70</td><td class="src">Los Angeles CA 89, San Francisco-Oakl 67, Honolulu HI 59, Seattle-Tacoma WA 41, San Diego CA 35</td></tr>
+</tbody></table></div>
+<p class="src">붉은 값 = 세 β 중 최대. 상위 DMA 지수는 그 검색어의 최대 DMA를 100으로 둔 상대값이다. 대조 용어의 β가 K 용어와 비슷하면 그 쏠림은 카테고리 자체의 것이고, K 용어만 크면 K 특유의 쏠림이다.</p>
+
+<h3>K 용어 ÷ 같은 카테고리 일반 용어 · 카테고리 효과를 지운 비</h3>
+<div class="tw"><table><thead><tr><th>비</th><th>DMA 수</th><th>β 히스패닉</th><th>β 흑인</th><th>β 아시아계</th><th>비가 높은 DMA(비 값)</th></tr></thead><tbody><tr><td class="lbl">korean skincare ÷ skincare</td><td class="n">166</td><td class="n">+0.43</td><td class="n">+0.11</td><td class="n hi">+0.63</td><td class="src">Honolulu HI 2.67, Los Angeles CA 2.33, Palm Springs CA 2.27, San Francisco-Oakl 2.27, Gainesville FL 2.25</td></tr>
+<tr><td class="lbl">korean toner ÷ toner</td><td class="n">128</td><td class="n">+0.29</td><td class="n">+0.15</td><td class="n hi">+0.70</td><td class="src">Honolulu HI 1.68, San Francisco-Oakl 1.29, Santa Barbara-Sant 1.06, Los Angeles CA 1.05, San Diego CA 1.05</td></tr>
+<tr><td class="lbl">toner pad ÷ toner</td><td class="n">137</td><td class="n">+0.27</td><td class="n">+0.15</td><td class="n hi">+0.57</td><td class="src">Panama City FL 0.54, Honolulu HI 0.53, San Francisco-Oakl 0.52, San Diego CA 0.5, Montgomery 0.46</td></tr>
+<tr><td class="lbl">korean cleanser ÷ cleanser</td><td class="n">90</td><td class="n">+0.21</td><td class="n">-0.11</td><td class="n hi">+0.39</td><td class="src">Minot-Bismarck-Dic 8.0, Santa Barbara-Sant 4.0, Johnstown-Altoona  3.75, Palm Springs CA 3.67, Yakima-Pasco-Richl 3.25</td></tr>
+<tr><td class="lbl">cleansing oil ÷ face wash</td><td class="n">166</td><td class="n">+0.44</td><td class="n">-0.04</td><td class="n hi">+0.56</td><td class="src">Honolulu HI 1.09, San Francisco-Oakl 1.08, Los Angeles CA 1.0, Miami-Ft. Lauderda 0.92, Santa Barbara-Sant 0.91</td></tr>
+<tr><td class="lbl">korean serum ÷ serum</td><td class="n">136</td><td class="n">+0.19</td><td class="n">+0.03</td><td class="n hi">+0.58</td><td class="src">Utica NY 2.5, Binghamton NY 1.75, Duluth MN-Superior 1.67, Sioux City IA 1.5, Honolulu HI 1.5</td></tr>
+<tr><td class="lbl">snail mucin ÷ serum</td><td class="n">166</td><td class="n">-0.33</td><td class="n hi">+0.02</td><td class="n">-0.10</td><td class="src">Bluefield-Beckley- 5.25, Joplin MO-Pittsbur 5.0, Sherman TX-Ada OK 5.0, Biloxi-Gulfport MS 4.6, Johnstown-Altoona  4.5</td></tr>
+<tr><td class="lbl">korean moisturizer ÷ moisturizer</td><td class="n">95</td><td class="n">+0.20</td><td class="n">-0.21</td><td class="n hi">+0.45</td><td class="src">Missoula MT 5.0, Erie PA 4.0, Honolulu HI 3.2, Colorado Springs-P 3.0, Anchorage AK 2.75</td></tr>
+<tr><td class="lbl">korean sunscreen ÷ sunscreen</td><td class="n">156</td><td class="n">+0.33</td><td class="n">-0.00</td><td class="n hi">+0.65</td><td class="src">Anchorage AK 3.43, San Francisco-Oakl 3.0, Los Angeles CA 2.83, Gainesville FL 2.5, Sacramento-Stockto 2.47</td></tr>
+<tr><td class="lbl">sheet mask ÷ face mask</td><td class="n">166</td><td class="n">+0.13</td><td class="n">+0.13</td><td class="n hi">+0.61</td><td class="src">Gainesville FL 0.55, San Francisco-Oakl 0.53, New York NY 0.5, Los Angeles CA 0.47, Seattle-Tacoma WA 0.46</td></tr>
+<tr><td class="lbl">pimple patch ÷ acne</td><td class="n">166</td><td class="n">-0.04</td><td class="n">-0.02</td><td class="n">-0.10</td><td class="src">Erie PA 4.4, Honolulu HI 4.33, Utica NY 4.0, Evansville IN 3.9, Peoria-Bloomington 3.9</td></tr>
+<tr><td class="lbl">lip sleeping mask ÷ lip balm</td><td class="n">139</td><td class="n">-0.12</td><td class="n">-0.14</td><td class="n">-0.07</td><td class="src">Utica NY 1.75, Davenport IA-Rock  1.67, Syracuse NY 1.5, Corpus Christi TX 1.33, Evansville IN 1.33</td></tr>
+<tr><td class="lbl">face mist ÷ moisturizer</td><td class="n">166</td><td class="n hi">+0.03</td><td class="n">-0.23</td><td class="n">-0.24</td><td class="src">Terre Haute IN 1.5, Idaho Falls-Pocate 1.5, Columbus-Tupelo-We 1.33, Portland-Auburn ME 1.0, Binghamton NY 1.0</td></tr>
+<tr><td class="lbl">korean eye cream ÷ eye cream</td><td class="n">58</td><td class="n">+0.06</td><td class="n">+0.06</td><td class="n hi">+0.30</td><td class="src">Anchorage AK 6.25, Traverse City-Cadi 5.0, Dayton OH 3.75, Charleston SC 2.5, Cedar Rapids-Water 2.0</td></tr>
+<tr><td class="lbl">glass skin ÷ skincare</td><td class="n">166</td><td class="n">+0.19</td><td class="n hi">+0.27</td><td class="n">-0.01</td><td class="src">Gainesville FL 0.5, Corpus Christi TX 0.5, Lubbock TX 0.5, Biloxi-Gulfport MS 0.5, New Orleans LA 0.45</td></tr>
+</tbody></table></div>
+<div class="note"><b>여기서 세 갈래가 보인다.</b> (1) 아시아계 β가 홀로 큰 용어: korean toner(+0.60), korean serum(+0.57), korean sunscreen(+0.54), sheet mask(+0.47). 카테고리 안에서 한국판을 찾는 사람이 아시아계 지역에 몰린다.
+(2) 셋 다 0 근처: lip sleeping mask, face mist, korean eye cream. 한국판을 따로 찾는 지리가 없다.
+(3) 셋 다 음수: snail mucin(−0.24/−0.14/−0.29), pimple patch(−0.10/−0.03/−0.22). 소수집단이 적은 내륙·소도시에서 오히려 비가 높다. 이 둘이 「전국화된 K 품목」이다. 상위 DMA가 로체스터(미네소타)·먼로(루이지애나)·톨리도·토피카·이리다.</div>
+
+<h3>K뷰티 안에서의 카테고리 쏠림 · 각 용어 ÷ korean skincare</h3>
+<p>같은 K뷰티 검색 인구 안에서 어떤 카테고리가 어느 커뮤니티 쪽으로 기우는지. 「korean skincare」 자체의 지리(아시아계 +0.73, 히스패닉 +0.35)를 기준선으로 삼은 값이다.</p>
+<div class="tw"><table><thead><tr><th>카테고리 ÷ korean skincare</th><th>DMA 수</th><th>β 히스패닉</th><th>β 흑인</th><th>β 아시아계</th><th>비가 높은 DMA(비 값)</th></tr></thead><tbody><tr><td class="lbl">토너(액상) korean toner</td><td class="n">128</td><td class="n">+0.10</td><td class="n">+0.04</td><td class="n hi">+0.19</td><td class="src">Billings MT 1.88, Columbus-Tupelo-We 1.11, Youngstown OH 1.0, Rochester MN-Mason 1.0, Shreveport LA 1.0</td></tr>
+<tr><td class="lbl">토너패드 toner pad</td><td class="n">137</td><td class="n hi">+0.03</td><td class="n">+0.00</td><td class="n">-0.09</td><td class="src">Panama City FL 0.58, Johnstown-Altoona  0.5, Lubbock TX 0.5, Davenport IA-Rock  0.5, Montgomery 0.5</td></tr>
+<tr><td class="lbl">클렌저 korean cleanser</td><td class="n">90</td><td class="n hi">+0.08</td><td class="n">-0.10</td><td class="n">-0.06</td><td class="src">Minot-Bismarck-Dic 2.4, Johnstown-Altoona  1.88, Flint-Saginaw-Bay  1.14, Santa Barbara-Sant 1.05, Fargo-Valley City  1.0</td></tr>
+<tr><td class="lbl">클렌징오일 cleansing oil</td><td class="n">166</td><td class="n hi">+0.01</td><td class="n">-0.14</td><td class="n">-0.57</td><td class="src">Bangor ME 1.0, Billings MT 0.88, Flint-Saginaw-Bay  0.71, Duluth MN-Superior 0.71, Rockford IL 0.67</td></tr>
+<tr><td class="lbl">세럼 korean serum</td><td class="n">136</td><td class="n hi">+0.01</td><td class="n">-0.05</td><td class="n">-0.01</td><td class="src">Utica NY 1.0, Sioux City IA 0.75, Duluth MN-Superior 0.71, Johnstown-Altoona  0.62, Miami-Ft. Lauderda 0.55</td></tr>
+<tr><td class="lbl">달팽이 snail mucin</td><td class="n">166</td><td class="n">-0.35</td><td class="n">-0.08</td><td class="n">-0.67</td><td class="src">Bluefield-Beckley- 4.2, Bangor ME 4.0, Flint-Saginaw-Bay  2.43, Toledo OH 2.25, Johnstown-Altoona  2.25</td></tr>
+<tr><td class="lbl">크림 korean moisturizer</td><td class="n">95</td><td class="n">-0.12</td><td class="n">-0.18</td><td class="n">-0.12</td><td class="src">Erie PA 1.71, Missoula MT 1.07, Ft. Myers-Naples F 0.69, Columbus GA 0.64, Harrisburg-Lancast 0.64</td></tr>
+<tr><td class="lbl">선크림 korean sunscreen</td><td class="n">156</td><td class="n">+0.13</td><td class="n">-0.25</td><td class="n hi">+0.39</td><td class="src">Eugene OR 2.0, Utica NY 1.8, Denver CO 1.8, San Francisco-Oakl 1.76, San Diego CA 1.72</td></tr>
+<tr><td class="lbl">시트마스크 sheet mask</td><td class="n">166</td><td class="n">-0.34</td><td class="n">-0.14</td><td class="n">-0.18</td><td class="src">Bluefield-Beckley- 0.6, Terre Haute IN 0.6, Bangor ME 0.5, Flint-Saginaw-Bay  0.43, Erie PA 0.43</td></tr>
+<tr><td class="lbl">스팟패치 pimple patch</td><td class="n">166</td><td class="n">-0.38</td><td class="n">-0.20</td><td class="n">-0.63</td><td class="src">Bangor ME 7.0, Erie PA 6.29, Terre Haute IN 5.2, Joplin MO-Pittsbur 4.88, Bluefield-Beckley- 4.8</td></tr>
+<tr><td class="lbl">립마스크 lip sleeping mask</td><td class="n">139</td><td class="n">-0.35</td><td class="n">-0.13</td><td class="n">-0.48</td><td class="src">Utica NY 0.7, Johnstown-Altoona  0.62, Davenport IA-Rock  0.62, Jackson MS 0.5, Syracuse NY 0.46</td></tr>
+<tr><td class="lbl">미스트 face mist</td><td class="n">166</td><td class="n">-0.27</td><td class="n">-0.10</td><td class="n">-0.62</td><td class="src">Bangor ME 0.75, Terre Haute IN 0.6, Columbus-Tupelo-We 0.44, Flint-Saginaw-Bay  0.43, Duluth MN-Superior 0.43</td></tr>
+<tr><td class="lbl">아이크림 korean eye cream</td><td class="n">58</td><td class="n">-0.06</td><td class="n">-0.01</td><td class="n">-0.18</td><td class="src">Traverse City-Cadi 1.67, Dayton OH 1.5, Anchorage AK 1.39, Charleston SC 1.07, Cedar Rapids-Water 0.8</td></tr>
+<tr><td class="lbl">글래스스킨 glass skin</td><td class="n">166</td><td class="n">-0.28</td><td class="n hi">+0.05</td><td class="n">-0.57</td><td class="src">Bangor ME 0.5, Bluefield-Beckley- 0.4, Terre Haute IN 0.4, Toledo OH 0.38, Johnstown-Altoona  0.38</td></tr>
+</tbody></table></div>
+<div class="note"><b>토너패드가 유일하게 히스패닉·흑인 쪽으로 기운 기초 카테고리다</b>(+0.16 / +0.13, 아시아계 +0.03). 상위 DMA가 콜럼버스(조지아)·몽고메리·러벅이다. 액상 토너는 반대로 아시아계(+0.30)다.
+오픈서베이 사용지수(히스패닉 142, 흑인 83)와 방향이 같은 것은 히스패닉이고, 흑인은 검색에서만 잡힌다. 달팽이·스팟패치·립마스크·미스트·글래스스킨은 K뷰티 안에서 아시아계 β가 −0.30~−0.56으로, 「K뷰티 코어 밖으로 나간 품목」이 검색 지리로 확인된다.</div>
+
+<h3>스페인어 검색 · 주 단위</h3>
+<p>미국 안에서 스페인어로 K뷰티를 찾는 검색은 볼륨이 작아 DMA 단위로는 표본이 안 나오고, 주 단위에서만 읽힌다. 값 0 주가 많으므로 상위 주만 본다.</p>
+<div class="tw"><table><thead><tr><th>검색어</th><th>r 히스패닉</th><th>r 아시아계</th><th>r 흑인</th><th>상위 주(지수)</th></tr></thead><tbody><tr><td class="lbl">skincare coreano<br><small>스킨케어 코리아노</small></td><td class="n">+0.80</td><td class="n">+0.39</td><td class="n">-0.17</td><td class="src">Florida 100, Arizona 66, Texas 66, Washington 66, California 66, Colorado 33</td></tr>
+<tr><td class="lbl">baba de caracol<br><small>바바 데 카라콜(달팽이 점액)</small></td><td class="n">+0.79</td><td class="n">+0.34</td><td class="n">-0.10</td><td class="src">Texas 100, California 50, Illinois 50, Florida 50, Arizona 50, New York 50</td></tr>
+<tr><td class="lbl">crema de caracol<br><small>크레마 데 카라콜(달팽이 크림)</small></td><td class="n">+0.76</td><td class="n">+0.51</td><td class="n">-0.25</td><td class="src">California 100, Arizona 100, Texas 100, Virginia 100</td></tr>
+<tr><td class="lbl">tonico facial<br><small>토니코 파시알(토너)</small></td><td class="n">+0.50</td><td class="n">-0.07</td><td class="n">+0.06</td><td class="src">Florida 100, New Jersey 100, Texas 100</td></tr>
+<tr><td class="lbl">protector solar coreano<br><small>한국 선크림</small></td><td class="n">+0.04</td><td class="n">+0.15</td><td class="n">+0.01</td><td class="src">New Jersey 100</td></tr>
+</tbody></table></div>
+<p class="src">r = 주 45개(인구 100만 이상, 캔자스 제외) 인구가중 상관. 「baba de caracol」(달팽이 점액)은 텍사스가 100이고, 「crema de caracol」은 캘리포니아·애리조나·텍사스가 100이다. 달팽이 크림을 스페인어로 찾는 수요가 미국 남서부에 실재한다.</p>
+<h3>시간창 확인 · 12개월 vs 2024-01~2026-09</h3><div class="tw"><table><thead><tr><th>검색어(DMA 원 지수)</th><th>β 12개월 (히/흑/아)</th><th>β 2024~2026 (히/흑/아)</th></tr></thead><tbody><tr><td class="lbl">medicube</td><td class="n">+0.58 / +0.40 / +0.43</td><td class="n">+0.54 / +0.30 / +0.57</td></tr>
+<tr><td class="lbl">face mist</td><td class="n">+0.30 / +0.27 / +0.48</td><td class="n">+0.37 / +0.20 / +0.52</td></tr>
+<tr><td class="lbl">sheet mask</td><td class="n">+0.34 / +0.15 / +0.65</td><td class="n">+0.23 / +0.11 / +0.79</td></tr>
+<tr><td class="lbl">korean skincare</td><td class="n">+0.35 / +0.14 / +0.73</td><td class="n">+0.34 / +0.14 / +0.78</td></tr>
+<tr><td class="lbl">anua</td><td class="n">+0.54 / +0.21 / +0.66</td><td class="n">+0.54 / +0.23 / +0.66</td></tr>
+<tr><td class="lbl">pimple patch</td><td class="n">+0.27 / +0.10 / +0.59</td><td class="n">+0.31 / +0.11 / +0.66</td></tr>
+<tr><td class="lbl">beauty of joseon</td><td class="n">+0.40 / +0.10 / +0.75</td><td class="n">+0.38 / +0.07 / +0.78</td></tr>
+<tr><td class="lbl">korean toner</td><td class="n">+0.37 / +0.14 / +0.77</td><td class="n">+0.32 / +0.10 / +0.83</td></tr>
+<tr><td class="lbl">laneige</td><td class="n">+0.26 / +0.17 / +0.73</td><td class="n">+0.25 / +0.19 / +0.71</td></tr>
+<tr><td class="lbl">korean sunscreen</td><td class="n">+0.28 / +0.02 / +0.82</td><td class="n">+0.29 / -0.00 / +0.83</td></tr>
+<tr><td class="lbl">serum</td><td class="n">+0.41 / +0.27 / +0.59</td><td class="n">+0.48 / +0.23 / +0.60</td></tr>
+<tr><td class="lbl">cosrx</td><td class="n">+0.38 / +0.13 / +0.70</td><td class="n">+0.35 / +0.18 / +0.79</td></tr>
+<tr><td class="lbl">sunscreen</td><td class="n">+0.32 / +0.16 / +0.71</td><td class="n">+0.31 / +0.08 / +0.72</td></tr>
+<tr><td class="lbl">snail mucin</td><td class="n">+0.36 / +0.27 / +0.55</td><td class="n">+0.38 / +0.30 / +0.71</td></tr>
+<tr><td class="lbl">skincare</td><td class="n">+0.28 / +0.24 / +0.65</td><td class="n">+0.27 / +0.22 / +0.67</td></tr>
+<tr><td class="lbl">lip sleeping mask</td><td class="n">+0.22 / +0.22 / +0.41</td><td class="n">+0.17 / +0.12 / +0.48</td></tr>
+<tr><td class="lbl">toner</td><td class="n">+0.43 / +0.19 / +0.62</td><td class="n">+0.47 / +0.18 / +0.59</td></tr>
+<tr><td class="lbl">glass skin</td><td class="n">+0.40 / +0.28 / +0.45</td><td class="n">+0.34 / +0.34 / +0.61</td></tr>
+<tr><td class="lbl">cleansing oil</td><td class="n">+0.43 / +0.15 / +0.62</td><td class="n">+0.48 / +0.14 / +0.69</td></tr>
+<tr><td class="lbl">toner pad</td><td class="n">+0.42 / +0.18 / +0.64</td><td class="n">+0.38 / +0.13 / +0.73</td></tr>
+</tbody></table></div><p class="src">두 창의 β 부호와 크기 순서가 같으면 12개월 값이 한 해의 우연이 아니라는 뜻이다.</p>
+
+<h2 id="brand">브랜드 지도 · 각 브랜드 ÷ korean skincare</h2>
+<p>DOMO의 역검색은 브랜드 단위로 일어난다. 같은 방법으로 미국 진출 K브랜드 15개의 검색 지리를 K뷰티 기준선으로 나눴다. 양(+)이면 그 커뮤니티 지역에서 K뷰티 평균보다 더 찾는 브랜드다.</p>
+<div class="tw"><table><thead><tr><th>브랜드 ÷ korean skincare</th><th>DMA 수</th><th>β 히스패닉</th><th>β 흑인</th><th>β 아시아계</th><th>비가 높은 DMA(비 값)</th></tr></thead><tbody><tr><td class="lbl">아누아 anua</td><td class="n">166</td><td class="n hi">+0.33</td><td class="n">+0.19</td><td class="n">-0.44</td><td class="src">Bangor ME 1.0, Yuma AZ-El Centro  0.93, Erie PA 0.86, Harlingen-Weslaco- 0.8, Davenport IA-Rock  0.75</td></tr>
+<tr><td class="lbl">조선미녀 beauty of joseon</td><td class="n">166</td><td class="n hi">+0.30</td><td class="n">-0.11</td><td class="n">+0.25</td><td class="src">Bangor ME 0.75, Eugene OR 0.73, Yuma AZ-El Centro  0.71, Fresno-Visalia CA 0.65, Philadelphia PA 0.64</td></tr>
+<tr><td class="lbl">믹순 mixsoon</td><td class="n">132</td><td class="n hi">+0.28</td><td class="n">-0.03</td><td class="n">-0.27</td><td class="src">Billings MT 1.12, Yuma AZ-El Centro  0.64, Lubbock TX 0.58, Miami-Ft. Lauderda 0.5, Johnstown-Altoona  0.5</td></tr>
+<tr><td class="lbl">티르티르 tirtir</td><td class="n">150</td><td class="n hi">+0.14</td><td class="n">+0.05</td><td class="n">-0.17</td><td class="src">Bangor ME 1.0, Terre Haute IN 0.8, Yuma AZ-El Centro  0.57, Tri-Cities TN-VA 0.5, Joplin MO-Pittsbur 0.5</td></tr>
+<tr><td class="lbl">토리든 torriden</td><td class="n">114</td><td class="n">+0.25</td><td class="n">-0.09</td><td class="n hi">+0.36</td><td class="src">Davenport IA-Rock  0.88, San Francisco-Oakl 0.82, San Diego CA 0.8, Palm Springs CA 0.76, Seattle-Tacoma WA 0.76</td></tr>
+<tr><td class="lbl">바이오던스 biodance</td><td class="n">147</td><td class="n hi">+0.11</td><td class="n">+0.00</td><td class="n">-0.04</td><td class="src">Bangor ME 1.25, Miami-Ft. Lauderda 1.0, Utica NY 0.9, Yuma AZ-El Centro  0.79, Toledo OH 0.75</td></tr>
+<tr><td class="lbl">스킨1004 skin1004</td><td class="n">155</td><td class="n">+0.03</td><td class="n hi">+0.04</td><td class="n">-0.09</td><td class="src">Bangor ME 0.5, Miami-Ft. Lauderda 0.45, Orlando-Daytona Be 0.38, Billings MT 0.38, Charlotte NC 0.33</td></tr>
+<tr><td class="lbl">코스알엑스 cosrx</td><td class="n">166</td><td class="n">-0.12</td><td class="n hi">+0.01</td><td class="n">-0.26</td><td class="src">Bangor ME 0.75, Yuma AZ-El Centro  0.57, Philadelphia PA 0.5, Toledo OH 0.5, Knoxville TN 0.5</td></tr>
+<tr><td class="lbl">라운드랩 round lab</td><td class="n">164</td><td class="n">-0.10</td><td class="n">-0.04</td><td class="n">-0.15</td><td class="src">Bangor ME 0.5, Billings MT 0.38, Miami-Ft. Lauderda 0.3, Erie PA 0.29, Austin TX 0.29</td></tr>
+<tr><td class="lbl">넘버즈인 numbuzin</td><td class="n">107</td><td class="n">-0.03</td><td class="n">-0.09</td><td class="n hi">+0.06</td><td class="src">Yakima-Pasco-Richl 0.64, Johnstown-Altoona  0.62, Burlington VT-Plat 0.6, Colorado Springs-P 0.53, Orlando-Daytona Be 0.5</td></tr>
+<tr><td class="lbl">이즈앤트리 isntree</td><td class="n">84</td><td class="n">-0.05</td><td class="n">-0.29</td><td class="n">-0.10</td><td class="src">Evansville IN 0.6, Oklahoma City OK 0.43, Anchorage AK 0.39, Columbus OH 0.38, Ft. Myers-Naples F 0.38</td></tr>
+<tr><td class="lbl">이니스프리 innisfree</td><td class="n">160</td><td class="n">-0.06</td><td class="n hi">+0.15</td><td class="n">-0.16</td><td class="src">Birmingham AL 1.31, Bangor ME 0.75, Ft. Smith-Fayettev 0.67, Mobile AL-Pensacol 0.62, Utica NY 0.5</td></tr>
+<tr><td class="lbl">메디큐브 medicube</td><td class="n">166</td><td class="n">-0.08</td><td class="n hi">+0.05</td><td class="n">-0.66</td><td class="src">Bluefield-Beckley- 2.0, Bangor ME 1.5, Columbus-Tupelo-We 1.44, Terre Haute IN 1.4, Jackson MS 1.2</td></tr>
+<tr><td class="lbl">라네즈 laneige</td><td class="n">166</td><td class="n">-0.44</td><td class="n">-0.13</td><td class="n">-0.51</td><td class="src">Bangor ME 1.5, Terre Haute IN 1.2, Johnstown-Altoona  1.12, Utica NY 1.1, Erie PA 1.0</td></tr>
+<tr><td class="lbl">올리브영 olive young</td><td class="n">147</td><td class="n">+0.22</td><td class="n">-0.09</td><td class="n hi">+0.61</td><td class="src">Los Angeles CA 2.54, San Francisco-Oakl 1.97, Seattle-Tacoma WA 1.64, Santa Barbara-Sant 1.58, Honolulu HI 1.48</td></tr>
+</tbody></table></div>
+<div class="note"><b>네 무리.</b> 히스패닉 쪽: 아누아(+0.40)·믹순(+0.40)·조선미녀(+0.35)·토리든(+0.31)·티르티르(+0.26). 상위 DMA가 유마·엘센트로(히스패닉 75%), 할링겐·브라운즈빌(91%), 베이커스필드, 댈러스로 겹친다.
+아시아계 쪽: 올리브영(+0.66)·토리든(+0.50)·넘버즈인(+0.30). 흑인 쪽(상대적): 이니스프리(+0.22, 버밍햄·모빌·올버니), 메디큐브(+0.11, 콜럼버스·올버니 조지아)이며 메디큐브는 아시아계 −0.63으로 K뷰티 안에서 가장 「비아시아계」 브랜드다.
+백인 내륙 쪽: 라네즈(−0.30/−0.08/−0.23, 위스콘신·이리·메인). 코스알엑스·라운드랩·스킨1004는 세 β가 0 근처로 K뷰티 인구를 그대로 따라간다.</div>
+
+<h2 id="p">레인 4 · 언론·크리에이터가 커뮤니티에 붙인 품목</h2>
+<p>영어·한국어 매체에서 커뮤니티와 K뷰티 품목을 같은 문장에 둔 기사를 모았다. 수치가 있는 기사는 거의 없다. 「어느 품목이 어느 커뮤니티의 언어로 이야기되는가」를 읽는 레인이다.</p>
+<div class="tw"><table><thead><tr><th>커뮤니티</th><th>매체가 이름 붙인 품목</th><th>근거 문장</th><th>출처</th></tr></thead><tbody>
+<tr><td class="lbl">흑인</td><td><b>백탁 없는 선크림</b>(조선미녀 릴리프 선, 이니스프리, 네오젠) · 달팽이 뮤신 에센스 · 시트마스크 · BB크림</td><td class="q">흑인 여성이 K뷰티를 택하는 이유는 서구식 레티놀·스크럽·산성 토너가 색소침착·습진을 악화시키는 데 비해 순하다는 것. 에스테티션 Erica Choi: "suitability for a wide range of skin types and tones"(다양한 피부 타입과 톤에 맞는다)</td><td class="src"><a href="https://www.highsnobiety.com/p/black-women-korean-skincare-beauty/">Highsnobiety ~2023</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">흑인</td><td>한국 선크림 10종 리스트(이니스프리·토코보·벨리프·조선미녀·네오젠 등)</td><td class="q">"not all sunscreen is the same, especially when it comes to addressing Black skin concerns"(특히 흑인 피부 고민에서는 선크림이 다 같지 않다)</td><td class="src"><a href="https://blavity.com/women/best-korean-sunscreen-black-women">Blavity 2024-09-30</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">흑인</td><td>에센스·토너·세럼 · 브라이트닝(트라넥삼산·비타민C·나이아신아마이드·감초) · 달팽이 · 쌀뜨물·인삼</td><td class="q">색소침착·다크스팟과 장벽 보습이 동기. 비판은 「마케팅과 색상 범위가 구매자와 안 맞는다」. MUA Nyssa Green: "Just make the rest of it match us"(나머지도 우리에게 맞춰 달라)</td><td class="src"><a href="https://www.theroot.com/black-women-s-complicated-love-affair-with-k-beauty-2000104075">The Root</a> <span class="tag ok">직접(프록시)</span></td></tr>
+<tr><td class="lbl">흑인</td><td>달팽이 뮤신</td><td class="q">제목 「Why Snail Mucin Is Trending On Black Skin Care TikTok」(흑인 스킨케어 틱톡에서 달팽이 뮤신이 뜨는 이유)</td><td class="src"><a href="https://www.essence.com/beauty/snail-mucin-trending-black-korean-skincare-tiktok/">Essence</a> <span class="tag mid">제목만(403)</span></td></tr>
+<tr><td class="lbl">흑인</td><td>쿠션(색조) · 배경으로 「스킨케어는 이미 폭넓게 수용」</td><td class="q">티르티르 9→20→40색, 미스다시 영상 이후 언박싱 약 5,600만 뷰, 아마존 뷰티 1위. Refinery29는 한국 색조가 어두운 피부를 외면하는 동안 스킨케어는 "broader appeal"(더 넓은 호소력)을 누렸다고 적었다</td><td class="src"><a href="https://www.refinery29.com/en-us/korean-beauty-foundation-dark-skin-tones-miss-darcei">Refinery29 2025-06-19</a> · <a href="https://www.koreatimes.co.kr/lifestyle/trends/20241104/diversity-inclusiveness-can-be-game-changers-for-k-beauty">Korea Times 2024-11-04</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">흑인 (한인 업계지)</td><td>멜라닌 친화 선크림(조선미녀·이니스프리·네오젠) · 세럼·마스크 · 브라이트닝 토너·토너패드</td><td class="q">「흑인 소비자들은 특히 멜라닌 친화적인 한국산 자외선 차단제를 선호」. 같은 매체의 2026년 흑인 고객 선크림 가이드는 Black Girl Sunscreen·Bolden·CeraVe만 추천하고 한국 브랜드가 0개다</td><td class="src"><a href="https://www.beautytimes.com/k-beauty/k-beauty-눈돌리는-흑인들/">BEAUTY TIMES 2024-08-27</a> · <a href="https://www.beautytimes.com/insight/뷰티트렌드/흑인-고객이-선크림을-찾는-이유/">2026-05-08</a> <span class="tag ok">직접(프록시)</span></td></tr>
+<tr><td class="lbl">흑인·히스패닉·남아시아계</td><td>K뷰티 전체</td><td class="q">랜딩인터내셔널 정새라: 「흑인과 히스패닉, 남아시아계 미국인은 K뷰티 제품의 타깃 소비층에서 소외됐다는 느낌」, K뷰티 = 「젊고 하얀 피부」 이미지</td><td class="src"><a href="https://www.hankyung.com/article/2025012081311">한국경제 2025-01-20</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">흑인·라틴계·중동계</td><td>클렌저 · 나이아신아마이드 토너 · PDRN 세럼 · 비타민C 모이스처라이저</td><td class="q">누티크 「월글로」, 멜라닌 풍부 피부 특화 K뷰티 4종. 맨해튼 런칭에 흑인 인플루언서 100여 명. 수요 데이터가 아니라 공백 주장</td><td class="src"><a href="https://www.sedaily.com/article/20041726">서울경제 2026-05-08</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">히스패닉</td><td>「글래스 스킨」 이상(理想) · 품목 없음</td><td class="q">히스패닉 여성 18~34세 500명 조사. 라티나의 뷰티 영감원에 "Korean ideal of flawless or 'glass skin'"(한국의 결점 없는 유리 피부 이상)이 들어 있다. 10명 중 9명이 「맑고 건강한 피부」를 매우 중요하다고 답함</td><td class="src"><a href="https://hispanicmarketingcouncil.org/press/hmc-unveils-new-study-on-u-s-hispanic-beauty-and-skincare-belleza-latina/">Hispanic Marketing Council 2025-10-07</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">히스패닉 (멕시코 맥락)</td><td>K뷰티 전체 · 립 슬리핑 마스크·워터뱅크·크림스킨(라네즈 멕시코 세포라)</td><td class="q">멕시코 소비자 61%가 K뷰티를 인기 있다고 답함(브라질 약 50%, 미국 약 45%). 아모레퍼시픽은 멕시코 20~30대를 「북미 트렌드를 가장 먼저 흡수」하는 고객으로 본다</td><td class="src"><a href="https://www.cnbc.com/2025/11/27/k-beauty-tiktok-makeup.html">CNBC 2025-11-27</a> · <a href="https://www.cosmorning.com/news/article.html?no=46398">코스모닝 2023-09-12</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">히스패닉 + 아시안</td><td>클렌저·보습제·세럼·아이케어·<b>토너</b>·나이트크림·마스크</td><td class="q">칸타 기준 미국 뷰티 「파워 구매자」는 히스패닉과 아시안(18~24·35~49세, 고소득)이고 이 제품군을 쓴다. 미국 뷰티 전체 기준이지 K뷰티 조사가 아니며 히스패닉 단독도 아니다</td><td class="src"><a href="https://www.beautynury.com/news/view/103946/cat/10">뷰티누리 2024-02-22</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">남아시아계·브라운</td><td>백탁 없는 선크림(이즈앤트리·스킨1004·하루하루원더) · 더블클렌징 · 비타민C</td><td class="q">틱톡 크리에이터 "top 3 #browngirlapproved Korean Sunscreens"(브라운걸 승인 한국 선크림 3종) · 소코글램 「K뷰티는 흑인·브라운 피부를 표백하지 않는다」</td><td class="src"><a href="https://sokoglam.com/blogs/theklog/korean-skin-care-brown-black-skin">Soko Glam 2021-02-01</a> <span class="tag ok">직접</span> · TikTok @makeupbymonicaa <span class="tag mid">스니펫</span></td></tr>
+<tr><td class="lbl">아시아계 (부재의 기록)</td><td>시트마스크(진열대 6) · 선케어(진열대 4)</td><td class="q">올리브영 패서디나 매장에서 기자가 센 고객 약 50명 중 한국계 0명, 아시아계 5명 미만. 하루 1,500명 이상, 객단가 $70~150. 소코글램은 2015년에 고객의 약 70%가 비아시아계라고 밝혔다</td><td class="src"><a href="https://www.asiae.co.kr/en/article/2026081602553790702">아시아경제 2026-08-16</a> · <a href="https://www.malaymail.com/news/life/2015/08/13/us-consumers-confirm-what-we-knew-all-along-s.korean-skincare-rocks/951053">Bloomberg 2015</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">메인스트림 (2차 물결)</td><td>달팽이 세럼 · 밀키 토너 · 한국 선크림 · 시카 앰플 · 슬리핑·시트마스크 · PDRN</td><td class="q">1차 물결(2015)은 시트마스크·달팽이·패치·10단계, 2차(2023~)는 위 목록. 세포라 K뷰티 에딧이 미국 매장 약 670곳 중 580곳에 깔림. 한국이 프랑스를 제치고 미국 화장품 수입 1위</td><td class="src"><a href="https://www.glossy.co/pop/__k-beauty-second-wave/">Glossy 2024-12-27</a> · <a href="https://www.asiae.co.kr/en/article/2026082202512377463">아시아경제 2026-08-22</a> <span class="tag ok">직접</span></td></tr>
+</tbody></table></div>
+<div class="note"><b>세어 보면.</b> 흑인 커뮤니티에 품목을 붙인 매체가 8개로 가장 많고, 그 첫 품목은 예외 없이 선크림이다. 히스패닉에 품목을 붙인 영어 매체는 0개(글래스 스킨이라는 이상만 있다). 남아시아계는 크리에이터와 리테일 블로그뿐이다.
+즉 서사의 밀도와 사용률의 크기는 반비례한다. 흑인은 사용률 최저·서사 최다, 히스패닉은 사용률 초과·서사 없음.</div>
+
+<h2 id="m">레인 5 · 메커니즘 · 피부 고민과 습관의 인종별 분포</h2>
+<p>「왜 그 커뮤니티인가」를 마케팅이 아니라 피부 생리·역학·습관 문헌으로 확인한다. 수치는 논문 초록에서 그대로 옮겼다.</p>
+<div class="tw"><table><thead><tr><th>고민·습관</th><th>수치</th><th>설계</th><th>출처</th></tr></thead><tbody>
+<tr><td class="lbl">색소침착 반점(여성)</td><td>흑인 65% · 히스패닉 48% · 백인 25% · 아시안 18% · 인도계 10%</td><td class="src">사진 판정, 여성 2,895명, 10~70세, 다국적</td><td class="src"><a href="https://doi.org/10.1111/j.1468-3083.2010.03919.x">JEADV 2011</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">여드름(여성)</td><td>흑인 37% · 히스패닉 32% · 아시안 30% · 백인 24% · 인도계 23% · 아시안은 염증성(20%) &gt; 면포성(10%), 백인은 반대</td><td class="src">같은 연구</td><td class="src">JEADV 2011 <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">여드름 후 색소침착</td><td>흑인 65.3% · 히스패닉 52.7% · 아시안 47.4%</td><td class="src">Taylor 2002, 리뷰 재인용</td><td class="src"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2921758/">JCAD 2010</a> <span class="tag mid">2차</span></td></tr>
+<tr><td class="lbl">기미(라티나)</td><td>댈러스·포트워스 폐경 전 라티나 500명 중 8.8% · 스페인어 주 사용이 위험 요인</td><td class="src">전화 설문</td><td class="src"><a href="https://doi.org/10.1001/archderm.143.3.424">Arch Dermatol 2007</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">아시아계 미국 여성 1위 고민</td><td>동·동남아계 = 색소침착 · 인도·중앙·서남아계 = <b>다크서클</b> · 비아시안 여성 = 윗얼굴 주름</td><td class="src">MOSAIC, 아시아계 여성 652명(전체 3,974명), 2022</td><td class="src"><a href="https://jcadonline.com/demographic-survey-of-aesthetic-interests-and-concerns-mosaic-us-survey-study-of-facial-and-body-aesthetic-concerns-and-treatment-interests-among-asian-women/">JCAD 2026</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">남아시아계 미국인 고민</td><td>건조 25% · 탈모 22% · 톤 불균일 21% · 다크스팟 18% · 여드름 17% · 진단 1위 여드름 37%</td><td class="src">커뮤니티 설문 190명</td><td class="src"><a href="https://pubmed.ncbi.nlm.nih.gov/21533300/">J Drugs Dermatol 2011</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">민감 피부 자각</td><td>52%, 인종 간 통계적 차이 없음 · 히스패닉은 알코올 반응 최저, 아시안은 온도·바람·매운 음식 반응 최고</td><td class="src">샌프란시스코 여성 약 800명, 4집단 각 200명</td><td class="src"><a href="https://doi.org/10.1034/j.1600-0536.2002.460307.x">Contact Dermatitis 2002</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">각질층 장벽</td><td>흑인 = 세라마이드 낮고 응집 높음 · 동아시아 = 성숙도 낮고 장벽 약함</td><td class="src">기기 측정</td><td class="src"><a href="https://doi.org/10.1016/j.jdermsci.2010.06.003">J Dermatol Sci 2010</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">습관적 선크림(SPF15+ 항상·대부분)</td><td>백인 40.4% · 히스패닉 24.7% · 흑인 10.9% · 아시안 29% vs 백인 35% · 히스패닉 31.1%→44.6%(2003~06→2015~18)</td><td class="src">NHIS 2015 · NHANES</td><td class="src"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8766623/">Am J Clin Dermatol 2022</a> <span class="tag ok">직접</span> · JAAD 2021·2022 <span class="tag mid">스니펫</span></td></tr>
+<tr><td class="lbl">선크림 장벽</td><td>백탁 걱정 유색인종 25% vs 백인 7% · 하루 1회 이상 덧바름 45% vs 76% · 맞는 제품 찾는 법 모름 41% vs 22% · 아시안 절반 이상·히스패닉 3분의 1이 「번들거림」</td><td class="src">설문</td><td class="src"><a href="https://doi.org/10.36849/JDD.8268">J Drugs Dermatol 2024</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">가시광선과 색소</td><td>가시광선은 어두운 피부에 색소를 만들고 기미·PIH를 악화 · 가시광선을 막으려면 눈에 보이는(틴트) 선크림이어야 함</td><td class="src">리뷰</td><td class="src"><a href="https://doi.org/10.1016/j.jaad.2020.04.079">JAAD 2021</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">노화 양상</td><td>유색인종은 주름이 10년 늦고 색소 변화가 먼저 · 자극(레티노이드 피부염 등)이 유색인종에서 PIH로 전환</td><td class="src">리뷰</td><td class="src"><a href="https://jcadonline.com/aging-differences-in-ethnic-skin/">JCAD 2016</a> <span class="tag ok">직접</span></td></tr>
+<tr><td class="lbl">달팽이 크림의 계보</td><td>1980년대 칠레 달팽이 농장 → 칠레 브랜드 엘리시나가 1995년 화장품화 → 한국은 2000년대 초 → 북미가 최속 성장 시장</td><td class="src">기사</td><td class="src"><a href="https://www.wired.com/story/snail-mucin-skincare-sensation/">WIRED 2024-11-17</a> <span class="tag ok">직접</span></td></tr>
+</tbody></table></div>
+<div class="note"><b>메커니즘이 지도와 맞물리는 곳.</b> 브라이트닝 니즈는 흑인 &gt; 히스패닉 &gt; 남아시아계 ≈ 동아시아계 순인데 구매는 그 역순이다. 선크림은 니즈(가시광선·기미)와 습관(10.9%)의 간극이 흑인에서 가장 크다.
+달팽이는 한국 발명품이 아니라 라틴 아메리카에서 30년 먼저 대중화된 성분이고, 스페인어 검색(텍사스 100)이 그 기억을 보여 준다. 히스패닉의 낮은 알코올 반응성은 액상 토너의 진입 장벽이 낮다는 뜻인데도 사용 빈도는 최저다. 즉 토너의 히스패닉 미달은 피부가 아니라 습관의 문제다.</div>
+
+<h2 id="cat">카테고리별 카드</h2>
+<div class="grid2">
+<div class="card"><h4>클렌저 · 폼·오일·밤·더블클렌징</h4><div class="v">● 아시아계 · ◐ 히스패닉 · × 흑인</div><ul>
+<li>베트남계 폼클렌저 주 7.2일, 각질 클렌저 5.2일. 다른 집단은 3.5~4.3일·1.2~2.0일(CAPABLE).</li>
+<li>매일 세안 아시안 56%·히스패닉 55%·백인 41%(버지니아). NIQ 아시아계 클렌저 구매액 +$16.70.</li>
+<li>검색: korean cleanser β 아시아계 +0.70, cleansing oil÷face wash 아시아계 +0.46·히스패닉 +0.31·흑인 −0.01.</li>
+<li>흑인은 세안 빈도 최저(3.5일)이고 세라마이드가 낮다. 오일·밤 클렌저가 닿는다면 여드름이 아니라 건조 서사다(소코글램은 흑인·브라운 피부에 더블클렌징을 권한다).</li></ul></div>
+<div class="card"><h4>토너 · 액상</h4><div class="v">● 아시아계 · ○ 흑인·백인 · × 히스패닉</div><ul>
+<li>사용지수 기타(아시아계 포함) 130 · 백인 103 · 히스패닉 97 · 흑인 82(오픈서베이). 미국 전체 사용률 39.3%, 한국 86.2%.</li>
+<li>주당 사용 흑인 2.2일 &gt; 백인 1.7 &gt; 베트남계 1.4 &gt; 라티나 0.9(CAPABLE 2019). 흑인의 두 조사가 상충한다(2019 빈도 최고, 2025 사용률 최저). 표본이 70명·131명이라 어느 쪽도 결정적이지 않다.</li>
+<li>검색: korean toner÷toner β 아시아계 +0.60 · 히스패닉 +0.32 · 흑인 +0.09. K뷰티 내부에서도 아시아계 +0.30.</li>
+<li>민텔은 아시아계 토너 사용을 「well above the norm」으로 적었고, NIQ 토너 구매액 격차는 +$5.47로 카테고리 중 최소다. 히스패닉과 토너를 잇는 언론·데이터는 영어·한국어 모두 0건.</li></ul></div>
+<div class="card"><h4>토너패드 · 수분패드</h4><div class="v">● 히스패닉 · ◐ 아시아계 · ○ 흑인 · × 백인</div><ul>
+<li>사용률 히스패닉 36.7% vs 전체 25.8%, 지수 142. 기타 124, 백인 97, 흑인 83(오픈서베이). 히스패닉 60명이라 ±12%p.</li>
+<li>검색 원 지수: toner pad β 히스패닉 +0.42(korean toner의 +0.37보다 크고), 아시아계 +0.64(+0.77보다 작다). 상위 DMA 마이애미·LA·샌프란시스코·샌디에이고·호놀룰루.</li>
+<li>K뷰티 내부 비: 히스패닉 +0.16 · 흑인 +0.13 · 아시아계 +0.03. 기초 카테고리 중 유일하게 히스패닉·흑인 쪽. 상위 DMA 콜럼버스(조지아)·몽고메리·러벅.</li>
+<li>메커니즘 주의: 각질 제거형 패드는 자극→색소침착 위험이 흑인·히스패닉에서 가장 크다. 오픈서베이 항목명은 「수분패드/토너패드」로 진정·수분형이 포함된다.</li></ul></div>
+<div class="card"><h4>에센스</h4><div class="v">● 아시아계(근거 약함)</div><ul>
+<li>오픈서베이는 에센스를 세럼·앰플·오일과 묶는다: 백인 106 · 히스패닉 98 · 기타 95 · 흑인 85.</li>
+<li>NIQ 아시아계 「트리트먼트」 구매액 +$17.22. 검색은 korean essence가 52개 DMA에서만 값이 있어 얇다(β 아시아계 +0.50).</li>
+<li>에센스라는 단계 자체가 K뷰티 정의물이라 일반 대조 용어가 없다. 일반어 essence는 흑인 지역(뉴올리언스·배턴루지)에서 높지만 잡지명 Essence와 섞여 쓸 수 없다.</li></ul></div>
+<div class="card"><h4>세럼·앰플 · 성분별</h4><div class="v">K세럼 전체 ● 아시아계 · 달팽이 ● 백인 메인스트림, ◐ 흑인·히스패닉 · 브라이트닝 ● 흑인 니즈 · 시카 ● 아시아계 · 레티놀 ● 백인</div><ul>
+<li>korean serum÷serum β 아시아계 +0.57. 사용지수는 백인 106·히스패닉 98·흑인 85.</li>
+<li>달팽이: snail mucin÷serum β 히스패닉 −0.24·흑인 −0.14·아시아계 −0.29. 원 지수에서는 흑인 β +0.27로 K 용어 중 최고, 코퍼스크리스티(히스패닉 63%)가 상위. Essence·Highsnobiety·The Root가 흑인 커뮤니티 품목으로 이름을 붙였고, 라틴 아메리카에는 1995년부터 달팽이 크림이 있었다(스페인어 검색 텍사스 100).</li>
+<li>브라이트닝: 색소침착 반점 흑인 65%·히스패닉 48%·백인 25%·아시안 18%. 남아시아계 톤 불균일 21%·다크스팟 18%. 구매 데이터는 없다.</li>
+<li>시카·진정: 민감피부 자각은 인종차가 없어(52%) 「민감」 자체는 쏠리지 않는다. 스킨1004·토리든 검색은 아시아계(+0.64/+0.82).</li>
+<li>레티놀: 유색인종은 주름이 10년 늦고 레티노이드 자극이 PIH로 전환된다. 저농도·캡슐형 포지셔닝이 유색인종 진입 조건이다.</li></ul></div>
+<div class="card"><h4>크림 · 모이스처라이저</h4><div class="v">● 아시아계 · ◐ 백인 · ○ 히스패닉·남아시아계 · × 흑인(얼굴) / ● 흑인(바디)</div><ul>
+<li>NIQ 아시아계 페이셜 모이스처라이저 $147.07(+$53.51), 카테고리 중 최대 격차. 매일 사용 아시안 63%·백인 49%.</li>
+<li>사용지수 기타 107·백인 106·히스패닉 97·흑인 83. 얼굴 크림 주당 백인 4.1일·라티나 2.4일.</li>
+<li>바디는 반대: 로션 흑인·라티나 주 6.0일, 백인 4.8. 흑인 핸드·바디로션 가구 14.8% vs 지출 16.6%(NIQ). 남아시아계 1위 고민이 건조(25%).</li>
+<li>검색: korean moisturizer β 아시아계 +0.75. 기후: 건조·한랭이 장벽 스트레스인데 흑인은 습한 남부에, 히스패닉은 건조한 남서부에 산다.</li></ul></div>
+<div class="card"><h4>선크림</h4><div class="v">● 아시아계 · ◐ 백인(습관)·히스패닉(성장) · ○ 흑인(서사)·남아시아계</div><ul>
+<li>korean sunscreen β 아시아계 +0.82, 조사 용어 중 최고. 비(÷sunscreen)도 아시아계 +0.54. 상위 DMA 샌프란시스코·호놀룰루·LA·샌디에이고·오스틴.</li>
+<li>습관: 백인 40.4%·히스패닉 24.7%·흑인 10.9%(NHIS). 사용지수 백인 115·기타 100·히스패닉 96·흑인 60. 매일 사용 중동계 36%·아시안 26%·히스패닉 24%·백인 22%·흑인 15%.</li>
+<li>히스패닉: 얼굴 선크림 주 4.0일로 최고(CAPABLE), 사용률 31.1→44.6%로 최속 성장, 기미 8.8%, 선벨트 거주. K 비의 상위 DMA가 위치타폴스·애빌린·엘패소(서부 텍사스).</li>
+<li>흑인: 니즈 최대(가시광선→색소, 백탁 걱정 25% vs 7%), 습관 최저. 흑인 매체 8곳이 첫 품목으로 K 선크림을 든다. 한인 업계지 2026년 흑인 선크림 가이드에 한국 브랜드 0개. 가시광선 차단은 틴트가 정답이라 「백탁 없음」과 상충한다.</li>
+<li>남아시아계: 인도계는 중국계보다 선크림 사용 확률이 낮다(aOR 0.55). 크리에이터의 「#browngirlapproved」 리스트가 유일한 K 연결.</li></ul></div>
+<div class="card"><h4>시트마스크</h4><div class="v">● 히스패닉 · ● 아시아계 · ◐ 백인 · × 흑인</div><ul>
+<li>사용지수 히스패닉 120 · 기타 118 · 백인 111 · 흑인 55(오픈서베이). 캘리포니아 조사에서는 집단 차이 없음.</li>
+<li>민텔: 아시아계 시트마스크 사용 「well above the norm」. 검색 sheet mask÷face mask β 아시아계 +0.47·히스패닉 +0.21·흑인 +0.17. K뷰티 내부 비는 셋 다 0 근처.</li>
+<li>올리브영 패서디나의 최대 진열은 시트마스크(6대)였고 그 손님의 90% 이상이 비아시아계였다. 흑인 매체는 시트마스크를 「순한 K뷰티」의 예로 든다.</li></ul></div>
+<div class="card"><h4>스팟패치</h4><div class="v">● 백인 메인스트림 · ◐ 아시아계 · ○ 히스패닉 · × 흑인</div><ul>
+<li>pimple patch÷acne β 히스패닉 −0.10·흑인 −0.03·아시아계 −0.22. 비가 가장 낮은 DMA도 1.17배. K뷰티 내부 비는 −0.34/−0.18/−0.56. 상위 DMA 이리·수시티·조플린·토피카.</li>
+<li>사용지수(스팟케어) 백인 107·히스패닉 103·기타 93·흑인 83. 오픈서베이는 30대·고소득·백인의 스팟케어 이용률을 두드러진다고 적었다.</li>
+<li>니즈는 반대다: 여드름 흑인 37%·히스패닉 32%·아시안 30%·백인 24%. 아시안은 염증성 우세로 하이드로콜로이드 패치의 대상 병변이다. 여드름 후 색소침착 65%인 흑인에게 「안 짜기」의 가치가 가장 큰데 사용은 가장 적다.</li></ul></div>
+<div class="card"><h4>립마스크</h4><div class="v">● 백인 메인스트림 · ○ 흑인·히스패닉·아시아계 (편향 없음)</div><ul>
+<li>lip sleeping mask÷lip balm β 세 집단 모두 0 근처(−0.07/+0.02/−0.02). 립밤 사용 주 4.0~5.0일로 전 집단 균등.</li>
+<li>라네즈÷korean skincare는 −0.30/−0.08/−0.23으로 K뷰티 안에서 백인 내륙(위스콘신·이리·메인)에 기운다. 원 지수 상위에 조지아(흑인 33%)가 든다.</li>
+<li>라네즈는 멕시코 세포라 진출 첫 품목으로 립 슬리핑 마스크를 골랐다.</li></ul></div>
+<div class="card"><h4>미스트</h4><div class="v">▢ 측정값 없음 · ○ 히스패닉·흑인·아시아계</div><ul>
+<li>설문·패널 어디에도 미스트 항목이 없다. 검색 face mist÷moisturizer β 세 집단 0 근처, K뷰티 내부 비 −0.23/+0.05/−0.34.</li>
+<li>민텔은 아시아계 미스트 사용을 「well above the norm」으로 적었다(재인용). 기후로는 건조한 남서부(히스패닉 핵심 지역)가 장벽 스트레스 지역이다.</li></ul></div>
+<div class="card"><h4>아이크림</h4><div class="v">● 백인 · ◐ 히스패닉 · ◐ 남아시아계(니즈) · ○ 아시아계 · × 흑인</div><ul>
+<li>사용지수 백인 114 · 히스패닉 112 · 기타 79 · 흑인 64(오픈서베이). 미국 사용률 43.3%로 한국(41.7%)과 유일하게 비슷한 카테고리.</li>
+<li>NIQ 아시아계 아이 스킨케어 구매액 +$15.08. 검색 korean eye cream은 58개 DMA로 얇고 비의 β는 0 근처.</li>
+<li>인도·중앙·서남아계 미국 여성의 1위 고민이 다크서클(MOSAIC). 인도 임상에서 다크서클은 체질형 51.5%, 가족력 63%로 만성이라 재구매형 니즈다.</li></ul></div>
+</div>
+
+<h2 id="ca">캐나다</h2>
+<ul>
+<li><b>NIQ 캐나다(2026-05-05)</b>: K뷰티는 「중국계·필리핀계·남아시아계 가구에서 buyer index가 전국 평균을 크게 웃돈다」. 18~44세, 온타리오·BC 집중, 퀘벡 under-index. 2025년 C$1억6,400만, +57%. 온라인 40% 이상, 아마존+세포라가 지출의 약 40%, 오프라인 성장은 세포라·코스트코·「일부 에스닉 식료품 체인」에 집중. 카테고리 분해와 지수 값은 미공개 <span class="tag ok">직접 확인</span>.</li>
+<li><b>더구루(2026-04-04)</b>: 「인도·동아시아계 인구가 밀집한 광역 토론토(GTA)는 K뷰티의 전략적 요충지」. 캐나다 한국산 화장품 수입의 74.3%가 기초이고, 기초 수입 점유율 4.4%(2020)→9%(2024) <span class="tag ok">직접 확인</span>.</li>
+<li><b>채널 신호</b>: 중국계 식료품 체인 T&amp;T가 동서 양안에서 K뷰티 채널이다. 몬트리올 T&amp;T에 코스알엑스·조선미녀·라운드랩, 밴쿠버 T&amp;T에 메디힐 토너패드(틱톡 캡션), 몬트리올 차이나타운 나나미에 메디힐 토너패드. 필리핀계·남아시아계 자기 인식 크리에이터나 기사는 0건.</li>
+<li><b>센서스 2021</b>: 전국 남아시아계 7.1%·중국계 4.7%·흑인 4.3%·필리핀계 2.6%. 토론토시 남아시아계 14.0%·중국계 10.7%·필리핀계 6.2%, 밴쿠버 CMA 중국계 19.6%. 몬트리올의 특징 집단(흑인 8.1%, 아랍계 5.9%)은 NIQ가 이름 붙이지 않은 집단과 겹친다(인과 서술은 없음).</li>
+<li>결론: 캐나다는 미국과 달리 「아시아계 + 남아시아계」가 패널로 확인된 유일한 시장이고, 카테고리 × 커뮤니티 데이터는 없다.</li>
+</ul>
+
+<h2 id="gap">모르는 것 · 한계</h2>
+<ul>
+<li><b>K뷰티 특정 × 인종 × 카테고리 수치는 어디에도 없다.</b> NIQ·Circana·Numerator·Mintel 전부 K뷰티 전체 또는 뷰티 전체 수준에서만 인종을 나눈다. NIQ의 히스패닉·흑인·아시아계 뷰티 리포트($4,725/편)와 민텔 히스패닉 BPC 2026($4,995)에 더 있을 수 있다.</li>
+<li><b>히스패닉 설문 표본이 60명이다.</b> 토너패드 142는 방향으로 읽고, 크기는 캘리포니아·텍사스 표본 재조사 전까지 ±12%p로 본다. CAPABLE의 라티나·베트남계는 캘리포니아 이민 1~2세대 편향이 있다.</li>
+<li><b>검색 지리는 생태학적 추론이다.</b> DMA 210개 중 인구 30만 이상 166개만 썼고, K 용어의 절반은 검색량 부족으로 50~130개 DMA만 값이 있다. 캔자스·위치타를 제외했지만 기타 지오로케이션 오류는 남아 있다. 12개월 창의 우연을 걸러내려고 2024~2026 창을 같이 봤다(위 표).</li>
+<li><b>「기타 인종」은 아시아계가 아니다.</b> 오픈서베이의 기타(47명)는 아시아계·원주민·혼혈을 합친 잔여 집단이다. 아시아계 사용률로 읽는 것은 근사다.</li>
+<li><b>남아시아계·필리핀계·베트남계·중국계·한국계의 미국 내 분해는 없다.</b> 센서스 「아시안」 하나로 묶인다. 캐나다 NIQ와 피부 문헌(MOSAIC, 남아시아계 190명)에서만 갈라진다.</li>
+<li><b>틱톡샵·아마존 구매자 인종은 알 수 없다.</b> Circana의 「히스패닉+흑인 36%」는 유료 기사 스니펫이고 K뷰티 한정이 아니다. 아마존 리뷰의 피부톤 자기 언급은 수집하지 않았다.</li>
+<li><b>언론 레인은 서사이지 수요가 아니다.</b> 흑인 커뮤니티 기사 8건은 같은 소수의 에스테티션·크리에이터를 돌려 인용한다.</li>
+<li>검색 예산 한도로 실행 못 한 조사: 미국 필리핀계 소비자, 한인 뷰티서플라이의 K 스킨케어 판매 품목, 조선미녀의 비아시아계 비중, 아마존 리뷰 피부톤 언급 집계, 미국 남아시아계 언론(Brown Girl Magazine·The Juggernaut).</li>
+</ul>
+
+<h2 id="ref">출처</h2>
+<p class="src">본문 링크 외 원자료: <a href="_sources/">_sources/</a>에 조사 레인 6개의 원본 노트(A1 패널·통계, A2 영어 언론, A3 한국어 언론, A5 캐나다, A6 메커니즘 문헌, A7 DMA 매핑)와 검색 지리 원자료(trends_geo_raw.csv, dma_shares_2024.csv)를 뒀다.
+모든 인용문은 해당 페이지에서 읽은 문장이며, 스니펫만 본 것은 표기했다. 저자 식별정보는 수집하지 않았다.</p>
+<ul>
+<li>오픈서베이 뷰티 트렌드 리포트 2026 미국편 · https://blog.opensurvey.co.kr/article/beauty-2026-2/ (2026-01-19)</li>
+<li>Collins HN et al., CAPABLE, J Expo Sci Environ Epidemiol 2023 · https://pmc.ncbi.nlm.nih.gov/articles/PMC10005944/</li>
+<li>UCL Open Environment 2024, 대학생 퍼스널케어 사용 · https://pmc.ncbi.nlm.nih.gov/articles/PMC11098005/</li>
+<li>NielsenIQ: K-Beauty's Viral Rise in the U.S. Market (2025-10-21) · Asian American beauty buyer (2024-06-06) · Hispanic beauty consumer (2023-09-29, 2024-10-10, 2025-10-02) · Black beauty landscape (2026-03-05) · Black consumer spending (2024-01-30) · K-Beauty in Canada (2026-05-05)</li>
+<li>Nielsen Diverse Intelligence Series, Asian American audiences (2025-04) · Mintel US Asian American Beauty Consumer 2023 · Mintel sunscreen press release (2023-03-07)</li>
+<li>Numerator K-beauty report (2026-07-28, asiams.net 재게재) · CNBC (2025-11-27, 2026-07-18) · WWD/Circana TikTok Shop (2026) · Glossy second wave (2024-12-27) · 아시아경제 영문 (2026-08-16, 2026-08-22) · Bloomberg via Malay Mail (2015-08-13)</li>
+<li>Highsnobiety · Blavity (2024-09-30) · The Root · Essence · Refinery29 (2025-06-19) · Korea Times (2024-11-04) · Soko Glam The Klog (2021-02-01) · Hispanic Marketing Council Belleza Latina (2025-10-07)</li>
+<li>뷰티누리 (2024-02-22, 2024-10-15) · 코스모닝 (2023-09-12, 2026-01-13) · 한국경제 (2025-01-20) · 서울경제 (2026-05-08) · BEAUTY TIMES (2024-08-27, 2024-10-05, 2026-05-08) · 더구루 (2026-04-04) · KOTRA 토론토 (2024-08-29, 2025-04-24)</li>
+<li>Perkins AC et al., JEADV 2011 · Davis &amp; Callender, JCAD 2010 · Werlinger et al., Arch Dermatol 2007 · Chiu et al., MOSAIC, JCAD 2026 · Shah et al., J Drugs Dermatol 2011 · Jourdain et al., Contact Dermatitis 2002 · Muizzuddin et al., J Dermatol Sci 2010 · Tsai &amp; Chien, Am J Clin Dermatol 2022 · Wang et al., J Drugs Dermatol 2024 · Lyons et al., JAAD 2021 · Vashi et al., JCAD 2016 · WIRED (2024-11-17)</li>
+<li>Google Trends explore API (2026-09-09, geo=US, today 12-m 및 2024-01-01~2026-09-09) · Census Bureau Vintage 2024 county population estimates by race and Hispanic origin (cc-est2024-alldata.csv) · BritCrit dma_county_zip 크로스워크 + Nielsen 2016-17 카운티 목록 대조</li>
+</ul>
+
+<div class="foot">
+<b>방법</b> 성격이 다른 다섯 레인(설문·패널·검색 지리·언론·문헌)을 독립으로 모으고, 두 레인 이상이 같은 방향일 때만 메인으로 표시했다. 검색 지리는 인구가중 회귀(DMA 210개, 인구 30만 이상)이며 β는 표준화 계수다.<br>
+<b>기준일</b> 검색 수집 2026-09-09 · 센서스 2024-07-01 추계 · 설문 2025-12(오픈서베이), 2019(CAPABLE), 2013·2016-17(버지니아).<br>
+<b>수집</b> 전부 공개 페이지에서 속도 제한을 지켜 수집. 유료 벽 뒤의 값은 스니펫으로 표기하고 본문 판정에 쓰지 않았다.
+</div>
+</div></body></html>
